@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "LeaseHoldProperties";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>LeaseHold Properties Report </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{<div>
+     <div class="row">
+
+         <div class="col-lg-3">
+             <p>Lease End Date</p>
+             <p><input type="text" id="EndDate01" name="EndDate01" class="e-field e-ejinputtext valid" /></p>
+         </div>
+         <div class="col-lg-3">
+             <p>To</p>
+             <p><input type="text" id="EndDate02" name="EndDate02" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>Location</p>
+             <p><input type="text" id="Location_id" name="Location_id" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         @*<div class="col-lg-3">
+            <p>NHCC Project</p>
+            <p><input type="text" id="Project_Code" name="Project_Code" class="e-field e-ejinputtext valid" /></p>
+        </div>*@
+
+         <div class="col-lg-3">
+             <p>Property Type</p>
+             <p><input type="text" id="TypeCode" name="TypeCode" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+     </div>
+        <div class="row">
+                       
+
+            <br />
+            <div class="col-lg-3">
+                <input class="btn btn-success" type="button" value="Load Report">
+            </div>
+
+
+        </div>
+    </div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+       
+
+        $("#EndDate01").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+        $("#EndDate02").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+
+ $(function () {
+          $(':button').click(function () {
+
+        var dateobject = $("#EndDate01").data("ejDatePicker");
+        var StartDate = dateobject.getValue();
+
+        var dateobject1 = $("#EndDate02").data("ejDatePicker");
+        var EndDate = dateobject1.getValue();
+
+
+        var TypeCodes1 = $('#TypeCode').data("ejDropDownList");
+        var _TypeCodes1 = TypeCodes1.option("value");
+        //alert(_TypeCodes1); //Alert for Lease Types
+
+        var Location_id1 = $('#Location_id').data("ejDropDownList");
+        var _Location_id = Location_id1.option("value");
+        //alert(_Location_id); //Alert for Location
+
+        //var Project_Code1 = $('#Project_Code').data("ejDropDownList");
+        //var _Project_Code = Project_Code1.option("value");
+
+        ////alert(_Project_Code); //Alert for _Project_Code
+
+
+        $("#mqpartial").load("@Url.Action("LeaseHoldPropertiesPartial", "Reports")",
+                {
+
+                    'sdate': StartDate,
+                    'edate': EndDate,
+                    'Location_id': _Location_id,
+                    //'Project_Code': _Project_Code,
+                    'TypeCode': _TypeCodes1,
+
+
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+
+
+        });
+    });
+
+</script>
+
+<script>
+
+    //Project Description
+    $.ajax({
+        url: 'GetProjectCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Project_Code').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Project_Desc", text: "Project_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Location Description
+    $.ajax({
+        url: 'GetLocationCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Location_id').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Location_Desc", text: "Location_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Property Types
+    $.ajax({
+        url: 'GetPropertyType',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#TypeCode').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "TypeDesc", text: "TypeDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+            
+
+</script>
+
+
+
+

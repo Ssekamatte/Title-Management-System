@@ -1,0 +1,105 @@
+@model IEnumerable<TMS.Models.District>
+
+@{
+    ViewBag.Title = "DistrictList";
+}
+
+<h2>DistrictList</h2>
+@{
+    if (IsPost)
+    {
+        string companyname = Request.Form["companyname"];
+        string contactname = Request.Form["contactname"];
+        int employeecount = Request.Form["employees"].AsInt();
+        string district = Request.Form["Districts"];
+        string districtname = Request.Form["districtname"];
+
+        string parishcode = Request.Form["ParishCode"];
+        string parishname = Request.Form["ParishName"];
+        <text>
+            <b>Enter Data</b>: <br />
+            Company Name: @companyname <br />
+            Contact Name: @contactname <br />
+            Employee Count: @employeecount <br />
+            District Code: @district <br />
+            District Name: @districtname <br />
+
+Parish Code: @parishcode <br />
+            Parish Name: @parishname <br />
+        </text>
+    }
+}
+ <form method="post">
+    <fieldset>
+        <legend>Add Customer</legend>
+        
+        <div>
+            <label for="CompanyName">Company Name:</label>
+            <input type="text" name="CompanyName" value="" />
+        </div>
+        <div>
+            <label for="ContactName">Contact Name:</label>
+            <input type="text" name="ContactName" value="" />
+        </div>
+        <div>
+            <label for="Employees">Employee Count:</label>
+            <input type="text" name="Employees" value="" />
+        </div>
+
+        <div>
+            <label for="District">District Code:</label>
+            <input type="text"  id="District"  name="Districts" value="" />
+        </div>
+        <div>
+            <label for="DistrictName">District Name:</label>
+            <input type="text" id="DistrictName" name="DistrictName" value="" />
+        </div>
+
+        <div>
+            <label for="District">Parish Code:</label>
+            <input type="text" id="ParishCode" name="ParishCode" value="" />
+        </div>
+        <div>
+            <label for="DistrictName">Parish Name:</label>
+            <input type="text" id="ParishName" name="ParishName" value="" />
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="submit" value="Submit" class="submit" />
+        </div>
+        @*@Html.EJ().DropDownList("districts").Datasource((IEnumerable<TMS.Models.District>)ViewBag.datasource).DropDownListFields(f => f.Text("District_Name").Value("DistrictID")).ShowCheckbox(true).ClientSideEvents(e => e.Change("onCheck"))*@
+        @*@Html.EJ().DropDownList("districts").Datasource((IEnumerable<TMS.Models.District>)ViewBag.datasource).DropDownListFields(f => f.Text("District_Name").Value ("DistrictID")).ClientSideEvents(e => e.Change("onCheck"))*@
+        
+        @Html.EJ().DropDownList("districtsList").Datasource((IEnumerable<TMS.Models.District>)ViewBag.datasource).DropDownListFields(df =>df.ID("DistrictID").Text("District_Name").Value("DistrictID")).ClientSideEvents(e => e.Change("onChange"))
+        @Html.EJ().DropDownList("countiesList").Datasource((IEnumerable<TMS.Models.County >)ViewBag.datasource2).DropDownListFields(df => df.ID("County_ID").Text("County_Name").Value("County_ID")).ClientSideEvents(e => e.Change("onChangeCounty"))
+
+
+    </fieldset>
+</form>
+
+<script>
+
+
+    function onCheck(args) {
+
+        $("#District").val(args.value);
+        $("#DistrictName").val(args.text);
+        //alert(args.value);
+
+    }
+
+    function onChange(args) {
+
+        $("#District").val(args.value);
+        $("#DistrictName").val(args.text);
+        //alert(args.value);
+
+    }
+    function onChangeCounty(args) {
+
+        $("#ParishCode").val(args.value);
+        $("#ParishName").val(args.text);
+        //alert(args.value);
+    }
+
+</script> 

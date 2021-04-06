@@ -1,0 +1,1394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CC7B76EF-3C30-4B99-AD72-2D8EA2C858EC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMS</RootNamespace>
+    <AssemblyName>TMS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\..\..\Users\UNEB\Downloads\FileWatcherDemo\FileWatcherDemo\packages\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc.1.1.1\lib\net45\ReportViewerForMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Chart.Wpf, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Compression.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.DocIO.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.DocToPDFConverter.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ.Export, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ.Mvc, Version=16.2500.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ.PdfViewer, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ.Pivot, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.EJ.ReportViewer, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Gauge.Wpf, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Linq.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Olap.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Pdf.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Presentation.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SFMaps.WPF, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Shared.Wpf, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SpellChecker.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.XlsIO.Base, Version=16.2450.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Data.SqlServerCe" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllPropertyTitles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllPropertyTitles.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MonitorConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="CondominiumProperties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CondominiumProperties.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CountiesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\DistrictsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OffersController.cs" />
+    <Compile Include="Controllers\OfferStatusController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\PropertyTitleMovtsController.cs" />
+    <Compile Include="Controllers\PropertyTitlesController.cs" />
+    <Compile Include="Controllers\Property_PaymentController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SpreadsheetImportController.cs" />
+    <Compile Include="Controllers\SubcountiesController.cs" />
+    <Compile Include="Controllers\TitleMovements_LawyersController.cs" />
+    <Compile Include="FreeholdProperties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeholdProperties.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MailoLand.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailoLand.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagementReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AuditLog_PropertyPayment.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditLog_PropertyTitle.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditLog_PropertyTitleMovt.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Audit_Action.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_ChiefCommunicationsOfficer.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_Employee.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_ID_Type.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_MarketingManager.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_NumberOfRooms.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_PaymemtTerms.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_Position.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CondominiumModel.cs" />
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\County.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DestinationType.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\District.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExpiryNotification.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LeaseType.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lease_Type.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModuleInfo.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHCC.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHCC.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHCC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHCC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHCC.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHCCUserRole.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotificationReminderInterval.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotificationServer.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotificationStatu.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Offer.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OfferStatu.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Parish.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PayMethod.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyApplicant.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyApplication.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyApplicationDetail.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyStatu.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyTitle.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyTitleMovt.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyTitle_LeaseYears.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyTitle_PlotSize.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyType.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Property_Payment.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportsModels.cs" />
+    <Compile Include="Models\Report_AllPropertyTitles.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_AllPropertyTypes.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_AuditLog_PropertyPayment.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_AuditLog_PropertyTitle.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_AuditLog_PropertyTitleMovt.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_FreeholdProperties.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_LeaseHoldPropertyTitles.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_LeaseNotifications.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_MailoLandPropertyTitles.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_nhccProperties.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_SoldProperties.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_StandAllProperty.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_StandAlone_Properties.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report_TitleMovements.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SealApplicationRegister.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AllPropertyTitlesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AllPropertyTypesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AllTitlesManagementGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AllTitlesManagement_NoTitlesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AuditLog_PropertyPaymentGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AuditLog_PropertyTitleGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_AuditLog_PropertyTitleMovtGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_CondomoniumPropertiesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_FreeholdPropertiesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_LeaseHoldPropertyTitlesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_LeaseNotificationsGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_MailoLandPropertyTitlesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_nhccPropertiesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_NoTitlesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_OffersManagementGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_SoldPropertiesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_StandAllPropertyGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_StandAlone_PropertiesGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spReport_TitleMovementsGetAll_Result.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subcounty.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TitleChange.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TitleMovements_Lawyers.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TitleMovement_Purpose.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users_AccountStatus.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users_in_Role_ViewModel.cs" />
+    <Compile Include="Models\User_Menu_Option.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_NHCC.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_AspNetRoles.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_UserManagement.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_UsersRoles.cs">
+      <DependentUpon>NHCC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHCC_Properties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHCC_Properties.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NHCC_TMSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHCC_TMSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="No_Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>No_Titles.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAPIController.cs" />
+    <Compile Include="SoldProperties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoldProperties.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SoldProps.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoldProps.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Sold_Properties.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sold_Properties.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StandAlone.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StandAlone.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Title_Movements.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Title_Movements.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WebAPI\PdfViewerController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ej.reportviewer.all.min.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.theme.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.theme.less" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.theme.min.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\checkedtick.png" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\rating-star.png" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\slider-tick.png" />
+    <Content Include="Content\ej\web\bootstrap-theme\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\common-images\colorpicker_dark.png" />
+    <Content Include="Content\ej\web\common-images\colorpicker_light.png" />
+    <Content Include="Content\ej\web\common-images\colorpicker_light_material.png" />
+    <Content Include="Content\ej\web\common-images\darktheme\colorpicker_dark.png" />
+    <Content Include="Content\ej\web\common-images\diagram\diagram_context.png" />
+    <Content Include="Content\ej\web\common-images\diagram\diagram_context1.png" />
+    <Content Include="Content\ej\web\common-images\diagram\Rotate.cur" />
+    <Content Include="Content\ej\web\common-images\diagram_context.png" />
+    <Content Include="Content\ej\web\common-images\diagram_context1.png" />
+    <Content Include="Content\ej\web\common-images\documenteditor\cellbottomalignment.svg" />
+    <Content Include="Content\ej\web\common-images\documenteditor\cellcenteralignment.svg" />
+    <Content Include="Content\ej\web\common-images\documenteditor\celltopalignment.svg" />
+    <Content Include="Content\ej\web\common-images\documenteditor\tablecenteralignment.svg" />
+    <Content Include="Content\ej\web\common-images\documenteditor\tableleftalignment.svg" />
+    <Content Include="Content\ej\web\common-images\documenteditor\tablerightalignment.svg" />
+    <Content Include="Content\ej\web\common-images\ejicons.eot" />
+    <Content Include="Content\ej\web\common-images\ejicons.svg" />
+    <Content Include="Content\ej\web\common-images\ejicons.ttf" />
+    <Content Include="Content\ej\web\common-images\ejicons.woff" />
+    <Content Include="Content\ej\web\common-images\fileexplorer\file_icons.png" />
+    <Content Include="Content\ej\web\common-images\grid\dropPointer.cur" />
+    <Content Include="Content\ej\web\common-images\kanban\nouser.svg" />
+    <Content Include="Content\ej\web\common-images\lighttheme\colorpicker_light.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Bootom.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Bootom_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Left.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Left_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Right.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Right_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Top.png" />
+    <Content Include="Content\ej\web\common-images\maps\Arrow_Top_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Bar.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home_hover_lime.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home_hover_saffron.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home_lime.png" />
+    <Content Include="Content\ej\web\common-images\maps\Home_saffron.png" />
+    <Content Include="Content\ej\web\common-images\maps\Navicatior.png" />
+    <Content Include="Content\ej\web\common-images\maps\Zoom-In.png" />
+    <Content Include="Content\ej\web\common-images\maps\Zoom-In_hover.png" />
+    <Content Include="Content\ej\web\common-images\maps\Zoom-out.png" />
+    <Content Include="Content\ej\web\common-images\maps\Zoom-out_hover.png" />
+    <Content Include="Content\ej\web\common-images\materialtheme\colorpicker_light_material.png" />
+    <Content Include="Content\ej\web\common-images\mediaplayer\basic_view_toolbar_bg.png" />
+    <Content Include="Content\ej\web\common-images\mediaplayer\header_bg.png" />
+    <Content Include="Content\ej\web\common-images\mediaplayer\thumbnail.png" />
+    <Content Include="Content\ej\web\common-images\mediaplayer\waiting_popup.gif" />
+    <Content Include="Content\ej\web\common-images\navigationdrawer\icons.eot" />
+    <Content Include="Content\ej\web\common-images\navigationdrawer\icons.svg" />
+    <Content Include="Content\ej\web\common-images\navigationdrawer\icons.ttf" />
+    <Content Include="Content\ej\web\common-images\navigationdrawer\icons.woff" />
+    <Content Include="Content\ej\web\common-images\olapkpi\circle.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\diamond.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\down-arrow.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\green.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\red.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\right-arrow.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\three-color.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\triangle.png" />
+    <Content Include="Content\ej\web\common-images\olapkpi\up-arrow.png" />
+    <Content Include="Content\ej\web\common-images\pdfviewer\preloader-pdfviewer.gif" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\circle.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\diamond.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\down-arrow.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\green.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\red.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\right-arrow.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\three-color.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\triangle.png" />
+    <Content Include="Content\ej\web\common-images\pivotgrid\up-arrow.png" />
+    <Content Include="Content\ej\web\common-images\radialmenu\back.png" />
+    <Content Include="Content\ej\web\common-images\radialmenu\radial.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\Dataset.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\Datasource.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\DefaultImage.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\Drag Table.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\ejreportdesigner.eot" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\ejreportdesigner.svg" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\ejreportdesigner.ttf" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\ejreportdesigner.woff" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\Image.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\MoveIcon.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\Parameter.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\resizeicon.png" />
+    <Content Include="Content\ej\web\common-images\reportdesigner\SettingIcon.png" />
+    <Content Include="Content\ej\web\common-images\reports\down.png" />
+    <Content Include="Content\ej\web\common-images\reports\minus.gif" />
+    <Content Include="Content\ej\web\common-images\reports\minus.jpg" />
+    <Content Include="Content\ej\web\common-images\reports\minus.png" />
+    <Content Include="Content\ej\web\common-images\reports\plus.gif" />
+    <Content Include="Content\ej\web\common-images\reports\plus.jpg" />
+    <Content Include="Content\ej\web\common-images\reports\plus.png" />
+    <Content Include="Content\ej\web\common-images\reports\up.png" />
+    <Content Include="Content\ej\web\common-images\reports\updown.png" />
+    <Content Include="Content\ej\web\common-images\reportviewer\collapse.svg" />
+    <Content Include="Content\ej\web\common-images\reportviewer\down.png" />
+    <Content Include="Content\ej\web\common-images\reportviewer\ej-reportviewericons.eot" />
+    <Content Include="Content\ej\web\common-images\reportviewer\ej-reportviewericons.svg" />
+    <Content Include="Content\ej\web\common-images\reportviewer\ej-reportviewericons.ttf" />
+    <Content Include="Content\ej\web\common-images\reportviewer\ej-reportviewericons.woff" />
+    <Content Include="Content\ej\web\common-images\reportviewer\expand.svg" />
+    <Content Include="Content\ej\web\common-images\reportviewer\minus.gif" />
+    <Content Include="Content\ej\web\common-images\reportviewer\minus.jpg" />
+    <Content Include="Content\ej\web\common-images\reportviewer\minus.png" />
+    <Content Include="Content\ej\web\common-images\reportviewer\plus.gif" />
+    <Content Include="Content\ej\web\common-images\reportviewer\plus.jpg" />
+    <Content Include="Content\ej\web\common-images\reportviewer\plus.png" />
+    <Content Include="Content\ej\web\common-images\reportviewer\up.png" />
+    <Content Include="Content\ej\web\common-images\reportviewer\updown.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Blank.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Browser.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Check.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Diet.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\ejrbnicons.eot" />
+    <Content Include="Content\ej\web\common-images\ribbon\ejrbnicons.svg" />
+    <Content Include="Content\ej\web\common-images\ribbon\ejrbnicons.ttf" />
+    <Content Include="Content\ej\web\common-images\ribbon\ejrbnicons.woff" />
+    <Content Include="Content\ej\web\common-images\ribbon\gallery.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Gantt.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\homegallery.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\paste.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Project.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Protect.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\Sales.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\style.gallery.png" />
+    <Content Include="Content\ej\web\common-images\ribbon\User.jpg" />
+    <Content Include="Content\ej\web\common-images\ribbon\Version.png" />
+    <Content Include="Content\ej\web\common-images\Rotate.cur" />
+    <Content Include="Content\ej\web\common-images\schedule\schedule_priority.png" />
+    <Content Include="Content\ej\web\common-images\schedule_priority.png" />
+    <Content Include="Content\ej\web\common-images\spellcheck\highlight.png" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\blank.png" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\chart-sprites.png" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\charttab-sprites.png" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\charttype-sprites.png" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\down_arrow_dark.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\down_arrow_light.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\draw_border_dark.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\draw_border_grid_dark.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\draw_border_grid_light.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\draw_border_light.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\ejxlicons.eot" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\ejxlicons.svg" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\ejxlicons.ttf" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\ejxlicons.woff" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\format_painter_dark.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\format_painter_light.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\right_arrow_dark.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\right_arrow_light.cur" />
+    <Content Include="Content\ej\web\common-images\spreadsheet\sprites.png" />
+    <Content Include="Content\ej\web\common-images\tools\drop-sibling-rtl.png" />
+    <Content Include="Content\ej\web\common-images\tools\file_icons.png" />
+    <Content Include="Content\ej\web\common-images\tools\icons.eot" />
+    <Content Include="Content\ej\web\common-images\tools\icons.svg" />
+    <Content Include="Content\ej\web\common-images\tools\icons.ttf" />
+    <Content Include="Content\ej\web\common-images\tools\icons.woff" />
+    <Content Include="Content\ej\web\common-images\treeview\drop-sibling-rtl.png" />
+    <Content Include="Content\ej\web\default-theme\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\default-theme\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\default-theme\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\default-theme\ej.theme.css" />
+    <Content Include="Content\ej\web\default-theme\ej.theme.less" />
+    <Content Include="Content\ej\web\default-theme\ej.theme.min.css" />
+    <Content Include="Content\ej\web\default-theme\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\default-theme\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\default-theme\images\checkedtick.png" />
+    <Content Include="Content\ej\web\default-theme\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\default-theme\images\rating-star.png" />
+    <Content Include="Content\ej\web\default-theme\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\default-theme\images\slider-tick.png" />
+    <Content Include="Content\ej\web\default-theme\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.bootstrap.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.bootstrap.less" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.bootstrap.min.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.less" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.material.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.material.less" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.material.min.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.min.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.office-365.css" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.office-365.less" />
+    <Content Include="Content\ej\web\ej.reportdesigner.core.office-365.min.css" />
+    <Content Include="Content\ej\web\ej.widgets.core.bootstrap.less" />
+    <Content Include="Content\ej\web\ej.widgets.core.bootstrap.min.css" />
+    <Content Include="Content\ej\web\ej.widgets.core.less" />
+    <Content Include="Content\ej\web\ej.widgets.core.material.less" />
+    <Content Include="Content\ej\web\ej.widgets.core.material.min.css" />
+    <Content Include="Content\ej\web\ej.widgets.core.min.css" />
+    <Content Include="Content\ej\web\ej.widgets.core.office-365.less" />
+    <Content Include="Content\ej\web\ej.widgets.core.office-365.min.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\flat-azure-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\flat-lime-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\flat-lime\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\flat-lime\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\flat-lime\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\flat-lime\ej.theme.css" />
+    <Content Include="Content\ej\web\flat-lime\ej.theme.less" />
+    <Content Include="Content\ej\web\flat-lime\ej.theme.min.css" />
+    <Content Include="Content\ej\web\flat-lime\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\flat-lime\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\flat-lime\images\checkedtick.png" />
+    <Content Include="Content\ej\web\flat-lime\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\flat-lime\images\rating-star.png" />
+    <Content Include="Content\ej\web\flat-lime\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\flat-lime\images\slider-tick.png" />
+    <Content Include="Content\ej\web\flat-lime\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\flat-saffron-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\flat-saffron\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\flat-saffron\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\flat-saffron\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\flat-saffron\ej.theme.css" />
+    <Content Include="Content\ej\web\flat-saffron\ej.theme.less" />
+    <Content Include="Content\ej\web\flat-saffron\ej.theme.min.css" />
+    <Content Include="Content\ej\web\flat-saffron\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\flat-saffron\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\flat-saffron\images\checkedtick.png" />
+    <Content Include="Content\ej\web\flat-saffron\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\flat-saffron\images\rating-star.png" />
+    <Content Include="Content\ej\web\flat-saffron\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\flat-saffron\images\slider-tick.png" />
+    <Content Include="Content\ej\web\flat-saffron\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-azure-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-azure\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-azure\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-azure\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-azure\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-azure\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-azure\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-azure\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-azure\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-azure\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-azure\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-azure\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-azure\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-azure\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-azure\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-lime-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-lime\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-lime\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-lime\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-lime\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-lime\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-lime\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-lime\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-lime\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-lime\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-lime\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-lime\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-lime\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-lime\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-lime\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-saffron-dark\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.theme.css" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.theme.less" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.theme.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\gradient-saffron\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\gradient-saffron\images\checkedtick.png" />
+    <Content Include="Content\ej\web\gradient-saffron\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\gradient-saffron\images\rating-star.png" />
+    <Content Include="Content\ej\web\gradient-saffron\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\gradient-saffron\images\slider-tick.png" />
+    <Content Include="Content\ej\web\gradient-saffron\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.theme.css" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.theme.less" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.theme.min.css" />
+    <Content Include="Content\ej\web\high-contrast-01\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\high-contrast-01\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\high-contrast-01\images\checkedtick.png" />
+    <Content Include="Content\ej\web\high-contrast-01\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\high-contrast-01\images\rating-star.png" />
+    <Content Include="Content\ej\web\high-contrast-01\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\high-contrast-01\images\slider-tick.png" />
+    <Content Include="Content\ej\web\high-contrast-01\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.theme.css" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.theme.less" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.theme.min.css" />
+    <Content Include="Content\ej\web\high-contrast-02\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\high-contrast-02\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\high-contrast-02\images\checkedtick.png" />
+    <Content Include="Content\ej\web\high-contrast-02\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\high-contrast-02\images\rating-star.png" />
+    <Content Include="Content\ej\web\high-contrast-02\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\high-contrast-02\images\slider-tick.png" />
+    <Content Include="Content\ej\web\high-contrast-02\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\material\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\material\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\material\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\material\ej.theme.css" />
+    <Content Include="Content\ej\web\material\ej.theme.less" />
+    <Content Include="Content\ej\web\material\ej.theme.min.css" />
+    <Content Include="Content\ej\web\material\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\material\icons\ejicons.eot" />
+    <Content Include="Content\ej\web\material\icons\ejicons.svg" />
+    <Content Include="Content\ej\web\material\icons\ejicons.ttf" />
+    <Content Include="Content\ej\web\material\icons\ejicons.woff" />
+    <Content Include="Content\ej\web\material\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\material\images\checkedtick.png" />
+    <Content Include="Content\ej\web\material\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\material\images\rating-star.png" />
+    <Content Include="Content\ej\web\material\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\material\images\slider-tick.png" />
+    <Content Include="Content\ej\web\material\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\office-365\ej.reportdesigner.min.css" />
+    <Content Include="Content\ej\web\office-365\ej.reportdesigner.theme.css" />
+    <Content Include="Content\ej\web\office-365\ej.reportdesigner.theme.min.css" />
+    <Content Include="Content\ej\web\office-365\ej.theme.css" />
+    <Content Include="Content\ej\web\office-365\ej.theme.less" />
+    <Content Include="Content\ej\web\office-365\ej.theme.min.css" />
+    <Content Include="Content\ej\web\office-365\ej.web.all.min.css" />
+    <Content Include="Content\ej\web\office-365\icons\ejicons.eot" />
+    <Content Include="Content\ej\web\office-365\icons\ejicons.svg" />
+    <Content Include="Content\ej\web\office-365\icons\ejicons.ttf" />
+    <Content Include="Content\ej\web\office-365\icons\ejicons.woff" />
+    <Content Include="Content\ej\web\office-365\images\ajax-loader.gif" />
+    <Content Include="Content\ej\web\office-365\images\checkedtick.png" />
+    <Content Include="Content\ej\web\office-365\images\drop-sibling.png" />
+    <Content Include="Content\ej\web\office-365\images\Rating_Active.png" />
+    <Content Include="Content\ej\web\office-365\images\Rating_Clear.png" />
+    <Content Include="Content\ej\web\office-365\images\Rating_Default.png" />
+    <Content Include="Content\ej\web\office-365\images\rotator-icon.png" />
+    <Content Include="Content\ej\web\office-365\images\slider-tick.png" />
+    <Content Include="Content\ej\web\office-365\images\waitingpopup.gif" />
+    <Content Include="Content\ej\web\responsive-css\ej.responsive.css" />
+    <Content Include="Content\ej\web\responsive-css\ejgrid.responsive.css" />
+    <Content Include="Content\ej\web\ribbon-css\ej.icons.css" />
+    <Content Include="Content\NHCC.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\NHCClogo.png" />
+    <Content Include="Images\NHCC_Logo.jpg" />
+    <Content Include="Models\NHCC.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NHCC.edmx</DependentUpon>
+      <LastGenOutput>NHCC.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\NHCC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NHCC.edmx</DependentUpon>
+      <LastGenOutput>NHCC.cs</LastGenOutput>
+    </Content>
+    <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\NHCC.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NHCC.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NHCC.edmx.diagram">
+      <DependentUpon>NHCC.edmx</DependentUpon>
+    </Content>
+    <Content Include="NHCC_TMSDataSet.xsc">
+      <DependentUpon>NHCC_TMSDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="AllPropertyTitles.xsc">
+      <DependentUpon>AllPropertyTitles.xsd</DependentUpon>
+    </Content>
+    <None Include="AllPropertyTitles.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AllPropertyTitles.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="AllPropertyTitles.xss">
+      <DependentUpon>AllPropertyTitles.xsd</DependentUpon>
+    </Content>
+    <Content Include="CondominiumProperties.xsc">
+      <DependentUpon>CondominiumProperties.xsd</DependentUpon>
+    </Content>
+    <None Include="CondominiumProperties.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CondominiumProperties.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="CondominiumProperties.xss">
+      <DependentUpon>CondominiumProperties.xsd</DependentUpon>
+    </Content>
+    <Content Include="FreeholdProperties.xsc">
+      <DependentUpon>FreeholdProperties.xsd</DependentUpon>
+    </Content>
+    <None Include="FreeholdProperties.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FreeholdProperties.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="FreeholdProperties.xss">
+      <DependentUpon>FreeholdProperties.xsd</DependentUpon>
+    </Content>
+    <Content Include="MailoLand.xsc">
+      <DependentUpon>MailoLand.xsd</DependentUpon>
+    </Content>
+    <None Include="MailoLand.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MailoLand.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MailoLand.xss">
+      <DependentUpon>MailoLand.xsd</DependentUpon>
+    </Content>
+    <Content Include="ManagementReport.xsc">
+      <DependentUpon>ManagementReport.xsd</DependentUpon>
+    </Content>
+    <None Include="ManagementReport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ManagementReport.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ManagementReport.xss">
+      <DependentUpon>ManagementReport.xsd</DependentUpon>
+    </Content>
+    <Content Include="NHCC_Properties.xsc">
+      <DependentUpon>NHCC_Properties.xsd</DependentUpon>
+    </Content>
+    <None Include="NHCC_Properties.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NHCC_Properties.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NHCC_Properties.xss">
+      <DependentUpon>NHCC_Properties.xsd</DependentUpon>
+    </Content>
+    <None Include="NHCC_TMSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NHCC_TMSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NHCC_TMSDataSet.xss">
+      <DependentUpon>NHCC_TMSDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="No_Titles.xsc">
+      <DependentUpon>No_Titles.xsd</DependentUpon>
+    </Content>
+    <None Include="No_Titles.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>No_Titles.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="No_Titles.xss">
+      <DependentUpon>No_Titles.xsd</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Scripts\ej\ej.globalize.min.js" />
+    <Content Include="Scripts\ej\ej.unobtrusive.min.js" />
+    <Content Include="Reports\SoldProperty.rdl" />
+    <None Include="Scripts\ej\ej.web.all.min.intellisense.js" />
+    <Content Include="Scripts\ej\ej.web.all.min.js" />
+    <Content Include="Scripts\ej\ej.widget.angular.min.js" />
+    <Content Include="Scripts\ej\ej.widget.ko.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.ar-AE.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.de-DE.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.en-GB.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.en-US.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.es-ES.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.fr-FR.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.vi-VN.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.zh-CN.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.ar-AE.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.de-DE.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.en-GB.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.en-US.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.es-ES.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.fr-FR.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.vi-VN.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.zh-CN.min.js" />
+    <Content Include="Scripts\excanvas.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsrender.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\PropertyTitles\Index.cshtml" />
+    <Content Include="Views\PropertyTitleMovts\Index.cshtml" />
+    <Content Include="Views\Districts\Index.cshtml" />
+    <Content Include="Views\Districts\DistrictList.cshtml" />
+    <Content Include="Views\Districts\FormValue.cshtml" />
+    <Content Include="Views\Counties\Index.cshtml" />
+    <Content Include="Views\LeaseTypes\Index.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\TitleMovements_Lawyers\Index.cshtml" />
+    <Content Include="Views\OfferStatus\Index.cshtml" />
+    <Content Include="Views\Subcounties\Index.cshtml" />
+    <Content Include="Views\PropertyTitles\GridFeatures.cshtml" />
+    <Content Include="Views\PropertyTitleMovts\ForeignKeyGrid.cshtml" />
+    <Content Include="Views\PropertyTitles\PropertyTitle.cshtml" />
+    <Content Include="Views\Offers\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\ConfirmationDialog.cshtml" />
+    <Content Include="Views\SpreadsheetImport\ImportSMC.cshtml" />
+    <Content Include="SoldProps.xsc">
+      <DependentUpon>SoldProps.xsd</DependentUpon>
+    </Content>
+    <Content Include="SoldProperties.xsc">
+      <DependentUpon>SoldProperties.xsd</DependentUpon>
+    </Content>
+    <None Include="SoldProperties.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SoldProperties.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SoldProperties.xss">
+      <DependentUpon>SoldProperties.xsd</DependentUpon>
+    </Content>
+    <None Include="SoldProps.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SoldProps.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SoldProps.xss">
+      <DependentUpon>SoldProps.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\Reports\SoldPropertiesReport.cshtml" />
+    <Content Include="Sold_Properties.xsc">
+      <DependentUpon>Sold_Properties.xsd</DependentUpon>
+    </Content>
+    <None Include="Sold_Properties.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Sold_Properties.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Sold_Properties.xss">
+      <DependentUpon>Sold_Properties.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\Reports\AllPropertiesReport.cshtml" />
+    <Content Include="Views\Reports\CondominiumPropertiesReport.cshtml" />
+    <Content Include="Views\Reports\FreeholdPropertiesReport.cshtml" />
+    <Content Include="Views\Reports\MailoLandPropertiesReport.cshtml" />
+    <Content Include="Views\Reports\ManagementReport.cshtml" />
+    <Content Include="StandAlone.xsc">
+      <DependentUpon>StandAlone.xsd</DependentUpon>
+    </Content>
+    <None Include="StandAlone.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StandAlone.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="StandAlone.xss">
+      <DependentUpon>StandAlone.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\Reports\StandAlonePropertiesReport.cshtml" />
+    <Content Include="Title_Movements.xsc">
+      <DependentUpon>Title_Movements.xsd</DependentUpon>
+    </Content>
+    <None Include="Title_Movements.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Title_Movements.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Title_Movements.xss">
+      <DependentUpon>Title_Movements.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\Reports\Title_MovementsReport.cshtml" />
+    <Content Include="Views\Reports\NHCC_PropertiesReport.cshtml" />
+    <Content Include="Views\Reports\NoTiltes.cshtml" />
+    <Content Include="Views\Reports\NoTitlesReport.cshtml" />
+    <Content Include="Views\Reports\TestPartialViews.cshtml" />
+    <Content Include="Views\Reports\SoldandTransferredProperties.cshtml" />
+    <Content Include="Views\Reports\AllSoldPropertiesReport.cshtml" />
+    <Content Include="Views\PropertyTitles\ConfirmationDialog.cshtml" />
+    <Content Include="Views\Property_Payment\Index.cshtml" />
+    <Content Include="Views\Reports\AllPropertiesPV.cshtml" />
+    <Content Include="Views\Account\RemoveRolefromUser.cshtml" />
+    <Content Include="Views\Account\AllocateRole.cshtml" />
+    <Content Include="Views\Account\UsersWithRoles.cshtml" />
+    <Content Include="Views\Account\Usermanagement.cshtml" />
+    <Content Include="Views\Reports\AllPropertiesPVIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Reports\AllTitles.rdlc" />
+    <EmbeddedResource Include="Reports\CondominiumProperties.rdlc" />
+    <EmbeddedResource Include="Reports\FreeholdProperties.rdlc" />
+    <EmbeddedResource Include="Reports\MailoLand.rdlc" />
+    <EmbeddedResource Include="Reports\ManagementReport.rdlc" />
+    <EmbeddedResource Include="Reports\NHCCProperties.rdlc" />
+    <EmbeddedResource Include="Reports\SoldTransferredProperties.rdlc" />
+    <EmbeddedResource Include="Reports\SoldProperties.rdlc" />
+    <EmbeddedResource Include="Reports\Sold_Property.rdlc" />
+    <EmbeddedResource Include="Reports\StandAloneProperties.rdlc" />
+    <EmbeddedResource Include="Reports\Test.rdlc" />
+    <EmbeddedResource Include="Reports\TitleMovements.rdlc" />
+    <EmbeddedResource Include="Reports\NoTitles.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+         
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

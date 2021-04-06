@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DashboardItem xsi:type="CardItem" Column="0" ColumnSpan="0" Version="3.2.0.68" DataSource="TotalLeaseHoldTitles" UniqueDataSourceName="DataSource_b04d17be-d15f-4d30-bca9-1c60488172d5" UniqueDataSourceNames="" Id="4c6c3c3c-620d-4d96-8341-705138a84fcc" Name="Card_9" ReportName="Card_9" Row="0" RowSpan="0" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_4c6c3c3c_620d_4d96_8341_705138a84fcc">
+    <DashboardLinks>
+      <ColumnUrlDetailsList />
+      <GridUrlType>Row</GridUrlType>
+      <LinkType>Dashboard</LinkType>
+      <HasErrors>false</HasErrors>
+      <IsReportLinked>true</IsReportLinked>
+      <MasterWidgetCollection />
+      <PassingParameters />
+    </DashboardLinks>
+    <ActionSettings>
+      <ActionSetting>
+        <ActionType>Click</ActionType>
+        <Action>
+          <Action>None</Action>
+        </Action>
+        <ShowMenu>false</ShowMenu>
+      </ActionSetting>
+      <ActionSetting>
+        <ActionType>ContextMenu</ActionType>
+        <Action>
+          <Action>Filter</Action>
+          <Action>Linking</Action>
+        </Action>
+        <ShowMenu>true</ShowMenu>
+      </ActionSetting>
+      <ActionSetting>
+        <ActionType>DoubleClick</ActionType>
+        <Action>
+          <Action>None</Action>
+        </Action>
+        <ShowMenu>false</ShowMenu>
+      </ActionSetting>
+    </ActionSettings>
+    <DisplayName>LeaseHold </DisplayName>
+    <EnableDrillThrough>false</EnableDrillThrough>
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <IgnoreMasterFilter>false</IgnoreMasterFilter>
+    <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+    <DefaultSelectedIndices>0</DefaultSelectedIndices>
+    <IsControlConfigured>true</IsControlConfigured>
+    <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+    <IsLinked>false</IsLinked>
+    <IsMasterFilter>false</IsMasterFilter>
+    <IsNotInCanvas>false</IsNotInCanvas>
+    <Label>
+      <ContentPaddingBottom>0</ContentPaddingBottom>
+      <ContentPaddingLeft>0</ContentPaddingLeft>
+      <ContentPaddingRight>0</ContentPaddingRight>
+      <ContentPaddingTop>0</ContentPaddingTop>
+      <ControlPaddingBottom>0</ControlPaddingBottom>
+      <ControlPaddingLeft>0</ControlPaddingLeft>
+      <ControlPaddingRight>0</ControlPaddingRight>
+      <ControlPaddingTop>0</ControlPaddingTop>
+      <CornerRadius>0</CornerRadius>
+      <EnableComment>true</EnableComment>
+      <EnableCsvExport>true</EnableCsvExport>
+      <EnableExcelExport>true</EnableExcelExport>
+      <EnableExportPPT>false</EnableExportPPT>
+      <EnableImageExport>true</EnableImageExport>
+      <EnablePdfExport>true</EnablePdfExport>
+      <HeaderHeight>0</HeaderHeight>
+      <HeaderLabelBackground>#FFFFFFFF</HeaderLabelBackground>
+      <HeaderLabelForeground>#FF161616</HeaderLabelForeground>
+      <HeaderText>LeaseHold </HeaderText>
+      <SubTitle />
+      <IsBold>false</IsBold>
+      <IsItalic>false</IsItalic>
+      <LabelAlignment>Left</LabelAlignment>
+      <ShowBorder>false</ShowBorder>
+      <ShowDescription>false</ShowDescription>
+      <ShowHeader>false</ShowHeader>
+      <ShowMaximize>true</ShowMaximize>
+      <ViewData>true</ViewData>
+      <ShowLinkIcon>false</ShowLinkIcon>
+      <ShowDrillThroughIcon>false</ShowDrillThroughIcon>
+    </Label>
+    <IsSharedWidget>false</IsSharedWidget>
+    <Responsive>false</Responsive>
+    <SelectedFilterValues />
+    <Properties>
+      <ActualValueTextFontSize>28</ActualValueTextFontSize>
+      <ActualValueForeground>#C0504D</ActualValueForeground>
+      <ActualValuePrefix />
+      <ActualValueTextAlignment>left</ActualValueTextAlignment>
+      <SecondaryValueAlignment>right</SecondaryValueAlignment>
+      <PrimaryValueAlignment>right</PrimaryValueAlignment>
+      <AdditionalValueAlignment>right</AdditionalValueAlignment>
+      <CardArrangementCount>3</CardArrangementCount>
+      <EnableCompactView>true</EnableCompactView>
+      <ArrangementType>AutoArrange</ArrangementType>
+      <UniformFontSize>true</UniformFontSize>
+      <HeaderTextFontSize>28</HeaderTextFontSize>
+      <HeaderForeground>#C0504D</HeaderForeground>
+      <HeaderText>LeaseHold </HeaderText>
+      <HeaderTextAlignment>left</HeaderTextAlignment>
+      <HigherValueGood>true</HigherValueGood>
+      <IsUserSet>true</IsUserSet>
+      <SelectedValues />
+      <ShowCustomHeader>true</ShowCustomHeader>
+      <ShowHeader>true</ShowHeader>
+      <ShowIndicatorOnly>false</ShowIndicatorOnly>
+      <ShowSubtitle>false</ShowSubtitle>
+      <SubtitleTextFontSize>25</SubtitleTextFontSize>
+      <SubtitleForeground>#686262</SubtitleForeground>
+      <SubtitleText />
+      <TargetValuePrefix />
+      <TargetValueType>Variance</TargetValueType>
+      <VariationType>percentoftarget</VariationType>
+      <CustomRangeSettings>
+        <RangeType>Absolute</RangeType>
+        <CardRangeSettings />
+      </CustomRangeSettings>
+      <IsCustomRange>false</IsCustomRange>
+      <IsApplied>false</IsApplied>
+      <ShowActualValue>true</ShowActualValue>
+      <ShowPrimaryValue>true</ShowPrimaryValue>
+      <ShowSecondaryValue>true</ShowSecondaryValue>
+      <ShowIndicator>true</ShowIndicator>
+      <VariationTextFontSize>25</VariationTextFontSize>
+      <VariationValueForeground>#000000</VariationValueForeground>
+      <SparklineSettings>
+        <LowValueColor>#1F497D</LowValueColor>
+        <HighValueColor>#FFC000</HighValueColor>
+        <Type>Line</Type>
+        <ShowMarker>true</ShowMarker>
+        <Opacity>1</Opacity>
+      </SparklineSettings>
+    </Properties>
+  </DashboardItem>
+  <RelationalReport ReportName="Card_9" IsRawData="false" IsBlendingWidget="false">
+    <Calculations />
+    <ColumnElements>
+      <FieldInfo>
+        <ActualDataType>Int32</ActualDataType>
+        <AxisType>Column</AxisType>
+        <Caption>TotalLeaseHoldTitles</Caption>
+        <ColumnName>TotalLeaseHoldTitles</ColumnName>
+        <ColumnType>Measure</ColumnType>
+        <ConditionSummaryType>None</ConditionSummaryType>
+        <CustomColumnType>Measure</CustomColumnType>
+        <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+        <IsCustomDateApplied>false</IsCustomDateApplied>
+        <AdvancedDateTimeFormatSettings>
+          <ModeType>Year</ModeType>
+          <DisplayFormat>
+            <YearDisplayFormats>Default</YearDisplayFormats>
+            <QuarterDisplayFormats>Default</QuarterDisplayFormats>
+            <MonthDisplayFormats>Default</MonthDisplayFormats>
+            <DayDisplayFormats>Default</DayDisplayFormats>
+            <TimeDisplayFormats>Default</TimeDisplayFormats>
+            <HourDisplayFormats>Default</HourDisplayFormats>
+            <MinuteDisplayFormats>Default</MinuteDisplayFormats>
+            <SecondDisplayFormats>Default</SecondDisplayFormats>
+            <WeekNumberDisplayFormats>Default</WeekNumberDisplayFormats>
+            <DayOfWeekDisplayFormats>Default</DayOfWeekDisplayFormats>
+            <QuarterYearDisplayFormats>Default</QuarterYearDisplayFormats>
+            <WeekYearDisplayFormats>Default</WeekYearDisplayFormats>
+            <DateHourDisplayFormats>Default</DateHourDisplayFormats>
+            <WeekOfYearDisplayFormats>Default</WeekOfYearDisplayFormats>
+            <MonthYearDisplayFormats>Default</MonthYearDisplayFormats>
+            <MonthDayYearDisplayFormats>Default</MonthDayYearDisplayFormats>
+            <DayMonthYearDisplayFormats>Default</DayMonthYearDisplayFormats>
+            <DateDisplayFormats>Default</DateDisplayFormats>
+            <DateTimeDisplayFormats>Default</DateTimeDisplayFormats>
+          </DisplayFormat>
+        </AdvancedDateTimeFormatSettings>
+        <CustomDate />
+        <DataSourceName>TotalLeaseHoldTitles</DataSourceName>
+        <DataType>Int64</DataType>
+        <DateTimeFormat>None</DateTimeFormat>
+        <DefaultDataType>Int64</DefaultDataType>
+        <DisplaySeries>None</DisplaySeries>
+        <Expression>
+          <ColumnNames />
+          <IsBlending>false</IsBlending>
+          <IsUserFilter>false</IsUserFilter>
+          <PivotExpressionKeys />
+          <Tables />
+          <IsDashboardParameter>false</IsDashboardParameter>
+          <UserFunctionType>CurrentUser</UserFunctionType>
+          <BlendingDataSources />
+        </Expression>
+        <IsCustomSortApplied>false</IsCustomSortApplied>
+        <FilterValues />
+        <Format>Number</Format>
+        <FormatProperties>
+          <Culture>en-US</Culture>
+          <DecimalPoints>2</DecimalPoints>
+          <FormatType>Default</FormatType>
+          <DecimalSeparator>
+            <AliasValue>.</AliasValue>
+            <CurrentValue>.</CurrentValue>
+          </DecimalSeparator>
+          <GroupSeparator>
+            <AliasValue>,</AliasValue>
+            <CurrentValue>,</CurrentValue>
+          </GroupSeparator>
+          <NegativeValueFormat>Default</NegativeValueFormat>
+          <Prefix />
+          <Suffix />
+          <Unit>Ones</Unit>
+        </FormatProperties>
+        <FiscalYearFormat>Jan</FiscalYearFormat>
+        <FiscalYearStart>Jan</FiscalYearStart>
+        <HasCondition>false</HasCondition>
+        <IsAggregation>false</IsAggregation>
+        <IsAllowDbNull>true</IsAllowDbNull>
+        <IsBin>false</IsBin>
+        <IsDataTypeChanged>false</IsDataTypeChanged>
+        <IsExpression>false</IsExpression>
+        <IsFilter>false</IsFilter>
+        <IsForeignKey>false</IsForeignKey>
+        <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+        <IsInclude>false</IsInclude>
+        <IsKpiSchema>false</IsKpiSchema>
+        <IsMeasureFilter>false</IsMeasureFilter>
+        <IsPrimaryKey>false</IsPrimaryKey>
+        <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+        <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+        <IsSelected>false</IsSelected>
+        <IsTop>false</IsTop>
+        <IsTopNDateFormat>false</IsTopNDateFormat>
+        <Key>[TotalLeaseHoldTitles]</Key>
+        <LevelDepth>0</LevelDepth>
+        <MeasureConditions>Equals</MeasureConditions>
+        <NullValue>Default</NullValue>
+        <Parent>
+          <AxisType>None</AxisType>
+          <Caption>spReport_Split_NewLandType_LeaseHoldPropertyTitlesGetAll</Caption>
+          <ColumnName>#SyncfusionDashboardStoredProcTempTable20200225112110391</ColumnName>
+          <ColumnType>None</ColumnType>
+          <ConditionSummaryType>None</ConditionSummaryType>
+          <CustomColumnType>None</CustomColumnType>
+          <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+          <IsCustomDateApplied>false</IsCustomDateApplied>
+          <DataSourceName>TotalLeaseHoldTitles</DataSourceName>
+          <DateTimeFormat>None</DateTimeFormat>
+          <DisplaySeries>None</DisplaySeries>
+          <Expression>
+            <ColumnNames />
+            <IsBlending>false</IsBlending>
+            <IsUserFilter>false</IsUserFilter>
+            <PivotExpressionKeys />
+            <Tables />
+            <IsDashboardParameter>false</IsDashboardParameter>
+            <UserFunctionType>CurrentUser</UserFunctionType>
+            <BlendingDataSources />
+          </Expression>
+          <IsCustomSortApplied>false</IsCustomSortApplied>
+          <FilterValues />
+          <Format>Default</Format>
+          <FormatProperties>
+            <Culture>en-US</Culture>
+            <DecimalPoints>0</DecimalPoints>
+            <FormatType>Default</FormatType>
+            <DecimalSeparator>
+              <AliasValue>.</AliasValue>
+              <CurrentValue>.</CurrentValue>
+            </DecimalSeparator>
+            <GroupSeparator>
+              <AliasValue>,</AliasValue>
+              <CurrentValue>,</CurrentValue>
+            </GroupSeparator>
+            <NegativeValueFormat>Default</NegativeValueFormat>
+            <Prefix />
+            <Suffix />
+            <Unit>Auto</Unit>
+          </FormatProperties>
+          <FiscalYearFormat>Jan</FiscalYearFormat>
+          <HasCondition>false</HasCondition>
+          <IsAggregation>false</IsAggregation>
+          <IsAllowDbNull>true</IsAllowDbNull>
+          <IsBin>false</IsBin>
+          <IsDataTypeChanged>false</IsDataTypeChanged>
+          <IsExpression>false</IsExpression>
+          <IsFilter>false</IsFilter>
+          <IsForeignKey>false</IsForeignKey>
+          <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+          <IsInclude>false</IsInclude>
+          <IsKpiSchema>false</IsKpiSchema>
+          <IsMeasureFilter>false</IsMeasureFilter>
+          <IsPrimaryKey>false</IsPrimaryKey>
+          <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+          <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+          <IsSelected>true</IsSelected>
+          <IsTop>false</IsTop>
+          <IsTopNDateFormat>false</IsTopNDateFormat>
+          <Key>[#SyncfusionDashboardStoredProcTempTable20200225112110391]</Key>
+          <LevelDepth>0</LevelDepth>
+          <MeasureConditions>Equals</MeasureConditions>
+          <NullValue>Default</NullValue>
+          <RelativeDateItems />
+          <ShowGrandTotal>false</ShowGrandTotal>
+          <ShowOtherGroup>false</ShowOtherGroup>
+          <SortDirection>Ascending</SortDirection>
+          <SummaryType>None</SummaryType>
+          <TopCount>0</TopCount>
+          <TopNSummaryType>None</TopNSummaryType>
+          <TopNDateFormat>None</TopNDateFormat>
+          <TreeNodeType>Table</TreeNodeType>
+          <UniqueColumnName>#SyncfusionDashboardStoredProcTempTable20200225112110391</UniqueColumnName>
+          <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+          <Values />
+        </Parent>
+        <RelativeDateItems />
+        <ShowGrandTotal>false</ShowGrandTotal>
+        <ShowOtherGroup>false</ShowOtherGroup>
+        <SortDirection>Descending</SortDirection>
+        <SummaryType>Sum</SummaryType>
+        <TopCount>0</TopCount>
+        <TopNSummaryType>None</TopNSummaryType>
+        <TopNDateFormat>None</TopNDateFormat>
+        <TreeNodeType>Folder</TreeNodeType>
+        <UniqueColumnName>Card_Column_0</UniqueColumnName>
+        <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+        <Values />
+      </FieldInfo>
+    </ColumnElements>
+    <EnableTreeViewFilter>true</EnableTreeViewFilter>
+    <FilterElements />
+    <KpiElements />
+    <SummaryElements />
+    <CustomWidgetElements />
+    <Listeners />
+    <MeasureFilterForControl />
+    <ReportColumnCount>1</ReportColumnCount>
+    <RowElements />
+    <ShowOthersGroup>false</ShowOthersGroup>
+    <TopNFilterElements />
+  </RelationalReport>
+</Report>

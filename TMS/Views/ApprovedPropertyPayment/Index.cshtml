@@ -1,0 +1,1216 @@
+﻿
+@model IEnumerable<TMS.Models.Property_Payment>
+@using TMS.Models
+@{
+    ViewBag.Title = "Approved Payments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Approved Property Payments</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+@(Html.EJ().Grid<object>("Grid")
+
+                                                        // .Datasource(datasource => datasource.URL("DataSourceApprovedPropertyPayments").UpdateURL("DialogUpdate").InsertURL("DialogInsert").Adaptor(AdaptorType.UrlAdaptor))
+                                                        .Datasource(datasource => datasource.URL("DataSourceApprovedPropertyPayments")/*.UpdateURL("DialogUpdate").InsertURL("DialogInsert")*/.RemoveURL("DialogDelete").Adaptor(AdaptorType.UrlAdaptor))
+
+
+                                                            //.IsResponsive()
+                                                            .IsResponsive()
+
+                                                             .AllowPaging()    /*Paging Enabled*/
+                                                                     .EditSettings(edit => { edit.AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                                                                     .ContextMenuSettings(contextMenu =>
+                                                                     {
+                                                                         contextMenu.EnableContextMenu();
+                                                                     })
+                                                            .AllowPaging()
+                                                             .PageSettings(page => page.PageSize(10))
+                                                             .ShowColumnChooser()
+                                                            .AllowGrouping()
+                                                            //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+                                                            .AllowFiltering()
+                                                            .AllowSearching()
+                                                              .AllowScrolling().AllowResizing()
+                                                                   .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+
+                                                            .FilterSettings(d => d.FilterType(FilterType.Excel))
+                                                                  .ToolbarSettings(toolbar =>
+                                                                  {
+                                                                      toolbar.ShowToolbar().ToolbarItems(items =>
+                                                                      {
+                                                              //items.AddTool(ToolBarItems.Add);
+                                                              items.AddTool(ToolBarItems.Edit);
+                                                              //items.AddTool(ToolBarItems.Delete);
+                                                              items.AddTool(ToolBarItems.Update);
+                                                                          items.AddTool(ToolBarItems.Cancel);
+                                                                          items.AddTool(ToolBarItems.Search);
+                                                                      });
+                                                                  })
+                                                            .Columns(col =>
+                                                            {
+                                                                col.Field("Location_id").IsPrimaryKey(true).HeaderText("Location").ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.Locations).Width(120).Add();
+                                                                col.Field("Title_Reference").HeaderText("Parent Title").ForeignKeyField("Title_Reference").ForeignKeyValue("Title_Reference").DataSource((IEnumerable<object>)ViewBag.parenttitles).Width(150).Add();
+                                                                col.Field("Project_Code").IsPrimaryKey(false).HeaderText("Project").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.projects).Width(120).Add();
+
+                                                                col.Field("OfferNo").IsPrimaryKey(true).HeaderText("Offer Number").Width(100)/*.ValidationRules(rule => rule.AddRule("required", true).AddRule("number", true))*/.Width(120).Add();
+                                                                col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(100)/*.ValidationRules(rule => rule.AddRule("required", true).AddRule("number", true))*/.Width(120).Add();
+                                                                col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio").ForeignKeyField("Folio").ForeignKeyValue("Folio").DataSource((IEnumerable<object>)ViewBag.propertytitlesfolios).Width(120).Add();
+                                                    //col.Field("Payment_Ref_No").IsPrimaryKey(true).HeaderText("Payment Reference Number").ForeignKeyField("Folio").ForeignKeyValue("Folio").DataSource((IEnumerable<object>)ViewBag.propertytitlesfolios).Width(120).Add();
+                                                    col.Field("Payment_Ref_No").HeaderText("Payment Reference Number").Width(200).Add();
+
+                                                                col.Field("AmountPaid").HeaderText("Amount Paid").Width(200).Add();
+                                                                col.Field("Payment_Details").HeaderText("Payment Details").Width(200).Add();
+                                                                col.Field("GrroundRent").HeaderText("Ground Rent").Width(150).Add();
+                                                                col.Field("PropertyRates").HeaderText("Property Rates").Width(150).Add();
+
+                                                                col.Field("Pay_Date").HeaderText("Pay Date").Format("{0:dd/MM/yyyy}").Width(200).Add();
+
+                                                                col.Field("PayMethodCode").HeaderText("Pay Method Description").ForeignKeyField("PayMethodCode").ForeignKeyValue("PayMethodDesc").DataSource((IEnumerable<object>)ViewBag.PayMethodscodes).Width(200).Add();
+                                                                col.Field("PropertyPaymentStatusID").HeaderText("Property Payment Status").ForeignKeyField("Status_ID").ForeignKeyValue("Status_Description").DataSource((IEnumerable<object>)ViewBag.PropertyTitleMovementStatus).Width(220).Add();
+                                                    //col.Field("Added_By").HeaderText("Added_By").Width(200).Add();
+
+                                                })
+                                                            .ClientSideEvents(eve => {/* eve.ActionBegin("onActionBegin");*/ eve.ActionComplete("edit"); }))
+
+
+
+
+
+<script>
+
+
+    function Check_Amount(args) {
+        //debugger;
+        //alert(args.value);
+        //var checked = args.value;
+
+        var checked = $("#Verified:checked").val();
+
+        if (checked == "on") {
+
+            //$("#Amount_in_Words").removeAttr('readonly', 'readonly');
+            //$("#Amount_in_Words").show();
+            $.ajax({  // Ajax function to grey out Parent Title before selecting project code
+                url: 'NumberToText',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: { "AmountPaid": $("#AmountPaid").val() },
+                type: 'GET',
+                success: function (data) {
+                    if (data.length > 0) {
+                        //alert(data);
+                        $("#Amount_in_Words").show();
+                        $("#Amount_in_Words").val(data);
+                    }
+                },
+            });
+
+            //$("#AmountPaid").addClass(NameOfNumber);
+
+            //$("#Amount_in_Words").show();
+        }
+
+        else {
+
+            $("#Amount_in_Words").attr('readonly', 'readonly');
+            $("#Amount_in_Words").hide();
+        }
+    }
+
+</script>
+
+<script>
+
+    function FinalSub(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+        var checked = $("#FinalSubmission:checked").val();
+
+         if (checked == "on") {
+
+             // Ajax fuction to bring Approved on button check
+                 $.ajax({
+
+                     url: 'GetTitleMovementStatus',
+
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     type: 'GET',
+                     success: function (data) {
+                         if (data.length > 0) {
+
+                             var DropDownListTitleMovementStatus = $('#PropertyPaymentStatusID').ejDropDownList({
+                                 dataSource: data,
+                                 width: "280px",
+                                 fields: { id: "Status_ID", text: "Status_Description", value: "Status_ID" }, readOnly: true
+                             }).data("ejDropDownList");
+                             var ddl2 = $('#PropertyPaymentStatusID').ejDropDownList("instance");
+                             var fc = data[0].Status_ID;
+                             ddl2.selectItemByValue(fc);
+
+                         }
+
+                     },
+
+             });
+
+         }
+         else {
+
+             var DropDownListTitleMovementStatus = $('#PropertyPaymentStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "280px",
+                 fields: { value: "Status_ID", text: "Status_Description" },readOnly: false
+
+             }).data("ejDropDownList");
+         }
+     }
+</script>
+
+<script type="text/template" id="template">
+    <b>Approved Property Payments</b>
+    <div id="defaultTab">
+        <ul>
+            <li><a href="#tab1">Approved Property Payments</a></li>
+
+        </ul>
+
+        <table> <tr><td><strong>This title is locked for editing</strong> </td> </tr></table>
+
+        <div id="tab1">
+            <table cellspacing="10">
+                <tr>
+
+                    <td style="text-align: right;">
+                        Location *
+                    </td>
+                    <td style="text-align: left">
+
+                        <input id="Location_id" name="Location_id" value="{{: Location_id}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Parent Title *
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Title_Reference" name="Title_Reference" value="{{: Title_Reference}}" readonly="readonly" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Volume *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Volume" name="Volume" value="{{:Volume}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Folio *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Folio" name="Folio" value="{{:Folio}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Project Code *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Project_Code" name="Project_Code" value="{{:Project_Code}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Offer Number *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="OfferNo" name="OfferNo" value="{{:OfferNo}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Longitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Longitude" name="Longitude" value="{{:Longitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Latitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Latitude" name="Latitude" value="{{:Latitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Payment Reference Number *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Payment_Ref_No" name="Payment_Ref_No" value="{{:Payment_Ref_No}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Pay Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Pay_Date" name="Pay_Date" value="{{:Pay_Date}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Pay Method
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PayMethodCode" name="PayMethodCode" value="{{:PayMethodCode}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Amount Paid
+                    </td>
+                    <td style="text-align: left">
+                        <input id="AmountPaid" name="AmountPaid" value="{{:AmountPaid}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Check Amount?
+                    </td>
+
+                    <td style="text-align: left">
+
+                        {{if Verified}}
+                        <input id="Verified" onchange="Check_Amount()" class="checkbox" disabled="disabled" name="Verified" type="checkbox" checked />
+                        {{else}}
+                        <input id="Verified" onchange="Check_Amount()" class="checkbox" disabled="disabled" name="Verified" type="checkbox" />
+                        {{/if}}
+
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Amount in Words
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Amount_in_Words" name="Amount_in_Words" readonly="readonly" class="form-control" style="text-align:left;">{{:Amount_in_Words}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Payment Details
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Payment_Details" name="Payment_Details" readonly="readonly" class="form-control" style="text-align:left;">{{:Payment_Details}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Ground Rent
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="GrroundRent" name="GrroundRent" @*disabled="disabled"*@ readonly="readonly" class="form-control" style="text-align:left;">{{:GrroundRent}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Property Rates
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="PropertyRates" name="PropertyRates" value="{{: PropertyRates}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unlock Title
+                    </td>
+
+                    <td style="text-align: left">
+                        {{if UnlockTitle}}
+                        <input type="checkbox" id="UnlockTitle" name="UnlockTitle" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="UnlockTitle" name="UnlockTitle" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Reason for Unlock
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="UnlockComment" name="UnlockComment" class="form-control" style="text-align:left;">{{:UnlockComment}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden="hidden">
+                        Reason for rejection
+                    </td>
+                    <td hidden="hidden">
+                        <textarea rows="4" cols="120" id="RejectionComment" name="RejectionComment" readonly="readonly" class="form-control" style="text-align:left;">{{:RejectionComment}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Added By
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Added_By" name="Added_By" value="{{:Added_By}}" hidden="hidden" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;" hidden>
+                        Added Date
+                    </td>
+                    <td style="text-align: left" hidden>
+                        <input id="Added_Date" name="Added_Date" value="{{:Added_Date}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Final Submission
+                    </td>
+
+                    <td style="text-align: left" hidden>
+                        {{if FinalSubmission}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" checked="checked" disabled="disabled" class="checkbox" style="width:30px" />
+                        {{else}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" disabled="disabled" class="checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Status
+                    </td>
+                    <td style="text-align: left" hidden>
+                        <input id="PropertyPaymentStatusID" name="PropertyPaymentStatusID" value="{{:PropertyPaymentStatusID}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+            </table>
+
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <p style="background-color:darkorange; text-align:center; color:white; font-size:15px; width:100%; padding:10px;">Title Scan</p>
+            </div>
+            <div class="col col-md-12">
+                <div id="EvidenceGrid" />
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="uploadbox" style="width: 100%;"></div>
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="partialPlaceHolder" style="width:100%"> </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    function edit(args) {
+        $("#Longitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#Latitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#Offer_Value").ejNumericTextbox();
+
+        $("#Lease_Start_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Lease_End_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Added_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        //$("#Payment_Ref_No").ejNumericTextbox();
+        $("#Rates").ejNumericTextbox();
+
+        //$("#Volume").ejNumericTextbox();
+        $("#Folio").ejNumericTextbox();
+
+        $("#OfferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferExpiryDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferPaymentDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#TransferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#AreaOfUnit").ejNumericTextbox();
+        $("#FloorAreaLeased").ejNumericTextbox();
+        $("#UnitFactor").ejNumericTextbox();
+        $("#RegDate").ejDatePicker();
+        $("#ValueOfProperty").ejNumericTextbox();
+        $("#ActualPlotSize").ejNumericTextbox();
+
+        $("#DateOfValuation").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Plot_Size").ejNumericTextbox();
+
+        $("#PropertyRates").ejNumericTextbox({
+            decimalPlaces: 2,
+        });
+        $("#OfferNo").ejNumericTextbox();
+        $("#AmountPaid").ejNumericTextbox();
+
+        $("#Pay_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        var DropDownListProjects = $('#Project_Code').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Projects)),
+            width: "280px",
+            fields: { value: "Project_id", text: "Project_Desc" },
+        }).data("ejDropDownList");
+
+        var DropDownListPayMethods = $('#PayMethodCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PayMethods)),
+            width: "280px",
+            fields: { id: "PayMethodCode", text: "PayMethodDesc", value: "PayMethodCode" }
+        }).data("ejDropDownList");
+
+        var DropDownListDist = $('#PropertyPaymentStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "280px",
+           // watermarkText: "Select Status",
+            fields: { text: "Status_Description", value: "Status_ID" }
+        }).data("ejDropDownList");
+
+         var DropDownListEmployeeName = $('#Employee_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Employee)),
+            width: "280px",
+            fields: { value: "Employee_ID", text: "Employee_Name" }
+        }).data("ejDropDownList");
+
+        var DropDownListPosition = $('#Position_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Position)),
+            width: "280px",
+            fields: { value: "Position_ID", text: "Position_Description" }
+        }).data("ejDropDownList");
+
+         var datadistricts = @Html.Raw(Json.Encode(ViewBag.Districts));
+        $('#DistrictID').ejDropDownList({
+            dataSource: datadistricts,
+            @*dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),*@
+            width: "280px",
+            fields: { id: "DistrictID", text: "District_Name", value: "DistrictID" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+         var dataprojects = @Html.Raw(Json.Encode(ViewBag.Locations));
+        $('#Location_id').ejDropDownList({
+            dataSource: dataprojects,
+            width: "280px",
+            fields: { text: "Location_Desc", value: "Location_id" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+
+        $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+        $("#defaultTab").ejTab({ hiddenItemIndex: [1] });
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+            open();
+            window._requestType = args.requestType;
+
+            $($("#EditDialog_Grid_Save").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Unlock </button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#EditDialog_Grid_Cancel").ejButton("destroy");
+            $($("#EditDialog_Grid_Cancel").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "10px" });
+
+            window.titref = $('#Title_Reference').val().trim();
+            window.vol = $('#Volume').val();
+            window.fol = $('#Folio').val();
+
+            //Uploading Input
+            $('#UploadInput').ejUploadbox({
+                //saveUrl: "SaveScan?Title_Reference=" + titref + "&&Volume=" + window.Volume + "&&Folio=" + window.Folio,
+                //saveUrl: "SaveScan",
+                dialogAction: { closeOnComplete: true },
+                multipleFilesSelection: true,
+                showFileDetails: false/*true*/,
+                begin: "Filebegin",
+                success: function (args) {
+                    var grid = $("#EvidenceGrid").ejGrid("instance");
+                    grid.refreshContent(true);
+                    $("#ListFiles").append('<tr><td>' + args.files.name + " has been uploaded successfully" + '</td></tr>');
+                },
+                removeUrl: "Remove",
+                fileSelect: "fileselect",
+                autoUpload: true,
+                cssClass: "gradient-purple",
+                buttonText: { browse: "Choose File", upload: "Upload File", cancel: "Cancel Upload" },
+            });
+            LoadEvidence();
+        }
+
+
+            if (args.requestType == "add") {
+
+                var dataprojects = @Html.Raw(Json.Encode(ViewBag.projects));
+                $('#Project_Code').ejDropDownList({
+                    dataSource: dataprojects,
+                    width: "280px",
+                    fields: { id: "Project_id", text: "Project_Desc", value: "Project_id" }
+                }).data("ejDropDownList");
+            }
+
+
+            if (args.requestType == "beginedit")
+            {
+                var tabObj = $("#defaultTab").data("ejTab");
+                hdn = tabObj.option("hiddenItemIndex");
+                var i = 1;
+                var j = hdn.indexOf(i);
+                var val = hdn.slice(0, j);
+                tabObj.option("hiddenItemIndex", val);
+                tabObj.showItem(i);
+                $("#defaultTab").ejTab({ selectedItemIndex: 0 });
+
+               $("#defaultTab").ejTab({ heightAdjustMode: "auto", height: "250px" });
+                //$("#defaultTab").ejTab({ height: "400px" });
+
+                var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+                projectcode = this.getSelectedRecords()[0].Project_Code;
+                folio = this.getSelectedRecords()[0].Folio;
+                //volume = this.getSelectedRecords()[0].Volume;
+
+                Directors = this.getSelectedRecords()[0].Directors;
+
+                var dataManager = ej.DataManager("BoardMembers?projcode=" + projectcode + "&&Folio=" + folio + "&&Directors=" + Directors);
+
+                $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Approved Property Payments"); //change dialog title
+
+            }
+    }
+
+
+</script>
+
+
+<script>
+
+    function ProjectChange(args) {
+
+        window.valuex = args.value;
+        //alert(_value);
+
+        $.ajax({  // Ajax function to grey out Parent Title before selecting project code
+            url: 'GetParent_Title',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "Location_id": window.valuex },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //alert("You are into Parent Title");
+                    var DropDownListfolio = $('#Title_Reference').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Title_Reference", text: "Title_Reference" },
+                        width: "280px",
+                        ////change: TitleReferenceChange,
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+    }
+
+    function TitleReferenceChange(args) {
+
+        window.value = args.value;
+        $.ajax({  // Ajax function to grey out Volume before selecting project code
+            url: 'GetVolume',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            //data: { "Title_Reference": window.value },
+
+            data: { "Title_Reference": window.value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //   alert("You are into Title Reference Change");
+                    var DropDownListfolio = $('#Volume').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Volume", text: "Volume" },
+                        width: "280px",
+                        change: VolumeChange,
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+
+    }
+    function VolumeChange(args) {
+
+        window.valuey = args.value;
+
+        //var _value = args.value;
+        // alert("Value is: "+_value);
+        //   alert(window.value);
+
+        $.ajax({ // Ajax function to grey out Folio before selecting project code
+            url: 'GetFolio',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            //data: { "Volume": _value, "Title_Reference": window.value },
+            data: { "Title_Reference": window.value, "Volume": window.valuey },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //       alert("Into Folio");
+                    var DropDownListfolio = $('#Folio').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Folio", text: "Folio" },
+                        width: "280px",
+                        change: LocationChange,
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+    }
+
+
+
+    function cancelss() {
+        var grid = $("#Grid").ejGrid("instance");
+        grid.endEdit();
+        grid.refresh();
+
+    }
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+
+
+</script>
+
+
+<script>
+    function savess() {
+
+        var _Location_id = $("#Location_id").data("ejDropDownList");
+        var Location = _Location_id.option("value");
+        //alert("Location_id is " + Location);
+
+        var Title_Reference = $("#Title_Reference").val();
+
+        //var _Title_Reference = $("#Title_Reference").data("ejDropDownList");
+        //var Title_Reference = _Title_Reference.option("value");
+        ////alert("Title_Reference is " + Title_Reference);
+
+        var _Project_Code = $("#Project_Code").data("ejDropDownList");
+        var ProjectCode = _Project_Code.option("value");
+
+        var _Volume = $("#Volume").val();
+        var _Folio = $("#Folio").val();
+        var _OfferNo = $("#OfferNo").val();
+        var _Payment_Ref_No = $("#Payment_Ref_No").val();
+        var _PayDate = $("#Pay_Date").data("ejDatePicker");
+        var Pay_Date = _PayDate.getValue();
+        var _PayMethodCode = $("#PayMethodCode").data("ejDropDownList");
+        var PayMethodCode = _PayMethodCode.option("value");
+        var _AmountPaid = $("#AmountPaid").val();
+        var _Amount_in_Words = $("#Amount_in_Words").val();
+        var _Payment_Details = $("#Payment_Details").val();
+        var _GrroundRent = $("#GrroundRent").val();
+        var _PropertyRates = $("#PropertyRates").val();
+        var _FinalSubmission = $("#FinalSubmission").is(":checked");
+        //  alert("FinalSubmission is" + _FinalSubmission)
+        var _RejectionComment = $("#RejectionComment").val();
+        //  alert("RejectionComment is" + _RejectionComment)
+        var _PropertyPaymentStatusID = $("#PropertyPaymentStatusID").data("ejDropDownList");
+        var PropertyPaymentStatusID = _PropertyPaymentStatusID.option("value");
+        //alert("TitleMovementStatusID is" + MovementStatus)
+        var _UnlockComment = $("#UnlockComment").val();
+        // alert("UnlockComment is" + _UnlockComment)
+        var _UnlockTitle = $("#UnlockTitle").is(":checked");
+        //  alert("UnlockTitle is" + _UnlockTitle)
+        var _Added_By = $("#Added_By").val();
+        // alert("Added By is " + _Added_By)
+        var _Added_Date = $("#Added_Date").val();
+        // alert("Added Date is" + _Added_Date)
+        var _Latitude = $('#Latitude').val();
+        var _Longitude = $('#Longitude').val();
+        ;
+
+        if ((Location == null || Location == "") && (_Volume == null || _Volume == "")
+            && (_Folio == null || _Folio == "") && (Title_Reference == null || Title_Reference == "")
+            && (_OfferNo == null || _OfferNo == "") && (Payment_Ref_No == null || Payment_Ref_No == "")
+            && (PayMethodCode == null || PayMethodCode == "")) {
+            alert("Fields marked with asterisk (*) are required!");
+            return false;
+        }
+
+        else if ((Title_Reference == null || Title_Reference == ""
+            || Title_Reference.match(/^\s+$/) != null)) {
+            alert("Parent Title is required!");
+            return false;
+        }
+
+        else if ((Location == null || Location == "")) {
+            alert("Location is required!");
+            return false;
+        }
+
+        else if ((_Volume == null || _Volume == "")) {
+            alert("Volume is required!");
+            return false;
+        }
+
+        else if ((_Folio == null || _Folio == "")) {
+            alert("Folio is required!");
+            return false;
+        }
+
+        else if ((_OfferNo == null || _OfferNo == "")) {
+            alert("Offer Number is required!");
+            return false;
+        }
+
+        else if ((_Payment_Ref_No == null || _Payment_Ref_No == "")) {
+            alert("Payment Reference Number is required!");
+            return false;
+        }
+
+        else if ((PayMethodCode == null || PayMethodCode == "")) {
+            alert("Pay Method is required!");
+            return false;
+        }
+
+        else if ((_UnlockTitle == true && (_UnlockComment == null
+            || _UnlockComment == "" || _UnlockComment.match(/^\s+$/) != null))) {
+            //debugger;
+            alert("Please give a reason for unlocking this title payment!");
+            return false;
+        }
+
+        else if ((_UnlockTitle == false && (_UnlockComment != null
+            || _UnlockComment != "" || _UnlockComment.match(/^\s+$/) == null))) {
+            //debugger;
+            alert("You need to check the Unlock Title box!");
+            return false;
+        }
+
+        var _type = 0;
+        if (window._requestType == "beginedit") {
+            _type = 2;
+        }
+        else if (window._requestType == "add") {
+            _type = 1;
+        }
+
+
+        $.ajax({
+            url: "SaveApprovedPropertyPayment",
+            type: "Get",
+            dataType: "json",
+            data: {
+                "Location_id": Location,
+                "Title_Reference": Title_Reference,
+                "Project_Code": ProjectCode,
+                "Volume": _Volume,
+                "Folio": _Folio,
+                "OfferNo": _OfferNo,
+                "Payment_Ref_No": _Payment_Ref_No,
+                "Pay_Date": Pay_Date,
+                "PayMethodCode": PayMethodCode,
+                "AmountPaid": _AmountPaid,
+                "Amount_in_Words": _Amount_in_Words,
+                "Payment_Details": _Payment_Details,
+                "GrroundRent": _GrroundRent,
+                "PropertyRates": _PropertyRates,
+                "FinalSubmission": _FinalSubmission,
+                "PropertyPaymentStatusID": PropertyPaymentStatusID,
+                "RejectionComment": _RejectionComment,
+                "UnlockComment": _UnlockComment,
+                "UnlockTitle": _UnlockTitle,
+                "Added_By": _Added_By,
+                "Added_Date": _Added_Date,
+                "Latitude": _Latitude,
+                "Longitude": _Longitude,
+                "_type": _type,
+
+            },
+            success: function (data) {
+                var _UnlockTitle = $("#UnlockTitle").is(":checked");
+                if (_UnlockTitle == true) {
+                    successAction();
+                }
+                else {
+                    ErrorAction();
+                }
+                var grid = $("#Grid").ejGrid("instance");
+                grid.refreshContent();
+                grid.endEdit();
+            }
+        });
+    }
+</script>
+
+
+<script>
+
+    function open(args) {
+
+        var objDialog = $("#Grid").data("ejGrid");
+        var $dialogWrapper = objDialog.element.find("#" + objDialog._id + "_dialogEdit_wrapper");
+        $dialogWrapper.css("top", "10px");
+        $dialogWrapper.css("left", "10px");
+    }
+    function successAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Title Unlocked Successfully!!!";
+            $("#SuccessSave").html('<p style="font-family: cursive;color: green;">' + str /*+ '</p></br><button id="button1" style="margin-left: 50%;size: large; showRoundedCorner: true; cssClass:customCss1">OK</button>'*/);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-success",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+            $("#SuccessSave").ejDialog({ enableModal: true });
+            $("#SuccessSave").ejDialog("open");
+        }
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+    }
+    function ErrorAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Title" + " Has Not Been Unlocked!!!";
+            $("#ErrorList").html('<p style="font-family: cursive;color: red;">' + str);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-danger",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+            $("#ErrorList").ejDialog({ enableModal: true });
+            $("#ErrorList").ejDialog("open");
+        }
+
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+
+    }
+</script>
+@*File Upload Scripts*@
+<script>
+    function LoadEvidence() {
+        //debugger;
+        $("#EvidenceGrid").ejGrid({
+            dataSource: ej.DataManager({
+            url: "@Url.Action("DataSourceScans", "PropertyTitles")?Title_Reference=" + titref + "&&Volume=" + vol + "&&Folio=" + fol, adaptor: "UrlAdaptor"
+            }),
+            allowGrouping: false,
+            isResponsive: true,
+            enableAltRow: true,
+            allowTextWrap: true,
+            textWrapSettings: { wrapMode: "both" },
+            allowResizeToFit: true,
+            showStackedHeader: true,
+            enableResponsiveRow: true,
+
+            toolbarSettings: {
+                showToolbar: true,
+            },
+            editSettings: {
+                allowEditing: true,
+                allowAdding: true,
+                allowDeleting: true,
+                rowPosition: "bottom"
+            },
+            allowPaging: true,
+            editSettings: { allowEditing: false, allowAdding: false, allowDeleting: false, editMode: 'batch' },
+            allowResizeToFit: true,
+            columns: [
+                { field: "DocumentCode", visible: false, allowEditing: false, headerText: "ID", width: 80, isPrimaryKey: true },
+                { field: "TitleReferenceNo", visible: true, headerText: "Title Reference", width: 100 },
+                { field: "Volume", visible: true, headerText: "Volume", width: 80/*, isPrimaryKey: true*/ },
+                { field: "Folio", visible: true, headerText: "Folio", width: 80/*, isPrimaryKey: true*/ },
+                { field: "DocumentName", visible: true, headerText: "Document", width: 80/*, isPrimaryKey: true*/ },
+                { field: 'UploadDate', type: "date", headerText: 'Uploaded Date', editType: "datepicker", format: "{0:dd/MM/yyyy}", editParams: { buttonText: "Now" }, width: 150 },
+                {
+                    headerText: "Manage Record",
+                    commands: [
+                        { type: "Download", buttonOptions: { text: "Download", width: "100", click: "onDownloadClick" } }
+                        //{ type: "Delete", buttonOptions: { text: "Delete", width: "100", click: "onDeleteClick" } }
+                    ],
+                    textAlign: ej.TextAlign.Center,
+                    width: 150
+                }
+            ],
+        });
+    }
+    function onDownloadClick(args) {
+        var grid = $("#EvidenceGrid").ejGrid("instance");
+        $("#hfDocumentCode").val(grid.getSelectedRecords()[0].DocumentCode);
+        $("#btnDownload")[0].click();
+        }
+
+</script>
+
+
+<style>
+    .e-grid .e-groupdroparea, /*GroupDropArea */
+    .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+    .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+    .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+    .e-grid td.e-active, /*During Row Selected*/
+    /*For pager items and their hover*/
+    .e-pager .e-currentitem,
+    .e-pager .e-currentitem:hover,
+    .e-pager .e-link:hover,
+    .e-pager .e-icon:hover {
+        background-color: #ea1b8d;
+    }
+
+    .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+        border-bottom-color: /*#ea1b8d*/ green;
+    }
+
+    .e-grid tr.e-hover /*For row hover*/ {
+        background-color: #e66aae;
+        color: #FFFFFF;
+    }
+
+    .e-grid .e-alt_row /*For Alternate row color*/ {
+        background-color: #E5E4E2; /*#99CFE3;*/
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+        border-bottom: 1px solid #c8c8c8;
+        border-left: 1px solid #c8c8c8;
+    }
+</style>
+<style>
+    .panel-default > .panel-heading {
+        background-color: #451bb1 /*#3e1111*/;
+        color: white;
+        /*background-color:silver;*/
+        /*color: white;*/
+    }
+</style>
+
+<style type="text/css" class="cssStyles">
+    .control {
+        margin-left: 30px;
+    }
+
+    .ctrllabel {
+        padding-top: 15px;
+    }
+
+    .control {
+        margin-left: 20px;
+    }
+
+    .frame {
+        height: 250px;
+        width: 1000px;
+    }
+
+    .frame1 {
+        height: 240px;
+        width: 900px;
+    }
+
+    .txt {
+        display: block;
+        margin-bottom: 12px;
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+    }
+
+    .custom.e-js .e-header {
+        background: #5f0c98;
+    }
+
+    .custom.e-js .e-content {
+        background: #ddd;
+    }
+
+    .custom .e-rbn-button.e-btn.e-select {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .tabstyle {
+        background: #F9F9F9;
+        border-radius: 10px;
+        border: 1px solid #99CFE3;
+        display: block;
+    }
+
+    .longcolumns {
+        width: 600px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        border-right: 5px #666 outset !important;
+        border-left: 5px #666 outset !important;
+    }
+</style>
+
+@(Html.EJ().Dialog("ErrorList").Title("Title Not Unlocked").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessSave").Title("Unlocked Successfully").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessDelete").Title("Record Deleted").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("CancelDial").Title("Record Not Saved").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("ArchiveDial").Title("Record Archived").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+
+@using (Html.BeginForm("EvidenceDownloadFile", "ApprovedPropertyPayment", FormMethod.Post))
+{
+    <input type="hidden" id="hfDocumentCode" name="DocumentCode" />
+    <input type="submit" id="btnDownload" value="Download" style="display:none" />
+}

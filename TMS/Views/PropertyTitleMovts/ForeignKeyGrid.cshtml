@@ -1,0 +1,92 @@
+@model IEnumerable<TMS.Models.PropertyTitleMovt>
+@using TMS.Models
+@{
+    ViewBag.Title = "ForeignKeyGrid";
+}
+
+<h2>ForeignKeyGrid</h2>
+ 
+<div id="ControlRegion">
+    @(Html.EJ().Grid<PropertyTitleMovt>("ForeignKey")
+        .Datasource((IEnumerable<object>)ViewBag.datasource)
+        .AllowSearching(true)
+        .AllowPaging()
+        .ToolbarSettings(toolbar =>
+        {
+            toolbar.ShowToolbar().ToolbarItems(items =>
+            {
+
+                items.AddTool(ToolBarItems.Search);
+            });
+        })
+        .Columns(col =>
+        {
+            col.Field("Project_Code_Project_Desc").HeaderText("Project").Width(100).Add();
+            col.Field("Purpose_ID_Purpose_Description").HeaderText("Purpose").Width(100).Add();
+            col.Field("Lawyers_ID_Lawyers_Desc").HeaderText("Lawyers").Width(100).Add();
+            col.Field("Parent_Title").IsPrimaryKey(true).HeaderText("Parent Title").ForeignKeyField("Purpose_ID").ForeignKeyValue("Purpose_Description").DataSource((IEnumerable<object>)ViewBag.TitleMovement_Purpose).TextAlign(TextAlign.Left).ValidationRules(v => v.AddRule("required", true).AddRule("number", true)).Width(150).Add();
+
+        })
+
+    .ClientSideEvents(eve =>
+    {
+        eve.Load("onLoad");
+    })
+    )
+</div>
+<script>
+    var foreignData = @Html.Raw(Json.Encode(ViewBag.dataSource2));
+    var dataSource3 = @Html.Raw(Json.Encode(ViewBag.dataSource3));
+    var datasource4 =@Html.Raw(Json.Encode(ViewBag.Projects)); 
+    var parenttitles =@Html.Raw(Json.Encode(ViewBag.datasource));
+    var volumes =@Html.Raw(Json.Encode(ViewBag.propertytitlesvolumes));
+    
+    var foreignObj = [
+        {
+            dataSource: dataSource3 ,
+            foreignKeyField: "Purpose_ID", //Property in the Grid's main dataSource
+            field: "Purpose_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "Purpose_Description" //Property in foreignkey dataSource
+        },
+         {
+             dataSource: foreignData,
+             foreignKeyField: "Lawyers_ID", //Property in the Grid's main dataSource
+             field: "Lawyers_ID", //Property in foreignkey dataSource
+             foreignKeyValue: "Lawyers_Desc" //Property in foreignkey dataSource
+         },
+        {
+            dataSource:  datasource4,
+            foreignKeyField: "Project_Code", //Property in the Grid's main dataSource
+            field: "Project_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource: parenttitles,
+            foreignKeyField: "Title_Ref", //Property in the Grid's main dataSource
+            field: "Project_Code", //Property in foreignkey dataSource
+            foreignKeyValue: "Title_Reference" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource: volumes,
+            foreignKeyField: "Volume", //Property in the Grid's main dataSource
+            field: "Project_Code", //Property in foreignkey dataSource
+            foreignKeyValue: "Volume" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource: folios,
+            foreignKeyField: "Folio", //Property in the Grid's main dataSource
+            field: "Project_Code", //Property in foreignkey dataSource
+            foreignKeyValue: "Folio" //Property in foreignkey dataSource
+        },
+
+               
+    ];
+
+
+    function onLoad(args){
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "JsonAdaptor");
+    }
+</script>

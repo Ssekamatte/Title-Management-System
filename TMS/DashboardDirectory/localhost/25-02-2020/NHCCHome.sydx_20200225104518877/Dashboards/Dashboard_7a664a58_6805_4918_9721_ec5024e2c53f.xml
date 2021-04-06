@@ -1,0 +1,773 @@
+<?xml version="1.0"?>
+<DashboardLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CanvasLayout="DesktopGridCanvas" ColumnCount="24" EnableVirtualScrolling="false" DashboardId="7a664a58_6805_4918_9721_ec5024e2c53f" FilterId="adad0d08-8740-4a4b-a3a0-b4001d3c52db" FilterName="FilterPanel" IsWidget="false" RowCount="13">
+  <Title>NHCC Home Dashboard</Title>
+  <Description />
+  <DataSources />
+  <Layout>
+    <DashboardItem xsi:type="ProportionChartItem" Column="6" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="f102346b-8b92-4a73-a1b9-1530163c5fc6" Name="ProportionChart_2" ReportName="ProportionChart_2" Row="8" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="ProportionChart" UniqueReportName="ProportionChart_f102346b_8b92_4a73_a1b9_1530163c5fc6">
+      <DisplayName>Percentage Coverage (Property Types)</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>25.322207032733353</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>62.133305291200038</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ProportionChartItem" Column="0" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="132271ac-d1da-4861-b1dc-2d8cc5a039c3" Name="ProportionChart_1" ReportName="ProportionChart_1" Row="8" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="ProportionChart" UniqueReportName="ProportionChart_132271ac_d1da_4861_b1dc_2d8cc5a039c3">
+      <DisplayName>Percentage Coverage (Land Types)</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>0.32220703273334755</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>62.133305291200038</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="0" ColumnSpan="2" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="4fdc879a-b506-4699-8314-79633cf9a457" Name="Card_3" ReportName="Card_3" Row="0" RowSpan="3" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_4fdc879a_b506_4699_8314_79633cf9a457">
+      <DisplayName>Total Titles </DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>21.848852901484481</Height>
+        <Left>0.32220703273334755</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0.59484375273849</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="10" ColumnSpan="2" Version="3.2.0.68" DataSource="PropTitleMovtsByLocation" UniqueDataSourceName="DataSource_9b47aff8-a89a-4a44-9de0-b8b1cd4159c6" UniqueDataSourceNames="" Id="860c5612-e212-41c8-aabb-9591c28eea65" Name="Card_1" ReportName="Card_1" Row="0" RowSpan="3" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_860c5612_e212_41c8_aabb_9591c28eea65">
+      <DisplayName>Movements</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>21.848852901484481</Height>
+        <Left>41.988873699400017</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0.59484375273849</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="6" ColumnSpan="10" Version="" UniqueDataSourceNames="" Id="ae701077-e642-4fb8-abd7-1048623062f0" Name="Label_1" ReportName="Label_1" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_ae701077_e642_4fb8_abd7_1048623062f0">
+      <DisplayName>TitlesDisAggregationLabel</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>41.0014619883041</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="8" ColumnSpan="2" Version="3.2.0.68" DataSource="PropPaymentsByLocation" UniqueDataSourceName="DataSource_d10fe6d0-e7da-4635-b7a5-c59fb4afdeca" UniqueDataSourceNames="" Id="fcba1e71-8957-4a52-ae09-0db0fe4f971a" Name="Card_6" ReportName="Card_6" Row="0" RowSpan="3" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_fcba1e71_8957_4a52_ae09_0db0fe4f971a">
+      <DisplayName>Payments</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>21.848852901484481</Height>
+        <Left>33.655540366066674</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0.59484375273849</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ChartItem" Column="0" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="c38ed143-4731-4c08-adfd-0b12dc27a180" Name="Chart_2" ReportName="Chart_2" Row="3" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Chart" UniqueReportName="Chart_c38ed143_4731_4c08_adfd_0b12dc27a180">
+      <DisplayName>Number of Titles Per Location</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>0.32220703273334755</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>23.671766829661564</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ChartItem" Column="6" ColumnSpan="6" Version="3.2.0.68" DataSource="PropPaymentsByLocation" UniqueDataSourceName="DataSource_d10fe6d0-e7da-4635-b7a5-c59fb4afdeca" UniqueDataSourceNames="" Id="d47f662b-ff3d-436a-b08b-1b3c7ba1a63f" Name="Chart_3" ReportName="Chart_3" Row="3" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Chart" UniqueReportName="Chart_d47f662b_ff3d_436a_b08b_1b3c7ba1a63f">
+      <DisplayName>Property Payments Per Location</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>25.322207032733353</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>23.671766829661564</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ChartItem" Column="12" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitleMovtsByLocation" UniqueDataSourceName="DataSource_9b47aff8-a89a-4a44-9de0-b8b1cd4159c6" UniqueDataSourceNames="" Id="4ef7d195-cb1c-4b1b-96c7-fad4dc2e07ee" Name="Chart_4" ReportName="Chart_4" Row="3" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Chart" UniqueReportName="Chart_4ef7d195_cb1c_4b1b_96c7_fad4dc2e07ee">
+      <DisplayName>Title Movements Per Location</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>50.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>23.671766829661564</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ChartItem" Column="18" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="3120b62d-b8d8-43da-add8-62518b0a087b" Name="Chart_5" ReportName="Chart_5" Row="3" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Chart" UniqueReportName="Chart_3120b62d_b8d8_43da_add8_62518b0a087b">
+      <DisplayName>Number of Titles by Property Types</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>75.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>23.671766829661564</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="2" ColumnSpan="2" Version="3.2.0.68" DataSource="TotalFreeHoldTitles" UniqueDataSourceName="DataSource_61f47554-4977-42b3-98be-bc217631cbff" UniqueDataSourceNames="" Id="226f7f59-f7ce-4837-89a2-e3b05fad79e1" Name="Card_8" ReportName="Card_8" Row="1" RowSpan="2" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_226f7f59_f7ce_4837_89a2_e3b05fad79e1">
+      <DisplayName>FreeHold </DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>14.156545209176787</Height>
+        <Left>8.655540366066683</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="6" ColumnSpan="2" Version="3.2.0.68" DataSource="TotalLeaseHoldTitles" UniqueDataSourceName="DataSource_b04d17be-d15f-4d30-bca9-1c60488172d5" UniqueDataSourceNames="" Id="4c6c3c3c-620d-4d96-8341-705138a84fcc" Name="Card_9" ReportName="Card_9" Row="1" RowSpan="2" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_4c6c3c3c_620d_4d96_8341_705138a84fcc">
+      <DisplayName>LeaseHold </DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>14.156545209176787</Height>
+        <Left>25.322207032733353</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="CardItem" Column="4" ColumnSpan="2" Version="3.2.0.68" DataSource="TotalMailoTitles" UniqueDataSourceName="DataSource_f05da750-0094-42c1-9bcf-557d99fd9072" UniqueDataSourceNames="" Id="479059f8-5aaa-4b19-bc78-d1e3be4f0664" Name="Card_10" ReportName="Card_10" Row="1" RowSpan="2" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Card" UniqueReportName="Card_479059f8_5aaa_4b19_bc78_d1e3be4f0664">
+      <DisplayName>Mailo </DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>14.156545209176787</Height>
+        <Left>16.988873699400013</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>7.66812865497076</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ProportionChartItem" Column="12" ColumnSpan="6" Version="3.2.0.68" DataSource="PropPaymentsByLocation" UniqueDataSourceName="DataSource_d10fe6d0-e7da-4635-b7a5-c59fb4afdeca" UniqueDataSourceNames="" Id="4e390e7e-84cb-4cfe-a1ba-8ea53248c721" Name="ProportionChart_3" ReportName="ProportionChart_3" Row="8" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="ProportionChart" UniqueReportName="ProportionChart_4e390e7e_84cb_4cfe_a1ba_8ea53248c721">
+      <DisplayName>Property Payments Per Land Type</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>50.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>62.133305291200038</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ProportionChartItem" Column="18" ColumnSpan="6" Version="3.2.0.68" DataSource="PropTitleMovtsByLocation" UniqueDataSourceName="DataSource_9b47aff8-a89a-4a44-9de0-b8b1cd4159c6" UniqueDataSourceNames="" Id="7c612f91-d341-47d0-a57d-5189b654b0bd" Name="ProportionChart_4" ReportName="ProportionChart_4" Row="8" RowSpan="5" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="ProportionChart" UniqueReportName="ProportionChart_7c612f91_d341_47d0_a57d_5189b654b0bd">
+      <DisplayName>Title Movements Per Land Type</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>37.233468286099864</Height>
+        <Left>75.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>62.133305291200038</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="ChartItem" Column="0" ColumnSpan="1" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_ecfd6920-4016-4635-85dd-05d9819a5ad6" UniqueDataSourceNames="" Id="5d8ddd99-447e-4c56-9b09-4a91d7b07d7c" Name="Chart_1" ReportName="Chart_1" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Chart" UniqueReportName="Chart_5d8ddd99_447e_4c56_9b09_4a91d7b07d7c">
+      <DisplayName>Total Titles Enntered Per Month</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>0</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>0</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="2" ColumnSpan="6" Version="" UniqueDataSourceNames="" Id="5a3ce0d1-9c8b-4403-aaf1-7d8b2b771a7e" Name="Label_2" ReportName="Label_2" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_5a3ce0d1_9c8b_4403_aaf1_7d8b2b771a7e">
+      <DisplayName>Label_2</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="13" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="a6151a6d-78b2-433f-b512-a0d2a625ec11" Name="Label_3" ReportName="Label_3" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_a6151a6d_78b2_433f_b512_a0d2a625ec11">
+      <DisplayName>Label_3</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="12" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="c3ea2903-254e-49c6-be5b-74bc55c24a09" Name="Label_4" ReportName="Label_4" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_c3ea2903_254e_49c6_be5b_74bc55c24a09">
+      <DisplayName>Label_4</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>50.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="16" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="aa16ae74-0aa3-44b7-95b3-08d8594f13c6" Name="Label_5" ReportName="Label_5" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_aa16ae74_0aa3_44b7_95b3_08d8594f13c6">
+      <DisplayName>Label_5</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="20" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="f1f48048-f65e-44ee-9b87-0995308f43c8" Name="Label_6" ReportName="Label_6" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_f1f48048_f65e_44ee_9b87_0995308f43c8">
+      <DisplayName>Label_6</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="12" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="6a663485-5635-4e07-9c63-f50646e1f44e" Name="Label_7" ReportName="Label_7" Row="2" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_6a663485_5635_4e07_9c63_f50646e1f44e">
+      <DisplayName>Label_7</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>50.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>15.979459137353876</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="16" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="3be72e18-ea34-4f8a-a541-5fe2b03c9fda" Name="Label_8" ReportName="Label_8" Row="2" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_3be72e18_ea34_4f8a_a541_5fe2b03c9fda">
+      <DisplayName>Label_8</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>66.9888736994</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>15.979459137353876</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="20" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="7a05a6ce-1358-411b-ac52-7ef4b81e7c2a" Name="Label_9" ReportName="Label_9" Row="2" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_7a05a6ce_1358_411b_ac52_7ef4b81e7c2a">
+      <DisplayName>Label_9</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>83.655540366066688</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>15.979459137353876</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="12" ColumnSpan="12" Version="" UniqueDataSourceNames="" Id="035751c4-d364-41ee-b0c7-49cd5a58771b" Name="Label_10" ReportName="Label_10" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_035751c4_d364_41ee_b0c7_49cd5a58771b">
+      <DisplayName>Label_10</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>50.322207032733346</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0.59484375273849</Top>
+        <Width>49.334795321637422</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="16" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="138b11c0-9cad-478f-af2f-39d5c44813c3" Name="Label_11" ReportName="Label_11" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_138b11c0_9cad_478f_af2f_39d5c44813c3">
+      <DisplayName>Label_11</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="16" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="00139a5d-4135-42c8-b1ff-f62de06a1c6f" Name="Label_12" ReportName="Label_12" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_00139a5d_4135_42c8_b1ff_f62de06a1c6f">
+      <DisplayName>Label_12</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>66.9888736994</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="20" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="9c9f0af1-4743-4cdd-8033-0b7e67134f5f" Name="Label_13" ReportName="Label_13" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_9c9f0af1_4743_4cdd_8033_0b7e67134f5f">
+      <DisplayName>Label_13</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="20" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="205c43ed-7e7e-4c1e-9b2a-917516eac5dd" Name="Label_14" ReportName="Label_14" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_205c43ed_7e7e_4c1e_9b2a_917516eac5dd">
+      <DisplayName>Label_14</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>true</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>0</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="20" ColumnSpan="4" Version="" UniqueDataSourceNames="" Id="ba95d83f-87f8-41d3-b4e5-051c2a007507" Name="Label_15" ReportName="Label_15" Row="1" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_ba95d83f_87f8_41d3_b4e5_051c2a007507">
+      <DisplayName>Label_15</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>83.655540366066688</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>8.2871514450461827</Top>
+        <Width>16.001461988304094</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+    <DashboardItem xsi:type="LabelItem" Column="2" ColumnSpan="6" Version="" UniqueDataSourceNames="" Id="b2a175b2-8709-432a-823a-8a4bd7ff80af" Name="Label_16" ReportName="Label_16" Row="0" RowSpan="1" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_b2a175b2_8709_432a_823a_8a4bd7ff80af">
+      <DisplayName>Label_16</DisplayName>
+      <EnableDrillThrough>false</EnableDrillThrough>
+      <EnableTreeViewFilter>false</EnableTreeViewFilter>
+      <IgnoreMasterFilter>false</IgnoreMasterFilter>
+      <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+      <DefaultSelectedIndices>0</DefaultSelectedIndices>
+      <IsControlConfigured>true</IsControlConfigured>
+      <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+      <IsLinked>false</IsLinked>
+      <IsMasterFilter>false</IsMasterFilter>
+      <IsNotInCanvas>false</IsNotInCanvas>
+      <IsSharedWidget>false</IsSharedWidget>
+      <Position>
+        <Height>6.4642375168690949</Height>
+        <Left>8.655540366066683</Left>
+        <TileHeight>48.125</TileHeight>
+        <TileWidth>48.125</TileWidth>
+        <Top>0.59484375273849</Top>
+        <Width>24.334795321637433</Width>
+      </Position>
+      <Responsive>false</Responsive>
+      <SelectedFilterValues />
+      <IsTitle>false</IsTitle>
+    </DashboardItem>
+  </Layout>
+  <SliderValues>
+    <CanvasSettings>
+      <ShowGridLines>true</ShowGridLines>
+    </CanvasSettings>
+  </SliderValues>
+</DashboardLayout>

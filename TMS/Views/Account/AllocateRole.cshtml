@@ -1,0 +1,153 @@
+
+@using TMS.Models
+
+@model TMS.Models.RegisterViewModel
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<script>
+    window.UserId;
+    function setUserId(arg)
+    {
+        window.UserId=arg;
+    }
+
+    window.userRole;
+    function setRole(arg) {
+        // window.userRole = arg;
+
+        var obj = $('#Role').data("ejDropDownList");
+        console.log("Selected Item's Text - " + obj.option("text"));
+        console.log("selected Item's Value - " + obj.option("value"));
+        window.userRole = obj.option("value"); 
+    }
+
+    window.Password;
+    function setPassword(arg) {
+        window.Password = arg;
+        console.log(JSON.stringify(window.Password ));
+        
+    }
+</script>
+
+
+<div id="ControlRegion">
+    @(Html.EJ().Grid<object>("FlatGrid").AllowResizeToFit().AllowMultipleExporting().AllowScrolling().AllowKeyboardNavigation()
+                       .Datasource(datasource => datasource.URL("DataSource").UpdateURL("AllocateRole")/*.InsertURL("DialogInsert").RemoveURL("DialogDelete")*/.Adaptor(AdaptorType.UrlAdaptor))
+                 .EnableAltRow()
+                 .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                //.EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.Dialog); })
+                .AllowFiltering().FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+.AllowPaging()
+        .ToolbarSettings(toolbar =>
+        {
+            toolbar.ShowToolbar().ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                items.AddTool(ToolBarItems.Update);
+                items.AddTool(ToolBarItems.Cancel);
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.ExcelExport);
+                items.AddTool(ToolBarItems.WordExport);
+                items.AddTool(ToolBarItems.PdfExport);
+            });
+        })
+ 
+    .ClientSideEvents(eve => { eve.ActionComplete("complete"); })
+    )
+
+</div>
+
+<script type="text/template" id="template">
+    <b>User Role Details</b>
+@*@using (Html.BeginForm("AllocateRole", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{*@
+    @Html.AntiForgeryToken()
+    <table cellspacing="10">
+        <tr>
+            @*<td style="text-align: right;">id</td>
+                <td style="text-align: left"> <input type="text" id="id" name="id" value="{{:id}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+            <td style="text-align: right;">Email</td>*@
+            <td style="text-align: left"> <input type="text" id="Email" name="Email" value="{{:Email}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+            <td style="text-align: right;">UserName</td>
+            <td style="text-align: left"> <input type="text" id="UserName" name="UserName" value="{{:UserName}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+            <td style="text-align: right;">Role</td>
+            <td style="text-align: left"> <input type="text" id="Role" name="Role" value="{{:Role}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+       </tr> 
+    </table>
+@*}*@
+</script>
+
+ 
+<script type="text/javascript">
+
+    var userroles = @Html.Raw(Json.Encode(ViewBag.userRoles));
+    console.log(JSON.stringify(userroles));
+    function complete(args) {
+        if ((args.requestType == "beginedit" || args.requestType == "add") && args.model.editSettings.editMode == "dialogtemplate") {
+
+            $("#EditDialog_FlatGrid_Save").ejButton("destroy");
+            $($("#EditDialog_FlatGrid_Save").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Save</button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#EditDialog_FlatGrid_Cancel").ejButton("destroy");
+            $($("#EditDialog_FlatGrid_Cancel").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "margin-left": "10px" }) 
+
+            var DropDownListDist = $('#Role').ejDropDownList({
+                dataSource: userroles,
+                width: "150px",
+                change: "setRole",
+                fields: { value: "Name", text: "Name" }, 
+            }).data("ejDropDownList");
+        }
+
+        if (args.requestType == "beginedit")
+        {
+            var ogrid = $('#FlatGrid').ejGrid('instance');
+            var userid = ogrid.getSelectedRecords()[0].Id;
+            var password = ogrid.getSelectedRecords()[0].PasswordHash;
+            alert(password);
+            setUserId(password);
+            setPassword(password) 
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Set User Role"); //change dialog title
+        } 
+    }
+</script>  
+
+<script>
+    function savess() {
+        var obj = $("#FlatGrid").ejGrid("instance");
+        var gridInstance = $("#Grid").ejGrid("instance");
+        $.ajax({
+            type: "POST",
+            url: "AllocateRole?userid=" + window.UserId + '&userrole=' + window.userRole ,  //TotalesBillsUpdate is Server side method
+            //data: JSON.stringify({ 'order': changes.changed }),
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            success: function (LinkId) {
+                // alert(data);
+                // if (LinkId > 0)
+                {
+                    // gridInstance.batchSave();
+                    cancelss();
+                }
+                 
+            }
+        }); 
+    } 
+
+    function cancelss() {
+        var obj = $("#FlatGrid").ejGrid("instance")
+        obj.cancelEdit();
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

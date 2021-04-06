@@ -1,0 +1,221 @@
+@model IEnumerable<TMS.Models.Offer>
+@using TMS.Models
+@{
+    ViewBag.Title = "Property Offers";
+}
+
+<h2>@ViewBag.Title </h2>
+
+<div id="ControlRegion">
+    @(Html.EJ().Grid<Offer>("ForeignKey")
+             // .Datasource((IEnumerable<object>)ViewBag.datasource)
+             .Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+    //.Datasource(datasource => datasource.URL("Offers/DataSourceOffers").UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.UrlAdaptor))
+
+    .AllowSearching(true)
+    .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+    .AllowTextWrap()
+    .ContextMenuSettings(contextMenu =>
+    {
+        contextMenu.EnableContextMenu();
+    })
+    .AllowScrolling().AllowResizing()
+               .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+    .AllowPaging()
+    .ToolbarSettings(toolbar =>
+    {
+        toolbar.ShowToolbar().ToolbarItems(items =>
+        {
+            items.AddTool(ToolBarItems.Add);
+            items.AddTool(ToolBarItems.Edit);
+            items.AddTool(ToolBarItems.Delete);
+            items.AddTool(ToolBarItems.Update);
+            items.AddTool(ToolBarItems.Cancel);
+            items.AddTool(ToolBarItems.Search);
+        });
+    })
+    .Columns(col =>
+    {
+        col.Field("Project_id_Project_Desc").IsPrimaryKey(true).HeaderText("Project")/*.ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource("Projects")*/.Width(100).ValidationRules(rule => rule.AddRule("required", true).AddRule("number", true)).Width(120).Add();
+        //col.Field("Project_code").HeaderText("Project_code").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+        col.Field("OfferNo").HeaderText("Offer No").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+        col.Field("Volume").HeaderText("Volume").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+        col.Field("Folio").HeaderText("Folio").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+        col.Field("Title_Reference").HeaderText("Title Reference").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("Purchaser_Name").HeaderText("Purchaser Name").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("Nationality").HeaderText("Nationality").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(150).Add();
+        col.Field("Purchasers_Address").HeaderText("Purchasers' Address").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+          col.Field("Purchasers_TelNo").HeaderText("Purchasers TelNo.").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+          col.Field("Purchasers_Email").HeaderText("Purchasers Email").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+         col.Field("PurchaserEmployer").HeaderText("Employer").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("Offer_Value").HeaderText("Offer Value").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("OfferDate").HeaderText("Offer Date").IsPrimaryKey(false).Visible(true).Format("{0:dd/MMM/yyyy}").TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("OfferExpiryDate").HeaderText("Offer Expiry Date").IsPrimaryKey(false).Visible(true).Format("{0:dd/MMM/yyyy}").TextAlign(TextAlign.Justify).Width(250).Add();
+         col.Field("OfferPaymentDate").HeaderText("Offer Payment Date").IsPrimaryKey(false).Format("{0:dd/MMM/yyyy}").Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("OfferPaidUP").HeaderText("Offer PaidUP").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+        col.Field("TitleTransferred").HeaderText("Title Transferred").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+         col.Field("TransferDate").HeaderText("Transfer Date").IsPrimaryKey(false).Visible(true).Format("{0:dd/MMM/yyyy}").TextAlign(TextAlign.Justify).Width(200).Add();
+          col.Field("PurchaserRemark").HeaderText("Purchaser Remark").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(250).Add();
+        col.Field("StatusCode").HeaderText("Status").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+          //col.Field("SealApplicationRegister").HeaderText("SealApplicationRegister").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+    })
+    .ClientSideEvents(eve => { eve.Load("onLoad"); eve.ActionComplete("edit"); }))
+    @*.ClientSideEvents(eve => { eve.ActionComplete("edit"); }))*@
+     
+</div>
+
+
+<script>
+    
+    var foreignObj = [
+       
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Projects)),
+            foreignKeyField: "Project_id", //Property in the Grid's main dataSource
+            field: "Project_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        }
+         
+    ];
+
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+</script>
+
+
+
+ 
+
+<script type="text/template" id="template">
+    <b>Property Offer Details</b> 
+
+        <div id="tab1">
+
+            <table cellspacing="10">
+                <tr>
+                    <td style="text-align: right;">Project_code</td>
+                    <td style="text-align: left"> <input type="text" id="Project_code" name="Project_code" value="{{:Project_code}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">OfferNo</td>
+                    <td style="text-align: left"> <input type="text" id="OfferNo" name="OfferNo" value="{{:OfferNo}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Volume</td>
+                    <td style="text-align: left"> <input type="text" id="Volume" name="Volume" value="{{:Volume}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Folio</td>
+                    <td style="text-align: left"> <input type="text" id="Folio" name="Folio" value="{{:Folio}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Title_Reference</td>
+                    <td style="text-align: left"> <input type="text" id="Title_Reference" name="Title_Reference" value="{{:Title_Reference}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Purchaser_Name</td>
+                    <td style="text-align: left"> <input type="text" id="Purchaser_Name" name="Purchaser_Name" value="{{:Purchaser_Name}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                </tr> 
+                <tr>
+                    <td style="text-align: right;">Purchasers_Address</td>
+                    <td style="text-align: left"> <input type="text" id="Purchasers_Address" name="Purchasers_Address" value="{{:Purchasers_Address}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Purchasers_TelNo</td>
+                    <td style="text-align: left"> <input type="text" id="Purchasers_TelNo" name="Purchasers_TelNo" value="{{:Purchasers_TelNo}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Purchasers_Email</td>
+                    <td style="text-align: left"> <input type="text" id="Purchasers_Email" name="Purchasers_Email" value="{{:Purchasers_Email}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">PurchaserEmployer</td>
+                    <td style="text-align: left"> <input type="text" id="PurchaserEmployer" name="PurchaserEmployer" value="{{:PurchaserEmployer}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">Offer_Value</td>
+                    <td style="text-align: left"> <input type="text" id="Offer_Value" name="Offer_Value" value="{{:Offer_Value}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">OfferDate</td>
+                    <td style="text-align: left"> <input type="text" id="OfferDate" name="OfferDate" value="{{:OfferDate}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">OfferExpiryDate</td>
+                    <td style="text-align: left"> <input type="text" id="OfferExpiryDate" name="OfferExpiryDate" value="{{:OfferExpiryDate}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">OfferPaymentDate</td>
+                    <td style="text-align: left"> <input type="text" id="OfferPaymentDate" name="OfferPaymentDate" value="{{:OfferPaymentDate}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">OfferPaidUP</td>
+                    <td style="text-align: left"> {{if OfferPaidUP}}
+<input type="checkbox" id="OfferPaidUP" name="OfferPaidUP" checked="checked" class="e-field e-checkbox" style="width:30px" />
+{{else}}
+<input type="checkbox" id="OfferPaidUP" name="OfferPaidUP" class="e-field e-checkbox" style="width:30px" />
+{{/if}} </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">TitleTransferred</td>
+                    <td style="text-align: left">
+                        {{if TitleTransferred}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+                    <td style="text-align: right;">TransferDate</td>
+                    <td style="text-align: left"> <input type="text" id="TransferDate" name="TransferDate" value="{{:TransferDate}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">PurchaserRemark</td>
+                    <td style="text-align: left"> <input type="text" id="PurchaserRemark" name="PurchaserRemark" value="{{:PurchaserRemark}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                </tr>
+                 
+                <tr>
+                    <td style="text-align: right;">StatusCode</td>
+                    <td style="text-align: left"> <input type="text" id="StatusCode" name="StatusCode" value="{{:StatusCode}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;">SealApplicationRegister</td>
+                    <td style="text-align: left"> <input type="text" id="SealApplicationRegister" name="SealApplicationRegister" value="{{:SealApplicationRegister}}" class="e-field e-ejinputtext valid e-disable" /> </td>
+                    <td style="text-align: right;"></td>
+                    <td style="text-align: left">  </td>
+                </tr>
+
+
+            </table> 
+        </div> 
+
+ 
+</script>
+<script type="text/javascript">
+    function edit(args) {
+
+        $("#OfferDate").ejDatePicker();
+        $("#OfferExpiryDate").ejDatePicker();
+        $("#Offer_Value").ejNumericTextbox();
+        $("#OfferPaymentDate").ejDatePicker();
+        $("#TransferDate").ejDatePicker();
+        $("#TransferDate").ejDatePicker();
+
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+
+
+            //var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+
+            ////Change Header
+            //$('#' + this._id + '_dialogEdit').ejDialog("option", "title", templateHeader); //change dialog title
+
+            ////Change Header
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Property Offer Edit"); //change dialog title
+
+             if (args.requestType == "add") {
+                var dataprojects = @Html.Raw(Json.Encode(ViewBag.projects));
+                $('#Project_code').ejDropDownList({
+                    dataSource: dataprojects,
+                    width: "150px",
+                    fields: { id: "Project_Code", text: "Project_Desc", value: "Project_Code" }
+                }).data("ejDropDownList");
+             }
+           
+        }
+    }
+    function cascadeEvent(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("District_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+
+    function cascadeEventCounty(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("County_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+</script>
+
+
+
+

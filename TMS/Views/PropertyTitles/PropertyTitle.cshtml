@@ -1,0 +1,1370 @@
+@model IEnumerable<TMS.Models.PropertyTitle>
+@using TMS.Models
+
+@{
+    ViewBag.Title = "PropertyTitle";
+}
+
+<h2>Property Titles</h2>
+
+
+<script>
+
+    var Districts = [];
+    var Counties = [];
+    var Subcounties = [];
+    var Parishes = [];
+    var Lease_Type = [];
+    var PropertyTypes = [];
+    var Projects = [];
+
+    $.ajax({
+        //url: 'PropertyTitles/Districts',
+        url: 'Projects',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (proj) {
+            if (proj.length > 0) {
+                //JSON.parse(districts);
+                // console.log(JSON.stringify(districts));
+                Projects = JSON.stringify(proj);// districts;
+            }
+        },
+    });
+
+    $.ajax({
+        //url: 'PropertyTitles/Districts',
+        url: 'Districts',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (districts) {
+            if (districts.length > 0) {
+                //JSON.parse(districts);
+                // console.log(JSON.stringify(districts));
+                Districts = districts;
+            }
+        },
+    });
+
+
+    //Counties
+    $.ajax({
+        url: 'Counties',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (counties) {
+            if (counties.length > 0) {
+                Counties = counties;
+            }
+        },
+    });
+
+    //SubCounties
+    $.ajax({
+        url: 'Subcounties',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (subcounties) {
+            if (subcounties.length > 0) {
+                Subcounties = subcounties;
+            }
+        },
+    });
+
+    //Parishes
+    $.ajax({
+        url: 'Parishes',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (parishes) {
+            if (parishes.length > 0) {
+                Parishes = parishes;
+            }
+        },
+    });
+    //Lease_Type
+    $.ajax({
+        url: 'Lease_Type',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (Lease_Type) {
+            if (Lease_Type.length > 0) {
+                Lease_Type = Lease_Type;
+            }
+        },
+    });
+
+    //PropertyTypes
+    $.ajax({
+        url: 'PropertyTypes',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (propertyTypes) {
+            if (propertyTypes.length > 0) {
+                PropertyTypes = propertyTypes;
+            }
+        },
+    });
+    //Locations
+    $.ajax({
+        url: 'Locations',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (locations) {
+            if (locations.length > 0) {
+                Locations = locations;
+            }
+        },
+    });
+    //LeaseYears
+
+    $.ajax({
+        url: 'LeaseYears',
+        //data: JSON.stringify(mid),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (leaseYears) {
+            if (leaseYears.length > 0) {
+                LeaseYears = leaseYears;
+            }
+        },
+    });
+
+</script>
+
+
+
+<div id="ControlRegion">
+    @(Html.EJ().Grid<PropertyTitle>("ForeignKey")
+         // .Datasource((IEnumerable<object>)ViewBag.datasource)
+         .Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("PropertyTitles/DialogUpdate").InsertURL("PropertyTitles/DialogInsert").RemoveURL("PropertyTitles/DialogDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+         //.Datasource(datasource => datasource.URL("PropertyTitles/DataSourceProperty_Titles").UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.UrlAdaptor))
+
+    .AllowSearching(true)
+    .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+    .ContextMenuSettings(contextMenu =>
+    {
+        contextMenu.EnableContextMenu();
+    })
+    .AllowPaging()
+    .AllowFiltering().AllowScrolling().AllowResizing()
+               .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+    .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+    .ToolbarSettings(toolbar =>
+    {
+        toolbar.ShowToolbar().ToolbarItems(items =>
+        {
+            items.AddTool(ToolBarItems.Add);
+            items.AddTool(ToolBarItems.Edit);
+            items.AddTool(ToolBarItems.Update);
+            items.AddTool(ToolBarItems.Cancel);
+            items.AddTool(ToolBarItems.Search);
+        });
+    })
+    .Columns(col =>
+    {
+        col.Field("Project_id_Project_Desc").IsPrimaryKey(true).HeaderText("Project")/*.ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource("Projects").Width(100).ValidationRules(rule => rule.AddRule("required", true).AddRule("number", true))*/.Width(120).Add();
+
+        // col.Field("Project_Code_Project_Desc").IsPrimaryKey(true).HeaderText("Project").Width(120).Add();
+        col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(100).ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Add();
+        col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio").ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Width(100).Add();
+        col.Field("Title_Reference").HeaderText("Title Ref.").Width(100).Add();
+        col.Field("TypeCode_TypeDesc").HeaderText("Property Type").Width(120).Add();
+        col.Field("LandTypeCode_LandDesc").HeaderText("Lease Type")/*.ForeignKeyField("LandCode").ForeignKeyValue("LandDesc").DataSource("Lease_Type")*/.Width(100).Add();
+
+        //col.Field("Unit_No").HeaderText("Unit No").ValidationRules(v => v.AddRule("required", true)).Width(100).Add();
+        //col.Field("Plan_No").HeaderText("Plan No").Width(100).Add();
+        col.Field("Block_No").HeaderText("Block No").Width(100).Add();
+        //col.Field("Flat_N0").HeaderText("Flat N0").Width(100).Add();
+        //col.Field("Region_num").HeaderText("Region").Width(100).Add();
+        col.Field("Location_id_Location_Desc").HeaderText("Location").Width(180).Add(); ;// .ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.locations).Width(120).Add();
+
+        col.Field("DistrictID_District_Name").HeaderText("District").Width(100).Add();
+        col.Field("County_ID_County_Name").HeaderText("County").Width(100).Add();
+
+
+
+        col.Field("Subcounty_ID_Subcounty_Name").Width(120).Add();
+        //col.Field("Parish_ID").HeaderText("Parish").ForeignKeyField("Parish_ID").ForeignKeyValue("Parish_Name").DataSource("Parishes").Width(100).Add();
+
+        col.Field("Town_Village").HeaderText("Town/Village").Width(180).Add();
+        //col.Field("Street").HeaderText("Street").Width(180).Add();
+        //col.Field("Plot_No").HeaderText("Plot No").Width(100).Add();
+
+        //col.Field("Lease_Start_Date").HeaderText("Lease Start Date").Format("{0:dd/MMM/yyyy}").Width(100).Add();
+        //col.Field("Lease_End_Date").HeaderText("Lease End Date").Format("{0:dd/MMM/yyyy}").Width(100).Add();
+
+        //col.Field("Ground_Rent").HeaderText("Ground Rent").Width(100).Add();
+        //col.Field("Rates").HeaderText("Rates").Width(100).Add();
+        //col.Field("OfferNo").HeaderText("Offer No").Width(100).Add();
+
+        //col.Field("Purchaser_Name").HeaderText("Purchaser's Name").Width(100).Add();
+        //col.Field("Nationality").HeaderText("Nationality").Width(100).Add();
+        //col.Field("Purchasers_Address").HeaderText("Purchaser's Address").Width(100).Add();
+        //col.Field("Purchasers_TelNo").HeaderText("Purchaser's Tel. No").Width(100).Add();
+        //col.Field("Purchasers_Email").HeaderText("Purchaser's Email").ValidationRules(v => v.AddRule("email", true)).Width(100).Add();
+        //col.Field("PurchaserEmployer").HeaderText("Purchaser's Employer").Width(100).Add();
+        //col.Field("Offer_Value").HeaderText("Offer Value").EditType(EditingType.Numeric).Width(100).Add();
+
+        //col.Field("OfferDate").EditType(EditingType.Datepicker).Format("{0:MM/MMM/yyyy}").HeaderText("Offer Date").Width(100).Add();
+        //col.Field("OfferExpiryDate").HeaderText("Offer Expiry Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("OfferPaymentDate").HeaderText("Offer Payment Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+
+        //col.Field("OfferPaidUP").HeaderText("Offer Paid UP?").Width(100).Add();
+        //col.Field("TitleTransferred").HeaderText("Title Transferred").Width(100).Add();
+        //col.Field("TransferDate").HeaderText("Transfer Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+
+        //col.Field("PurchaserRemark").HeaderText("Purchaser's Remark").Width(100).Add();
+        //col.Field("NewDataAudit").HeaderText("New Data Audit").Width(100).Add();
+        //col.Field("EditDataAudit").HeaderText("Edit Data Audit").Width(100).Add();
+        //col.Field("PropertyStatus").HeaderText("Property Status").Width(100).Add();
+        //col.Field("AreaOfUnit").HeaderText("Area of Unit").Width(100).Add();
+        //col.Field("FloorAreaLeased").HeaderText("Floor Area Leased").Width(100).Add();
+        //col.Field("UnitFactor").HeaderText("Unit Factor").Width(100).Add();
+        //// col.Field("Date").HeaderText("Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("RegDate").HeaderText("Registration Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("InstrumentNo").HeaderText("Instrument No").Width(100).Add();
+        //col.Field("ProprietorName").HeaderText("Proprietor's Name").Width(180).Add();
+        //col.Field("ProprietorAddress").HeaderText("Proprietor's Address").Width(180).Add();
+        //col.Field("FathersName").HeaderText("Father's Name").Width(100).Add();
+        //col.Field("Clan").HeaderText("Clan").Width(100).Add();
+        //col.Field("Registrar").HeaderText("Registrar").Width(100).Add();
+        //col.Field("BoardMinuteRelease").HeaderText("Board Minute Release").Width(100).Add();
+        //col.Field("Directors").HeaderText("Directors").Width(100).Add();
+        //col.Field("Added_By").HeaderText("Added By").Width(100).Add();
+        //col.Field("Added_Date").HeaderText("Added Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("Edited_By").HeaderText("Edited By").Width(100).Add();
+        //col.Field("Edited_Date").HeaderText("Edited Date").Width(100).Add();
+
+        //col.Field("PlotSize_ID").HeaderText("Plot Size").ForeignKeyField("PlotSize_ID").ForeignKeyValue("PlotSize_Desc").DataSource((IEnumerable<object>)ViewBag.propertyTitle_PlotSizes).Width(100).Add();
+
+        //col.Field("ValueOfProperty").HeaderText("Value of Property").Width(100).Add();
+        //col.Field("LeaseYears_ID").HeaderText("Lease (Years)").ForeignKeyField("LeaseYears_ID").ForeignKeyValue("LeaseYears").DataSource((IEnumerable<object>)ViewBag.propertyTitle_LeaseYears).Width(100).Add();
+        //col.Field("ActualPlotSize").HeaderText("Plot Size").Width(100).Add();
+        //col.Field("SourceOfLease").HeaderText("Source of Lease").Width(100).Add();
+        //col.Field("GroundRentNarrative").HeaderText("Ground Rent Narrative").Width(100).Add();
+        //col.Field("GroundRentDueDate").HeaderText("Ground Rent Due Date").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("GeneralRemarks").HeaderText("General Remarks").Width(100).Add();
+        //col.Field("Valuer").HeaderText("Valuer").Width(100).Add();
+        //col.Field("DateOfValuation").HeaderText("Date of Valuation").Format("{0:MM/MMM/yyyy}").Width(100).Add();
+        //col.Field("PropertySoldorTransferred").HeaderText("Property Sold or Transferred").Width(100).Add();
+
+        //// col.Field("Region_code").EditType(EditingType.Dropdown)
+        ////.ForeignKeyField("Region_num")
+        ////.ForeignKeyValue("Region_name")
+        ////.DataSource((IEnumerable<object>)ViewBag.regions)
+        ////.Width(100).Add();
+        //////}).ClientSideEvents(eve => { eve.ActionComplete("edit"); eve.RowSelected("rowSelected"); }))
+        //}).ClientSideEvents(eve => { eve.ActionBegin("actionbegin"); eve.ActionComplete("edit"); }))
+    })
+    .ClientSideEvents(eve => { eve.Load("onLoad"); eve.ActionComplete("edit"); }))
+    @*.ClientSideEvents(eve =>
+    {
+    eve.Load("onLoad");
+    })
+    )*@
+</div>
+
+<script>
+    @*var foreignData = @Html.Raw(Json.Encode(ViewBag.Districts));
+    var dataSource3 = @Html.Raw(Json.Encode(ViewBag.Counties));*@
+
+    var foreignObj = [
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Districts)),
+            foreignKeyField: "DistrictID", //Property in the Grid's main dataSource
+            field: "DistrictID", //Property in foreignkey dataSource
+            foreignKeyValue: "District_Name" //Property in foreignkey dataSource
+        },
+        @*{
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+            foreignKeyField: "County_ID", //Property in the Grid's main dataSource
+            field: "County_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "County_Name" //Property in foreignkey dataSource
+        },*@
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Projects)),
+            foreignKeyField: "Project_id", //Property in the Grid's main dataSource
+            field: "Project_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        }
+        ,
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            foreignKeyField: "Subcounty_ID", //Property in the Grid's main dataSource
+            field: "Subcounty_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "Subcounty_Name" //Property in foreignkey dataSource
+        }
+        ,
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Locations)),
+            foreignKeyField: "Location_id", //Property in the Grid's main dataSource
+            field: "Location_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Location_Desc" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Lease_Type)),
+            foreignKeyField: "LandTypeCode", //Property in the Grid's main dataSource
+            field: "LandTypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "LandDesc" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.propertyTypes)),
+            foreignKeyField: "TypeCode", //Property in the Grid's main dataSource
+            field: "TypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "TypeDesc" //Property in foreignkey dataSource
+        }
+    ];
+
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+</script>
+
+
+<script type="text/template" id="template">
+    <b>Property Title Details</b>
+    <div id="defaultTab">
+        <ul>
+            <li><a href="#tab1">Page 1</a></li>
+            <li><a href="#tab2">Page 2</a></li>
+            <li><a href="#tab3">Page 3</a></li>
+            <li><a href="#tabTitleMovements">Title Movements</a></li>
+        </ul>
+
+        <div id="tab1">
+
+            <table cellspacing="10">
+                <tr>
+                    <td style="text-align: right;">
+                        Project Code
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Projectslist" name="Project_Code" value="{{: Project_Code}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Volume
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Volume" name="Volume" value="{{: Volume}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Folio
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Folio" name="Folio" value="{{: Folio}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Title_Reference
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Title_Reference" name="Title_Reference" value="{{: Title_Reference}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Property Type
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TypeCode" name="TypeCode" value="{{: TypeCode}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Lease Type
+                    </td>
+                    <td style="text-align: left">
+                        <input id="LandTypeCode" name="LandTypeCode" value="{{: LandTypeCode}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        District
+                    </td>
+                    <td style="text-align: left">
+                        <input id="DistrictID" name="DistrictID" value="{{: DistrictID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        County
+                    </td>
+                    <td style="text-align: left">
+                        <input id="CountyList" name="County_ID" value="{{: County_ID}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Subcounty
+                    </td>
+                    <td style="text-align: left">
+                        <input id="SubcountyList" name="Subcounty_ID" value="{{: Subcounty_ID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Town_Village
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Town_Village" name="Town_Village" value="{{: Town_Village}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Location_id
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Location_id" name="Location_id" value="{{: Location_id}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Street
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Street" name="Street" value="{{: Street}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Plot No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plot_No" name="Plot_No" value="{{: Plot_No}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Unit No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Unit_No" name="Unit_No" value="{{: Unit_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Plan No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plan_No" name="Plan_No" value="{{: Plan_No}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Block_No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Block_No" name="Block_No" value="{{: Block_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Flat_No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Flat_N0" name="Flat_N0" value="{{: Flat_N0}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Nationality
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Nationality" name="Nationality" value="{{: Nationality}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Purchaser's TelNo
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Purchasers_TelNo" name="Purchasers_TelNo" value="{{: Purchasers_TelNo}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Purchasers' Email
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Purchasers_Email" name="Purchasers_Email" value="{{: Purchasers_Email}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Purchaser's Employer
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PurchaserEmployer" name="PurchaserEmployer" value="{{: PurchaserEmployer}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+            </table>
+
+
+
+            <div class="label1">
+                Child Grid
+            </div>
+
+        </div>
+
+        <div id="tab2">
+            <table cellspacing="10">
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Ground Rent
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Ground_Rent" name="Ground_Rent" value="{{: Ground_Rent}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Rates
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Rates" name="Rates" value="{{: Rates}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Offer No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="OfferNo" name="OfferNo" value="{{: OfferNo}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Offer Value
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Offer_Value" name="Offer_Value" value="{{: Offer_Value}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Lease Start Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Lease_Start_Date" name="Lease_Start_Date" value="{{: Lease_Start_Date}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Lease End Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Lease_End_Date" name="Lease_End_Date" value="{{: Lease_End_Date}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Offer Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="OfferDate" name="OfferDate" value="{{: OfferDate}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Offer Expiry Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="OfferExpiryDate" name="OfferExpiryDate" value="{{: OfferExpiryDate}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Offer Payment Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="OfferPaymentDate" name="OfferPaymentDate" value="{{: OfferPaymentDate}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Offer Paid UP
+                    </td>
+                    <td style="text-align: left">
+                        {{if OfferPaidUP}}
+                        <input type="checkbox" id="OfferPaidUP" name="OfferPaidUP" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="OfferPaidUP" name="OfferPaidUP" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+
+                    <td style="text-align: right;">
+                        Title Transferred?
+                    </td>
+                    <td style="text-align: left">
+                        {{if TitleTransferred}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;">
+                        Transfer Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TransferDate" name="TransferDate" value="{{: TransferDate}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Purchaser's Remark
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PurchaserRemark" name="PurchaserRemark" value="{{: PurchaserRemark}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Property Status
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PropertyStatus" name="PropertyStatus" value="{{: PropertyStatus}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        AreaOfUnit
+                    </td>
+                    <td style="text-align: left">
+                        <input id="AreaOfUnit" name="AreaOfUnit" value="{{: AreaOfUnit}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Floor Area Leased
+                    </td>
+                    <td style="text-align: left">
+                        <input id="FloorAreaLeased" name="FloorAreaLeased" value="{{: FloorAreaLeased}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Unit Factor
+                    </td>
+                    <td style="text-align: left">
+                        <input id="UnitFactor" name="UnitFactor" value="{{: UnitFactor}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Registration Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="RegDate" name="RegDate" value="{{: RegDate}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+        <div id="tab3">
+            <table cellspacing="10">
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Instrument No
+                    </td>
+                    <td style="text-align: left">
+                        <input id="InstrumentNo" name="InstrumentNo" value="{{: InstrumentNo}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Proprietor's Name
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ProprietorName" name="ProprietorName" value="{{: ProprietorName}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Proprietor's Address
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ProprietorAddress" name="ProprietorAddress" value="{{: ProprietorAddress}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Father's Name
+                    </td>
+                    <td style="text-align: left">
+                        <input id="FathersName" name="FathersName" value="{{: FathersName}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Clan
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Clan" name="Clan" value="{{: Clan}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Registrar
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Registrar" name="Registrar" value="{{: Registrar}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Board Minute Release
+                    </td>
+                    <td style="text-align: left">
+                        <input id="BoardMinuteRelease" name="BoardMinuteRelease" value="{{: BoardMinuteRelease}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Directors
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Directors" name="Directors" value="{{: Directors}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Plot Size
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PlotSize_ID" name="PlotSize_ID" value="{{: PlotSize_ID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Value of Property
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ValueOfProperty" name="ValueOfProperty" value="{{: ValueOfProperty}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Lease (Years)
+                    </td>
+                    <td style="text-align: left">
+                        <input id="LeaseYears_ID" name="LeaseYears_ID" value="{{: LeaseYears_ID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Actual Plot Size
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ActualPlotSize" name="ActualPlotSize" value="{{: ActualPlotSize}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Source of Lease
+                    </td>
+                    <td style="text-align: left">
+                        <input id="SourceOfLease" name="SourceOfLease" value="{{: SourceOfLease}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Ground Rent Narrative
+                    </td>
+                    <td style="text-align: left">
+                        <input id="GroundRentNarrative" name="GroundRentNarrative" value="{{: GroundRentNarrative}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Ground Rent Due Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="GroundRentDueDate" name="GroundRentDueDate" value="{{: GroundRentDueDate}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        General Remarks
+                    </td>
+                    <td style="text-align: left">
+                        <input id="GeneralRemarks" name="GeneralRemarks" value="{{: GeneralRemarks}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Valuer
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Valuer" name="Valuer" value="{{: Valuer}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;">
+                        Date of Valuation
+                    </td>
+                    <td style="text-align: left">
+                        <input id="DateOfValuation" name="DateOfValuation" value="{{: DateOfValuation}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Sold or Transferred? 
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PropertySoldorTransferred" name="PropertySoldorTransferred" value="{{: PropertySoldorTransferred}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;"></td>
+                    <td style="text-align: left"></td>
+
+                    <td style="text-align: right;"></td>
+                    <td style="text-align: left"></td>
+
+                </tr>
+            </table>
+        </div>
+
+        <div id="tabTitleMovements">
+            <b>Title Movements</b>
+            <div>
+                <div id="GridTitMovt"></div>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+
+
+<script type="text/javascript">
+
+    @*//var datapropertyTypes = @Html.Raw(Json.Encode(ViewBag.propertyTypes));
+    var datadistricts = @Html.Raw(Json.Encode(ViewBag.districts));
+    var dataLease_Type = @Html.Raw(Json.Encode(ViewBag.Lease_Type));
+    var datalocations = @Html.Raw(Json.Encode(ViewBag.locations));
+    var dataprojects = @Html.Raw(Json.Encode(ViewBag.projects));
+
+    var datacounties = @Html.Raw(Json.Encode(ViewBag.counties));
+    var datasubcounties = @Html.Raw(Json.Encode(ViewBag.subcounties));
+    var dataparishes = @Html.Raw(Json.Encode(ViewBag.parishes));
+
+    var datapropertyTitle_LeaseYears = @Html.Raw(Json.Encode(ViewBag.propertyTitle_LeaseYears));*@
+
+
+
+    function edit(args) {
+        $("#Offer_Value").ejNumericTextbox();
+        $("#Ground_Rent").ejNumericTextbox();
+        $("#Lease_Start_Date").ejDatePicker();
+        $("#Lease_End_Date").ejDatePicker();
+        $("#Lease_Start_Date").ejDatePicker();
+        $("#Lease_End_Date").ejDatePicker();
+        $("#Ground_Rent").ejNumericTextbox();
+        $("#Rates").ejNumericTextbox();
+        $("#OfferDate").ejDatePicker();
+        $("#OfferExpiryDate").ejDatePicker();
+        $("#OfferPaymentDate").ejDatePicker();
+        $("#TransferDate").ejDatePicker();
+        $("#AreaOfUnit").ejNumericTextbox();
+        $("#FloorAreaLeased").ejNumericTextbox();
+        $("#UnitFactor").ejNumericTextbox();
+        $("#RegDate").ejDatePicker();
+        $("#ValueOfProperty").ejNumericTextbox();
+        $("#ActualPlotSize").ejNumericTextbox();
+        $("#DateOfValuation").ejDatePicker();
+
+
+
+        var DropDownListDist = $('#DistrictID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),
+            width: "150px",
+            fields: { value: "DistrictID", text: "District_Name" },
+            cascadeTo: 'CountyList',
+            cascade: "cascadeEvent",
+        }).data("ejDropDownList");
+
+        var DropDownListObj = $('#TypeCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.propertyTypes)),
+            width: "150px",
+            fields: { id: "TypeCode", text: "TypeDesc", value: "TypeCode" }
+        }).data("ejDropDownList");
+
+        var DropDownListLease_Type = $('#LandTypeCode').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Lease_Type)),
+            width: "150px",
+            fields: { id: "LandTypeCode", text: "LandDesc", value: "LandCode" }
+        }).data("ejDropDownList");
+
+
+
+        var DropDownListCounty = $('#CountyList').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+            // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+            fields: { value: "County_ID", text: "County_Name" },
+            width: "150px",
+            cascadeTo: 'SubcountyList',
+            cascade: "cascadeEventCounty",
+
+        }).data("ejDropDownList");
+
+
+        var DropDownListSubCounty = $('#SubcountyList').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            width: "150px",
+            fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+        }).data("ejDropDownList");
+
+        var DropDownListLocations = $('#Location_id').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Locations)) ,
+            width: "150px",
+            fields: { id: "Location_id", value: "Location_id", text: "Location_Desc" }
+        }).data("ejDropDownList");
+
+        var DropDownListLeaseyears = $('#LeaseYears_ID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.propertyTitle_LeaseYears)) ,
+            width: "150px",
+            fields: { id: "LeaseYears_ID",value: "LeaseYears_ID", text: "LeaseYears" }
+        }).data("ejDropDownList");
+
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+            $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+            $("#defaultTab").ejTab({ hiddenItemIndex: [3] });
+            if (args.requestType == "add") {
+                // alert('Yap');
+                var DropDownListProjects = $('#Projectslist').ejDropDownList({
+                    dataSource: dataprojects,
+                    width: "150px",
+                    fields: { id: "Project_Code", text: "Project_Desc", value: "Project_Code" }
+                }).data("ejDropDownList");
+            }
+            if (args.requestType == "beginedit")
+            {
+                var tabObj = $("#defaultTab").data("ejTab");
+                hdn = tabObj.option("hiddenItemIndex");
+                var i = 1;
+                var j = hdn.indexOf(i);
+                var val = hdn.slice(0, j);
+                tabObj.option("hiddenItemIndex", val);
+                tabObj.showItem(i);
+                $("#defaultTab").ejTab({ selectedItemIndex: 0 });
+
+               $("#defaultTab").ejTab({ heightAdjustMode: "auto", height: "250px" });
+                //$("#defaultTab").ejTab({ height: "400px" });
+
+                var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+                projectcode = this.getSelectedRecords()[0].Project_Code;
+                folio = this.getSelectedRecords()[0].Folio;
+                volume = this.getSelectedRecords()[0].Volume;
+
+                var dataManager = ej.DataManager("TitleMovts?projcode=" + projectcode + "&&Folio=" + folio + "&&Volume=" + volume);
+
+                $("#GridTitMovt").ejGrid({
+                    dataSource:
+                    ej.DataManager({
+                        url: "TitleMovts?projcode=" + projectcode + "&&Folio=" + folio + "&&Volume=" + volume,
+                        updateUrl: "DialogUpdateMovt?Project_Code=" + projectcode + "&&Folio=" + folio + "&&Volume=" + volume,
+                        insertUrl: "DialogInsertMovt?Project_Code=" + projectcode + "&&Folio=" + folio + "&&Volume=" + volume,
+                        removeUrl: "DialogDeleteMovt?Project_Code=" + projectcode + "&&Folio=" + folio + "&&Volume=" + volume,
+                        adaptor: "UrlAdaptor"
+                    }),
+                    toolbarSettings: {
+                        showToolbar: true,
+                        toolbarItems: ["add", "edit", "delete", "update", "cancel"]
+                    },
+                    editSettings: {
+                        allowEditing: true,
+                        allowAdding: true,
+                        allowDeleting: true,
+                        editMode: "dialogtemplate",
+                        dialogEditorTemplateID: "#movttemplate"
+                    },
+                    allowPaging: true,
+                    columns: [
+                        { field: "Project_Code", isPrimaryKey: true, type: "number", visible: false@*,foreignKeyField: "Project_Code", foreignKeyValue: "Project_Desc", dataSource: @Html.Raw(Json.Encode(ViewBag.projects))*@ },
+                        { field: "Movt_Serial_No", isPrimaryKey: true, visible: false },
+                        { field: "Folio", isPrimaryKey: true, visible: false, type: "number"},
+                        { field: "Volume"/*, isPrimaryKey: true, visible: false */},
+                        { field: "Title_Reference", visible: false },
+                        { field: "Movement_Date", headerText: "Movement Date", width: "10%", editType: "datepicker", format: "{0:MM/dd/yyyy}", editParams: { buttonText: "Now" } },
+                        { field: "Dest_Category", headerText: "Destination Category",  foreignKeyField: "DestinyCode", foreignKeyValue: "DestinyDesc", dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes))  },
+                        { field: "Destination_Address", headerText: "Address" },
+                        { field: "PlotNo", headerText: "Plot No"},
+                        { field: "Lawyers_ID", headerText: "Lawyer", foreignKeyField: "Lawyers_ID", foreignKeyValue: "Lawyers_Desc", dataSource: @Html.Raw(Json.Encode(ViewBag.lawyers)) },//
+                        { field: "Purpose_ID", headerText: "Purpose",foreignKeyField: "Purpose_ID", foreignKeyValue: "Purpose_Description", dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes))  },
+                    ],
+                    actionComplete: "complete"
+                });
+
+
+            }
+            //$("#defaultTab").ejTab({ selectedItemIndex: 0 });
+            var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+
+            ////Change Header
+            //$('#' + this._id + '_dialogEdit').ejDialog("option", "title", templateHeader); //change dialog title
+
+            ////Change Header
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Property Title Edit"); //change dialog title
+
+
+            //if (args.requestType == "beginedit") {
+            //    //DropDownListProjects.selectItemByValue(this.getSelectedRecords()[0].Project_Code);
+            //    DropDownListObj.selectItemByValue(this.getSelectedRecords()[0].TypeCode);
+            //    DropDownListDist.selectItemByValue(this.getSelectedRecords()[0].DistrictID);
+            //    DropDownListCounty.selectItemByValue(this.getSelectedRecords()[0].County_ID);
+            //    DropDownListSubCounty.selectItemByValue(this.getSelectedRecords()[0].Subcounty_ID);
+            //    DropDownListLocations.selectItemByValue(this.getSelectedRecords()[0].Subcounty_ID);
+            //    DropDownListLease_Type.selectItemByValue(this.getSelectedRecords()[0].Location_id);
+            //    DropDownListLeaseyears.selectItemByValue(this.getSelectedRecords()[0].LeaseYears_ID);
+            //}
+
+        }
+    }
+
+    function complete(args) {
+        //$("#EmployeeID").ejNumericTextbox();
+        //$("#Freight").ejNumericTextbox();
+        //$("#ShipCity").ejDropDownList();
+
+        $("#Movement_Date").ejDatePicker();
+
+        @*//var dataprojects = @Html.Raw(Json.Encode(ViewBag.projects));
+        var datadestinations = @Html.Raw(Json.Encode(ViewBag.destinationTypes));
+        var datamovementPurposes = @Html.Raw(Json.Encode(ViewBag.movementPurposes));
+        var datalawyers = @Html.Raw(Json.Encode(ViewBag.lawyers));*@
+
+        var DropDownListDest_Category = $('#Dest_Category').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "DestinyCode", text: "DestinyDesc" },
+                width: "150px",
+                //watermarkText: "Select Destination",
+            }).data("ejDropDownList");
+
+            var DropDownListmovementPurposes = $('#Purpose_ID').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Purpose_ID", text: "Purpose_Description" },
+                width: "150px",
+                //watermarkText: "Select Purpose"
+            }).data("ejDropDownList");
+
+            var DropDownListLawyers = $('#Lawyers_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.lawyers)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Lawyers_ID", text: "Lawyers_Desc" },
+                width: "150px",
+                //watermarkText: "Select a Lawyer"
+            }).data("ejDropDownList");
+
+
+            if (args.requestType == "add") {
+                // $("#Volume").ejNumericTextbox();
+                // alert('Project code: ' + projectcode + ' folio: ' + folio + ' volume: ' + volume);
+                @*var drpdwnProj =
+                    $('#Volume').ejDropDownList({
+                    dataSource: @Html.Raw(Json.Encode(ViewBag.projects)) ,
+                    width: "150px",
+                    fields: { id: "Project_Code", text: "Project_Desc", value: "Project_id" },
+                     value: projectcode,
+                    watermarkText: "Select a Project"
+                }).data("ejDropDownList");*@
+
+
+
+                //var numchecker = $("#Folio").val();
+                //if (numchecker !== "" && !$.isNumeric(numchecker)) {
+                //    alert('Folio N');
+                //}
+                //else
+                //{
+                //    alert('Folio Not');
+                //}
+                //$('#Folio').val(30000);
+                //$('#Project_Code').val(5);
+                //$('#Volume').val(7);
+
+                //$("#Project_Code").prop("readonly", true);
+                //$("#Folio").prop("readonly", true);
+                //$("#Volum").prop("readonly", true);
+                //drpdwnProj.selectItemByValue('Bukoto');
+               //  drpdwnProj.selectItemByText(projectcode)
+                // $("#Project_Code").ejDropDownList("selectItemByText", projectcode);
+                //$('#Project_Code2').ejDropDownList("addItem", {text: "Please select Project", value: null});
+            }
+    } 
+    function cascadeEvent(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("District_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+
+    function cascadeEventCounty(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("County_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+</script>
+
+<script type="text/template" id="movttemplate">
+    <b>Property Title Movemennt Details</b>
+    @*<div id="defaultTab" style="width: 500px;height:300px;">*@
+    <div id="defaultTab">
+
+        <table cellspacing="10">
+            @*<tr>
+                    <td style="text-align: right;">
+                        Project Code
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Project_Code2" name="Project_Code2" value="{{: Project_Code}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Volume
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Volume2" name="Volume2" value="{{: Volume}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable" style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;">
+                        Folio
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Folio2" name="Folio2" value="{{: Folio}}"   class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>*@
+
+            <tr>
+                <td style="text-align: right;">
+                    Movt_Serial_No
+                </td>
+                <td style="text-align: left">
+                    <input id="Movt_Serial_No" name="Movt_Serial_No" value="{{: Movt_Serial_No}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    Title_Reference
+                </td>
+                <td style="text-align: left">
+                    <input id="Title_Reference" name="Title_Reference" value="{{: Title_Reference}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    Movement_Date
+                </td>
+                <td style="text-align: left">
+                    <input id="Movement_Date" name="Movement_Date" value="{{: Movement_Date}}" class="e-field e-ejinputtext valid "
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td style="text-align: right;">
+                    Destination
+                </td>
+                <td style="text-align: left">
+                    <input id="Dest_Category" name="Dest_Category" value="{{: Dest_Category}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    Outward
+                </td>
+                <td style="text-align: left">
+                    {{if Outward}}
+                    <input type="checkbox" id="Outward" name="Outward" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                    {{else}}
+                    <input type="checkbox" id="Outward" name="Outward" class="e-field e-checkbox" style="width:30px" />
+                    {{/if}}
+                </td>
+                <td style="text-align: right;">
+                    Destination Description
+                </td>
+                <td style="text-align: left">
+                    <input id="DestinationDesc" name="DestinationDesc" value="{{: DestinationDesc}}" class="e-field e-ejinputtext valid "
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="text-align: right;">
+                    Destination_Address
+                </td>
+                <td style="text-align: left">
+                    <input id="Destination_Address" name="Destination_Address" value="{{: Destination_Address}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    Email
+                </td>
+                <td style="text-align: left">
+                    <input id="Email" name="Email" value="{{: Email}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    TelNo
+                </td>
+                <td style="text-align: left">
+                    <input id="TelNo" name="TelNo" value="{{: TelNo}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    WebSite
+                </td>
+                <td style="text-align: left">
+                    <input id="WebSite" name="WebSite" value="{{: WebSite}}" class="e-field e-ejinputtext valid "
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    Remark
+                </td>
+                <td style="text-align: left">
+                    @*<input id="Remark" name="Remark" value="{{: Remark}}" class="e-field e-ejinputtext valid"
+                        style="text-align: right; width: 150px; height: 25px" />*@
+                    <textarea id="Remark" name="Remark" class="e-ejinputtext" value="{{: Remark}}">{{: Remark}}</textarea>
+
+                </td>
+                <td style="text-align: right;">
+                    FlatNo
+                </td>
+                <td style="text-align: left">
+                    <input id="FlatNo" name="FlatNo" value="{{: FlatNo}}" class="e-field e-ejinputtext valid "
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+            </tr>
+
+            <tr>
+                <td style="text-align: right;">
+                    UnitNo
+                </td>
+                <td style="text-align: left">
+                    <input id="UnitNo" name="UnitNo" value="{{: UnitNo}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    HasVolumeFolio
+                </td>
+                <td style="text-align: left">
+                    {{if HasVolumeFolio}}
+                    <input type="checkbox" id="HasVolumeFolio" name="HasVolumeFolio" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                    {{else}}
+                    <input type="checkbox" id="HasVolumeFolio" name="HasVolumeFolio" class="e-field e-checkbox" style="width:30px" />
+                    {{/if}}
+                </td>
+
+                <td style="text-align: right;">
+                    Purpose_ID
+                </td>
+                <td style="text-align: left">
+                    <input id="Purpose_ID" name="Purpose_ID" value="{{: Purpose_ID}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td style="text-align: right;">
+                    Lawyers_ID
+                </td>
+                <td style="text-align: left">
+                    <input id="Lawyers_ID" name="Lawyers_ID" value="{{: Lawyers_ID}}" class="e-field e-ejinputtext valid "
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;">
+                    PlotNo
+                </td>
+                <td style="text-align: left">
+                    <input id="PlotNo" name="PlotNo" value="{{: PlotNo}}" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+                <td style="text-align: right;"></td>
+                <td style="text-align: left"></td>
+            </tr>
+
+        </table>
+
+    </div>
+</script>
+
+
+
+
+
+

@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "ReportSoldProperties";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Sold Properties Report </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{<div>
+     <div class="row">
+
+         <div class="col-lg-3">
+             <p>Location</p>
+             <p><input type="text" id="Location_id" name="Location_id" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+
+         <div class="col-lg-3">
+             <p>Title Reference</p>
+             <p><input type="text" id="Title_Reference" name="Title_Reference" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>Land Type</p>
+             <p><input type="text" id="Lease_Type" name="Lease_Type" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         @*<div class="col-lg-3">
+            <p>NHCC Project</p>
+            <p><input type="text" id="Project_Code" name="Project_Code" class="e-field e-ejinputtext valid" /></p>
+        </div>*@
+
+
+         <br />
+
+         <div class="col-lg-3">
+             <input class="btn btn-success" type="button" value="Load Report">
+         </div>
+
+
+     </div>
+
+    </div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+
+
+    $(function () {
+        $(':button').click(function () {
+
+        var Title_Reference1 = $('#Title_Reference').data("ejDropDownList");
+        var _Title_Reference1 = Title_Reference1.option("value");
+
+        //alert(_Title_Reference1); //Alert for Title References
+
+        var Lease_Type1 = $('#Lease_Type').data("ejDropDownList");
+        var _Lease_Type = Lease_Type1.option("value");
+
+        //alert(Lease_Type); //Alert for Lease Types
+
+        //var Project_Code1 = $('#Project_Code').data("ejDropDownList");
+        //var _Project_Code = Project_Code1.option("value");
+
+        ////alert(_Project_Code); //Alert for _Project_Code
+
+            var Location_id1 = $('#Location_id').data("ejDropDownList");
+            var _Location_id = Location_id1.option("value");
+        //alert(_Location_id); //Alert for Location
+
+
+
+        $("#mqpartial").load("@Url.Action("ReportSoldPropertiesPartial", "Reports")",
+                {
+
+                    //'Project_Code': _Project_Code,
+                    'Location_id': _Location_id,
+                    'Lease_Type': _Lease_Type,
+                    'Title_Reference': _Title_Reference1
+
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+        });
+    });
+
+
+</script>
+
+<script>
+
+    //Project Description
+    $.ajax({
+        url: 'GetProjectCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Project_Code').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Project_Desc", text: "Project_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Property Types
+    $.ajax({
+        url: 'GetLease_Type',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Lease_Type').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "LandDesc", text: "LandDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Volume
+    $.ajax({
+        url: 'GetTitRefSoldProp',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Title_Reference').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Title_Reference", text: "Title_Reference" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Location Description
+    $.ajax({
+        url: 'GetLocationCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Location_id').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Location_Desc", text: "Location_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+
+
+</script>
+
+

@@ -1,0 +1,1562 @@
+﻿@*Approve Property Title Movements*@
+@model IEnumerable<TMS.Models.PropertyTitleMovt>
+
+@{
+    ViewBag.Title = "Approve Property Title Movements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Approve Property Title Movements</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+@(Html.EJ().Grid<object>("Grid")
+                                                                        //.Datasource(datasource => datasource.URL("DataSourcePropertyTitleMovts").UpdateURL("DialogUpdate").InsertURL("DialogInsert").Adaptor(AdaptorType.UrlAdaptor))
+
+                                                                        .Datasource(datasource => datasource.URL("DataSourcePropertyTitleMovts")/*.UpdateURL("DialogUpdate").InsertURL("DialogInsert")*/.RemoveURL("DialogDelete").Adaptor(AdaptorType.UrlAdaptor))
+
+
+                                                                            //.IsResponsive()
+                                                                            .IsResponsive()
+
+                                                                             .AllowPaging()    /*Paging Enabled*/
+                                                                                     .EditSettings(edit => { edit.AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                                                                                     .ContextMenuSettings(contextMenu =>
+                                                                                     {
+                                                                                         contextMenu.EnableContextMenu();
+                                                                                     })
+                                                                            .AllowPaging()
+                                                                             .PageSettings(page => page.PageSize(10))
+                                                                             .ShowColumnChooser()
+                                                                            .AllowGrouping()
+                                                                            //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+                                                                            .AllowFiltering()
+                                                                            .AllowSearching()
+                                                                              .AllowScrolling().AllowResizing()
+                                                                                   .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+
+                                                                            .FilterSettings(d => d.FilterType(FilterType.Excel))
+                                                                                  .ToolbarSettings(toolbar =>
+                                                                                  {
+                                                                                      toolbar.ShowToolbar().ToolbarItems(items =>
+                                                                                      {
+                                                                              //items.AddTool(ToolBarItems.Add);
+                                                                              items.AddTool(ToolBarItems.Edit);
+                                                                              //items.AddTool(ToolBarItems.Delete);
+                                                                              items.AddTool(ToolBarItems.Update);
+                                                                                          items.AddTool(ToolBarItems.Cancel);
+                                                                                          items.AddTool(ToolBarItems.Search);
+                                                                                      });
+                                                                                  })
+                                                                            .Columns(col =>
+                                                                            {
+                                                                    //col.Field("Project_Code").IsPrimaryKey(true).HeaderText("Project").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.projects).TextAlign(TextAlign.Left)/*.ValidationRules(v => v.AddRule("required", true).AddRule("number", true))*/.Width(150).Add();
+
+                                                                    col.Field("Location_id").IsPrimaryKey(true).HeaderText("Location").ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.Locations).Width(120).Add();
+                                                                                col.Field("Project_Code").IsPrimaryKey(false).HeaderText("Project").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.projects).Width(120).Add();
+                                                                                col.Field("Title_Reference").HeaderText("Title Ref.")./*ValidationRules(v => v.AddRule("customRegex", 150)).*/Width(150).Add();
+
+
+
+                                                                                col.Field("Movt_Serial_No").IsPrimaryKey(true).HeaderText("Movement Serial Number").TextAlign(TextAlign.Right).Width(200).EditType(EditingType.NumericEdit)/*.ValidationRules(rule =>rule.AddRule("customCompare", new List<object>() { 0, 1000 }))*/.Add();
+
+                                                                                col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio").TextAlign(TextAlign.Right).Width(150).EditType(EditingType.NumericEdit)/*.ValidationRules(rule =>rule.AddRule("customCompare", new List<object>() { 0, 1000 }))*/.Add();
+                                                                                col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(150)/*.ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true))*/.Add();
+                                                                                col.Field("Movement_Date").HeaderText("Movement Date").Format("{0:dd/MM/yyyy}").Width(150).Add();
+                                                                                col.Field("Dest_Category").HeaderText("Destination").ForeignKeyField("DestinyCode").ForeignKeyValue("DestinyDesc").DataSource((IEnumerable<object>)ViewBag.destinationTypes).Width(150).Add();//value: "DestinyCode", text: "DestinyDesc"
+                                                                                                                                                                                                                                                                              //col.Field("Ooutward").HeaderText("Ooutward").Width(150).Add();
+                                                                    col.Field("Destination_Address").HeaderText("Destination Address").AllowTextWrap(true).Width(150).Add();
+
+                                                                                col.Field("Remark").HeaderText("Remark").Width(250).Add();
+                                                                                col.Field("FlatNo").HeaderText("Flat No").Width(150).Add();
+                                                                                col.Field("UnitNo").HeaderText("Unit No").Width(150).Add();
+                                                                    //col.Field("HasVolumeFolio").HeaderText("Has Vol Folio?").Width(150).Add();
+                                                                    col.Field("LawyersNames").HeaderText("Lawyers").Width(150).Add();
+
+                                                                                col.Field("Directors").HeaderText("Directors").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                                                                col.Field("PlotNo").HeaderText("Plot No").Width(150).Add();
+                                                                                col.Field("TitleMovementStatusID").HeaderText("Title Status").ForeignKeyField("Status_ID").ForeignKeyValue("Status_Description").DataSource((IEnumerable<object>)ViewBag.PropertyTitlePaymentStatus).Width(220).Add();
+                                                                    //col.Field("Added_By").HeaderText("Added_By").Width(200).Add();
+                                                                    //col.Field("Added_Date").HeaderText("Added_Date").Width(200).Add();
+
+                                                                })
+                                                                            .ClientSideEvents(eve => {/* eve.ActionBegin("onActionBegin");*/ eve.ActionComplete("edit"); }))
+
+
+
+
+<script>
+
+
+     function TitleTransferInNHCC(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+         var checked = $("#TransferInNHCC:checked").val();
+
+         if (checked == "on") {
+
+             $("#Return_Date").ejDatePicker({
+                 readOnly: false,
+             });
+
+             // Ajax fuction to bring Internal Transfer on Purpose on button check
+                 $.ajax({
+
+                     url: 'GetPurposeData',
+
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     type: 'GET',
+                     success: function (data) {
+                         if (data.length > 0) {
+
+                             var DropDownListPurpose = $('#Purpose_ID').ejDropDownList({
+                                 dataSource: data,
+                                 width: "240px",
+                                 fields: { id: "Purpose_ID", text: "Purpose_Description", value: "Purpose_ID" }, readOnly: true
+                             }).data("ejDropDownList");
+                             var ddl2 = $('#Purpose_ID').ejDropDownList("instance");
+                             var fc = data[0].Purpose_ID;
+                             ddl2.selectItemByValue(fc);
+
+                         }
+
+                     },
+
+             });
+
+             // Ajax fuction to bring Internal(NHCC) on Destination on button check
+             $.ajax({
+
+                 url: 'GetDestinationData',
+
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 type: 'GET',
+                 success: function (data) {
+                     if (data.length > 0) {
+
+                         var DropDownListDestination = $('#Dest_Category').ejDropDownList({
+                             dataSource: data,
+                             width: "240px",
+                             fields: { id: "DestinyCode", text: "DestinyDesc", value: "DestinyCode" }, readOnly: true
+                         }).data("ejDropDownList");
+                         var ddl2 = $('#Dest_Category').ejDropDownList("instance");
+                         var fc = data[0].DestinyCode;
+                         ddl2.selectItemByValue(fc);
+                     }
+                 },
+             });
+         }
+         else {
+
+             $("#Return_Date").ejDatePicker({
+                 readOnly: true,
+             });
+
+             var DropDownListPurpose = $('#Purpose_ID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes)),
+            width: "280px",
+                   fields: { value: "Purpose_ID", text: "Purpose_Description" },readOnly: false
+
+             }).data("ejDropDownList");
+
+             var DropDownListDestination = $('#Dest_Category').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+            width: "280px",
+                 fields: { value: "DestinyCode", text: "DestinyDesc" },readOnly: false
+
+        }).data("ejDropDownList");
+
+
+         }
+
+
+     }
+
+
+     function InternalTransfersInformation(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+         var checked = $("#Additional:checked").val();
+
+         if (checked == "on") {
+
+             $("#Additional_Information").removeAttr('readonly', 'readonly');
+             $("#Additional_Information").show();
+         }
+         else {
+             //$("#Additional_Information").removeAttr('readonly', 'readonly');
+             //$("#Additional_Information").val("");
+
+             $("#Additional_Information").attr('readonly', 'readonly');
+             $("#Additional_Information").hide();
+         }
+
+     }
+
+</script>
+
+
+<script>
+
+    function FinalSub(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+        var checked = $("#FinalSubmission:checked").val();
+
+         if (checked == "on") {
+
+             // Ajax fuction to bring Approved on button check
+                 $.ajax({
+
+                     url: 'GetTitleMovementStatus',
+
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     type: 'GET',
+                     success: function (data) {
+                         if (data.length > 0) {
+
+                             var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+                                 dataSource: data,
+                                 width: "280px",
+                                 change: "Approve",
+                                 fields: { id: "Status_ID", text: "Status_Description", value: "Status_ID" }, readOnly: true
+                             }).data("ejDropDownList");
+                             var fc = data[0].Status_ID;
+                             DropDownListTitleMovementStatus.selectItemByValue(fc);
+                         }
+                     },
+             });
+         }
+         else {
+            var data = @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus));
+            var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+                width: "280px",
+                change: "Approve",
+                 fields: { value: "Status_ID", text: "Status_Description" },readOnly: false
+             }).data("ejDropDownList");
+             var fc = data[0].Status_ID;
+             DropDownListTitleMovementStatus.selectItemByValue(fc);
+         }
+
+     }
+
+</script>
+
+
+<script>
+    //Activates the checkbox depending on value selected in the dropdown
+
+    function Approve(args) {
+
+        var value = args.text;
+        if (value == "Approved") {
+
+            document.getElementById("FinalSubmission").checked = true;
+        }
+
+        else {
+            document.getElementById("FinalSubmission").checked = false;
+        }
+
+    }
+
+</script>
+
+
+
+<script type="text/template" id="template">
+    <b>Approve Property Title Movements</b>
+    <div id="defaultTab">
+        <ul>
+            <li><a href="#tab1">Approve Property Title Movements</a></li>
+
+
+        </ul>
+
+        <table> <tr><td><strong>Approve Property Title Movements</strong> </td> </tr></table>
+        <div id="tab1">
+            <table cellspacing="10">
+                <tr>
+                    <td style="text-align: right;">
+                        Location *
+                    </td>
+                    <td style="text-align: left">
+
+                        <input id="Location_id" name="Location_id" value="{{:Location_id}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" e-disable />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Parent Title *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Title_Reference" name="Title_Reference" value="{{:Title_Reference}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Volume *
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Volume" name="Volume" value="{{:Volume}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Folio *
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Folio" name="Folio" value="{{:Folio}}" readonly="readonly" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Project Code
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Project_Code" name="Project_Code" value="{{:Project_Code}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Longitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Longitude" name="Longitude" value="{{:Longitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Latitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Latitude" name="Latitude" value="{{:Latitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Movement Serial Number *
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Movt_Serial_No" name="Movt_Serial_No" value="{{:Movt_Serial_No}}" readonly="readonly" class="e-field e-ejinputtext valid"
+                               style="text-align: center; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Movement Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Movement_Date" name="Movement_Date" value="{{:Movement_Date}}" disabled="disabled" class="e-field e-ejinputtext valid e-disabled"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Title Transfer In NHCC?
+                    </td>
+
+                    <td style="text-align: left">
+
+                        {{if TransferInNHCC}}
+                        <input id="TransferInNHCC" onchange="TitleTransferInNHCC()" class="checkbox" name="TransferInNHCC" type="checkbox" checked />
+                        {{else}}
+                        <input id="TransferInNHCC" onchange="TitleTransferInNHCC()" class="checkbox" name="TransferInNHCC" type="checkbox" />
+                        {{/if}}
+
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Return Date
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Return_Date" , name="Return_Date" value="{{:Return_Date}}" readonly="readonly" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Destination *
+                    </td>
+                    <td style="text-align: left">
+                        @*<input id="Dest_Category" name="Dest_Category" value="{{:Dest_Category}}" required="required" disabled="disabled" class="e-field e-ejinputtext valid e-disable"*@
+                        <input id="Dest_Category" name="Dest_Category" value="{{:Dest_Category}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Purpose *
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Purpose_ID" name="Purpose_ID" value="{{:Purpose_ID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Additional Information?
+                    </td>
+
+                    <td style="text-align: left">
+
+                        {{if Additional}}
+                        <input id="Additional" onchange="InternalTransfersInformation()" class="checkbox" name="Additional" type="checkbox" checked />
+                        {{else}}
+                        <input id="Additional" onchange="InternalTransfersInformation()" class="checkbox" name="Additional" type="checkbox" />
+                        {{/if}}
+
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Additional Information
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Additional_Information" hidden="hidden" name="Additional_Information" class="e-field e-ejinputtext valid" style="text-align:left;">{{:Additional_Information}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Flat Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="FlatNo" name="FlatNo" value="{{:FlatNo}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Plot Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PlotNo" name="PlotNo" value="{{:PlotNo}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unit Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="UnitNo" name="UnitNo" value="{{:UnitNo}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Destination Address
+                    </td>
+                    <td>
+                        <textarea rows="4" cols="120" id="Destination_Address" name="Destination_Address" class="form-control" style="text-align:left;">{{:Destination_Address}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Lawyers
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="LawyersNames" name="LawyersNames" class="form-control" style="text-align:left;">{{:LawyersNames}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Outward
+                    </td>
+
+                    <td style="text-align: left">
+                        {{if Ooutward}}
+                        <input type="checkbox" id="Ooutward" name="Ooutward" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="Ooutward" name="Ooutward" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="text-align: right;">
+                        Directors
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Directors" name="Directors" class="form-control" style="text-align:left;">{{:Directors}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Remark
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Remark" name="Remark" class="form-control" style="text-align:left;">{{:Remark}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Final Submission
+                    </td>
+
+                    <td style="text-align: left">
+                        {{if FinalSubmission}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" checked="checked" class="checkbox" style="width:30px" />
+                        {{else}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" class="checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        Status
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TitleMovementStatusID" name="TitleMovementStatusID" value="{{:TitleMovementStatusID}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Reason for rejection
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="RejectionComment" name="RejectionComment" class="form-control" style="text-align:left;">{{:RejectionComment}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Reason for Unlock
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="UnlockComment" name="UnlockComment" class="form-control" readonly="readonly" style="text-align:left;">{{:UnlockComment}}</textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;" hidden>
+                        Added By
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Added_By" name="Added_By" value="{{:Added_By}}" disabled="disabled" hidden="hidden" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Added Date
+                    </td>
+                    <td style="text-align: left" hidden>
+                        <input id="Added_Date" name="Added_Date" value="{{:Added_Date}}" disabled="disabled" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                </tr>
+
+            </table>
+        </div>
+        <div class="row">
+            <div class="col col-md-12" id="UploadTitles">
+                <p style="background-color:darkorange; text-align:center; color:white; font-size:15px; width:100%; padding:10px;">Uploaded Titles</p>
+            </div>
+            <div class="col col-md-12">
+                <div id="EvidenceGrid" />
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="uploadbox" style="width: 100%;"></div>
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="partialPlaceHolder" style="width:100%"> </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript">
+    function edit(args) {
+        $("#Longitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#Latitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#OfferNo").ejNumericTextbox();
+        $("#Pay_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Movement_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Added_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Return_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#Rates").ejNumericTextbox();
+
+        $("#OfferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferExpiryDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferPaymentDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#TransferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#AreaOfUnit").ejNumericTextbox();
+        $("#FloorAreaLeased").ejNumericTextbox();
+
+        $("#RegDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#ValueOfProperty").ejNumericTextbox();
+        $("#ActualPlotSize").ejNumericTextbox();
+
+        $("#DateOfValuation").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#Folio").ejNumericTextbox();
+        $("#Value_of_Property").ejNumericTextbox();
+
+
+        var DropDownListPayMethods = $('#PayMethodCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PayMethods)),
+            width: "280px",
+            //watermarkText: "Select Pay Method",
+            fields: { id: "PayMethodCode", text: "PayMethodDesc", value: "PayMethodCode" }
+        }).data("ejDropDownList");
+
+        var DropDownListDestination = $('#Dest_Category').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+            width: "280px",
+            fields: { value: "DestinyCode", text: "DestinyDesc" },
+
+        }).data("ejDropDownList");
+
+         var DropDownListPurposes = $('#Purpose_ID').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+            fields: { value: "Purpose_ID", text: "Purpose_Description" },
+                width: "280px",
+                //watermarkText: "Select Purpose"
+            }).data("ejDropDownList");
+
+
+         var DropDownListEmployeeName = $('#Employee_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Employee)),
+            width: "280px",
+            fields: { value: "Employee_ID", text: "Employee_Name" }
+        }).data("ejDropDownList");
+
+        var DropDownListPosition = $('#Position_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Position)),
+            width: "280px",
+            fields: { value: "Position_ID", text: "Position_Description" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListDist = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "280px",
+            change: "Approve",
+           // watermarkText: "Select Status",
+            fields: { text: "Status_Description", value: "Status_ID" }
+        }).data("ejDropDownList");
+
+         var datadistricts = @Html.Raw(Json.Encode(ViewBag.Districts));
+        $('#DistrictID').ejDropDownList({
+            dataSource: datadistricts,
+            @*dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),*@
+            width: "280px",
+            fields: { id: "DistrictID", text: "District_Name", value: "DistrictID" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+
+          var dataprojects = @Html.Raw(Json.Encode(ViewBag.Locations));
+        $('#Location_id').ejDropDownList({
+            dataSource: dataprojects,
+            width: "280px",
+            fields: { text: "Location_Desc", value: "Location_id" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+
+        $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+        $("#defaultTab").ejTab({ hiddenItemIndex: [1] });
+         //  $("#defaultTab").ejTab({ hiddenItemIndex: [2] });
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+            open();
+            window._requestType = args.requestType;
+
+            var _Title_Reference = $('#Title_Reference').val();
+            var _Volume = $('#Volume').val();
+            var _Folio = $('#Folio').val();
+
+            if ((_Title_Reference == null || _Title_Reference == "") ||
+                (_Volume == null || _Volume == "") ||
+                (_Folio == null || _Folio == "")) {
+                $('#UploadTitles').hide();
+                $('#EvidenceGrid').hide();
+            }
+            else {
+                $('#UploadTitles').show();
+                $('#EvidenceGrid').show();
+            }
+
+            $($("#EditDialog_Grid_Save").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Save</button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#EditDialog_Grid_Cancel").ejButton("destroy");
+            $($("#EditDialog_Grid_Cancel").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "10px" });
+
+            window.titref = $('#Title_Reference').val().trim();
+            window.vol = $('#Volume').val();
+            window.fol = $('#Folio').val();
+
+            //Uploading Input
+            $('#UploadInput').ejUploadbox({
+                //saveUrl: "SaveScan?Title_Reference=" + titref + "&&Volume=" + window.Volume + "&&Folio=" + window.Folio,
+                //saveUrl: "SaveScan",
+                dialogAction: { closeOnComplete: true },
+                multipleFilesSelection: true,
+                showFileDetails: false/*true*/,
+                begin: "Filebegin",
+                success: function (args) {
+                    var grid = $("#EvidenceGrid").ejGrid("instance");
+                    grid.refreshContent(true);
+                    $("#ListFiles").append('<tr><td>' + args.files.name + " has been uploaded successfully" + '</td></tr>');
+                },
+                removeUrl: "Remove",
+                fileSelect: "fileselect",
+                autoUpload: true,
+                cssClass: "gradient-purple",
+                buttonText: { browse: "Choose File", upload: "Upload File", cancel: "Cancel Upload" },
+            });
+            LoadEvidence();
+
+            if (args.requestType == "add") {
+                var DropDownListProjectCode = $('#Project_Code').ejDropDownList({
+                    @* dataSource: @Html.Raw(Json.Encode(ViewBag.projects)) ,*@
+                    dataSource: null,
+                @* dataSource: @Html.Raw(Json.Encode(ViewBag.projects)) ,*@
+                    width: "280px",
+                    fields: { id: "Project_id", value: "Project_id", text: "Project_Desc" }
+                }).data("ejDropDownList");
+
+                var DropDownListVolumes = $('#Volume').ejDropDownList({
+            @* dataSource: @Html.Raw(Json.Encode(ViewBag.propertytitlesvolumes)),*@
+                    dataSource: null,
+                    width: "280px",
+                    fields: { value: "Volume", text: "Volume" },
+                    //change: VolumeChange,// Add this change function into the if statement
+                }).data("ejDropDownList");
+
+                var DropDownListParentTitle = $('#Title_Reference').ejDropDownList({
+           @* dataSource: @Html.Raw(Json.Encode(ViewBag.propertytitlesmovts)),*@
+                    dataSource: null,
+                    width: "280px",
+                    fields: { value: "Title_Reference", text: "Title_Reference" },
+                    change: TitleReferenceChange,// Add this change function into the if statement
+                }).data("ejDropDownList");
+
+                var DropDownListFolio = $('#Folio').ejDropDownList({
+             @* dataSource: @Html.Raw(Json.Encode(ViewBag.propertytitlesfolios)),*@
+                    dataSource: null,
+                    width: "280px",
+                    fields: { value: "Folio", text: "Folio" },
+
+                }).data("ejDropDownList");
+
+        }
+
+
+            if (args.requestType == "beginedit")
+            {
+                var tabObj = $("#defaultTab").data("ejTab");
+                hdn = tabObj.option("hiddenItemIndex");
+                var i = 1;
+                var j = hdn.indexOf(i);
+                var val = hdn.slice(0, j);
+                tabObj.option("hiddenItemIndex", val);
+                tabObj.showItem(i);
+                $("#defaultTab").ejTab({ selectedItemIndex: 0 });
+
+               $("#defaultTab").ejTab({ heightAdjustMode: "auto", height: "250px" });
+                //$("#defaultTab").ejTab({ height: "400px" });
+
+                var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+                projectcode = this.getSelectedRecords()[0].Project_Code;
+                folio = this.getSelectedRecords()[0].Folio;
+                //volume = this.getSelectedRecords()[0].Volume;
+
+                Directors = this.getSelectedRecords()[0].Directors;
+
+                var dataManager = ej.DataManager("BoardMembers?projcode=" + projectcode + "&&Folio=" + folio + "&&Directors=" + Directors);
+
+                var DropDownListProjectCode = $('#Project_Code').ejDropDownList({
+                     dataSource: @Html.Raw(Json.Encode(ViewBag.projects)) ,
+                width: "280px",
+                    fields: { id: "Project_id", value: "Project_id", text: "Project_Desc" }
+                }).data("ejDropDownList");
+
+                $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Approve Property Title Movements"); //change dialog title
+
+            }
+
+        }
+    }
+
+
+    function complete(args) {
+
+
+        $("#Movement_Date").ejDatePicker();
+
+
+        var DropDownListDest_Category = $('#Dest_Category').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "DestinyCode", text: "DestinyDesc" },
+                width: "280px",
+                //watermarkText: "Select Destination",
+            }).data("ejDropDownList");
+
+
+
+            var DropDownListLawyers = $('#Lawyers_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.lawyers)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Lawyers_ID", text: "Lawyers_Desc" },
+                width: "280px",
+                //watermarkText: "Select a Lawyer"
+        }).data("ejDropDownList");
+
+        var DropDownListCounties = $('#County_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+                fields: { value: "County_ID", text: "County_Name" },
+                width: "280px",
+              }).data("ejDropDownList");
+
+        var DropDownListSubCounties = $('#Subcounty_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            width: "280px",
+            fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+        }).data("ejDropDownList");
+
+
+    }
+
+</script>
+
+<script>
+
+        function ProjectChange(args) {
+
+            window.valuex = args.value;
+            //alert("ProjectChange is: " + valuex);
+
+            $.ajax({  // Ajax function to grey out County before selecting project code
+                url: 'GetParent_Title',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: { "Location_id": window.valuex },
+                type: 'GET',
+                success: function (data) {
+                    if (data.length > 0) {
+                        //alert("You are into Parent Title");
+                        var DropDownListtitleref = $('#Title_Reference').ejDropDownList({
+                            dataSource: data,
+                            fields: { value: "Title_Reference", text: "Title_Reference" },
+                            width: "280px",
+                           change: TitleReferenceChange,
+                        }).data("ejDropDownList");
+                    }
+    },
+        });
+
+
+    }
+
+    function TitleReferenceChange(args) {
+
+        //var _value = args.value;
+        //alert("Value is: "+_value);
+        window.value = args.value;
+       // alert("TitleReferenceChange is: " + value);
+
+        $.ajax({  // Ajax function to grey out Volume before selecting project code
+            url: 'GetVolume',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            //data: { "Title_Reference": _value },
+            data: { "Title_Reference": window.value},
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //alert("You are into Volume");
+                    var DropDownListfolio = $('#Volume').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Volume", text: "Volume" },
+                        width: "280px",
+                        change: VolumeChange,
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+
+    }
+
+
+    function VolumeChange(args) {
+        //var _value = args.value;
+        window.valuey = args.value;
+
+        //alert(_value);
+       // alert("VolumeChange is: " + valuey);
+
+        $.ajax({  // Ajax function to grey out Subcounty before selecting project code
+            url: 'GetFolio',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            //data: { "Volume": _value },
+            data: { "Title_Reference": window.value, "Volume": window.valuey},
+
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //alert("You are into Folio");
+                    var DropDownListfolio = $('#Folio').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Folio", text: "Folio" },
+                        width: "280px",
+                        change: LocationChange,
+                    }).data("ejDropDownList");
+
+                }
+            },
+        });
+    }
+
+    function LocationChange(args) {
+        //var _foliovalue = args.value;
+        window.valuez = args.value;
+
+        //alert(_value);
+        //alert("FolioChange is: " + valuez);
+
+        $.ajax({
+            //url: 'HAT/Districts',
+            //url: 'GetProjectCode1',
+            url: 'GetProjectCode',
+
+            //data: JSON.stringify(mid),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            type: 'GET',
+            @*data: @Html.Raw(Json.Encode(ViewBag.projects)),*@
+                data: {
+                "Location_id": window.valuex, "Title_Reference": window.value,
+                "Volume": window.window.valuey, "Folio": window.valuez
+            },
+
+            success: function (data) {
+                if (data.length > 0) {
+                    //alert("You are into LocationChange");
+                    var DropDownListProjectCode = $('#Project_Code').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "Project_Code", text: "Project_Code" }, //For odering by Project Code
+                        //fields: { value: "Project_Code", text: "Project_Desc" }, //For Ordering by Project Desc in case it works
+                        width: "280px",
+                    }).data("ejDropDownList");
+
+                }
+
+
+            },
+
+        });
+
+    }
+
+    function cancelss() {
+        var grid = $("#Grid").ejGrid("instance");
+        grid.cancelEdit();
+        grid.refresh;
+
+    }
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+
+
+</script>
+
+<script>
+    function savess() {
+        var _Location_id = $("#Location_id").data("ejDropDownList");
+        var Location = _Location_id.option("value");
+
+        var _Project_Code = $("#Project_Code").data("ejDropDownList");
+        var Project_Code = _Project_Code.option("value");
+        // alert("Project Code is " + Project_Code);
+
+        var _Title_Reference = $("#Title_Reference").val();
+
+        //var _Title_Reference = $("#Title_Reference").data("ejDropDownList");
+        //var Title_Reference = _Title_Reference.option("value");
+        ////alert("Title_Reference is " + Title_Reference);
+
+        var _Volume = $("#Volume").val();
+        //alert("Volume is " + _Volume);
+
+        var _Folio = $("#Folio").val();
+        // alert("Folio is " + _Folio);
+
+        var _TransferInNHCC = $("#TransferInNHCC").is(":checked");
+        //alert("TransferInNHCC is " + _TransferInNHCC);
+
+        var _Movt_Serial_No = $("#Movt_Serial_No").val();
+        //alert("Movt_Serial_No is " + _Movt_Serial_No);
+
+        var _Movement_Date = $("#Movement_Date").data("ejDatePicker");
+        var Movement_Date = _Movement_Date.getValue();
+        //alert("Movement_Date is " + Movement_Date);
+
+        var _Return_Date = $("#Return_Date").data("ejDatePicker");
+        var Return_Date = _Return_Date.getValue();
+        //alert("Return_Date is " + Return_Date);
+
+        var _Dest_Category = $("#Dest_Category").data("ejDropDownList");
+        var Dest_Category = _Dest_Category.option("value");
+        //alert("Dest_Category is " + Dest_Category);
+
+        var _Purpose_ID = $("#Purpose_ID").data("ejDropDownList");
+        var Purpose_ID = _Purpose_ID.option("value");
+        // alert("Purpose_ID is " + Purpose_ID);
+
+        var _Additional = $("#Additional").is(":checked");
+        // alert("Additional Information Check is " + _Additional);
+
+        var _Additional_Information = $("#Additional_Information").val();
+        //  alert("Additional_Information is " + _Additional_Information);
+
+        var _FlatNo = $("#FlatNo ").val();
+        //  alert("FlatNo is " + _FlatNo);
+
+        var _PlotNo = $("#PlotNo").val();
+        // alert("PlotNo is " + _PlotNo);
+
+        var _UnitNo = $("#UnitNo").val();
+        // alert("UnitNo is " + _UnitNo);
+
+        var _Destination_Address = $("#Destination_Address").val();
+        //alert("Destination_Address is " + _Destination_Address);
+
+        var _LawyersNames = $("#LawyersNames").val();
+        // alert("LawyersNames is " + _LawyersNames);
+
+        var _Ooutward = $("#Ooutward").is(":checked");
+        // alert("Ooutward is " + _Ooutward);
+
+        var _Directors = $("#Directors").val();
+        // alert("Directors is " + _Directors);
+
+
+        var _Remark = $("#Remark").val();
+        // alert("Remark is " + _Remark);
+
+        var _RejectionComment = $("#RejectionComment").val();
+        //  alert("RejectionComment is" + _RejectionComment)
+
+        var _FinalSubmission = $("#FinalSubmission").is(":checked");
+        //    alert("FinalSubmission is" + _FinalSubmission)
+
+        var _TitleMovementStatusID = $("#TitleMovementStatusID").data("ejDropDownList");
+        var MovementStatus = _TitleMovementStatusID.option("value");
+        //alert("TitleMovementStatusID is" + MovementStatus)
+
+        var _UnlockComment = $("#UnlockComment").val();
+        //  alert("UnlockComment is" + _UnlockComment)
+
+        var _Added_By = $("#Added_By").val();
+        // alert("Added By is " + _Added_By)
+
+        var _Added_Date = $("#Added_Date").val();
+        // alert("Added Date is" + _Added_Date)
+        var _Latitude = $('#Latitude').val();
+        var _Longitude = $('#Longitude').val();
+        ;
+
+        if ((Location == null || Location == "") && (Volume == null || Volume == "")
+            && (Folio == null || Folio == "") && (_Title_Reference == null || _Title_Reference == "")
+            && (_Movt_Serial_No == null || _Movt_Serial_No == "") && (Dest_Category == null || Dest_Category == "")
+            && (Purpose_ID == null || Purpose_ID == "")) {
+            alert("Fields marked with asterisk (*) are required!");
+            return false;
+        }
+
+        else if ((_Title_Reference == null || _Title_Reference == "" || _Title_Reference.match(/^\s+$/))) {
+            alert("Parent Title is required!");
+            return false;
+        }
+
+        else if ((Location == null || Location == "")) {
+            alert("Location is required!");
+            return false;
+        }
+
+        else if ((Volume == null || Volume == "")) {
+            alert("Volume is required!");
+            return false;
+        }
+
+        else if ((Folio == null || Folio == "")) {
+            alert("Folio is required!");
+            return false;
+        }
+
+        else if ((_Movt_Serial_No == null || _Movt_Serial_No == "")) {
+            alert("Movement Serial Number is required!");
+            return false;
+        }
+        else if ((Dest_Category == null || Dest_Category == "")) {
+            alert("Destination is required!");
+            return false;
+        }
+        else if ((Purpose_ID == null || Purpose_ID == "")) {
+            alert("Purpose is required!");
+            return false;
+        }
+
+        else if ((MovementStatus == "3" && (_RejectionComment == null
+            || _RejectionComment == "" || _RejectionComment.match(/^\s+$/) != null))) {
+            //debugger;
+            alert("Please give a reason for rejecting this title movement!");
+            return false;
+        }
+
+        else if ((MovementStatus != "3" && (_RejectionComment != null
+            && _RejectionComment != "" && _RejectionComment.match(/^\s+$/) == null))) {
+            //debugger;
+            alert("Title status has to be rejected to save a rejection comment!");
+            return false;
+        }
+
+        var _type = 0;
+
+        if (window._requestType == "beginedit") {
+            _type = 2;
+        }
+        else if (window._requestType == "add") {
+            _type = 1;
+        }
+
+        $.ajax({
+            url: "SaveTitleMovement",
+            type: "Get",
+            dataType: "json",
+            data: {
+                "Location_id": Location,
+                "Project_Code": Project_Code,
+                "Title_Reference": _Title_Reference,
+                "Volume": _Volume,
+                "Folio": _Folio,
+                "TransferInNHCC": _TransferInNHCC,
+                "Movt_Serial_No": _Movt_Serial_No,
+                "Movement_Date": Movement_Date,
+                "Return_Date": Return_Date,
+                "Dest_Category": Dest_Category,
+                "Purpose_ID": Purpose_ID,
+                "Additional": _Additional,
+                "Additional_Information": _Additional_Information,
+                "FlatNo": _FlatNo,
+                "PlotNo": _PlotNo,
+                "UnitNo": _UnitNo,
+                "Destination_Address": _Destination_Address,
+                "LawyersNames": _LawyersNames,
+                "Ooutward": _Ooutward,
+                "Directors": _Directors,
+                "Remark": _Remark,
+                "RejectionComment": _RejectionComment,
+                "FinalSubmission": _FinalSubmission,
+                "TitleMovementStatusID": MovementStatus,
+                "UnlockComment": _UnlockComment,
+                "Latitude": _Latitude,
+                "Longitude": _Longitude,
+                "Added_By": _Added_By,
+                "Added_Date": _Added_Date,
+                "_type": _type,
+
+            },
+
+            success: function (data) {
+                var _FinalSubmission = $("#FinalSubmission").is(":checked");
+                if (_FinalSubmission == true) {
+                    successAction();
+                }
+                else {
+                    ErrorAction();
+                }
+                var grid = $("#Grid").ejGrid("instance");
+                grid.refreshContent();
+                grid.endEdit();
+            }
+        });
+    }
+</script>
+
+<script>
+
+    function open(args) {
+
+        var objDialog = $("#Grid").data("ejGrid");
+        var $dialogWrapper = objDialog.element.find("#" + objDialog._id + "_dialogEdit_wrapper");
+        $dialogWrapper.css("top", "10px");
+        $dialogWrapper.css("left", "10px");
+    }
+
+    function successAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Result" + " Saved Successfully!!!";
+            $("#SuccessSave").html('<p style="font-family: cursive;color: green;">' + str /*+ '</p></br><button id="button1" style="margin-left: 50%;size: large; showRoundedCorner: true; cssClass:customCss1">OK</button>'*/);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-success",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+            $("#SuccessSave").ejDialog({ enableModal: true });
+            $("#SuccessSave").ejDialog("open");
+        }
+
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+
+    }
+    function ErrorAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Title" + " Has Not Been Approved!!!";
+            $("#ErrorList").html('<p style="font-family: cursive;color: red;">' + str);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-danger",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+            $("#ErrorList").ejDialog({ enableModal: true });
+            $("#ErrorList").ejDialog("open");
+        }
+
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+    }
+</script>
+@*File Upload Scripts*@
+<script>
+    function LoadEvidence() {
+        //debugger;
+        $("#EvidenceGrid").ejGrid({
+            dataSource: ej.DataManager({
+            url: "@Url.Action("DataSourceScans", "PropertyTitles")?Title_Reference=" + titref + "&&Volume=" + vol + "&&Folio=" + fol, adaptor: "UrlAdaptor"
+            }),
+            allowGrouping: false,
+            isResponsive: true,
+            enableAltRow: true,
+            allowTextWrap: true,
+            textWrapSettings: { wrapMode: "both" },
+            allowResizeToFit: true,
+            showStackedHeader: true,
+            enableResponsiveRow: true,
+
+            toolbarSettings: {
+                showToolbar: true,
+            },
+            editSettings: {
+                allowEditing: true,
+                allowAdding: true,
+                allowDeleting: true,
+                rowPosition: "bottom"
+            },
+            allowPaging: true,
+            editSettings: { allowEditing: false, allowAdding: false, allowDeleting: false, editMode: 'batch' },
+            allowResizeToFit: true,
+            columns: [
+                { field: "DocumentCode", visible: false, allowEditing: false, headerText: "ID", width: 80, isPrimaryKey: true },
+                { field: "TitleReferenceNo", visible: true, headerText: "Title Reference", width: 100 },
+                { field: "Volume", visible: true, headerText: "Volume", width: 80/*, isPrimaryKey: true*/ },
+                { field: "Folio", visible: true, headerText: "Folio", width: 80/*, isPrimaryKey: true*/ },
+                { field: "DocumentName", visible: true, headerText: "Document", width: 80/*, isPrimaryKey: true*/ },
+                { field: 'UploadDate', type: "date", headerText: 'Uploaded Date', editType: "datepicker", format: "{0:dd/MM/yyyy}", editParams: { buttonText: "Now" }, width: 150 },
+                {
+                    headerText: "Manage Record",
+                    commands: [
+                        { type: "Download", buttonOptions: { text: "Download", width: "100", click: "onDownloadClick" } }
+                        //{ type: "Delete", buttonOptions: { text: "Delete", width: "100", click: "onDeleteClick" } }
+                    ],
+                    textAlign: ej.TextAlign.Center,
+                    width: 150
+                }
+            ],
+        });
+    }
+    function onDownloadClick(args) {
+        var grid = $("#EvidenceGrid").ejGrid("instance");
+        $("#hfDocumentCode").val(grid.getSelectedRecords()[0].DocumentCode);
+        $("#btnDownload")[0].click();
+        }
+
+</script>
+
+<style>
+    .e-grid .e-groupdroparea, /*GroupDropArea */
+    .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+    .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+    .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+    .e-grid td.e-active, /*During Row Selected*/
+    /*For pager items and their hover*/
+    .e-pager .e-currentitem,
+    .e-pager .e-currentitem:hover,
+    .e-pager .e-link:hover,
+    .e-pager .e-icon:hover {
+        background-color: #ea1b8d;
+    }
+
+    .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+        border-bottom-color: /*#ea1b8d*/ green;
+    }
+
+    .e-grid tr.e-hover /*For row hover*/ {
+        background-color: #e66aae;
+        color: #FFFFFF;
+    }
+
+    .e-grid .e-alt_row /*For Alternate row color*/ {
+        background-color: #E5E4E2; /*#99CFE3;*/
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+        border-bottom: 1px solid #c8c8c8;
+        border-left: 1px solid #c8c8c8;
+    }
+</style>
+<style>
+    .panel-default > .panel-heading {
+        background-color: #451bb1 /*#3e1111*/;
+        color: white;
+        /*background-color:silver;*/
+        /*color: white;*/
+    }
+</style>
+
+<style type="text/css" class="cssStyles">
+    .control {
+        margin-left: 30px;
+    }
+
+    .ctrllabel {
+        padding-top: 15px;
+    }
+
+    .control {
+        margin-left: 20px;
+    }
+
+    .frame {
+        height: 250px;
+        width: 1000px;
+    }
+
+    .frame1 {
+        height: 240px;
+        width: 900px;
+    }
+
+    .txt {
+        display: block;
+        margin-bottom: 12px;
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+    }
+
+    .custom.e-js .e-header {
+        background: #5f0c98;
+    }
+
+    .custom.e-js .e-content {
+        background: #ddd;
+    }
+
+    .custom .e-rbn-button.e-btn.e-select {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .tabstyle {
+        background: #F9F9F9;
+        border-radius: 10px;
+        border: 1px solid #99CFE3;
+        display: block;
+    }
+
+    .longcolumns {
+        width: 600px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        border-right: 5px #666 outset !important;
+        border-left: 5px #666 outset !important;
+    }
+</style>
+
+
+@(Html.EJ().Dialog("ErrorList").Title("Title Not Approved").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessSave").Title("Title Successfully Approved").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessDelete").Title("Record Deleted").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("CancelDial").Title("Record Not Saved").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("ArchiveDial").Title("Record Archived").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+
+@using (Html.BeginForm("EvidenceDownloadFile", "Edit_ManagePropertyTitleMovts", FormMethod.Post))
+{
+    <input type="hidden" id="hfDocumentCode" name="DocumentCode" />
+    <input type="submit" id="btnDownload" value="Download" style="display:none" />
+}

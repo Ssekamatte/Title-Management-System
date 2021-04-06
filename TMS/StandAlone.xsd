@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StandAlone" targetNamespace="http://tempuri.org/StandAlone.xsd" xmlns:mstns="http://tempuri.org/StandAlone.xsd" xmlns="http://tempuri.org/StandAlone.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Report_StandAlone_PropertiesTableAdapter" GeneratorDataComponentClassName="Report_StandAlone_PropertiesTableAdapter" Name="Report_StandAlone_Properties" UserDataComponentName="Report_StandAlone_PropertiesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectName="NHCC_TMS.dbo.Report_StandAlone_Properties" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT LandDesc, District_Name, Block_No, OfferPaidUP, Project_Desc, Plot_No, Plan_No, Volume, Folio, Title_Reference FROM dbo.Report_StandAlone_Properties</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="LandDesc" DataSetColumn="LandDesc" />
+              <Mapping SourceColumn="District_Name" DataSetColumn="District_Name" />
+              <Mapping SourceColumn="Block_No" DataSetColumn="Block_No" />
+              <Mapping SourceColumn="OfferPaidUP" DataSetColumn="OfferPaidUP" />
+              <Mapping SourceColumn="Project_Desc" DataSetColumn="Project_Desc" />
+              <Mapping SourceColumn="Plot_No" DataSetColumn="Plot_No" />
+              <Mapping SourceColumn="Plan_No" DataSetColumn="Plan_No" />
+              <Mapping SourceColumn="Volume" DataSetColumn="Volume" />
+              <Mapping SourceColumn="Folio" DataSetColumn="Folio" />
+              <Mapping SourceColumn="Title_Reference" DataSetColumn="Title_Reference" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StandAlone" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="StandAlone" msprop:Generator_UserDSName="StandAlone">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Report_StandAlone_Properties" msprop:Generator_TableClassName="Report_StandAlone_PropertiesDataTable" msprop:Generator_TableVarName="tableReport_StandAlone_Properties" msprop:Generator_TablePropName="Report_StandAlone_Properties" msprop:Generator_RowDeletingName="Report_StandAlone_PropertiesRowDeleting" msprop:Generator_RowChangingName="Report_StandAlone_PropertiesRowChanging" msprop:Generator_RowEvHandlerName="Report_StandAlone_PropertiesRowChangeEventHandler" msprop:Generator_RowDeletedName="Report_StandAlone_PropertiesRowDeleted" msprop:Generator_UserTableName="Report_StandAlone_Properties" msprop:Generator_RowChangedName="Report_StandAlone_PropertiesRowChanged" msprop:Generator_RowEvArgName="Report_StandAlone_PropertiesRowChangeEvent" msprop:Generator_RowClassName="Report_StandAlone_PropertiesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LandDesc" msprop:Generator_ColumnVarNameInTable="columnLandDesc" msprop:Generator_ColumnPropNameInRow="LandDesc" msprop:Generator_ColumnPropNameInTable="LandDescColumn" msprop:Generator_UserColumnName="LandDesc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="District_Name" msprop:Generator_ColumnVarNameInTable="columnDistrict_Name" msprop:Generator_ColumnPropNameInRow="District_Name" msprop:Generator_ColumnPropNameInTable="District_NameColumn" msprop:Generator_UserColumnName="District_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Block_No" msprop:Generator_ColumnVarNameInTable="columnBlock_No" msprop:Generator_ColumnPropNameInRow="Block_No" msprop:Generator_ColumnPropNameInTable="Block_NoColumn" msprop:Generator_UserColumnName="Block_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OfferPaidUP" msprop:Generator_ColumnVarNameInTable="columnOfferPaidUP" msprop:Generator_ColumnPropNameInRow="OfferPaidUP" msprop:Generator_ColumnPropNameInTable="OfferPaidUPColumn" msprop:Generator_UserColumnName="OfferPaidUP" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Project_Desc" msprop:Generator_ColumnVarNameInTable="columnProject_Desc" msprop:Generator_ColumnPropNameInRow="Project_Desc" msprop:Generator_ColumnPropNameInTable="Project_DescColumn" msprop:Generator_UserColumnName="Project_Desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Plot_No" msprop:Generator_ColumnVarNameInTable="columnPlot_No" msprop:Generator_ColumnPropNameInRow="Plot_No" msprop:Generator_ColumnPropNameInTable="Plot_NoColumn" msprop:Generator_UserColumnName="Plot_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="225" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Plan_No" msprop:Generator_ColumnVarNameInTable="columnPlan_No" msprop:Generator_ColumnPropNameInRow="Plan_No" msprop:Generator_ColumnPropNameInTable="Plan_NoColumn" msprop:Generator_UserColumnName="Plan_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Volume" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVolume" msprop:Generator_ColumnPropNameInRow="Volume" msprop:Generator_ColumnPropNameInTable="VolumeColumn" msprop:Generator_UserColumnName="Volume" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Folio" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFolio" msprop:Generator_ColumnPropNameInRow="Folio" msprop:Generator_ColumnPropNameInTable="FolioColumn" msprop:Generator_UserColumnName="Folio" type="xs:int" minOccurs="0" />
+              <xs:element name="Title_Reference" msprop:Generator_ColumnVarNameInTable="columnTitle_Reference" msprop:Generator_ColumnPropNameInRow="Title_Reference" msprop:Generator_ColumnPropNameInTable="Title_ReferenceColumn" msprop:Generator_UserColumnName="Title_Reference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DashboardItem xsi:type="LabelItem" Column="0" ColumnSpan="0" Version="4.1.0.84" UniqueDataSourceNames="" Id="035751c4-d364-41ee-b0c7-49cd5a58771b" Name="Label_10" ReportName="Label_10" Row="0" RowSpan="0" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_035751c4_d364_41ee_b0c7_49cd5a58771b">
+    <DisplayName>Label_10</DisplayName>
+    <EnableDrillThrough>false</EnableDrillThrough>
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <IgnoreMasterFilter>false</IgnoreMasterFilter>
+    <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+    <DefaultSelectedIndices>0</DefaultSelectedIndices>
+    <IsControlConfigured>true</IsControlConfigured>
+    <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+    <IsLinked>false</IsLinked>
+    <IsMasterFilter>false</IsMasterFilter>
+    <IsNotInCanvas>false</IsNotInCanvas>
+    <IsSharedWidget>false</IsSharedWidget>
+    <Responsive>false</Responsive>
+    <SelectedFilterValues />
+    <FormatText>
+      <RichTextParagraphs>
+        <Paragraph TextAlignment="Center">
+          <Runs>
+            <RichTextRun Bold="true" FontFamily="Times New Roman" FontSize="18" ForegroundColor="#FF998D4B" IsHyperlink="false" Italic="false" Underline="false">
+              <Text>Colour Significance</Text>
+            </RichTextRun>
+          </Runs>
+        </Paragraph>
+      </RichTextParagraphs>
+      <Paragraphs />
+    </FormatText>
+    <HighlightedColor>#FFD2DAE5</HighlightedColor>
+    <IsTitle>false</IsTitle>
+    <VerticalTextAlignment>Center</VerticalTextAlignment>
+  </DashboardItem>
+  <RelationalReport IsRawData="false" IsBlendingWidget="false">
+    <Calculations />
+    <ColumnElements />
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <FilterElements />
+    <KpiElements />
+    <SummaryElements />
+    <CustomWidgetElements />
+    <Listeners />
+    <MeasureFilterForControl />
+    <ReportColumnCount>0</ReportColumnCount>
+    <RowElements />
+    <ShowOthersGroup>false</ShowOthersGroup>
+    <TopNFilterElements />
+  </RelationalReport>
+</Report>

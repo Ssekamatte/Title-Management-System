@@ -1,0 +1,60 @@
+
+@{
+    ViewBag.Title = "Remove Role from User";
+}
+
+@{
+    if (IsPost)
+    {
+        //int project = Request.Form["ProjectsList"].AsInt();
+        //string propertytype = Request.Form["PropertyTypeList"];
+        //int leasetype = Request.Form["Lease_TypeList"].AsInt();
+        //int location = Request.Form["locationList"].AsInt();
+        //string TitleRef = Request.Form["titleref"];
+        string success = ViewBag.ResultMessage;
+        <text>
+            @success
+                @*Previous selection: <br />
+                Project Code: @project <br />
+                Property Type: @propertytype <br />
+                Lease Type: @leasetype <br />*@
+            </text>
+    }
+}
+
+
+ <div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="box-title">
+            <b>Remove Role from Users</b>
+        </h3>
+    </div>
+
+    <div class="panel-body">
+       
+@using (Html.BeginForm("RemoveRoleAddedToUser", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <table cellspacing="10">
+            <tr>
+                
+                <td style="text-align: right;">UserName</td>
+                <td style="text-align: left"> 
+                @Html.EJ().DropDownList("usersList").Width("250").Datasource((IEnumerable<object>)ViewBag.UsersWithRoles).DropDownListFields(df => df.ID("UserId").Text("Username").Value("UserId"))
+                </td>
+                <td style="text-align: right;">Role</td>
+                <td style="text-align: left"> 
+                    @Html.EJ().DropDownList("rolesList").Width("250").Datasource((IEnumerable<object>)ViewBag.userRoles).DropDownListFields(df => df.ID("Name").Text("Name").Value("Name"))</td>
+
+                <td style="text-align: left">
+                    <input type="submit" value="Remove User Role" class="btn btn-danger ">
+                </td>
+            </tr>
+        </table> 
+}
+    </div>
+
+    <div class="panel-footer">
+        <p class="box-title"><b> @String.Format("{0 : dddd, MMMM d, yyyy}", DateTime.Now) </b><span class="label label-primary"></span></p>
+    </div>
+</div>
+

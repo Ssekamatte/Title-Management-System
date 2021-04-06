@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DashboardItem xsi:type="LabelItem" Column="0" ColumnSpan="0" Version="3.2.0.68" UniqueDataSourceNames="" Id="ae701077-e642-4fb8-abd7-1048623062f0" Name="Label_1" ReportName="Label_1" Row="0" RowSpan="0" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_ae701077_e642_4fb8_abd7_1048623062f0">
+    <DisplayName>TitlesDisAggregationLabel</DisplayName>
+    <EnableDrillThrough>false</EnableDrillThrough>
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <IgnoreMasterFilter>false</IgnoreMasterFilter>
+    <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+    <DefaultSelectedIndices>0</DefaultSelectedIndices>
+    <IsControlConfigured>true</IsControlConfigured>
+    <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+    <IsLinked>false</IsLinked>
+    <IsMasterFilter>false</IsMasterFilter>
+    <IsNotInCanvas>true</IsNotInCanvas>
+    <IsSharedWidget>false</IsSharedWidget>
+    <Responsive>false</Responsive>
+    <SelectedFilterValues />
+    <FormatText>
+      <RichTextParagraphs>
+        <Paragraph TextAlignment="Center">
+          <Runs>
+            <RichTextRun Bold="true" FontFamily="Times New Roman" FontSize="16" ForegroundColor="#FF18375E" IsHyperlink="false" Italic="false" Underline="false">
+              <Text>TITLES DISAGREGATION (FREEHOLD, MAILO,LEASEHOLD)</Text>
+            </RichTextRun>
+            <RichTextRun BackgroundColor="#00FFFFFF" Bold="true" FontFamily="Times New Roman" FontSize="16" ForegroundColor="#FF0D0000" IsHyperlink="false" Italic="false" Underline="false">
+              <Text />
+            </RichTextRun>
+            <RichTextRun BackgroundColor="#00FFFFFF" Bold="true" FontFamily="Times New Roman" FontSize="16" ForegroundColor="#FF18375E" IsHyperlink="false" Italic="false" Underline="false">
+              <Text />
+            </RichTextRun>
+            <RichTextRun BackgroundColor="#00FFFFFF" Bold="true" FontFamily="Times New Roman" FontSize="16" ForegroundColor="#FF18375E" IsHyperlink="false" Italic="false" Underline="false">
+              <Text />
+            </RichTextRun>
+            <RichTextRun BackgroundColor="#00FFFFFF" Bold="true" FontFamily="Times New Roman" FontSize="16" ForegroundColor="#FF18375E" IsHyperlink="false" Italic="false" Underline="false">
+              <Text />
+            </RichTextRun>
+          </Runs>
+        </Paragraph>
+      </RichTextParagraphs>
+      <Paragraphs />
+    </FormatText>
+    <HighlightedColor>#FFD2DAE5</HighlightedColor>
+    <IsTitle>false</IsTitle>
+    <VerticalTextAlignment>Top</VerticalTextAlignment>
+  </DashboardItem>
+  <RelationalReport IsRawData="false" IsBlendingWidget="false">
+    <Calculations />
+    <ColumnElements />
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <FilterElements />
+    <KpiElements />
+    <SummaryElements />
+    <CustomWidgetElements />
+    <Listeners />
+    <MeasureFilterForControl />
+    <ReportColumnCount>0</ReportColumnCount>
+    <RowElements />
+    <ShowOthersGroup>false</ShowOthersGroup>
+    <TopNFilterElements />
+  </RelationalReport>
+</Report>

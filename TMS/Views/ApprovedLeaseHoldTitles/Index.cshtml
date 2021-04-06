@@ -1,0 +1,1574 @@
+﻿@*Approved LeaseHold Titles*@
+@model IEnumerable<TMS.Models.PropertyTitle>
+
+@{
+    /**/
+
+    ViewBag.Title = "Approved Lease Hold Titles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Approved Lease Hold Titles</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+@(Html.EJ().Grid<object>("Grid")
+
+                                                 // .Datasource(datasource => datasource.URL("DataSourceApprovedLeaseHoldTitles").UpdateURL("DialogUpdate").InsertURL("DialogInsert").Adaptor(AdaptorType.UrlAdaptor))
+                                                 .Datasource(datasource => datasource.URL("DataSourceApprovedLeaseHoldTitles")/*.UpdateURL("DialogUpdate").InsertURL("DialogInsert")*/.RemoveURL("DialogDelete").Adaptor(AdaptorType.UrlAdaptor))
+
+
+                                                                //.IsResponsive()
+                                                                .IsResponsive()
+
+                                                                 .AllowPaging()    /*Paging Enabled*/
+                                                                         .EditSettings(edit => { edit.AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                                                                         .ContextMenuSettings(contextMenu =>
+                                                                         {
+                                                                             contextMenu.EnableContextMenu();
+                                                                         })
+                                                                .AllowPaging()
+                                                                 .PageSettings(page => page.PageSize(10))
+                                                                 .ShowColumnChooser()
+                                                                .AllowGrouping()
+                                                                //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+                                                                .AllowFiltering()
+                                                                .AllowSearching()
+                                                                  .AllowScrolling().AllowResizing()
+                                                                       .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+
+                                                                .FilterSettings(d => d.FilterType(FilterType.Excel))
+                                                                      .ToolbarSettings(toolbar =>
+                                                                      {
+                                                                          toolbar.ShowToolbar().ToolbarItems(items =>
+                                                                          {
+                                                                  //items.AddTool(ToolBarItems.Add);
+                                                                  items.AddTool(ToolBarItems.Edit);
+                                                                  //items.AddTool(ToolBarItems.Delete);
+                                                                  items.AddTool(ToolBarItems.Update);
+                                                                              items.AddTool(ToolBarItems.Cancel);
+                                                                              items.AddTool(ToolBarItems.Search);
+                                                                          });
+                                                                      })
+                                                                .Columns(col =>
+                                                                {
+                                                                    col.Field("Location_id").IsPrimaryKey(true).HeaderText("Location").ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.Locations).Width(120).Add();
+                                                                    col.Field("Project_Code").HeaderText("Project Code").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.Projects).Width(120).Add();
+
+                                                                    col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(100)/*.ValidationRules(rule => rule.AddRule("required", true).AddRule("number", true))*/.Width(120).Add();
+                                                                    col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio")/*.ValidationRules(rule => rule.AddRule("required", true).AddRule("numer", true))*/.Width(120).Width(100).Add();
+                                                                    col.Field("Title_Reference").HeaderText("Title Reference").Width(200).Add();
+                                                                    col.Field("TypeCode").HeaderText("Property Type").ForeignKeyField("TypeCode").ForeignKeyValue("TypeDesc").DataSource((IEnumerable<object>)ViewBag.propertyTypes).Width(200).Add();
+                                                                    col.Field("LandTypeCode").HeaderText("Lease Type").ForeignKeyField("LandTypeCode").ForeignKeyValue("LandDesc").DataSource((IEnumerable<object>)ViewBag.Lease_Type).Width(200).Add();
+
+                                                                    col.Field("Block_No").HeaderText("Block No").Width(200).Add();
+                                                                    col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource((IEnumerable<object>)ViewBag.Districts).Width(200).Add();
+                                                                    col.Field("County_ID").HeaderText("County").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource((IEnumerable<object>)ViewBag.Counties).Width(220).Add();
+
+                                                                    col.Field("Subcounty_ID").HeaderText("Subcounty").ForeignKeyField("Subcounty_ID").ForeignKeyValue("Subcounty_Name").DataSource((IEnumerable<object>)ViewBag.Subcounties).Width(220).Add();
+                                                                    col.Field("ActualPlotSize").HeaderText("Actual Plot Size").Width(200).Add();
+                                                                    col.Field("PlotSize_ID").HeaderText("Plot Size Units").ForeignKeyField("PlotSize_ID").ForeignKeyValue("PlotSize_Desc").DataSource((IEnumerable<object>)ViewBag.PropertyTitle_PlotSizes).Width(150).Add();
+                                                                    col.Field("TitleMovementStatusID").HeaderText("Title Movement Status").ForeignKeyField("Status_ID").ForeignKeyValue("Status_Description").DataSource((IEnumerable<object>)ViewBag.PropertyTitlePaymentStatus).Width(220).Add();
+
+                                                                })
+                                                                .ClientSideEvents(eve => {/* eve.ActionBegin("onActionBegin");*/ eve.ActionComplete("edit").ActionBegin("onActionBegin"); }))
+
+
+<script>
+
+    function onActionBegin(args) {
+
+        if (args.requestType == "save") {
+            //alert($("#Directors").val());
+            args.data["Directors"] = $("#Directors").val();
+        }
+    }
+
+    function NoParentTitle(args) {
+        //debugger;
+        //alert(args.value);
+        //var checked = args.value;
+
+        var checked = $("#Verified:checked").val();
+
+        if (checked == "on") {
+            $("#Title_Reference").attr('readonly', 'readonly');
+            $("#Title_Reference").val("No Title");
+        }
+
+        else {
+            $("#Title_Reference").removeAttr('readonly', 'readonly');
+            $("#Title_Reference").val("");
+        }
+
+    }
+</script>
+
+
+<script>
+
+    function FinalSub(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+        var checked = $("#FinalSubmission:checked").val();
+
+         if (checked == "on") {
+
+             // Ajax fuction to bring Approved on button check
+                 $.ajax({
+
+                     url: 'GetTitleMovementStatus',
+
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     type: 'GET',
+                     success: function (data) {
+                         if (data.length > 0) {
+
+                             var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+                                 dataSource: data,
+                                 width: "240px",
+                                 fields: { id: "Status_ID", text: "Status_Description", value: "Status_ID" }, readOnly: true
+                             }).data("ejDropDownList");
+                             var ddl2 = $('#TitleMovementStatusID').ejDropDownList("instance");
+                             var fc = data[0].Status_ID;
+                             ddl2.selectItemByValue(fc);
+
+                         }
+
+                     },
+
+             });
+
+
+
+         }
+         else {
+
+            var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "280px",
+                 fields: { value: "Status_ID", text: "Status_Description" },readOnly: false
+
+             }).data("ejDropDownList");
+         }
+     }
+
+</script>
+
+<script type="text/template" id="template">
+    <b>Approved Lease Hold Titles</b>
+    <div id="defaultTab">
+        <ul>
+            <li><a href="#tab1">Approved Lease Hold Titles</a></li>
+            @* <li><a href="#tab2">Details (Page #2)</a></li>*@
+            @* <li><a href="#tabboardmembers">Board Members</a></li>*@
+        </ul>
+        <table> <tr><td><strong>This title is locked for editing</strong> </td> </tr></table>
+        <div id="tab1">
+            <table cellspacing="10">
+                @* <tr><td><strong> Fields marked with Asterisk(*) are required </strong></td></tr>*@
+                <tr>
+                    <td style="text-align: right;">
+                        Location *
+                    </td>
+                    <td style="text-align: left">
+
+                        <input id="Location_id" name="Location_id" value="{{:Location_id}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" e-disable />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Project Code
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Project_Code" name="Project_Code" value="{{: Project_Code}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Parent Title *
+                    </td>
+
+                    <td style="text-align: left">
+                        @*<input id="Title_Reference" name="Title_Reference" value="{{: Title_Reference}}" required="required" disabled="disabled" class="e-field e-ejinputtext valid e-disable"*@
+                        <input id="Title_Reference" name="Title_Reference" value="{{: Title_Reference}}" readonly="readonly" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        No Parent Title?
+                    </td>
+
+                    <td style="text-align: left">
+
+                        {{if Verified}}
+                        <input id="Verified" onchange="NoParentTitle()" disabled="disabled" class="checkbox" name="Verified" type="checkbox" checked />
+                        {{else}}
+                        <input id="Verified" onchange="NoParentTitle()" disabled="disabled" class="checkbox" name="Verified" type="checkbox" />
+                        {{/if}}
+
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Lease Type
+                    </td>
+                    <td style="text-align: left">
+                        <input id="LandTypeCode" name="LandTypeCode" value="{{: LandTypeCode}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Volume *
+                    </td>
+
+                    <td style="text-align: left">
+                        @* <input id="Volume" name="Volume" value="{{: Volume}}" disabled="disabled" required="required" class="e-field e-ejinputtext valid e-disable"*@
+                        <input id="Volume" name="Volume" value="{{: Volume}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Folio *
+                    </td>
+
+                    <td style="text-align: left">
+                        @*<input id="Folio" name="Folio" value="{{: Folio}}" disabled="disabled" required="required" class="e-field e-ejinputtext valid e-disable"*@
+                        <input id="Folio" name="Folio" value="{{: Folio}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Property Type
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TypeCode" name="TypeCode" value="{{: TypeCode}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unit Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Unit_No" name="Unit_No" value="{{: Unit_No}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Flat Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Flat_N0" name="Flat_N0" value="{{: Flat_N0}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+                    <td style="text-align: right;">
+                        Block Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Block_No" name="Block_No" value="{{: Block_No}}" readonly="readonly" @*disabled="disabled"*@ class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Plan Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plan_No" name="Plan_No" value="{{:Plan_No}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Plot Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plot_No" name="Plot_No" value="{{: Plot_No}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        District
+                    </td>
+                    <td style="text-align: left">
+                        <input id="DistrictID" name="DistrictID" value="{{: DistrictID}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        County
+                    </td>
+                    <td style="text-align: left">
+                        <input id="County_ID" name="County_ID" value="{{: County_ID}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Subcounty
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Subcounty_ID" name="Subcounty_ID" value="{{: Subcounty_ID}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Lease Start Date
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Lease_Start_Date" name="Lease_Start_Date" value="{{: Lease_Start_Date}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Lease End Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Lease_End_Date" name="Lease_End_Date" value="{{:Lease_End_Date}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Lease Offered By
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="LeaseOfferedBy" name="LeaseOfferedBy" readonly="readonly" class="form-control" style="text-align:left;">{{:LeaseOfferedBy}}</textarea>
+                    </td>
+
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Number of Years (Lease)
+                    </td>
+                    <td style="text-align: left">
+                        <input id="LeaseYears_ID" name="LeaseYears_ID" value="{{:LeaseYears_ID}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Area of Unit
+                    </td>
+                    <td style="text-align: left">
+                        <input id="AreaOfUnit" name="AreaOfUnit" value="{{:AreaOfUnit}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Floor Area Leased
+                    </td>
+                    <td style="text-align: left">
+                        <input id="FloorAreaLeased" name="FloorAreaLeased" value="{{:FloorAreaLeased}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unit Factor
+                    </td>
+                    <td style="text-align: left">
+                        <input id="UnitFactor" name="UnitFactor" value="{{: UnitFactor}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Plot Size
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ActualPlotSize" name="ActualPlotSize" value="{{: ActualPlotSize}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+
+                    <td style="text-align: right;">
+                        Plot Size (Units)
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PlotSize_ID" name="PlotSize_ID" value="{{: PlotSize_ID}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Proprietor's Address
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="ProprietorAddress" name="ProprietorAddress" readonly="readonly" class="form-control" style="text-align:left;">{{:ProprietorAddress}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+
+                    <td style="text-align: right;">
+                        Board Minute Release
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="BoardMinuteRelease" name="BoardMinuteRelease" readonly="readonly" class="form-control" style="text-align:left;">{{:BoardMinuteRelease}}</textarea>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+
+                    <td style="text-align: right;">
+                        Sold or Transferred?
+                    </td>
+
+
+                    <td style="text-align: left">
+                        {{if PropertySoldorTransferred}}
+                        <input type="checkbox" id="PropertySoldorTransferred" name="PropertySoldorTransferred" disabled="disabled" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="PropertySoldorTransferred" name="PropertySoldorTransferred" disabled="disabled" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Value of Property
+                    </td>
+                    <td style="text-align: left">
+                        <input id="ValueOfProperty" name="ValueOfProperty" value="{{:ValueOfProperty}}" readonly="readonly" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Valuer
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="Valuer" name="Valuer" readonly="readonly" class="form-control" style="text-align:left;">{{:Valuer}}</textarea>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Date of Valuation
+                    </td>
+                    <td style="text-align: left">
+                        <input id="DateOfValuation" name="DateOfValuation" value="{{: DateOfValuation}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Longitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Longitude" name="Longitude" value="{{:Longitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Latitude
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Latitude" name="Latitude" value="{{:Latitude}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">
+                        General Remarks
+                    </td>
+
+                    <td>
+                        <textarea rows="4" cols="120" id="GeneralRemarks" name="GeneralRemarks" readonly="readonly" class="form-control" style="text-align:left;">{{:GeneralRemarks}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unlock Title
+                    </td>
+                    <td style="text-align: left">
+                        {{if UnlockTitle}}
+                        <input type="checkbox" id="UnlockTitle" name="UnlockTitle" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="UnlockTitle" name="UnlockTitle" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Reason for Unlock
+                    </td>
+                    <td>
+                        <textarea rows="4" cols="120" id="UnlockComment" name="UnlockComment" class="form-control" style="text-align:left;">{{:UnlockComment}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;" hidden>
+                        Reason for rejection
+                    </td>
+                    <td hidden="hidden">
+                        <textarea rows="4" cols="120" id="RejectionComment" name="RejectionComment" readonly="readonly" class="form-control" style="text-align:left;">{{:RejectionComment}}</textarea>
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Final Submission
+                    </td>
+
+                    <td style="text-align: left" hidden>
+                        {{if FinalSubmission}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" checked="checked" disabled="disabled" class="checkbox" style="width:30px" />
+                        {{else}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" class="checkbox" disabled="disabled" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="1" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Status
+                    </td>
+                    <td style="text-align: left" hidden>
+                        <input id="TitleMovementStatusID" name="TitleMovementStatusID" disabled="disabled" onchange="TitleMovementStatus()" value="{{:TitleMovementStatusID}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;" hidden>
+                        Added By
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Added_By" name="Added_By" value="{{:Added_By}}" disabled="disabled" hidden="hidden" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;" hidden>
+                        Added Date
+                    </td>
+                    <td style="text-align: left" hidden>
+                        <input id="Added_Date" name="Added_Date" value="{{:Added_Date}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+                @*Initial Code ends here*@
+
+            </table>
+
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <p style="background-color:darkorange; text-align:center; color:white; font-size:15px; width:100%; padding:10px;">Title Scan</p>
+            </div>
+            <div class="col col-md-12">
+                <div id="EvidenceGrid" />
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="uploadbox" style="width: 100%;"></div>
+            </div>
+            <div class="col col-md-12" style="margin-bottom:10px; margin-top:10px;" hidden="hidden">
+                <div id="partialPlaceHolder" style="width:100%"> </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    function edit(args) {
+        $("#Longitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#Latitude").ejNumericTextbox({
+            decimalPlaces: 10
+        });
+        $("#Offer_Value").ejNumericTextbox();
+        $("#Ground_Rent").ejNumericTextbox();
+        $("#LeaseYears_ID").ejNumericTextbox();
+
+        $("#Added_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Lease_Start_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Lease_End_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Added_Date").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+        $("#Ground_Rent").ejNumericTextbox();
+        $("#Rates").ejNumericTextbox();
+
+        $("#OfferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferExpiryDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#OfferPaymentDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#TransferDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#RegDate").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#DateOfValuation").ejDatePicker({
+            dateFormat: "dd/MMMM /yyyy"
+        });
+
+        $("#Folio").ejNumericTextbox({
+            decimalPlaces: 7,
+        });
+        //$("#Plot_Size").ejNumericTextbox();
+
+          var DropDownListLocations = $('#Project_Code').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.projects)) ,
+            width: "280px",
+            fields: { id: "Project_id", value: "Project_id", text: "Project_Desc" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListLeaseYears = $('#LeaseYears_ID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.propertyTitle_LeaseYears)) ,
+            width: "280px",
+            fields: { value: "LeaseYears_ID", text: "Lease_Years" }
+        }).data("ejDropDownList");
+
+      var DropDownListDirectors = $('#Directors').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Directors)) ,
+            width: "280px",
+            fields: { value: "Employee_Name", text: "Employee_Name" }, showCheckbox: true,
+        }).data("ejDropDownList");
+
+        var DropDownListCounty = $('#County_ID').ejDropDownList({
+             dataSource: @Html.Raw(Json.Encode(ViewBag.Counties)),
+        //dataSource: null,
+            fields: { value: "County_ID", text: "County_Name" },
+        width: "280px",
+         }).data("ejDropDownList");
+
+    var DropDownListSubCounty = $('#Subcounty_ID').ejDropDownList({
+             dataSource: @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+    //dataSource: null,
+        width: "280px",
+            fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+        }).data("ejDropDownList");
+
+         var DropDownListPlotSize = $('#PlotSize_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.PropertyTitle_PlotSizes)),
+            width: "280px",
+            fields: { value: "PlotSize_ID", text: "PlotSize_Desc" }
+        }).data("ejDropDownList");
+
+        var DropDownListObj = $('#TypeCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.propertyTypes)),
+            width: "280px",
+            fields: { id: "TypeCode", text: "TypeDesc", value: "TypeCode" }
+        }).data("ejDropDownList");
+
+         var DropDownListDist = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "280px",
+           // watermarkText: "Select Status",
+            fields: { text: "Status_Description", value: "Status_ID" }
+        }).data("ejDropDownList");
+
+        $.ajax({
+            //url: 'HAT/Districts',
+            url: 'GetLeaseholdData',
+            //data: JSON.stringify(mid),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    var DropDownListDist = $('#LandTypeCode').ejDropDownList({
+                        dataSource: data,
+                        width: "280px",
+                        fields: { id: "LandTypeCode", text: "LandDesc", value: "LandTypeCode" }, readOnly: true
+                    }).data("ejDropDownList");
+                    var ddl2 = $('#LandTypeCode').ejDropDownList("instance");
+                    var fc = data[0].LandTypeCode;
+                    //console.log(JSON.stringify(fc));
+                    ddl2.selectItemByValue(fc);
+                }
+            },
+        });
+
+        var DropDownListLocations = $('#Location_id').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Locations)) ,
+            width: "280px",
+            fields: { id: "Location_id", value: "Location_id", text: "Location_Desc" }
+        }).data("ejDropDownList");
+
+         var DropDownListEmployeeName = $('#Employee_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Employee)),
+            width: "280px",
+            fields: { value: "Employee_ID", text: "Employee_Name" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListPosition = $('#Position_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Position)),
+            width: "280px",
+            fields: { value: "Position_ID", text: "Position_Description" }
+        }).data("ejDropDownList");
+
+         var datadistricts = @Html.Raw(Json.Encode(ViewBag.Districts));
+        $('#DistrictID').ejDropDownList({
+            dataSource: datadistricts,
+            @*dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),*@
+            width: "280px",
+            fields: { id: "DistrictID", text: "District_Name", value: "DistrictID" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+        $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+        $("#defaultTab").ejTab({ hiddenItemIndex: [1] });
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+            open();
+            window._requestType = args.requestType;
+
+            $($("#EditDialog_Grid_Save").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Unlock </button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#EditDialog_Grid_Cancel").ejButton("destroy");
+            $($("#EditDialog_Grid_Cancel").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "10px" });
+
+            window.titref = $('#Title_Reference').val().trim();
+            window.vol = $('#Volume').val();
+            window.fol = $('#Folio').val();
+
+            //Uploading Input
+            $('#UploadInput').ejUploadbox({
+                //saveUrl: "SaveScan?Title_Reference=" + titref + "&&Volume=" + window.Volume + "&&Folio=" + window.Folio,
+                //saveUrl: "SaveScan",
+                dialogAction: { closeOnComplete: true },
+                multipleFilesSelection: true,
+                showFileDetails: false/*true*/,
+                begin: "Filebegin",
+                success: function (args) {
+                    var grid = $("#EvidenceGrid").ejGrid("instance");
+                    grid.refreshContent(true);
+                    $("#ListFiles").append('<tr><td>' + args.files.name + " has been uploaded successfully" + '</td></tr>');
+                },
+                removeUrl: "Remove",
+                fileSelect: "fileselect",
+                autoUpload: true,
+                cssClass: "gradient-purple",
+                buttonText: { browse: "Choose File", upload: "Upload File", cancel: "Cancel Upload" },
+            });
+            LoadEvidence();
+        }
+
+            if (args.requestType == "add") {
+                var dataprojects = @Html.Raw(Json.Encode(ViewBag.projects));
+                $('#Project_Code').ejDropDownList({
+                    dataSource: dataprojects,
+                    width: "280px",
+                    fields: { id: "Project_id", text: "Project_Desc", value: "Project_id" }
+                }).data("ejDropDownList");
+
+            }
+
+            if (args.requestType == "beginedit") {
+
+                $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Approved Lease Hold Titles"); //change dialog title
+
+            }
+        }
+
+    function complete(args) {
+        //$("#EmployeeID").ejNumericTextbox();
+        //$("#Freight").ejNumericTextbox();
+        //$("#ShipCity").ejDropDownList();
+
+        $("#Movement_Date").ejDatePicker();
+
+        var DropDownListDest_Category = $('#Dest_Category').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "DestinyCode", text: "DestinyDesc" },
+                width: "280px",
+                //watermarkText: "Select Destination",
+            }).data("ejDropDownList");
+
+            var DropDownListmovementPurposes = $('#Purpose_ID').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Purpose_ID", text: "Purpose_Description" },
+                width: "280px",
+                //watermarkText: "Select Purpose"
+            }).data("ejDropDownList");
+
+            var DropDownListLawyers = $('#Lawyers_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.lawyers)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Lawyers_ID", text: "Lawyers_Desc" },
+                width: "280px",
+                //watermarkText: "Select a Lawyer"
+            }).data("ejDropDownList");
+
+    }
+</script>
+
+<script>
+    @*var foreignData = @Html.Raw(Json.Encode(ViewBag.Districts));
+    var dataSource3 = @Html.Raw(Json.Encode(ViewBag.Counties));*@
+
+    var foreignObj = [
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Districts)),
+            foreignKeyField: "DistrictID", //Property in the Grid's main dataSource
+            field: "DistrictID", //Property in foreignkey dataSource
+            foreignKeyValue: "District_Name" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+            foreignKeyField: "County_ID", //Property in the Grid's main dataSource
+            field: "County_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "County_Name" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Projects)),
+            foreignKeyField: "Project_id", //Property in the Grid's main dataSource
+            field: "Project_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        }
+        ,
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            foreignKeyField: "Subcounty_ID", //Property in the Grid's main dataSource
+            field: "Subcounty_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "Subcounty_Name" //Property in foreignkey dataSource
+        }
+        ,
+          {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.PropertyTitlePlotSizes)),
+            foreignKeyField: "PlotSize_ID", //Property in the Grid's main dataSource
+            field: "PlotSize_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "PlotSize_Desc" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Locations)),
+            foreignKeyField: "Location_id", //Property in the Grid's main dataSource
+            field: "Location_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Location_Desc" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Lease_Type)),
+            foreignKeyField: "LandTypeCode", //Property in the Grid's main dataSource
+            field: "LandTypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "LandDesc" //Property in foreignkey dataSource
+        },
+
+         {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.propertyTitle_LeaseYears)),
+             foreignKeyField: "LeaseYears_ID", //Property in the Grid's main dataSource
+             field: "LeaseYears_ID", //Property in foreignkey dataSource
+             foreignKeyValue: "Lease_Years" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.propertyTypes)),
+            foreignKeyField: "TypeCode", //Property in the Grid's main dataSource
+            field: "TypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "TypeDesc" //Property in foreignkey dataSource
+        }
+    ];
+
+    function ProjectChange(args) {
+
+        var _value = args.value;
+        //alert("Value is: "+_value);
+
+        $.ajax({  // Ajax function to grey out County before selecting project code
+            url: 'GetCounty',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "District_ID": _value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                        //alert("You are into District");
+
+                    var DropDownListCounty = $('#County_ID').ejDropDownList({
+                        dataSource: data,
+                        fields: { value: "County_ID", text: "County_Name" },
+                        width: "280px",
+                        change: SubcountyChange,
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+    }
+
+    function SubcountyChange(args) {
+        var _value = args.value;
+          //alert( _value);
+
+        $.ajax({  // Ajax function to grey out Subcounty before selecting project code
+            url: 'GetSubCounty',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "County_ID": _value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                    //     alert("You are into SubCounty");
+
+                    var DropDownListSubCounties = $('#Subcounty_ID').ejDropDownList({
+                        dataSource: data,
+                        width: "280px",
+                        fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+                    }).data("ejDropDownList");
+                }
+            },
+        });
+    }
+
+
+    //function savess() {
+    //    var grid = $("#Grid").ejGrid("instance");
+    //    grid.endEdit();
+    //    grid.refresh;
+
+    //}
+
+    function cancelss() {
+        var grid = $("#Grid").ejGrid("instance");
+        grid.endEdit();
+        grid.refresh;
+
+    }
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+</script>
+
+
+<script>
+    function savess() {
+
+        var _Location_id = $("#Location_id").data("ejDropDownList");
+        var Location = _Location_id.option("value");
+        // alert(Location)
+
+        var _Project_Code = $("#Project_Code").data("ejDropDownList");
+        var ProjectCode = _Project_Code.option("value");
+        // alert(ProjectCode)
+
+        var _Title_Reference = $('#Title_Reference').val();
+        //alert("Title_Reference is" + _Title_Reference)
+        var _NoParentTitle = $("#Verified").is(":checked");
+        // alert("NoParentTitle is" + _NoParentTitle)
+        var _Volume = $("#Volume").val();
+        // alert("Volume is" + _Volume)
+        var _Folio = $("#Folio").val();
+        //alert("Folio is" + _Folio)
+        var _LandTypeCode = $("#LandTypeCode").data("ejDropDownList");
+        var LandTypeCodee = _LandTypeCode.option("value");
+        //alert("Land Type Codee is" + LandTypeCodee)
+        var _TypeCode = $("#TypeCode").data("ejDropDownList");
+        var TypeCodee = _TypeCode.option("value");
+        //alert("TypeCode is" + TypeCodee)
+        var _Unit_No = $("#Unit_No").val();
+        //alert("Unit_No is" + _Unit_No)
+        var _Block_No = $("#Block_No").val();
+        // alert("Block_No is" + _Block_No)
+        var _Flat_N0 = $("#Flat_N0 ").val();
+        //alert("Flat Number is" + _Flat_N0)
+        var _Plot_No = $("#Plot_No").val();
+        // alert("Plot Number is" + _Plot_No)
+        var _DistrictID = $("#DistrictID").data("ejDropDownList");
+        var DistrictIDD = _DistrictID.option("value");
+        // alert("DistrictID is" + DistrictIDD)
+        var _County = $("#County_ID").data("ejDropDownList");
+        var County = _County.option("value");
+        // alert("County_ID is" + County)
+        var _Subcounty = $("#Subcounty_ID").data("ejDropDownList");
+        var Subcounty = _Subcounty.option("value");
+        // alert("Subcounty_ID is" + Subcounty)
+        var _ActualPlotSize = $("#ActualPlotSize").val();
+        // alert("Actual Plot Size is" + _ActualPlotSize)
+        var _PlotSizeUnits = $("#PlotSize_ID").data("ejDropDownList");
+        var PlotSizeUnits = _PlotSizeUnits.option("value");
+        //alert("PlotSizeUnits is" + PlotSizeUnits)
+        var _ProprietorAddress = $("#ProprietorAddress").val();
+        //alert("Proprietor Address is" + _ProprietorAddress)
+        var _BoardMinuteRelease = $("#BoardMinuteRelease").val();
+        //alert("Board Minute Release is" + _BoardMinuteRelease)
+        var _ValueOfProperty = $("#ValueOfProperty").val();
+        // alert("Value Of Property is" + _ValueOfProperty)
+        var _Valuer = $("#Valuer").val();
+        // alert("Valuerr is" + _Valuer)
+
+        var _LeaseOfferedBy = $("#LeaseOfferedBy").val();
+        var _LeaseStartDate = $("#Lease_Start_Date").data("ejDatePicker");
+        var LeaseStartDate = _LeaseStartDate.getValue();
+        // alert("Date Of Valuation is" + LeaseStartDate)
+        var _Lease_End_Date = $("#Lease_End_Date").data("ejDatePicker");
+        var LeaseEndDate = _Lease_End_Date.getValue();
+        var _LeaseYears_ID = $("#LeaseYears_ID").val();
+
+        var _PropertySoldorTransferred = $("#PropertySoldorTransferred").is(":checked");
+        //alert("Property Sold or Transferred is" + _PropertySoldorTransferred)
+        var _GeneralRemarks = $("#GeneralRemarks").val();
+        // alert("General Remarks is" + _GeneralRemarks)
+        var _DateOfValuation = $("#DateOfValuation").data("ejDatePicker");
+        var DateOfValuation = _DateOfValuation.getValue();
+        // alert("Date Of Valuation is" + DateOfValuation)
+        var _FinalSubmission = $("#FinalSubmission").is(":checked");
+        // alert("FinalSubmission is" + _FinalSubmission)
+        var _RejectionComment = $("#RejectionComment").val();
+        // alert("RejectionComment is" + _RejectionComment)
+        var _TitleMovementStatusID = $("#TitleMovementStatusID").data("ejDropDownList");
+        var MovementStatus = _TitleMovementStatusID.option("value");
+        // alert("TitleMovementStatusID is" + MovementStatus)
+        var _UnlockComment = $("#UnlockComment").val();
+        //  alert("UnlockComment is" + _UnlockComment)
+        var _UnlockTitle = $("#UnlockTitle").is(":checked");
+        //  alert("UnlockTitle is" + _UnlockTitle)
+        var _Added_By = $("#Added_By").val();
+        //alert("Added By is " + _Added_By)
+
+        var _Added_Date = $("#Added_Date").val();
+        // alert("Added Date is" + _Added_Date)
+
+        var _Plan_No = $("#Plan_No").val();
+        //alert("Plan_No is" + _Plan_No)
+
+        var _AreaOfUnit = $('#AreaOfUnit').val();
+        //alert("AreaOfUnit is" + _AreaOfUnit)
+
+        var _UnitFactor = $("#UnitFactor").val();
+        //alert("UnitFactor is" + _UnitFactor)
+
+        var _FloorAreaLeased = $('#FloorAreaLeased').val();
+        //alert("FloorAreaLeased is" + _FloorAreaLeased)
+        var _Latitude = $('#Latitude').val();
+        var _Longitude = $('#Longitude').val();
+        ;
+
+        if ((Location == null || Location == "") && (_Volume == null || _Volume == "")
+            && (_Folio == null || _Folio == "") && (_Title_Reference == null || _Title_Reference == "")) {
+            alert("Fields marked with asterisk (*) are required!");
+            return false;
+        }
+
+        else if ((_Title_Reference == null || _Title_Reference == "" || _Title_Reference.match(/^\s+$/) != null)) {
+            alert("Parent Title is required!");
+            return false;
+        }
+
+        else if ((Location == null || Location == "")) {
+            alert("Location is required!");
+            return false;
+        }
+
+        else if ((_Volume == null || _Volume == "")) {
+            alert("Volume is required!");
+            return false;
+        }
+
+        else if ((_Folio == null || _Folio == "")) {
+            alert("Folio is required!");
+            return false;
+        }
+
+        else if (LeaseStartDate > LeaseEndDate) {
+            alert("The lease end date can not be earlier than the lease start date!");
+            return false;
+        }
+
+        else if ((_UnlockTitle == true && (_UnlockComment == null
+            || _UnlockComment == "" || _UnlockComment.match(/^\s+$/) != null))) {
+            //debugger;
+            alert("Please give a reason for unlocking this title!");
+            return false;
+        }
+
+        else if ((_UnlockTitle == false && (_UnlockComment != null
+            || _UnlockComment != "" || _UnlockComment.match(/^\s+$/) == null))) {
+            //debugger;
+            alert("You need to check the Unlock Title box!");
+            return false;
+        }
+
+        var startdate = new Date(LeaseStartDate);
+        var enddate = new Date(LeaseEndDate);
+
+        if ((startdate >= enddate)) {
+            alert("The lease end date can not be earlier or equal to the lease start date!");
+            return false;
+
+        }
+
+        var _type = 0;
+        if (window._requestType == "beginedit") {
+            _type = 2;
+        }
+        else if (window._requestType == "add") {
+            _type = 1;
+        }
+
+        $.ajax({
+            url: "SaveApprovedLeaseHoldTitles",
+            type: "Get",
+            dataType: "json",
+            data: {
+
+                "Location_id": Location,
+                "Project_Code": ProjectCode,
+                "Title_Reference": _Title_Reference,
+                "Verified": _NoParentTitle,
+                "Volume": _Volume,
+                "Folio": _Folio,
+                "LandTypeCode": LandTypeCodee,
+                "TypeCode": TypeCodee,
+                "Unit_No": _Unit_No,
+                "Block_No": _Block_No,
+                "Flat_N0": _Flat_N0,
+                "Plot_No": _Plot_No,
+                "DistrictID": DistrictIDD,
+                "County_ID": County,
+                "Subcounty_ID": Subcounty,
+                "ActualPlotSize": _ActualPlotSize,
+                "PlotSize_ID": PlotSizeUnits,
+                "ProprietorAddress": _ProprietorAddress,
+                "BoardMinuteRelease": _BoardMinuteRelease,
+                "ValueOfProperty": _ValueOfProperty,
+                "Valuer": _Valuer,
+                "LeaseOfferedBy": _LeaseOfferedBy,
+                "Lease_Start_Date": LeaseStartDate,
+                "Lease_End_Date": LeaseEndDate,
+                "LeaseYears_ID": _LeaseYears_ID,
+                "PropertySoldorTransferred": _PropertySoldorTransferred,
+                "GeneralRemarks": _GeneralRemarks,
+                "DateOfValuation": DateOfValuation,
+                "FinalSubmission": _FinalSubmission,
+                "TitleMovementStatusID": MovementStatus,
+                "RejectionComment": _RejectionComment,
+                "UnlockComment": _UnlockComment,
+                "UnlockTitle": _UnlockTitle,
+                "Plan_No": _Plan_No,
+                "AreaOfUnit": _AreaOfUnit,
+                "UnitFactor": _UnitFactor,
+                "FloorAreaLeased": _FloorAreaLeased,
+                "Latitude": _Latitude,
+                "Longitude": _Longitude,
+                "Added_By": _Added_By,
+                "Added_Date": _Added_Date,
+                "_type": _type,
+
+            },
+            success: function (data) {
+                var _UnlockTitle = $("#UnlockTitle").is(":checked");
+                if (_UnlockTitle == true) {
+                    successAction();
+                }
+                else {
+                    ErrorAction();
+                }
+                var grid = $("#Grid").ejGrid("instance");
+                grid.refreshContent();
+                grid.endEdit();
+            }
+        });
+    }
+</script>
+
+
+<script>
+
+    function open(args) {
+
+        var objDialog = $("#Grid").data("ejGrid");
+        var $dialogWrapper = objDialog.element.find("#" + objDialog._id + "_dialogEdit_wrapper");
+        $dialogWrapper.css("top", "10px");
+        $dialogWrapper.css("left", "10px");
+    }
+    function successAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Title Unlocked Successfully!!!";
+            $("#SuccessSave").html('<p style="font-family: cursive;color: green;">' + str /*+ '</p></br><button id="button1" style="margin-left: 50%;size: large; showRoundedCorner: true; cssClass:customCss1">OK</button>'*/);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-success",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#SuccessSave").ejDialog("close");
+                }
+            });
+            $("#SuccessSave").ejDialog({ enableModal: true });
+            $("#SuccessSave").ejDialog("open");
+        }
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+    }
+    function ErrorAction(args) {
+        //alert(window._Event);
+        if (window._Event == "beginedit" || window._Event == "add") { }
+        else {
+
+            $("#Grid").ejWaitingPopup("hide");
+            var str = "Title" + " Has Not Been Unlocked!!!";
+            $("#ErrorList").html('<p style="font-family: cursive;color: red;">' + str);
+
+            $("#btn1").ejButton({
+                cssClass: "e-primary",
+                size: "large",
+                showRoundedCorner: true,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+                visible: false,
+                style: "float:right",
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+
+            $("#button1").ejButton({
+                cssClass: "e-danger",
+                size: "medium",
+                showRoundedCorner: false,
+                contentType: "textandimage",
+                prefixIcon: "e-icon e-handup",
+
+                click: function (args) {
+                    $("#ErrorList").ejDialog("close");
+                }
+            });
+            $("#ErrorList").ejDialog({ enableModal: true });
+            $("#ErrorList").ejDialog("open");
+        }
+
+        var gridObj = $("#Grid").data("ejGrid");
+        gridObj.refreshContent(true);
+
+    }
+</script>
+
+@*File Upload Scripts*@
+<script>
+    function LoadEvidence() {
+        //debugger;
+        $("#EvidenceGrid").ejGrid({
+            dataSource: ej.DataManager({
+            url: "@Url.Action("DataSourceScans", "PropertyTitles")?Title_Reference=" + titref + "&&Volume=" + vol + "&&Folio=" + fol, adaptor: "UrlAdaptor"
+            }),
+            allowGrouping: false,
+            isResponsive: true,
+            enableAltRow: true,
+            allowTextWrap: true,
+            textWrapSettings: { wrapMode: "both" },
+            allowResizeToFit: true,
+            showStackedHeader: true,
+            enableResponsiveRow: true,
+
+            toolbarSettings: {
+                showToolbar: true,
+            },
+            editSettings: {
+                allowEditing: true,
+                allowAdding: true,
+                allowDeleting: true,
+                rowPosition: "bottom"
+            },
+            allowPaging: true,
+            editSettings: { allowEditing: false, allowAdding: false, allowDeleting: false, editMode: 'batch' },
+            allowResizeToFit: true,
+            columns: [
+                { field: "DocumentCode", visible: false, allowEditing: false, headerText: "ID", width: 80, isPrimaryKey: true },
+                { field: "TitleReferenceNo", visible: true, headerText: "Title Reference", width: 100 },
+                { field: "Volume", visible: true, headerText: "Volume", width: 80/*, isPrimaryKey: true*/ },
+                { field: "Folio", visible: true, headerText: "Folio", width: 80/*, isPrimaryKey: true*/ },
+                { field: "DocumentName", visible: true, headerText: "Document", width: 80/*, isPrimaryKey: true*/ },
+                { field: 'UploadDate', type: "date", headerText: 'Uploaded Date', editType: "datepicker", format: "{0:dd/MM/yyyy}", editParams: { buttonText: "Now" }, width: 150 },
+                {
+                    headerText: "Manage Record",
+                    commands: [
+                        { type: "Download", buttonOptions: { text: "Download", width: "100", click: "onDownloadClick" } }
+                        //{ type: "Delete", buttonOptions: { text: "Delete", width: "100", click: "onDeleteClick" } }
+                    ],
+                    textAlign: ej.TextAlign.Center,
+                    width: 150
+                }
+            ],
+        });
+    }
+    function onDownloadClick(args) {
+        var grid = $("#EvidenceGrid").ejGrid("instance");
+        $("#hfDocumentCode").val(grid.getSelectedRecords()[0].DocumentCode);
+        $("#btnDownload")[0].click();
+        }
+
+</script>
+
+<style>
+    .e-grid .e-groupdroparea, /*GroupDropArea */
+    .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+    .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+    .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+    .e-grid td.e-active, /*During Row Selected*/
+    /*For pager items and their hover*/
+    .e-pager .e-currentitem,
+    .e-pager .e-currentitem:hover,
+    .e-pager .e-link:hover,
+    .e-pager .e-icon:hover {
+        background-color: #ea1b8d;
+    }
+
+    .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+        border-bottom-color: /*#ea1b8d*/ green;
+    }
+
+    .e-grid tr.e-hover /*For row hover*/ {
+        background-color: #e66aae;
+        color: #FFFFFF;
+    }
+
+    .e-grid .e-alt_row /*For Alternate row color*/ {
+        background-color: #E5E4E2; /*#99CFE3;*/
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+        border-bottom: 1px solid #c8c8c8;
+        border-left: 1px solid #c8c8c8;
+    }
+</style>
+<style>
+    .panel-default > .panel-heading {
+        background-color: #451bb1 /*#3e1111*/;
+        color: white;
+        /*background-color:silver;*/
+        /*color: white;*/
+    }
+</style>
+
+<style type="text/css" class="cssStyles">
+    .control {
+        margin-left: 30px;
+    }
+
+    .ctrllabel {
+        padding-top: 15px;
+    }
+
+    .control {
+        margin-left: 20px;
+    }
+
+    .frame {
+        height: 250px;
+        width: 1000px;
+    }
+
+    .frame1 {
+        height: 240px;
+        width: 900px;
+    }
+
+    .txt {
+        display: block;
+        margin-bottom: 12px;
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+    }
+
+    .custom.e-js .e-header {
+        background: #5f0c98;
+    }
+
+    .custom.e-js .e-content {
+        background: #ddd;
+    }
+
+    .custom .e-rbn-button.e-btn.e-select {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .tabstyle {
+        background: #F9F9F9;
+        border-radius: 10px;
+        border: 1px solid #99CFE3;
+        display: block;
+    }
+
+    .longcolumns {
+        width: 600px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        border-right: 5px #666 outset !important;
+        border-left: 5px #666 outset !important;
+    }
+</style>
+
+@(Html.EJ().Dialog("ErrorList").Title("Title Not Unlocked").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessSave").Title("Unlocked Successfully").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("SuccessDelete").Title("Record Deleted").ShowFooter(true).FooterTemplateId("sample").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("CancelDial").Title("Record Not Saved").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+@(Html.EJ().Dialog("ArchiveDial").Title("Record Archived").ShowFooter(true).FooterTemplateId("cancelfooter").Width("350").ShowOnInit(false))
+
+@using (Html.BeginForm("EvidenceDownloadFile", "ApprovedLeaseHoldTitles", FormMethod.Post))
+{
+    <input type="hidden" id="hfDocumentCode" name="DocumentCode" />
+    <input type="submit" id="btnDownload" value="Download" style="display:none" />
+}

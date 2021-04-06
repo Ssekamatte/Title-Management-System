@@ -1,0 +1,679 @@
+<?xml version="1.0"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DashboardItem xsi:type="ProportionChartItem" Column="0" ColumnSpan="0" Version="3.2.0.68" DataSource="PropTitlebyLandType" UniqueDataSourceName="DataSource_78ea7504-0c60-4209-8176-6f15bdea323f" UniqueDataSourceNames="" Id="f102346b-8b92-4a73-a1b9-1530163c5fc6" Name="ProportionChart_2" ReportName="ProportionChart_2" Row="0" RowSpan="0" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="ProportionChart" UniqueReportName="ProportionChart_f102346b_8b92_4a73_a1b9_1530163c5fc6">
+    <DashboardLinks>
+      <ColumnUrlDetailsList />
+      <GridUrlType>Row</GridUrlType>
+      <LinkType>Dashboard</LinkType>
+      <HasErrors>false</HasErrors>
+      <IsReportLinked>true</IsReportLinked>
+      <MasterWidgetCollection />
+      <PassingParameters />
+    </DashboardLinks>
+    <ActionSettings>
+      <ActionSetting>
+        <ActionType>Click</ActionType>
+        <Action>
+          <Action>None</Action>
+        </Action>
+        <ShowMenu>false</ShowMenu>
+      </ActionSetting>
+      <ActionSetting>
+        <ActionType>ContextMenu</ActionType>
+        <Action>
+          <Action>Filter</Action>
+          <Action>Linking</Action>
+          <Action>DrillDown</Action>
+        </Action>
+        <ShowMenu>true</ShowMenu>
+      </ActionSetting>
+      <ActionSetting>
+        <ActionType>DoubleClick</ActionType>
+        <Action>
+          <Action>None</Action>
+        </Action>
+        <ShowMenu>false</ShowMenu>
+      </ActionSetting>
+    </ActionSettings>
+    <DisplayName>Percentage Coverage (Property Types)</DisplayName>
+    <EnableDrillThrough>false</EnableDrillThrough>
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <IgnoreMasterFilter>false</IgnoreMasterFilter>
+    <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+    <DefaultSelectedIndices>0</DefaultSelectedIndices>
+    <IsControlConfigured>true</IsControlConfigured>
+    <IsCrossDataSourceFilter>true</IsCrossDataSourceFilter>
+    <IsLinked>false</IsLinked>
+    <IsMasterFilter>false</IsMasterFilter>
+    <IsNotInCanvas>false</IsNotInCanvas>
+    <Label>
+      <ContentPaddingBottom>0</ContentPaddingBottom>
+      <ContentPaddingLeft>0</ContentPaddingLeft>
+      <ContentPaddingRight>0</ContentPaddingRight>
+      <ContentPaddingTop>0</ContentPaddingTop>
+      <ControlPaddingBottom>0</ControlPaddingBottom>
+      <ControlPaddingLeft>0</ControlPaddingLeft>
+      <ControlPaddingRight>0</ControlPaddingRight>
+      <ControlPaddingTop>0</ControlPaddingTop>
+      <CornerRadius>0</CornerRadius>
+      <EnableComment>true</EnableComment>
+      <EnableCsvExport>true</EnableCsvExport>
+      <EnableExcelExport>true</EnableExcelExport>
+      <EnableExportPPT>false</EnableExportPPT>
+      <EnableImageExport>true</EnableImageExport>
+      <EnablePdfExport>true</EnablePdfExport>
+      <HeaderHeight>20</HeaderHeight>
+      <HeaderLabelBackground>#FFFFFFFF</HeaderLabelBackground>
+      <HeaderLabelForeground>#FF161616</HeaderLabelForeground>
+      <HeaderText>Percentage Coverage (Property Types)</HeaderText>
+      <SubTitle />
+      <IsBold>false</IsBold>
+      <IsItalic>false</IsItalic>
+      <LabelAlignment>Left</LabelAlignment>
+      <ShowBorder>false</ShowBorder>
+      <ShowDescription>false</ShowDescription>
+      <ShowHeader>true</ShowHeader>
+      <ShowMaximize>true</ShowMaximize>
+      <ViewData>true</ViewData>
+      <ShowLinkIcon>false</ShowLinkIcon>
+      <ShowDrillThroughIcon>false</ShowDrillThroughIcon>
+    </Label>
+    <IsSharedWidget>false</IsSharedWidget>
+    <Responsive>false</Responsive>
+    <SelectedFilterValues />
+    <Properties>
+      <AdornmentCustomText />
+      <AngleValue>Default</AngleValue>
+      <ChartDataLabel>ValueAndPercentage</ChartDataLabel>
+      <ChartType>Pie</ChartType>
+      <ChartVisualization>false</ChartVisualization>
+      <CustomComparisonTypes />
+      <CustomLegends>
+        <CustomLegend>
+          <CustomName>Condominium Property</CustomName>
+          <DisplayName>Condominium Property</DisplayName>
+          <IsEdited>false</IsEdited>
+        </CustomLegend>
+        <CustomLegend>
+          <CustomName>Stand Alone Property</CustomName>
+          <DisplayName>Stand Alone Property</DisplayName>
+          <IsEdited>false</IsEdited>
+        </CustomLegend>
+        <CustomLegend>
+          <CustomName>Unlisted Land Type/Property</CustomName>
+          <DisplayName>Unlisted Land Type/Property</DisplayName>
+          <IsEdited>false</IsEdited>
+        </CustomLegend>
+      </CustomLegends>
+      <SeriesColorPalette>
+        <SeriesColor>
+          <CustomColor>#FF9BBB59</CustomColor>
+          <DisplayName>Color1</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF8064A2</CustomColor>
+          <DisplayName>Color2</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF4BACC6</CustomColor>
+          <DisplayName>Color3</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF34B67A</CustomColor>
+          <DisplayName>Color4</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFF1AB68</CustomColor>
+          <DisplayName>Color5</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF6CC2D9</CustomColor>
+          <DisplayName>Color6</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF195962</CustomColor>
+          <DisplayName>Color7</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFE18878</CustomColor>
+          <DisplayName>Color8</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF1AA27D</CustomColor>
+          <DisplayName>Color9</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFBFAAC7</CustomColor>
+          <DisplayName>Color10</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF89695E</CustomColor>
+          <DisplayName>Color11</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFA5C77F</CustomColor>
+          <DisplayName>Color12</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFF48FB1</CustomColor>
+          <DisplayName>Color13</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FF90CAF9</CustomColor>
+          <DisplayName>Color14</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+        <SeriesColor>
+          <CustomColor>#FFCC4452</CustomColor>
+          <DisplayName>Color15</DisplayName>
+          <IsEdited>false</IsEdited>
+          <Name />
+        </SeriesColor>
+      </SeriesColorPalette>
+      <UseDefaultPalette>false</UseDefaultPalette>
+      <ShowSegmentWiseLabel>false</ShowSegmentWiseLabel>
+      <DoughnutSize>0.8</DoughnutSize>
+      <EnableAnimation>false</EnableAnimation>
+      <AllowDrilldown>false</AllowDrilldown>
+      <EnableTreeViewFilter>true</EnableTreeViewFilter>
+      <GroupCustomLegends />
+      <HasAdornmentInfo>false</HasAdornmentInfo>
+      <IsAdornmentCustomText>false</IsAdornmentCustomText>
+      <IsBasicChartType>true</IsBasicChartType>
+      <IsComparison>false</IsComparison>
+      <IsCustomLegend>true</IsCustomLegend>
+      <IsGeneralCustomLegend>false</IsGeneralCustomLegend>
+      <IsGroupCustomLegend>false</IsGroupCustomLegend>
+      <IsPrimaryCustomText>false</IsPrimaryCustomText>
+      <IsSecondaryCustomText>false</IsSecondaryCustomText>
+      <IsSecondaryYAxisCustomText>false</IsSecondaryYAxisCustomText>
+      <LegendPosition>Bottom</LegendPosition>
+      <MultipleChartType>Column</MultipleChartType>
+      <PercentageFormat>false</PercentageFormat>
+      <PieDoughnutCoefficient>0.8</PieDoughnutCoefficient>
+      <PlotAxisColumn />
+      <PlotAxisTypes />
+      <PrimaryAxisFormat>Default</PrimaryAxisFormat>
+      <PrimaryAxisFormatProperties>
+        <Culture>en-US</Culture>
+        <DecimalPoints>0</DecimalPoints>
+        <FormatType>Default</FormatType>
+        <DecimalSeparator>
+          <AliasValue>.</AliasValue>
+          <CurrentValue>.</CurrentValue>
+        </DecimalSeparator>
+        <GroupSeparator>
+          <AliasValue>,</AliasValue>
+          <CurrentValue>,</CurrentValue>
+        </GroupSeparator>
+        <NegativeValueFormat>Default</NegativeValueFormat>
+        <Prefix />
+        <Suffix />
+        <Unit>Auto</Unit>
+      </PrimaryAxisFormatProperties>
+      <PrimaryAxisLabelTrim>false</PrimaryAxisLabelTrim>
+      <SecondaryAxisFormat>Default</SecondaryAxisFormat>
+      <SecondaryAxisFormatProperties>
+        <Culture>en-US</Culture>
+        <DecimalPoints>0</DecimalPoints>
+        <FormatType>Default</FormatType>
+        <DecimalSeparator>
+          <AliasValue>.</AliasValue>
+          <CurrentValue>.</CurrentValue>
+        </DecimalSeparator>
+        <GroupSeparator>
+          <AliasValue>,</AliasValue>
+          <CurrentValue>,</CurrentValue>
+        </GroupSeparator>
+        <NegativeValueFormat>Default</NegativeValueFormat>
+        <Prefix />
+        <Suffix />
+        <Unit>Auto</Unit>
+      </SecondaryAxisFormatProperties>
+      <SelectedValues />
+      <SeriesCustomLegends />
+      <ShowAdornmentInfo>true</ShowAdornmentInfo>
+      <ShowAngleValues>false</ShowAngleValues>
+      <ShowHeader>false</ShowHeader>
+      <ShowHorizontalLine>false</ShowHorizontalLine>
+      <ShowLegends>false</ShowLegends>
+      <ShowMarker>false</ShowMarker>
+      <ShowSecondaryAxisGridLine>false</ShowSecondaryAxisGridLine>
+      <ShowSecondaryYAxis>false</ShowSecondaryYAxis>
+      <ShowSecondaryYAxisTitle xsi:nil="true" />
+      <ShowVerticalLine>false</ShowVerticalLine>
+      <ShowPrimaryXAxis>false</ShowPrimaryXAxis>
+      <ShowPrimaryXAxisTitle xsi:nil="true" />
+      <ShowPrimaryYAxis>false</ShowPrimaryYAxis>
+      <ShowPrimaryYAxisTitle xsi:nil="true" />
+      <SortedMeasure>
+        <Alias>OriginalTypeCodeDesc</Alias>
+        <UniqueColumnName>ProportionChart_Column_1</UniqueColumnName>
+      </SortedMeasure>
+      <SortingMeasures />
+      <SortingSelectedIndex>0</SortingSelectedIndex>
+      <SortType>Descending</SortType>
+      <TrendLines />
+      <ValueLabelAngle>Default</ValueLabelAngle>
+      <DataLabelFontSettings>
+        <FontSize>9</FontSize>
+      </DataLabelFontSettings>
+    </Properties>
+  </DashboardItem>
+  <RelationalReport ReportName="ProportionChart_2" IsRawData="false" IsBlendingWidget="false">
+    <Calculations />
+    <ColumnElements>
+      <FieldInfo>
+        <ActualDataType>nvarchar</ActualDataType>
+        <AxisType>Column</AxisType>
+        <Caption>OriginalTypeCodeDesc</Caption>
+        <ColumnName>OriginalTypeCodeDesc</ColumnName>
+        <ColumnType>Dimension</ColumnType>
+        <ConditionSummaryType>None</ConditionSummaryType>
+        <CustomColumnType>Measure</CustomColumnType>
+        <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+        <IsCustomDateApplied>false</IsCustomDateApplied>
+        <AdvancedDateTimeFormatSettings>
+          <ModeType>Year</ModeType>
+          <DisplayFormat>
+            <YearDisplayFormats>Default</YearDisplayFormats>
+            <QuarterDisplayFormats>Default</QuarterDisplayFormats>
+            <MonthDisplayFormats>Default</MonthDisplayFormats>
+            <DayDisplayFormats>Default</DayDisplayFormats>
+            <TimeDisplayFormats>Default</TimeDisplayFormats>
+            <HourDisplayFormats>Default</HourDisplayFormats>
+            <MinuteDisplayFormats>Default</MinuteDisplayFormats>
+            <SecondDisplayFormats>Default</SecondDisplayFormats>
+            <WeekNumberDisplayFormats>Default</WeekNumberDisplayFormats>
+            <DayOfWeekDisplayFormats>Default</DayOfWeekDisplayFormats>
+            <QuarterYearDisplayFormats>Default</QuarterYearDisplayFormats>
+            <WeekYearDisplayFormats>Default</WeekYearDisplayFormats>
+            <DateHourDisplayFormats>Default</DateHourDisplayFormats>
+            <WeekOfYearDisplayFormats>Default</WeekOfYearDisplayFormats>
+            <MonthYearDisplayFormats>Default</MonthYearDisplayFormats>
+            <MonthDayYearDisplayFormats>Default</MonthDayYearDisplayFormats>
+            <DayMonthYearDisplayFormats>Default</DayMonthYearDisplayFormats>
+            <DateDisplayFormats>Default</DateDisplayFormats>
+            <DateTimeDisplayFormats>Default</DateTimeDisplayFormats>
+          </DisplayFormat>
+        </AdvancedDateTimeFormatSettings>
+        <CustomDate />
+        <DataSourceName>PropTitlebyLandType</DataSourceName>
+        <DataType>String</DataType>
+        <DateTimeFormat>None</DateTimeFormat>
+        <DefaultDataType>String</DefaultDataType>
+        <DisplaySeries>None</DisplaySeries>
+        <Expression>
+          <ColumnNames />
+          <IsBlending>false</IsBlending>
+          <IsUserFilter>false</IsUserFilter>
+          <PivotExpressionKeys />
+          <Tables />
+          <IsDashboardParameter>false</IsDashboardParameter>
+          <UserFunctionType>CurrentUser</UserFunctionType>
+          <BlendingDataSources />
+        </Expression>
+        <IsCustomSortApplied>false</IsCustomSortApplied>
+        <FilterValues />
+        <Format>Default</Format>
+        <FormatProperties>
+          <Culture>en-US</Culture>
+          <DecimalPoints>2</DecimalPoints>
+          <FormatType>Default</FormatType>
+          <DecimalSeparator>
+            <AliasValue>.</AliasValue>
+            <CurrentValue>.</CurrentValue>
+          </DecimalSeparator>
+          <GroupSeparator>
+            <AliasValue>,</AliasValue>
+            <CurrentValue>,</CurrentValue>
+          </GroupSeparator>
+          <NegativeValueFormat>Default</NegativeValueFormat>
+          <Prefix />
+          <Suffix />
+          <Unit>Auto</Unit>
+        </FormatProperties>
+        <FiscalYearFormat>Jan</FiscalYearFormat>
+        <FiscalYearStart>Jan</FiscalYearStart>
+        <HasCondition>false</HasCondition>
+        <IsAggregation>false</IsAggregation>
+        <IsAllowDbNull>true</IsAllowDbNull>
+        <IsBin>false</IsBin>
+        <IsDataTypeChanged>false</IsDataTypeChanged>
+        <IsExpression>false</IsExpression>
+        <IsFilter>false</IsFilter>
+        <IsForeignKey>false</IsForeignKey>
+        <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+        <IsInclude>false</IsInclude>
+        <IsKpiSchema>false</IsKpiSchema>
+        <IsMeasureFilter>false</IsMeasureFilter>
+        <IsPrimaryKey>false</IsPrimaryKey>
+        <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+        <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+        <IsSelected>false</IsSelected>
+        <IsTop>false</IsTop>
+        <IsTopNDateFormat>false</IsTopNDateFormat>
+        <Key>[dbo_Report_AuditLog_PropertyTitle].[OriginalTypeCodeDesc]</Key>
+        <LevelDepth>0</LevelDepth>
+        <MeasureConditions>Equals</MeasureConditions>
+        <NullValue>Default</NullValue>
+        <Parent>
+          <AxisType>None</AxisType>
+          <Caption>Report_AuditLog_PropertyTitle</Caption>
+          <ColumnName>Report_AuditLog_PropertyTitle</ColumnName>
+          <ColumnType>None</ColumnType>
+          <ConditionSummaryType>None</ConditionSummaryType>
+          <CustomColumnType>None</CustomColumnType>
+          <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+          <IsCustomDateApplied>false</IsCustomDateApplied>
+          <DataSourceName>PropTitlebyLandType</DataSourceName>
+          <DateTimeFormat>None</DateTimeFormat>
+          <DisplaySeries>None</DisplaySeries>
+          <Expression>
+            <ColumnNames />
+            <IsBlending>false</IsBlending>
+            <IsUserFilter>false</IsUserFilter>
+            <PivotExpressionKeys />
+            <Tables />
+            <IsDashboardParameter>false</IsDashboardParameter>
+            <UserFunctionType>CurrentUser</UserFunctionType>
+            <BlendingDataSources />
+          </Expression>
+          <IsCustomSortApplied>false</IsCustomSortApplied>
+          <FilterValues />
+          <Format>Default</Format>
+          <FormatProperties>
+            <Culture>en-US</Culture>
+            <DecimalPoints>0</DecimalPoints>
+            <FormatType>Default</FormatType>
+            <DecimalSeparator>
+              <AliasValue>.</AliasValue>
+              <CurrentValue>.</CurrentValue>
+            </DecimalSeparator>
+            <GroupSeparator>
+              <AliasValue>,</AliasValue>
+              <CurrentValue>,</CurrentValue>
+            </GroupSeparator>
+            <NegativeValueFormat>Default</NegativeValueFormat>
+            <Prefix />
+            <Suffix />
+            <Unit>Auto</Unit>
+          </FormatProperties>
+          <FiscalYearFormat>Jan</FiscalYearFormat>
+          <HasCondition>false</HasCondition>
+          <IsAggregation>false</IsAggregation>
+          <IsAllowDbNull>true</IsAllowDbNull>
+          <IsBin>false</IsBin>
+          <IsDataTypeChanged>false</IsDataTypeChanged>
+          <IsExpression>false</IsExpression>
+          <IsFilter>false</IsFilter>
+          <IsForeignKey>false</IsForeignKey>
+          <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+          <IsInclude>false</IsInclude>
+          <IsKpiSchema>false</IsKpiSchema>
+          <IsMeasureFilter>false</IsMeasureFilter>
+          <IsPrimaryKey>false</IsPrimaryKey>
+          <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+          <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+          <IsSelected>true</IsSelected>
+          <IsTop>false</IsTop>
+          <IsTopNDateFormat>false</IsTopNDateFormat>
+          <Key>[dbo].[Report_AuditLog_PropertyTitle]</Key>
+          <LevelDepth>0</LevelDepth>
+          <MeasureConditions>Equals</MeasureConditions>
+          <NullValue>Default</NullValue>
+          <RelativeDateItems />
+          <ShowGrandTotal>false</ShowGrandTotal>
+          <ShowOtherGroup>false</ShowOtherGroup>
+          <SortDirection>Ascending</SortDirection>
+          <SummaryType>None</SummaryType>
+          <TopCount>0</TopCount>
+          <TopNSummaryType>None</TopNSummaryType>
+          <TopNDateFormat>None</TopNDateFormat>
+          <TreeNodeType>View</TreeNodeType>
+          <UniqueColumnName>dbo_Report_AuditLog_PropertyTitle</UniqueColumnName>
+          <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+          <Values />
+        </Parent>
+        <RelativeDateItems />
+        <ShowGrandTotal>false</ShowGrandTotal>
+        <ShowOtherGroup>false</ShowOtherGroup>
+        <SortDirection>None</SortDirection>
+        <SummaryType>Count</SummaryType>
+        <TopCount>0</TopCount>
+        <TopNSummaryType>None</TopNSummaryType>
+        <TopNDateFormat>None</TopNDateFormat>
+        <TreeNodeType>TableColumn</TreeNodeType>
+        <UniqueColumnName>ProportionChart_Column_1</UniqueColumnName>
+        <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+        <Values />
+      </FieldInfo>
+    </ColumnElements>
+    <EnableTreeViewFilter>true</EnableTreeViewFilter>
+    <FilterElements />
+    <KpiElements />
+    <SummaryElements />
+    <CustomWidgetElements />
+    <Listeners />
+    <MeasureFilterForControl />
+    <ReportColumnCount>2</ReportColumnCount>
+    <RowElements>
+      <FieldInfo>
+        <ActualDataType>nvarchar</ActualDataType>
+        <AxisType>Row</AxisType>
+        <Caption>OriginalTypeCodeDesc</Caption>
+        <ColumnName>OriginalTypeCodeDesc</ColumnName>
+        <ColumnType>Dimension</ColumnType>
+        <ConditionSummaryType>None</ConditionSummaryType>
+        <CustomColumnType>Dimension</CustomColumnType>
+        <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+        <IsCustomDateApplied>false</IsCustomDateApplied>
+        <AdvancedDateTimeFormatSettings>
+          <ModeType>Year</ModeType>
+          <DisplayFormat>
+            <YearDisplayFormats>Default</YearDisplayFormats>
+            <QuarterDisplayFormats>Default</QuarterDisplayFormats>
+            <MonthDisplayFormats>Default</MonthDisplayFormats>
+            <DayDisplayFormats>Default</DayDisplayFormats>
+            <TimeDisplayFormats>Default</TimeDisplayFormats>
+            <HourDisplayFormats>Default</HourDisplayFormats>
+            <MinuteDisplayFormats>Default</MinuteDisplayFormats>
+            <SecondDisplayFormats>Default</SecondDisplayFormats>
+            <WeekNumberDisplayFormats>Default</WeekNumberDisplayFormats>
+            <DayOfWeekDisplayFormats>Default</DayOfWeekDisplayFormats>
+            <QuarterYearDisplayFormats>Default</QuarterYearDisplayFormats>
+            <WeekYearDisplayFormats>Default</WeekYearDisplayFormats>
+            <DateHourDisplayFormats>Default</DateHourDisplayFormats>
+            <WeekOfYearDisplayFormats>Default</WeekOfYearDisplayFormats>
+            <MonthYearDisplayFormats>Default</MonthYearDisplayFormats>
+            <MonthDayYearDisplayFormats>Default</MonthDayYearDisplayFormats>
+            <DayMonthYearDisplayFormats>Default</DayMonthYearDisplayFormats>
+            <DateDisplayFormats>Default</DateDisplayFormats>
+            <DateTimeDisplayFormats>Default</DateTimeDisplayFormats>
+          </DisplayFormat>
+        </AdvancedDateTimeFormatSettings>
+        <CustomDate />
+        <DataSourceName>PropTitlebyLandType</DataSourceName>
+        <DataType>String</DataType>
+        <DateTimeFormat>None</DateTimeFormat>
+        <DefaultDataType>String</DefaultDataType>
+        <DisplaySeries>None</DisplaySeries>
+        <Expression>
+          <ColumnNames />
+          <IsBlending>false</IsBlending>
+          <IsUserFilter>false</IsUserFilter>
+          <PivotExpressionKeys />
+          <Tables />
+          <IsDashboardParameter>false</IsDashboardParameter>
+          <UserFunctionType>CurrentUser</UserFunctionType>
+          <BlendingDataSources />
+        </Expression>
+        <IsCustomSortApplied>false</IsCustomSortApplied>
+        <FilterValues />
+        <Format>Default</Format>
+        <FormatProperties>
+          <Culture>en-US</Culture>
+          <DecimalPoints>0</DecimalPoints>
+          <FormatType>Default</FormatType>
+          <DecimalSeparator>
+            <AliasValue>.</AliasValue>
+            <CurrentValue>.</CurrentValue>
+          </DecimalSeparator>
+          <GroupSeparator>
+            <AliasValue>,</AliasValue>
+            <CurrentValue>,</CurrentValue>
+          </GroupSeparator>
+          <NegativeValueFormat>Default</NegativeValueFormat>
+          <Prefix />
+          <Suffix />
+          <Unit>Auto</Unit>
+        </FormatProperties>
+        <FiscalYearFormat>Jan</FiscalYearFormat>
+        <FiscalYearStart>Jan</FiscalYearStart>
+        <HasCondition>false</HasCondition>
+        <IsAggregation>false</IsAggregation>
+        <IsAllowDbNull>true</IsAllowDbNull>
+        <IsBin>false</IsBin>
+        <IsDataTypeChanged>false</IsDataTypeChanged>
+        <IsExpression>false</IsExpression>
+        <IsFilter>false</IsFilter>
+        <IsForeignKey>false</IsForeignKey>
+        <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+        <IsInclude>true</IsInclude>
+        <IsKpiSchema>false</IsKpiSchema>
+        <IsMeasureFilter>false</IsMeasureFilter>
+        <IsPrimaryKey>false</IsPrimaryKey>
+        <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+        <IsSelectAllForAllowFilter>true</IsSelectAllForAllowFilter>
+        <IsSelected>false</IsSelected>
+        <IsTop>false</IsTop>
+        <IsTopNDateFormat>false</IsTopNDateFormat>
+        <Key>[dbo_Report_AuditLog_PropertyTitle].[OriginalTypeCodeDesc]</Key>
+        <LevelDepth>0</LevelDepth>
+        <MeasureConditions>Equals</MeasureConditions>
+        <NullValue>Default</NullValue>
+        <Parent>
+          <AxisType>None</AxisType>
+          <Caption>Report_AuditLog_PropertyTitle</Caption>
+          <ColumnName>Report_AuditLog_PropertyTitle</ColumnName>
+          <ColumnType>None</ColumnType>
+          <ConditionSummaryType>None</ConditionSummaryType>
+          <CustomColumnType>None</CustomColumnType>
+          <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+          <IsCustomDateApplied>false</IsCustomDateApplied>
+          <DataSourceName>PropTitlebyLandType</DataSourceName>
+          <DateTimeFormat>None</DateTimeFormat>
+          <DisplaySeries>None</DisplaySeries>
+          <Expression>
+            <ColumnNames />
+            <IsBlending>false</IsBlending>
+            <IsUserFilter>false</IsUserFilter>
+            <PivotExpressionKeys />
+            <Tables />
+            <IsDashboardParameter>false</IsDashboardParameter>
+            <UserFunctionType>CurrentUser</UserFunctionType>
+            <BlendingDataSources />
+          </Expression>
+          <IsCustomSortApplied>false</IsCustomSortApplied>
+          <FilterValues />
+          <Format>Default</Format>
+          <FormatProperties>
+            <Culture>en-US</Culture>
+            <DecimalPoints>0</DecimalPoints>
+            <FormatType>Default</FormatType>
+            <DecimalSeparator>
+              <AliasValue>.</AliasValue>
+              <CurrentValue>.</CurrentValue>
+            </DecimalSeparator>
+            <GroupSeparator>
+              <AliasValue>,</AliasValue>
+              <CurrentValue>,</CurrentValue>
+            </GroupSeparator>
+            <NegativeValueFormat>Default</NegativeValueFormat>
+            <Prefix />
+            <Suffix />
+            <Unit>Auto</Unit>
+          </FormatProperties>
+          <FiscalYearFormat>Jan</FiscalYearFormat>
+          <HasCondition>false</HasCondition>
+          <IsAggregation>false</IsAggregation>
+          <IsAllowDbNull>true</IsAllowDbNull>
+          <IsBin>false</IsBin>
+          <IsDataTypeChanged>false</IsDataTypeChanged>
+          <IsExpression>false</IsExpression>
+          <IsFilter>false</IsFilter>
+          <IsForeignKey>false</IsForeignKey>
+          <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+          <IsInclude>false</IsInclude>
+          <IsKpiSchema>false</IsKpiSchema>
+          <IsMeasureFilter>false</IsMeasureFilter>
+          <IsPrimaryKey>false</IsPrimaryKey>
+          <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+          <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+          <IsSelected>true</IsSelected>
+          <IsTop>false</IsTop>
+          <IsTopNDateFormat>false</IsTopNDateFormat>
+          <Key>[dbo].[Report_AuditLog_PropertyTitle]</Key>
+          <LevelDepth>0</LevelDepth>
+          <MeasureConditions>Equals</MeasureConditions>
+          <NullValue>Default</NullValue>
+          <RelativeDateItems />
+          <ShowGrandTotal>false</ShowGrandTotal>
+          <ShowOtherGroup>false</ShowOtherGroup>
+          <SortDirection>Ascending</SortDirection>
+          <SummaryType>None</SummaryType>
+          <TopCount>0</TopCount>
+          <TopNSummaryType>None</TopNSummaryType>
+          <TopNDateFormat>None</TopNDateFormat>
+          <TreeNodeType>View</TreeNodeType>
+          <UniqueColumnName>dbo_Report_AuditLog_PropertyTitle</UniqueColumnName>
+          <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+          <Values />
+        </Parent>
+        <RelativeDateItems />
+        <ShowGrandTotal>false</ShowGrandTotal>
+        <ShowOtherGroup>false</ShowOtherGroup>
+        <SortDirection>None</SortDirection>
+        <SortingOrder>Top</SortingOrder>
+        <SummaryType>DistinctCount</SummaryType>
+        <TopCount>5</TopCount>
+        <TopMeasureName>dbo_Report_AuditLog_PropertyTitle_original_Locationid</TopMeasureName>
+        <TopNSummaryType>Sum</TopNSummaryType>
+        <TopNDateFormat>None</TopNDateFormat>
+        <TreeNodeType>TableColumn</TreeNodeType>
+        <UniqueColumnName>ProportionChart_Column_0</UniqueColumnName>
+        <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+        <Values />
+      </FieldInfo>
+    </RowElements>
+    <ShowOthersGroup>false</ShowOthersGroup>
+    <TopNFilterElements />
+  </RelationalReport>
+</Report>

@@ -1,0 +1,99 @@
+@model IEnumerable<TMS.Models.Property_Payment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title_Reference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pay_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewDataAudit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditDataAudit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Added_By)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Added_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edited_By)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edited_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrroundRent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyRates)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title_Reference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pay_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewDataAudit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditDataAudit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Added_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Added_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edited_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edited_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrroundRent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyRates)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

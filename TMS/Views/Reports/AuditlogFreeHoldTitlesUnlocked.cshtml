@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "AuditLogUnlockedFreeHoldTitles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>
+                    Audit Log Unlocked FreeHold Titles 
+                </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{<div>
+        <div class="row">
+
+
+            <div class="col-lg-3">
+                <p>Unlocked By</p>
+                <p><input type="text" id="original_UnlockedBy" name="original_UnlockedBy" class="e-field e-ejinputtext valid" /></p>
+            </div>
+
+            <div class="col-lg-3">
+                <p>From (Unlocked) Date </p>
+                <p><input type="text" id="EndDate01" name="EndDate01" class="e-field e-ejinputtext valid" /></p>
+            </div>
+            <div class="col-lg-3">
+                <p>To (Unlocked) Date</p>
+                <p><input type="text" id="EndDate02" name="EndDate02" class="e-field e-ejinputtext valid" /></p>
+            </div>
+
+            @*<div class="col-lg-3">
+                    <p>Audit Action</p>
+                    <p><input type="text" id="AuditAction_Description" name="AuditAction_Description" class="e-field e-ejinputtext valid" /></p>
+                </div>*@
+
+
+            <br />
+            <div class="col-lg-4">
+                <input class="btn btn-success" type="button" value="Load Report">
+            </div>
+
+
+        </div>
+    </div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+
+
+        $("#EndDate01").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+        $("#EndDate02").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+
+ $(function () {
+          $(':button').click(function () {
+
+        var dateobject = $("#EndDate01").data("ejDatePicker");
+        var StartDate = dateobject.getValue();
+
+        var dateobject1 = $("#EndDate02").data("ejDatePicker");
+        var EndDate = dateobject1.getValue();
+
+        var UnlockedBy1 = $('#original_UnlockedBy').data("ejDropDownList");
+        var _UnlockedBy1 = UnlockedBy1.option("value");
+        //alert(_UnlockedBy1); //Alert for Unlocked By
+
+
+        $("#mqpartial").load("@Url.Action("AuditlogFreeHoldTitlesPartialUnlocked", "Reports")",
+                {
+
+                    'sdate': StartDate,
+                    'edate': EndDate,
+                    'UnlockedBy': _UnlockedBy1,                   
+
+
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+
+
+        });
+    });
+
+</script>
+
+<script>
+
+    //Edited By
+    $.ajax({
+        url: 'GetUnlockedBy',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#original_UnlockedBy').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "original_UnlockedBy", text: "OriginalUnlockedByFullName" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+
+</script>
+
+
+

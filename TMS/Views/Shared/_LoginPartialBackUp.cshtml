@@ -1,0 +1,180 @@
+﻿@using Microsoft.AspNet.Identity
+@using TMS.Models
+
+@if (Request.IsAuthenticated)
+{
+    FullName fullName = new FullName();
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+
+    {
+
+        @Html.AntiForgeryToken()
+        <div class="nav navbar-nav navbar-right">
+
+            @Html.EJ().Menu("mainMenu1").Items(items =>
+       {
+
+           items.Add().Url("#").Text("Hello " + fullName.GetFullName(User.Identity.GetUserName())).Children(child =>
+
+           //items.Add().Url("#").Text("Hello " + ((ClaimsIdentity)User.Identity).FindFirst("FullName").Value).Children(child =>
+
+
+           //items.Add().Url("#").Text("Hello " + User.GetFullName()).Children(child =>
+
+           {
+               if (User.IsInRole("Super Administrator"))
+               {
+
+                   //Country,District,County,Subcounty
+                   child.Add().Id("DisCouSub").Url("#").Text("Country,District,County,SubCounty").Children(child11 =>
+                   {
+                       child11.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                       child11.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                       child11.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                       child11.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+
+                   });
+
+                   //Location,Project,Region
+                   child.Add().Id("Loca").Url("#").Text("Location,Project,Region").Children(child12 =>
+                   {
+                       child12.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                       child12.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                       child12.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+
+                   });
+
+                   child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+                   //child.Add().Id("OfferStatus").Url(Url.Action("Index", "OfferStatus")).Text("Offer Status");
+                   // child.Add().Id("PropertyStatus").Url(Url.Action("Index", "PropertyStat")).Text("Property Status");
+
+                   //Password Management
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child13 =>
+                   {
+                       child13.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+                       child13.Add().Id("Usermanagement").Url(Url.Action("Usermanagement", "Account")).Text("User Management");
+                       child13.Add().Id("UsersWithRoles").Url(Url.Action("UsersWithRoles", "Account")).Text("User Roles");
+                       child13.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                       child13.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+
+                   });
+
+                   //child.Add().Id("cc").Url(Url.Action("LoginLogs", "UserLogin")).Text("Today's Logins <span style='background-color:red;' class='badge badge-danger' align = 'right'>" + @ViewBag.LogCount + "</span>");
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+                   //child.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                   //child.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                   //child.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+                   //child.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                   //child.Add().Id("LeaseYears").Url(Url.Action("Index", "LeaseYears")).Text("Property Title Lease Years");
+                   //child.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                   //child.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                   //child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+                   //child.Add().Id("OfferStatus").Url(Url.Action("Index", "OfferStatus")).Text("Offer Status");
+
+                   ////child.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+                   //child.Add().Id("PropertyStatus").Url(Url.Action("Index", "PropertyStat")).Text("Property Status");
+
+                   //child.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+                   //child.Add().Id("Usermanagement").Url(Url.Action("Usermanagement", "Account")).Text("User Management");
+                   //child.Add().Id("UsersWithRoles").Url(Url.Action("UsersWithRoles", "Account")).Text("User Roles");
+                   //child.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                   //child.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+                   //child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+               }
+
+               else if (User.IsInRole("Administrators"))
+               {
+
+                   //Country,District,County,Subcounty
+                   child.Add().Id("DisCouSub").Url("#").Text("Country,District,County,SubCounty").Children(child14 =>
+                   {
+                       child14.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                       child14.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                       child14.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                       child14.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+
+                   });
+
+
+                   //Location,Project,Region
+
+                   child.Add().Id("Loca").Url("#").Text("Location,Project,Region").Children(child15 =>
+                   {
+                       child15.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                       child15.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                       child15.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+
+                   });
+
+                   child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+                   //child.Add().Id("OfferStatus").Url(Url.Action("Index", "OfferStatus")).Text("Offer Status");
+                   // child.Add().Id("PropertyStatus").Url(Url.Action("Index", "PropertyStat")).Text("Property Status");
+
+                   //Password Management
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child16 =>
+                   {
+                       child16.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+                       //child.Add().Id("Usermanagement").Url(Url.Action("Usermanagement", "Account")).Text("User Management");
+                       //child.Add().Id("UsersWithRoles").Url(Url.Action("UsersWithRoles", "Account")).Text("User Roles");
+                       child16.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                       child16.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+
+                   });
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+
+                   //child.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                   //child.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                   //child.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+                   //child.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                   //child.Add().Id("LeaseYears").Url(Url.Action("Index", "LeaseYears")).Text("Property Title Lease Years");
+                   //child.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                   //child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+                   //child.Add().Id("OfferStatus").Url(Url.Action("Index", "OfferStatus")).Text("Offer Status");
+                   //child.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                   //child.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+                   //child.Add().Id("PropertyStatus").Url(Url.Action("Index", "PropertyStat")).Text("Property Status");
+                   //child.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                   //child.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+                   //child.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                   //child.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+                   //child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+               }
+
+               else
+
+               {
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child1 =>
+                   {
+                       child1.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Change Password");
+
+                   });
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+                   //child.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Change Password");
+                   //child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+               }
+
+           });
+
+       }).EnableSeparator(false).CssClass("Black-Menu")
+
+        </div>
+
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

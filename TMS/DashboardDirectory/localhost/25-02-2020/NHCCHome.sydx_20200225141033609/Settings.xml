@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<SettingsWithTitle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="3.2.0.68" Culture="en-US">
+  <TitleDescriptionCollection>
+    <TitleAndDescription>
+      <DashboardName>Dashboard_7a664a58_6805_4918_9721_ec5024e2c53f</DashboardName>
+      <Title>NHCC Home Dashboard</Title>
+      <Description />
+    </TitleAndDescription>
+  </TitleDescriptionCollection>
+  <SettingCollection>
+    <Settings DashboardName="Dashboard_7a664a58_6805_4918_9721_ec5024e2c53f" BackgroundImageOpacity="1" DesignerBackground="#FFFFFFFF" Id="7a664a58-6805-4918-9721-ec5024e2c53f">
+      <GlobalRangeFilter>
+        <IsMasterFilter>false</IsMasterFilter>
+      </GlobalRangeFilter>
+      <MasterSlaveFilterActions />
+      <ParameterColumns />
+      <PublishProperties>
+        <DashboardProperty>
+          <PublishItemProperty>
+            <CategoryName>ce23a3fc-d867-49e2-9f60-f8de60953cc2</CategoryName>
+            <Description>NHCC</Description>
+            <Name>James First Dashboard</Name>
+            <Title>Trial DashBoard</Title>
+          </PublishItemProperty>
+          <PublishItemProperty>
+            <CategoryName>ce23a3fc-d867-49e2-9f60-f8de60953cc2</CategoryName>
+            <Description />
+            <Name>James First Dashboard</Name>
+            <Title>PropTitle</Title>
+          </PublishItemProperty>
+          <PublishItemProperty>
+            <CategoryName>ce23a3fc-d867-49e2-9f60-f8de60953cc2</CategoryName>
+            <Description />
+            <Name>NHCC Home Dashboard</Name>
+            <Title>PropTitle</Title>
+          </PublishItemProperty>
+        </DashboardProperty>
+        <DataSources />
+        <WidgetProperty />
+      </PublishProperties>
+      <RefreshSettings />
+      <TitleProperties>
+        <Description />
+        <Title>NHCC Home Dashboard</Title>
+        <EnableComment>true</EnableComment>
+        <LabelParameters />
+      </TitleProperties>
+      <DashboardProperties>
+        <ExportFormats>
+          <ExcelExport>true</ExcelExport>
+          <PdfExport>true</PdfExport>
+          <ImageExport>true</ImageExport>
+        </ExportFormats>
+        <IgnoreGlobalFilter>false</IgnoreGlobalFilter>
+      </DashboardProperties>
+    </Settings>
+  </SettingCollection>
+  <RefreshSettings />
+</SettingsWithTitle>

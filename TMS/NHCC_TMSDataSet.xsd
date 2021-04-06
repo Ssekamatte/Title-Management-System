@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NHCC_TMSDataSet" targetNamespace="http://tempuri.org/NHCC_TMSDataSet.xsd" xmlns:mstns="http://tempuri.org/NHCC_TMSDataSet.xsd" xmlns="http://tempuri.org/NHCC_TMSDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwTitleMovtTableAdapter" GeneratorDataComponentClassName="vwTitleMovtTableAdapter" Name="vwTitleMovt" UserDataComponentName="vwTitleMovtTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectName="NHCC_TMS.dbo.vwTitleMovt" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT InstrumentNo, Volume, Folio, ProprietorName, Movement_Date, Destination_Address, DestinyDesc, DestinyCode, Purchasers_Address FROM dbo.vwTitleMovt</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="InstrumentNo" DataSetColumn="InstrumentNo" />
+              <Mapping SourceColumn="Volume" DataSetColumn="Volume" />
+              <Mapping SourceColumn="Folio" DataSetColumn="Folio" />
+              <Mapping SourceColumn="ProprietorName" DataSetColumn="ProprietorName" />
+              <Mapping SourceColumn="Movement_Date" DataSetColumn="Movement_Date" />
+              <Mapping SourceColumn="Destination_Address" DataSetColumn="Destination_Address" />
+              <Mapping SourceColumn="DestinyDesc" DataSetColumn="DestinyDesc" />
+              <Mapping SourceColumn="DestinyCode" DataSetColumn="DestinyCode" />
+              <Mapping SourceColumn="Purchasers_Address" DataSetColumn="Purchasers_Address" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NHCC_TMSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="NHCC_TMSDataSet" msprop:Generator_UserDSName="NHCC_TMSDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwTitleMovt" msprop:Generator_TableClassName="vwTitleMovtDataTable" msprop:Generator_TableVarName="tablevwTitleMovt" msprop:Generator_TablePropName="vwTitleMovt" msprop:Generator_RowDeletingName="vwTitleMovtRowDeleting" msprop:Generator_RowChangingName="vwTitleMovtRowChanging" msprop:Generator_RowEvHandlerName="vwTitleMovtRowChangeEventHandler" msprop:Generator_RowDeletedName="vwTitleMovtRowDeleted" msprop:Generator_UserTableName="vwTitleMovt" msprop:Generator_RowChangedName="vwTitleMovtRowChanged" msprop:Generator_RowEvArgName="vwTitleMovtRowChangeEvent" msprop:Generator_RowClassName="vwTitleMovtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InstrumentNo" msprop:Generator_ColumnVarNameInTable="columnInstrumentNo" msprop:Generator_ColumnPropNameInRow="InstrumentNo" msprop:Generator_ColumnPropNameInTable="InstrumentNoColumn" msprop:Generator_UserColumnName="InstrumentNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Volume" msprop:Generator_ColumnVarNameInTable="columnVolume" msprop:Generator_ColumnPropNameInRow="Volume" msprop:Generator_ColumnPropNameInTable="VolumeColumn" msprop:Generator_UserColumnName="Volume" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Folio" msprop:Generator_ColumnVarNameInTable="columnFolio" msprop:Generator_ColumnPropNameInRow="Folio" msprop:Generator_ColumnPropNameInTable="FolioColumn" msprop:Generator_UserColumnName="Folio" type="xs:int" minOccurs="0" />
+              <xs:element name="ProprietorName" msprop:Generator_ColumnVarNameInTable="columnProprietorName" msprop:Generator_ColumnPropNameInRow="ProprietorName" msprop:Generator_ColumnPropNameInTable="ProprietorNameColumn" msprop:Generator_UserColumnName="ProprietorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Movement_Date" msprop:Generator_ColumnVarNameInTable="columnMovement_Date" msprop:Generator_ColumnPropNameInRow="Movement_Date" msprop:Generator_ColumnPropNameInTable="Movement_DateColumn" msprop:Generator_UserColumnName="Movement_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Destination_Address" msprop:Generator_ColumnVarNameInTable="columnDestination_Address" msprop:Generator_ColumnPropNameInRow="Destination_Address" msprop:Generator_ColumnPropNameInTable="Destination_AddressColumn" msprop:Generator_UserColumnName="Destination_Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DestinyDesc" msprop:Generator_ColumnVarNameInTable="columnDestinyDesc" msprop:Generator_ColumnPropNameInRow="DestinyDesc" msprop:Generator_ColumnPropNameInTable="DestinyDescColumn" msprop:Generator_UserColumnName="DestinyDesc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DestinyCode" msprop:Generator_ColumnVarNameInTable="columnDestinyCode" msprop:Generator_ColumnPropNameInRow="DestinyCode" msprop:Generator_ColumnPropNameInTable="DestinyCodeColumn" msprop:Generator_UserColumnName="DestinyCode" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="Purchasers_Address" msprop:Generator_ColumnVarNameInTable="columnPurchasers_Address" msprop:Generator_ColumnPropNameInRow="Purchasers_Address" msprop:Generator_ColumnPropNameInTable="Purchasers_AddressColumn" msprop:Generator_UserColumnName="Purchasers_Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

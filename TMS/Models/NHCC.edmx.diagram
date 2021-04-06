@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b25cdff245f44769b8fa12f5cf3107ef" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="NHCC_TMSModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_ChiefCommunicationsOfficer" Width="1.5" PointX="14" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_Dept" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_Employee" Width="1.5" PointX="5.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_ID_Type" Width="1.5" PointX="8.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_LoginLog" Width="1.5" PointX="25.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_MarketingManager" Width="1.5" PointX="14" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_NumberOfRooms" Width="1.5" PointX="14" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_PaymemtTerms" Width="1.5" PointX="14" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_Position" Width="1.5" PointX="10.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_Applications" Width="1.5" PointX="27.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_Membership" Width="1.5" PointX="34.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_Roles" Width="1.5" PointX="30" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_SchemaVersions" Width="1.5" PointX="16.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_Sessions" Width="1.5" PointX="8.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.aspnet_Users" Width="1.5" PointX="32.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AspNetRole" Width="1.5" PointX="20.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AspNetUserClaim" Width="1.5" PointX="25.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AspNetUserLogin" Width="1.5" PointX="25.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AspNetUser" Width="1.5" PointX="23" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Audit_Action" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Country" Width="1.5" PointX="11" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.County" Width="1.5" PointX="19" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.DestinationType" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.District" Width="1.5" PointX="16.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ExpiryNotification" Width="1.5" PointX="10.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Lease_Type" Width="1.5" PointX="18.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Location" Width="1.5" PointX="2.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ModuleInfo" Width="1.5" PointX="20.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.NHCCUserRole" Width="1.5" PointX="8.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.NotificationReminderInterval" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.NotificationServer" Width="1.5" PointX="10" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.NotificationStatu" Width="1.5" PointX="8.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Offer" Width="1.5" PointX="5.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.OfferStatu" Width="1.5" PointX="10.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Outward" Width="1.5" PointX="21.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Parish" Width="1.5" PointX="24.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PayMethod" Width="1.5" PointX="21.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Project" Width="1.5" PointX="5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyApplicant" Width="1.5" PointX="13.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyApplicationDetail" Width="1.5" PointX="16.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyApplication" Width="1.5" PointX="18.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyStatu" Width="1.5" PointX="7.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitle_LeaseYears" Width="1.5" PointX="9.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitle_Payment_Status" Width="1.5" PointX="26.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitle_PlotSize" Width="1.5" PointX="27.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyType" Width="1.5" PointX="16.75" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Region" Width="1.5" PointX="14.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.SealApplicationRegister" Width="1.5" PointX="7.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.SiteContent" Width="1.5" PointX="9.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Subcounty" Width="1.5" PointX="21.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.tblErrorLog" Width="1.5" PointX="28.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.TitleChange" Width="1.5" PointX="11.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.TitleMovement_Purpose" Width="1.5" PointX="3.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.TitleMovements_Lawyers" Width="1.5" PointX="3.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.User_Menu_Option" Width="1.5" PointX="13.25" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.User_NHCC" Width="1.5" PointX="11" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Users_AccountStatus" Width="1.5" PointX="8.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Offers_Backup" Width="1.5" PointX="28.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitleMovt_Missing" Width="1.5" PointX="13.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.YesNo" Width="1.5" PointX="28.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_AllPropertyTitles" Width="1.5" PointX="28.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_AllPropertyTypes" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_AuditLog_PropertyPayment" Width="1.5" PointX="30.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_AuditLog_PropertyTitle" Width="1.5" PointX="30.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_AuditLog_PropertyTitleMovt" Width="1.5" PointX="2.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_FreeholdProperties" Width="1.5" PointX="4.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_LeaseHoldPropertyTitles" Width="1.5" PointX="6.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_LeaseNotifications" Width="1.5" PointX="21.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_MailoLandPropertyTitles" Width="1.5" PointX="23.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_ManagementReport" Width="1.5" PointX="25.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_nhccProperties" Width="1.5" PointX="8.75" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_NoTitles" Width="1.5" PointX="32.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_OffersManagement" Width="1.5" PointX="29.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_PropertyPament" Width="1.5" PointX="32.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_SoldProperties" Width="1.5" PointX="10.75" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_StandAlone_Properties" Width="1.5" PointX="34.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_TitleMovements" Width="1.5" PointX="34.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Report_UnlistedProperties" Width="1.5" PointX="12.75" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_A_SubcountyList" Width="1.5" PointX="31.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_AspNetRoles" Width="1.5" PointX="33.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_UserManagement" Width="1.5" PointX="36.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_Users" Width="1.5" PointX="36.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_UsersRoles" Width="1.5" PointX="36.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewA_LoginLogFullNames" Width="1.5" PointX="36.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewAudPropPaymentAspNetUsersFullName" Width="1.5" PointX="36.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewAudPropTitleAspNetUsersFullName" Width="1.5" PointX="36.75" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewAudPropTitleMvtAspNetUsersFullName" Width="1.5" PointX="38.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewCountyDistrict" Width="1.5" PointX="38.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewNewDistrictCountySubCounty" Width="1.5" PointX="38.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewNewRegionDistrict" Width="1.5" PointX="38.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewPropertyPaymentssTable" Width="1.5" PointX="38.75" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewPropertyTitleMovtTable" Width="1.5" PointX="40.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_A_ChiefCommunicationsOfficer" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_A_LoginLog_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_A_MarketingManager" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_A_NumberOfRooms" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_A_PaymemtTerms" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK__aspnet_Me__Appli__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK__aspnet_Ro__Appli__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK__aspnet_Us__Appli__69FBBC1F" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK__aspnet_Us__Appli__6AEFE058" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK__aspnet_Me__UserI__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicants_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_County_District" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Parish_County" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Subcounty_County" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_District_a_region" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Parish_District" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Projects_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_NotificationServer_NotificationReminderInterval" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Parish_Subcounty" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicants_User_NHCC" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicants_User_NHCC1" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplications_PropertyApplicants" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_User_NHCC" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplicationDetails_User_NHCC1" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplications_PropertyApplicationDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplications_User_NHCC" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyApplications_User_NHCC1" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_User_Menu_Option_User_NHCC" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_User_NHCC_Users_AccountStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.aspnet_UsersInRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="NHCC_TMSModel.Users_UserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.A_DocumentUpload" Width="1.5" PointX="18.375" PointY="15.75" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_A_DocumentUpload" Width="1.5" PointX="41.375" PointY="32.75" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AuditLog_PropertyTitle" Width="1.5" PointX="43.625" PointY="26.625" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitle_District" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitle_PropertyType" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AuditLog_PropertyPayment" Width="1.5" PointX="26.25" PointY="17.375" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.Property_Payment" Width="1.5" PointX="24" PointY="16.75" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyPayment_Audit_Action" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyPayment_PayMethod" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyPayment_Property_Payment" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Property_Payment_PayMethod" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_Property_Payment_Property_Payment" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.ViewPropertyTitlesTable" Width="1.5" PointX="16.375" PointY="27.75" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.AuditLog_PropertyTitleMovt" Width="1.5" PointX="19.25" PointY="21.5" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitleMovt" Width="1.5" PointX="6" PointY="14.125" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitleMovt_Audit_Action" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitleMovt_DestinationType" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitleMovt_DestinationType1" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitleMovt_PropertyTitleMovt" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_DestinationType1" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_PropertyTitleMovt" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_PropertyTitleMovt1" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_PropertyTitleMovt2" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_TitleMovements_Lawyers" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitleMovt_TittleMovement_Purpose" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.View_LeasePeriodNotification" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NHCC_TMSModel.PropertyTitle" Width="1.5" PointX="43.375" PointY="1.75" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitle_PropertyTitle" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_AuditLog_PropertyTitle_PropertyTitle1" />
+        <AssociationConnector Association="NHCC_TMSModel.FK_PropertyTitle_PropertyTitle" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,203 @@
+﻿@model TMS.Models.PropertyTitleMovt
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PropertyTitleMovt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title_Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title_Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movement_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movement_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Outward)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Outward)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinationDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebSite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlatNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlatNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasVolumeFolio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasVolumeFolio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlotNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlotNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationType.DestinyDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinationType.DestinyDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Project_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Project_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleMovements_Lawyers.Lawyers_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleMovements_Lawyers.Lawyers_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleMovement_Purpose.Purpose_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleMovement_Purpose.Purpose_Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

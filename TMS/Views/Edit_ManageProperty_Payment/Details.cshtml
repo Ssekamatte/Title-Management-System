@@ -1,0 +1,139 @@
+﻿@model TMS.Models.Property_Payment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Property_Payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title_Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title_Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pay_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pay_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrroundRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrroundRent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyRates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyRates)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayMethod.PayMethodDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayMethod.PayMethodDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Project_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Project_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyTitle.Title_Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyTitle.Title_Reference)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

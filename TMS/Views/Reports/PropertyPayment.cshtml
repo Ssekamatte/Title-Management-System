@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "PropertyPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Property Payment Report </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+
+
+@using (Html.BeginForm())
+
+
+
+{<div>
+    <div class="row">
+
+        <div class="col-lg-3">
+            <p>Folio</p>
+            <p><input type="text" id="Folio_Range_1" name="Folio_Range_1" class="e-field e-ejinputtext valid" /></p>
+        </div>
+
+        <div class="col-lg-3">
+            <p>To</p>
+            <p><input type="text" id="Folio_Range_2" name="Folio_Range_2" class="e-field e-ejinputtext valid" /></p>
+        </div>
+
+        <div class="col-lg-3">
+            <p>Start Date</p>
+            <p><input type="text" id="EndDate01" name="EndDate01" class="e-field e-ejinputtext valid" /></p>
+        </div>
+        <div class="col-lg-3">
+            <p>End Date</p>
+            <p><input type="text" id="EndDate02" name="EndDate02" class="e-field e-ejinputtext valid" /></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <p>Title Reference</p>
+            <p><input type="text" id="Title_Reference" name="Title_Reference" class="e-field e-ejinputtext valid" /></p>
+        </div>
+
+        <div class="col-lg-3">
+            <p>Volume</p>
+            <p><input type="text" id="Volume" name="Volume" class="e-field e-ejinputtext valid" /></p>
+        </div>
+
+        <div class="col-lg-3">
+            <p>Location</p>
+            <p><input type="text" id="Location_id" name="Location_id" class="e-field e-ejinputtext valid" /></p>
+        </div>
+
+        <div class="col-lg-3">
+            <p>Pay Method</p>
+            <p><input type="text" id="PayMethodCode" name="PayMethodCode" class="e-field e-ejinputtext valid" /></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <p>Land Type</p>
+            <p><input type="text" id="Lease_Type" name="Lease_Type" class="e-field e-ejinputtext valid" /></p>
+
+        </div>
+
+        <br />
+        <div class="col-lg-4">
+            <input class="btn btn-success" type="button" value="Load Report">
+        </div>
+
+
+    </div>
+</div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+
+    $("#Folio_Range_1").ejNumericTextbox();
+    $("#Folio_Range_2").ejNumericTextbox();
+
+
+        $("#EndDate01").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+        $("#EndDate02").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+
+ $(function () {
+          $(':button').click(function () {
+
+              var Folio1 = $("#Folio_Range_1").data("ejNumericTextbox");
+              var _Folio1 = Folio1.getValue();
+
+              var Folio2 = $("#Folio_Range_2").data("ejNumericTextbox");
+              var _Folio2 = Folio2.getValue();
+
+        var dateobject = $("#EndDate01").data("ejDatePicker"); 
+        var StartDate = dateobject.getValue();
+
+        var dateobject1 = $("#EndDate02").data("ejDatePicker");
+        var EndDate = dateobject1.getValue();
+
+       var Location_id1 = $('#Location_id').data("ejDropDownList");
+       var _Location_id = Location_id1.option("value");
+        //alert(_Location_id); //Alert for Location
+
+      var Lease_Type1 = $('#Lease_Type').data("ejDropDownList");
+      var _Lease_Type = Lease_Type1.option("value");
+           //   alert(_Lease_Type); //Alert for Lease Type
+
+      var Volume1 = $('#Volume').data("ejDropDownList");
+      var _Volume1 = Volume1.option("value");
+
+     var PayMethodCode1 = $('#PayMethodCode').data("ejDropDownList");
+     var _PayMethodCode1 = PayMethodCode1.option("value");
+
+     var Title_Reference1 = $('#Title_Reference').data("ejDropDownList");
+     var _Title_Reference1 = Title_Reference1.option("value");
+
+        $("#mqpartial").load("@Url.Action("PrpertyPaymentPartial", "Reports")",
+                {
+
+                    'sdate': StartDate,
+                    'edate': EndDate,
+                    'Folio_Range_1': _Folio1,
+                    'Folio_Range_2': _Folio2,
+                    'Location_id': _Location_id,
+                    'Lease_Type': _Lease_Type,
+                    'Volume': _Volume1,
+                    'PayMethodCode': _PayMethodCode1,
+                    'Title_Reference': _Title_Reference1,
+
+                    
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+
+
+        });
+    });
+
+</script>
+
+<script>
+
+    //Title Reference
+    $.ajax({
+        url: 'GetTitleReferencePropPayment',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Title_Reference').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Title_Reference", text: "Title_Reference" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //PayMethod
+    $.ajax({
+        url: 'GetPaymentMethod',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#PayMethodCode').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "PayMethodDesc", text: "PayMethodDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+      
+    //Lease Types
+    $.ajax({
+        url: 'GetLease_Type',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Lease_Type').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "LandDesc", text: "LandDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+   //Location Description
+    $.ajax({
+        url: 'GetLocationCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Location_id').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Location_Desc", text: "Location_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Volume
+    $.ajax({
+        url: 'GetVolumePropPayment',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Volume').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Volume", text: "Volume" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+</script>

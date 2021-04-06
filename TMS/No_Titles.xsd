@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="No_Titles" targetNamespace="http://tempuri.org/No_Titles.xsd" xmlns:mstns="http://tempuri.org/No_Titles.xsd" xmlns="http://tempuri.org/No_Titles.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Report_NoTitlesTableAdapter" GeneratorDataComponentClassName="Report_NoTitlesTableAdapter" Name="Report_NoTitles" UserDataComponentName="Report_NoTitlesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectName="NHCC_TMS.dbo.Report_NoTitles" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Project_Desc, LandDesc, Plot_No, Block_No, ActualPlotSize, PlotSize_Desc FROM dbo.Report_NoTitles</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Project_Desc" DataSetColumn="Project_Desc" />
+              <Mapping SourceColumn="LandDesc" DataSetColumn="LandDesc" />
+              <Mapping SourceColumn="Plot_No" DataSetColumn="Plot_No" />
+              <Mapping SourceColumn="Block_No" DataSetColumn="Block_No" />
+              <Mapping SourceColumn="ActualPlotSize" DataSetColumn="ActualPlotSize" />
+              <Mapping SourceColumn="PlotSize_Desc" DataSetColumn="PlotSize_Desc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="No_Titles" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="No_Titles" msprop:Generator_UserDSName="No_Titles">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Report_NoTitles" msprop:Generator_TableClassName="Report_NoTitlesDataTable" msprop:Generator_TableVarName="tableReport_NoTitles" msprop:Generator_TablePropName="Report_NoTitles" msprop:Generator_RowDeletingName="Report_NoTitlesRowDeleting" msprop:Generator_RowChangingName="Report_NoTitlesRowChanging" msprop:Generator_RowEvHandlerName="Report_NoTitlesRowChangeEventHandler" msprop:Generator_RowDeletedName="Report_NoTitlesRowDeleted" msprop:Generator_UserTableName="Report_NoTitles" msprop:Generator_RowChangedName="Report_NoTitlesRowChanged" msprop:Generator_RowEvArgName="Report_NoTitlesRowChangeEvent" msprop:Generator_RowClassName="Report_NoTitlesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Project_Desc" msprop:Generator_ColumnVarNameInTable="columnProject_Desc" msprop:Generator_ColumnPropNameInRow="Project_Desc" msprop:Generator_ColumnPropNameInTable="Project_DescColumn" msprop:Generator_UserColumnName="Project_Desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LandDesc" msprop:Generator_ColumnVarNameInTable="columnLandDesc" msprop:Generator_ColumnPropNameInRow="LandDesc" msprop:Generator_ColumnPropNameInTable="LandDescColumn" msprop:Generator_UserColumnName="LandDesc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Plot_No" msprop:Generator_ColumnVarNameInTable="columnPlot_No" msprop:Generator_ColumnPropNameInRow="Plot_No" msprop:Generator_ColumnPropNameInTable="Plot_NoColumn" msprop:Generator_UserColumnName="Plot_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="225" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Block_No" msprop:Generator_ColumnVarNameInTable="columnBlock_No" msprop:Generator_ColumnPropNameInRow="Block_No" msprop:Generator_ColumnPropNameInTable="Block_NoColumn" msprop:Generator_UserColumnName="Block_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ActualPlotSize" msprop:Generator_ColumnVarNameInTable="columnActualPlotSize" msprop:Generator_ColumnPropNameInRow="ActualPlotSize" msprop:Generator_ColumnPropNameInTable="ActualPlotSizeColumn" msprop:Generator_UserColumnName="ActualPlotSize" type="xs:double" minOccurs="0" />
+              <xs:element name="PlotSize_Desc" msprop:Generator_ColumnVarNameInTable="columnPlotSize_Desc" msprop:Generator_ColumnPropNameInRow="PlotSize_Desc" msprop:Generator_ColumnPropNameInTable="PlotSize_DescColumn" msprop:Generator_UserColumnName="PlotSize_Desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

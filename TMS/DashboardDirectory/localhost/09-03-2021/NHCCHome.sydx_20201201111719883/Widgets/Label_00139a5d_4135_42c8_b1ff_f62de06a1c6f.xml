@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DashboardItem xsi:type="LabelItem" Column="0" ColumnSpan="0" Version="4.1.0.84" UniqueDataSourceNames="" Id="00139a5d-4135-42c8-b1ff-f62de06a1c6f" Name="Label_12" ReportName="Label_12" Row="0" RowSpan="0" WidgetGuid="00000000-0000-0000-0000-000000000000" WidgetType="Label" UniqueReportName="Label_00139a5d_4135_42c8_b1ff_f62de06a1c6f">
+    <DisplayName>Label_12</DisplayName>
+    <EnableDrillThrough>false</EnableDrillThrough>
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <IgnoreMasterFilter>false</IgnoreMasterFilter>
+    <SelectFirstItemByDefault>false</SelectFirstItemByDefault>
+    <DefaultSelectedIndices>0</DefaultSelectedIndices>
+    <IsControlConfigured>true</IsControlConfigured>
+    <IsCrossDataSourceFilter>false</IsCrossDataSourceFilter>
+    <IsLinked>false</IsLinked>
+    <IsMasterFilter>false</IsMasterFilter>
+    <IsNotInCanvas>false</IsNotInCanvas>
+    <IsSharedWidget>false</IsSharedWidget>
+    <Responsive>false</Responsive>
+    <SelectedFilterValues />
+    <FormatText>
+      <RichTextParagraphs>
+        <Paragraph TextAlignment="Center">
+          <Runs>
+            <RichTextRun Bold="true" FontFamily="Times New Roman" FontSize="18" ForegroundColor="#FFEEECE1" IsHyperlink="false" Italic="false" Underline="false">
+              <Text>LeaseHold</Text>
+            </RichTextRun>
+          </Runs>
+        </Paragraph>
+      </RichTextParagraphs>
+      <Paragraphs />
+    </FormatText>
+    <HighlightedColor>#FFC0504D</HighlightedColor>
+    <IsTitle>false</IsTitle>
+    <VerticalTextAlignment>Center</VerticalTextAlignment>
+  </DashboardItem>
+  <RelationalReport IsRawData="false" IsBlendingWidget="false">
+    <Calculations />
+    <ColumnElements />
+    <EnableTreeViewFilter>false</EnableTreeViewFilter>
+    <FilterElements />
+    <KpiElements />
+    <SummaryElements />
+    <CustomWidgetElements />
+    <Listeners />
+    <MeasureFilterForControl />
+    <ReportColumnCount>0</ReportColumnCount>
+    <RowElements />
+    <ShowOthersGroup>false</ShowOthersGroup>
+    <TopNFilterElements />
+  </RelationalReport>
+</Report>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NHCC_Properties" targetNamespace="http://tempuri.org/NHCC_Properties.xsd" xmlns:mstns="http://tempuri.org/NHCC_Properties.xsd" xmlns="http://tempuri.org/NHCC_Properties.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Report_nhccPropertiesTableAdapter" GeneratorDataComponentClassName="Report_nhccPropertiesTableAdapter" Name="Report_nhccProperties" UserDataComponentName="Report_nhccPropertiesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectName="NHCC_TMS.dbo.Report_nhccProperties" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Title_Reference, LandDesc, Project_Desc, Volume, Folio, Plot_No, Unit_No, Plan_No, Block_No, Flat_N0 FROM dbo.Report_nhccProperties</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Title_Reference" DataSetColumn="Title_Reference" />
+              <Mapping SourceColumn="LandDesc" DataSetColumn="LandDesc" />
+              <Mapping SourceColumn="Project_Desc" DataSetColumn="Project_Desc" />
+              <Mapping SourceColumn="Volume" DataSetColumn="Volume" />
+              <Mapping SourceColumn="Folio" DataSetColumn="Folio" />
+              <Mapping SourceColumn="Plot_No" DataSetColumn="Plot_No" />
+              <Mapping SourceColumn="Unit_No" DataSetColumn="Unit_No" />
+              <Mapping SourceColumn="Plan_No" DataSetColumn="Plan_No" />
+              <Mapping SourceColumn="Block_No" DataSetColumn="Block_No" />
+              <Mapping SourceColumn="Flat_N0" DataSetColumn="Flat_N0" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NHCC_Properties" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="NHCC_Properties" msprop:Generator_UserDSName="NHCC_Properties">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Report_nhccProperties" msprop:Generator_TableClassName="Report_nhccPropertiesDataTable" msprop:Generator_TableVarName="tableReport_nhccProperties" msprop:Generator_TablePropName="Report_nhccProperties" msprop:Generator_RowDeletingName="Report_nhccPropertiesRowDeleting" msprop:Generator_RowChangingName="Report_nhccPropertiesRowChanging" msprop:Generator_RowEvHandlerName="Report_nhccPropertiesRowChangeEventHandler" msprop:Generator_RowDeletedName="Report_nhccPropertiesRowDeleted" msprop:Generator_UserTableName="Report_nhccProperties" msprop:Generator_RowChangedName="Report_nhccPropertiesRowChanged" msprop:Generator_RowEvArgName="Report_nhccPropertiesRowChangeEvent" msprop:Generator_RowClassName="Report_nhccPropertiesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Title_Reference" msprop:Generator_ColumnVarNameInTable="columnTitle_Reference" msprop:Generator_ColumnPropNameInRow="Title_Reference" msprop:Generator_ColumnPropNameInTable="Title_ReferenceColumn" msprop:Generator_UserColumnName="Title_Reference" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LandDesc" msprop:Generator_ColumnVarNameInTable="columnLandDesc" msprop:Generator_ColumnPropNameInRow="LandDesc" msprop:Generator_ColumnPropNameInTable="LandDescColumn" msprop:Generator_UserColumnName="LandDesc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Project_Desc" msprop:Generator_ColumnVarNameInTable="columnProject_Desc" msprop:Generator_ColumnPropNameInRow="Project_Desc" msprop:Generator_ColumnPropNameInTable="Project_DescColumn" msprop:Generator_UserColumnName="Project_Desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Volume" msprop:Generator_ColumnVarNameInTable="columnVolume" msprop:Generator_ColumnPropNameInRow="Volume" msprop:Generator_ColumnPropNameInTable="VolumeColumn" msprop:Generator_UserColumnName="Volume">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Folio" msprop:Generator_ColumnVarNameInTable="columnFolio" msprop:Generator_ColumnPropNameInRow="Folio" msprop:Generator_ColumnPropNameInTable="FolioColumn" msprop:Generator_UserColumnName="Folio" type="xs:int" />
+              <xs:element name="Plot_No" msprop:Generator_ColumnVarNameInTable="columnPlot_No" msprop:Generator_ColumnPropNameInRow="Plot_No" msprop:Generator_ColumnPropNameInTable="Plot_NoColumn" msprop:Generator_UserColumnName="Plot_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="225" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Unit_No" msprop:Generator_ColumnVarNameInTable="columnUnit_No" msprop:Generator_ColumnPropNameInRow="Unit_No" msprop:Generator_ColumnPropNameInTable="Unit_NoColumn" msprop:Generator_UserColumnName="Unit_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Plan_No" msprop:Generator_ColumnVarNameInTable="columnPlan_No" msprop:Generator_ColumnPropNameInRow="Plan_No" msprop:Generator_ColumnPropNameInTable="Plan_NoColumn" msprop:Generator_UserColumnName="Plan_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Block_No" msprop:Generator_ColumnVarNameInTable="columnBlock_No" msprop:Generator_ColumnPropNameInRow="Block_No" msprop:Generator_ColumnPropNameInTable="Block_NoColumn" msprop:Generator_UserColumnName="Block_No" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Flat_N0" msprop:Generator_ColumnVarNameInTable="columnFlat_N0" msprop:Generator_ColumnPropNameInRow="Flat_N0" msprop:Generator_ColumnPropNameInTable="Flat_N0Column" msprop:Generator_UserColumnName="Flat_N0" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

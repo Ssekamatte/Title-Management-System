@@ -1,0 +1,137 @@
+﻿<!DOCTYPE HTML>
+<html><head>
+   <title>&nbsp;</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+   <!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet" />
+
+   <!-- This block defines the styles of the TOC headings, change them as needed -->
+   <style type="text/css">
+       body { }
+       .heading1 { font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading2 { font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading3 { font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading4 { font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading5 { font-size: 10pt; color: #000000; text-decoration: none; }
+       .heading6 { font-size: 10pt; color: #000000; text-decoration: none; }
+
+       .hilight1 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+       .hilight2 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+       .hilight3 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+       .hilight4 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+       .hilight5 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+       .hilight6 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+
+       /* TOC LIST CSS */
+       #toc    { padding:0; margin:0 }
+       #toc li { margin-top:2px; margin-left:0; padding:1px }
+       #toc ul { padding-left:0; margin-left:0px }       
+       /* TOC LIST CSS */
+   </style>
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body>
+<ul id="toc" style="list-style-type:none;display:block;padding-left:0">
+<li class="heading1" id="i1" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="introduction.htm" target="hmcontent"><span class="heading1" id="s1" ondblclick="return dblclicked(this)">Introduction</span></a>
+<ul id="ul1" style="list-style-type:none">
+<li class="heading2" id="i1.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a1.1" href="welcome_topic.htm" target="hmcontent"><span class="heading2" id="s1.1">System Dashboards</span></a>
+</li>
+<li class="heading2" id="i1.2" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a1.2" href="second_topic.htm" target="hmcontent"><span class="heading2" id="s1.2" ondblclick="return dblclicked(this)">Common Features</span></a>
+<ul id="ul1.2" style="list-style-type:none">
+<li class="heading3" id="i1.2.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading3" id="a1.2.1" href="dialog_template.htm" target="hmcontent"><span class="heading3" id="s1.2.1">Dialog Template</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i2" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href="chapter_2.htm" target="hmcontent"><span class="heading1" id="s2" ondblclick="return dblclicked(this)">Decisions/Directives</span></a>
+<ul id="ul2" style="list-style-type:none">
+<li class="heading2" id="i2.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.1" href="overview.htm" target="hmcontent"><span class="heading2" id="s2.1">Add new Decision / Directive</span></a>
+</li>
+<li class="heading2" id="i2.2" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.2" href="edit_decision___directive.htm" target="hmcontent"><span class="heading2" id="s2.2">Edit Decision / Directive</span></a>
+</li>
+<li class="heading2" id="i2.3" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.3" href="update_progressive_information.htm" target="hmcontent"><span class="heading2" id="s2.3">Update Progressive Information</span></a>
+</li>
+<li class="heading2" id="i2.4" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.4" href="compedium_report.htm" target="hmcontent"><span class="heading2" id="s2.4">Compedium Report</span></a>
+</li>
+<li class="heading2" id="i2.5" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.5" href="upload_new_decisions.htm" target="hmcontent"><span class="heading2" id="s2.5">Upload New Decisions</span></a>
+</li>
+<li class="heading2" id="i2.6" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a2.6" href="update_history.htm" target="hmcontent"><span class="heading2" id="s2.6">Update History</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i3" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a3" href="common_market_protocol.htm" target="hmcontent"><span class="heading1" id="s3" ondblclick="return dblclicked(this)">Common Market Protocol</span></a>
+<ul id="ul3" style="list-style-type:none">
+<li class="heading2" id="i3.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.1" href="summary_trends.htm" target="hmcontent"><span class="heading2" id="s3.1">Summary Trends</span></a>
+</li>
+<li class="heading2" id="i3.2" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.2" href="update_status_history.htm" target="hmcontent"><span class="heading2" id="s3.2">Update Status History</span></a>
+</li>
+<li class="heading2" id="i3.3" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a3.3" href="common_market_utilities.htm" target="hmcontent"><span class="heading2" id="s3.3">Common Market Utilities</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i4" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a4" href="non-_tarrif_barriers_ntbs.htm" target="hmcontent"><span class="heading1" id="s4" ondblclick="return dblclicked(this)">Non- Tarrif Barriers (NTBs)</span></a>
+<ul id="ul4" style="list-style-type:none">
+<li class="heading2" id="i4.1" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a4.1" href="registering_and_tracking_compl.htm" target="hmcontent"><span class="heading2" id="s4.1" ondblclick="return dblclicked(this)">Registering and Tracking Complaints</span></a>
+<ul id="ul4.1" style="list-style-type:none">
+<li class="heading3" id="i4.1.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading3" id="a4.1.1" href="file_uploads.htm" target="hmcontent"><span class="heading3" id="s4.1.1">File uploads</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i4.2" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a4.2" href="track_a_complaint.htm" target="hmcontent"><span class="heading2" id="s4.2">Track a Complaint</span></a>
+</li>
+<li class="heading2" id="i4.3" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a4.3" href="ntb_foca_lperson.htm" target="hmcontent"><span class="heading2" id="s4.3">NTB Foca lPerson</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i5" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading1" id="a5" href="calender_of_activites.htm" target="hmcontent"><span class="heading1" id="s5" ondblclick="return dblclicked(this)">Calender of Activities</span></a>
+<ul id="ul5" style="list-style-type:none">
+<li class="heading2" id="i5.1" data-bg="cicon1.gif;cicon2.gif" style="background:url(cicon2.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.1" href="working_with_activities_appoin.htm" target="hmcontent"><span class="heading2" id="s5.1" ondblclick="return dblclicked(this)">Working with Activities (Appointments)</span></a>
+<ul id="ul5.1" style="list-style-type:none">
+<li class="heading3" id="i5.1.1" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading3" id="a5.1.1" href="appointment_window.htm" target="hmcontent"><span class="heading3" id="s5.1.1">Add/Edit Activity (Appointment) Window</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i5.2" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.2" href="edit_activities.htm" target="hmcontent"><span class="heading2" id="s5.2">Edit Activities</span></a>
+</li>
+<li class="heading2" id="i5.3" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.3" href="conflicting_policy_meetings.htm" target="hmcontent"><span class="heading2" id="s5.3">Conflicting Policy Meetings</span></a>
+</li>
+<li class="heading2" id="i5.4" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.4" href="rotational_activities_by_partn.htm" target="hmcontent"><span class="heading2" id="s5.4">Rotational Activities by Partner States</span></a>
+</li>
+<li class="heading2" id="i5.5" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.5" href="forward_activities.htm" target="hmcontent"><span class="heading2" id="s5.5">Forward Activities</span></a>
+</li>
+<li class="heading2" id="i5.6" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.6" href="activity_capturing_deadline.htm" target="hmcontent"><span class="heading2" id="s5.6">Activity Capturing Deadline</span></a>
+</li>
+<li class="heading2" id="i5.7" style="background:url(cicon9.gif) no-repeat;padding-left:20px" onclick="return clicked(this,event)"><a class="heading2" id="a5.7" href="report.htm" target="hmcontent"><span class="heading2" id="s5.7">Report</span></a>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('cicon2.gif','cicon1.gif','cicon9.gif');</script>
+</body>
+</html>

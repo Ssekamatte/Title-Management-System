@@ -1,0 +1,1294 @@
+﻿@using Microsoft.AspNet.Identity
+@using TMS.Models
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - NHCC Titles Management</title>
+
+  
+
+
+    @*<script>
+
+            <table style="width:100%;">
+                <tr>
+                    <td><h2>Time Left To Log You Out</h2></td>
+                    <td style="text-align:right;"><span id="spanTimeLeft"></span> seconds left</td>
+                </tr>
+            </table>
+
+        </script>*@
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")
+    @Styles.Render("~/Content/ej/web/gradient-lime/ej.web.all.min.css")
+    @Scripts.Render("~/Scripts/jquery-3.1.1.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jsrender.min.js")
+    @Scripts.Render("~/Scripts/ej/ej.web.all.min.js")
+    @Scripts.Render("~/Scripts/ej/ej.unobtrusive.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+   
+
+    <style>
+        .container {
+            margin-left: 2%;
+            min-width: 97%;
+            width: 100%;
+            padding: 0px;
+            margin-right: 2%;
+            margin-right: -100px;
+        }
+
+        #mainMenu {
+            margin-left: 0%;
+        }
+
+        .body-content {
+            /*margin-left: 1%;*/
+            margin-right: 9%;
+        }
+
+        #Wrapper {
+            /*background-color: #3F51B5;*/
+            z-index: 1;
+            height: 500px;
+            width: 250px;
+            position: fixed;
+        }
+
+        #page-content-wrapper {
+            margin-left: 260px;
+            margin-right: 7px;
+        }
+    </style>
+    <style>
+        /*!
+            // 3. Loader
+            // --------------------------------------------------*/
+        .loader {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            opacity: 0.8;
+            z-index: 10000000;
+            background: none;
+            height: 10%;
+            width: 10%;
+            margin: auto;
+        }
+
+        .strip-holder {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            left: 50%;
+            margin-left: -50px;
+            position: relative;
+        }
+
+        .strip-1,
+        .strip-2,
+        .strip-3 {
+            width: 15px;
+            height: 20px;
+            background: #0072bc;
+            position: relative;
+            -webkit-animation: stripMove 2s ease infinite alternate;
+            animation: stripMove 2s ease infinite alternate;
+            -moz-animation: stripMove 2s ease infinite alternate;
+        }
+
+        .strip-2 {
+            -webkit-animation-duration: 2.1s;
+            animation-duration: 2.1s;
+            background-color: #c9252b;
+        }
+
+        .strip-3 {
+            -webkit-animation-duration: 2.2s;
+            animation-duration: 2.2s;
+            background-color: #01579B;
+        }
+
+        @@-webkit-keyframes stripMove {
+            0% {
+                transform: translate3d(0px, 0px, 0px);
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -moz-transform: translate3d(0px, 0px, 0px);
+            }
+
+            50% {
+                transform: translate3d(0px, 0px, 0px);
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -moz-transform: translate3d(0px, 0px, 0px);
+                transform: scale(4, 1);
+                -webkit-transform: scale(4, 1);
+                -moz-transform: scale(4, 1);
+            }
+
+            100% {
+                transform: translate3d(-50px, 0px, 0px);
+                -webkit-transform: translate3d(-50px, 0px, 0px);
+                -moz-transform: translate3d(-50px, 0px, 0px);
+            }
+        }
+
+        @@-moz-keyframes stripMove {
+            0% {
+                transform: translate3d(-50px, 0px, 0px);
+                -webkit-transform: translate3d(-50px, 0px, 0px);
+                -moz-transform: translate3d(-50px, 0px, 0px);
+            }
+
+            50% {
+                transform: translate3d(0px, 0px, 0px);
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -moz-transform: translate3d(0px, 0px, 0px);
+                transform: scale(4, 1);
+                -webkit-transform: scale(4, 1);
+                -moz-transform: scale(4, 1);
+            }
+
+            100% {
+                transform: translate3d(50px, 0px, 0px);
+                -webkit-transform: translate3d(50px, 0px, 0px);
+                -moz-transform: translate3d(50px, 0px, 0px);
+            }
+        }
+
+        @@keyframes stripMove {
+            0% {
+                transform: translate3d(-50px, 0px, 0px);
+                -webkit-transform: translate3d(-50px, 0px, 0px);
+                -moz-transform: translate3d(-50px, 0px, 0px);
+            }
+
+            50% {
+                transform: translate3d(0px, 0px, 0px);
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -moz-transform: translate3d(0px, 0px, 0px);
+                transform: scale(4, 1);
+                -webkit-transform: scale(4, 1);
+                -moz-transform: scale(4, 1);
+            }
+
+            100% {
+                transform: translate3d(50px, 0px, 0px);
+                -webkit-transform: translate3d(50px, 0px, 0px);
+                -moz-transform: translate3d(50px, 0px, 0px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    @*<header>
+            <div class="container body-content">
+                <hr />
+                <p>You are going to be logged out in <span id="spanTimeLeft"></span> seconds </p>
+
+            </div>
+        </header>*@
+
+    <div class="loader" id="AjaxLoader" style="display:none;">
+        <div class="strip-holder">
+            <div class="strip-1"></div>
+            <div class="strip-2"></div>
+            <div class="strip-3"></div>
+        </div>
+    </div>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    @Html.Hidden("RedirectTo", Url.Action("LogOff", "Account"));
+
+    <div class="navbar navbar-fixed-top">
+        @*@Html.Partial("_LoginPartial")*@
+
+        @if (@ViewBag.Dash != "YES")
+        {
+            @Html.Partial("_LoginPartial")
+        }
+
+        @Html.EJ().Menu("mainMenu").Items(items =>
+
+   {
+       items.Add().Url(Url.Action("HomeDashboard", "Dashboard")).Text("Home");
+       //items.Add().Id("Utilities1").Url("#").Text("Add Land Title");
+       if (User.IsInRole("Super Administrator"))
+
+       //items.Add().Url(Url.Action("LMISDashboard", "Dashboard")).Text("Home");
+
+       {
+
+           items.Add().Id("Utilities1").Url("#").Text("Add Land Title").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("AddLandTitles").Url("#").Text("Land Titles").Children(child1 =>
+               {
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("FreeHoldProperty", "PropertyTitles")).Text("Free Hold");
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("LeaseHoldProperty", "PropertyTitles")).Text("Lease Hold");
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("MailoProperty", "PropertyTitles")).Text("Mailo Land");
+               });
+
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("AddPayment", "Property_Payment")).Text("Payment");
+               //child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("MoveTitle").Url("#").Text("Move Title").Children(child =>
+           {
+
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+               //child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities2").Url("#").Text("Manage/Approve Entries").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitles").Url("#").Text("Land Titles").Children(child1 =>
+               {
+                   child1.Add().Id("ApproveFreeHoldTitles").Url(Url.Action("Index", "ApproveFreeHoldTitles")).Text("Free Hold");
+                   child1.Add().Id("ApproveLeaseHoldTitles").Url(Url.Action("Index", "ApproveLeaseHoldTitles")).Text("Lease Hold");
+                   child1.Add().Id("ApproveMailoTitles").Url(Url.Action("Index", "ApproveMailoTitles")).Text("Mailo Land");
+               });
+               child.Add().Id("Edit_ManageProperty_Payment").Url(Url.Action("Index", "Edit_ManageProperty_Payment")).Text("Land Payments");
+               child.Add().Id("Edit_ManagePropertyTitleMovts").Url(Url.Action("Index", "Edit_ManagePropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities3").Url("#").Text("Approved Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("ApprovedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("ApprovedFreeHoldTitles").Url(Url.Action("Index", "ApprovedFreeHoldTitles")).Text("Free Hold");
+                   child3.Add().Id("ApprovedLeaseHoldTitles").Url(Url.Action("Index", "ApprovedLeaseHoldTitles")).Text("Lease Hold");
+                   child3.Add().Id("ApprovedMailoTitles").Url(Url.Action("Index", "ApprovedMailoTitles")).Text("Mailo Land");
+
+               });
+
+               child.Add().Id("ApprovedPropertyPayment").Url(Url.Action("Index", "ApprovedPropertyPayment")).Text("Payments");
+               child.Add().Id("ApprovedPropertyTitleMovtsController").Url(Url.Action("Index", "ApprovedPropertyTitleMovtsController")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities4").Url("#").Text("Rejected Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("RejectedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("RejectedPropertyTitles1").Url(Url.Action("RejectedFreeHoldAdmin", "RejectedPropertyTitles1")).Text("Free Hold");
+                   child3.Add().Id("RejectedPropertyTilesLeaseHold").Url(Url.Action("RejectedLeaseHoldAdmin", "RejectedPropertyTilesLeaseHold")).Text("Lease Hold");
+                   child3.Add().Id("RejectedPropertyTilesMailo1").Url(Url.Action("RejectedMailoAdmin", "RejectedPropertyTilesMailo1")).Text("Mailo Land");
+               });
+
+               child.Add().Id("RejectedLandPayments").Url(Url.Action("RejectedLandPaymentsAdmin", "RejectedLandPayments")).Text("Payments");
+               child.Add().Id("RejectedPropertyTitleMovts").Url(Url.Action("RejectedpropertyTitleMovtsAdmin", "RejectedPropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities5").Url("#").Text("Unlocked Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("UnlockedTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("UnlockFreeHoldPropertyTitle").Url(Url.Action("UnlockFreeHoldPropertyTitlesAdmin", "UnlockFreeHoldPropertyTitle")).Text("Free Hold");
+                   child3.Add().Id("UnlockLeaseHoldPropertyTitle").Url(Url.Action("UnlockLeaseHoldPropertyTitlesAdmin", "UnlockLeaseHoldPropertyTitle")).Text("Lease Hold");
+                   child3.Add().Id("UnlockMailoPropertyTitle").Url(Url.Action("UnlockMailoPropertyTitlesAdmin", "UnlockMailoPropertyTitle")).Text("Mailo Land");
+
+               });
+
+               child.Add().Id("UnlockPropertyPayment").Url(Url.Action("UnlockPropertyPayments", "UnlockPropertyPayment")).Text("Payments");
+               child.Add().Id("UnlockPropertyTitleMovts").Url(Url.Action("UnlockPropertyTitleMovts", "UnlockPropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities6").Url("#").Text("View Reports").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitleReports").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("AllTitles").Url(Url.Action("AllTitles", "Reports")).Text("All Titles");
+                   child3.Add().Id("FreeHoldProperties").Url(Url.Action("FreeHoldProperties", "Reports")).Text("Free Hold");
+                   child3.Add().Id("LeaseHoldProperties").Url(Url.Action("LeaseHoldProperties", "Reports")).Text("Lease Hold");
+                   child3.Add().Id("MailoLandProperties").Url(Url.Action("MailoLandProperties", "Reports")).Text("Mailo Land");
+               });
+
+
+               child.Add().Id("Property Types").Url("#").Text("Property Types").Children(child3 =>
+               {
+
+                   child3.Add().Id("StandAloneProperties").Url(Url.Action("StandAloneProperties", "Reports")).Text("Stand Alone Properties");
+
+                   child3.Add().Id("CondomoniumProperties").Url(Url.Action("Condomonium_Properties", "Reports")).Text("Condominium Properties");
+                   child3.Add().Id("UnlistedProperties").Url(Url.Action("UnlistedProperties", "Reports")).Text("Unlisted Land Types");
+
+               });
+
+               child.Add().Id("PropertyPayments").Url(Url.Action("PropertyPayment", "Reports")).Text("Property Payment");
+               child.Add().Id("TitleMovement").Url(Url.Action("TitleMovement", "Reports")).Text("Title Movements");
+
+               child.Add().Id("ManagementReport").Url(Url.Action("ManagementReport", "Reports")).Text("Management Report");
+               child.Add().Id("NHCCProperties").Url(Url.Action("NHCCProperties", "Reports")).Text("NHCC Properties");
+               child.Add().Id("NoTitles").Url(Url.Action("NoTitles", "Reports")).Text("No Titles");
+               child.Add().Id("ReportSoldProperties").Url(Url.Action("ReportSoldProperties", "Reports")).Text("Sold Properties");
+               child.Add().Id("LeaseNotifications").Url(Url.Action("LeaseNotifications", "Reports")).Text("Lease Notifications");
+
+           });
+
+           items.Add().Id("Reports").Url("#").Text("View Audit Logs").Children(child2 =>
+           {
+
+               child2.Add().Id("AddedTitles").Url("").Text("Added Titles").Children(child3 =>
+               {
+
+
+                   child3.Add().Id("AddedLandTitles").Url(Url.Action("AuditlogAddedLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("AddedPayments").Url(Url.Action("AAuditpaymentsAdded", "Reports")).Text("Title Payments");
+                   child3.Add().Id("TitleMovementsAdded").Url(Url.Action("AuditLogPropertyTitleMovementsAdded", "Reports")).Text("Title Movements");
+
+
+               });
+
+               child2.Add().Id("ApprovedTitles").Url("").Text("Approved Titles").Children(child0 =>
+               {
+                   child0.Add().Id("ApprovedLandTitles").Url(Url.Action("ApprovedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("ApprovedPayments").Url(Url.Action("AAuditpaymentsApproved", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsApproved").Url(Url.Action("AuditLogPropertyTitleMovementsApproved", "Reports")).Text("Title Movements");
+
+               });
+
+               child2.Add().Url("").Text("Edited Titles").Children(child3 =>
+               {
+                   child3.Add().Id("Land Titles").Url(Url.Action("AuditlogLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("Payments").Url(Url.Action("AAuditpayments", "Reports")).Text("Title Payments");
+                   child3.Add().Id("Title Movements").Url(Url.Action("AuditLogPropertyTitleMovements", "Reports")).Text("Title Movements");
+
+               });
+
+
+               child2.Add().Id("UnlockedTitles").Url("").Text("Unlocked Titles").Children(child0 =>
+               {
+                   child0.Add().Id("UnlockedLandTitles").Url(Url.Action("UnlockedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("UnlockedPayments").Url(Url.Action("AAuditpaymentsUnlocked", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsUnlocked").Url(Url.Action("AuditLogPropertyTitleMovementsUnlocked", "Reports")).Text("Title Movements");
+
+               });
+
+
+
+
+           });
+
+           items.Add().Id("cc").Url(Url.Action("LoginLogs", "UserLogin")).Text("Today's Logins <span style='background-color:red;' class='badge badge-danger'>" + @ViewBag.LogCount + "</span>");
+
+
+       }
+
+       if (User.IsInRole("Administrators"))
+
+       //items.Add().Url(Url.Action("LMISDashboard", "Dashboard")).Text("Home");
+
+       {
+
+           items.Add().Id("Utilities1").Url("#").Text("Add Land Title").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("AddLandTitles").Url("#").Text("Land Titles").Children(child1 =>
+               {
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("FreeHoldProperty", "PropertyTitles")).Text("Free Hold");
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("LeaseHoldProperty", "PropertyTitles")).Text("Lease Hold");
+                   child1.Add().Id("PropertyTitles").Url(Url.Action("MailoProperty", "PropertyTitles")).Text("Mailo Land");
+               });
+
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("AddPayment", "Property_Payment")).Text("Payment");
+               //child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("MoveTitle").Url("#").Text("Move Title").Children(child =>
+           {
+
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+               //child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities2").Url("#").Text("Manage/Approve Entries").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitles").Url("#").Text("Land Titles").Children(child1 =>
+               {
+                   child1.Add().Id("ApproveFreeHoldTitles").Url(Url.Action("Index", "ApproveFreeHoldTitles")).Text("Free Hold");
+                   child1.Add().Id("ApproveLeaseHoldTitles").Url(Url.Action("Index", "ApproveLeaseHoldTitles")).Text("Lease Hold");
+                   child1.Add().Id("ApproveMailoTitles").Url(Url.Action("Index", "ApproveMailoTitles")).Text("Mailo Land");
+               });
+               child.Add().Id("Edit_ManageProperty_Payment").Url(Url.Action("Index", "Edit_ManageProperty_Payment")).Text("Land Payments");
+               child.Add().Id("Edit_ManagePropertyTitleMovts").Url(Url.Action("Index", "Edit_ManagePropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities3").Url("#").Text("Approved Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("ApprovedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("ApprovedFreeHoldTitles").Url(Url.Action("Index", "ApprovedFreeHoldTitles")).Text("Free Hold");
+                   child3.Add().Id("ApprovedLeaseHoldTitles").Url(Url.Action("Index", "ApprovedLeaseHoldTitles")).Text("Lease Hold");
+                   child3.Add().Id("ApprovedMailoTitles").Url(Url.Action("Index", "ApprovedMailoTitles")).Text("Mailo Land");
+
+               });
+
+               child.Add().Id("ApprovedPropertyPayment").Url(Url.Action("Index", "ApprovedPropertyPayment")).Text("Payments");
+               child.Add().Id("ApprovedPropertyTitleMovtsController").Url(Url.Action("Index", "ApprovedPropertyTitleMovtsController")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities4").Url("#").Text("Rejected Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("RejectedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("RejectedPropertyTitles1").Url(Url.Action("RejectedFreeHoldAdmin", "RejectedPropertyTitles1")).Text("Free Hold");
+                   child3.Add().Id("RejectedPropertyTilesLeaseHold").Url(Url.Action("RejectedLeaseHoldAdmin", "RejectedPropertyTilesLeaseHold")).Text("Lease Hold");
+                   child3.Add().Id("RejectedPropertyTilesMailo1").Url(Url.Action("RejectedMailoAdmin", "RejectedPropertyTilesMailo1")).Text("Mailo Land");
+               });
+
+               child.Add().Id("RejectedLandPayments").Url(Url.Action("RejectedLandPaymentsAdmin", "RejectedLandPayments")).Text("Payments");
+               child.Add().Id("RejectedPropertyTitleMovts").Url(Url.Action("RejectedpropertyTitleMovtsAdmin", "RejectedPropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities5").Url("#").Text("Unlocked Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("UnlockedTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("UnlockFreeHoldPropertyTitle").Url(Url.Action("UnlockFreeHoldPropertyTitlesAdmin", "UnlockFreeHoldPropertyTitle")).Text("Free Hold");
+                   child3.Add().Id("UnlockLeaseHoldPropertyTitle").Url(Url.Action("UnlockLeaseHoldPropertyTitlesAdmin", "UnlockLeaseHoldPropertyTitle")).Text("Lease Hold");
+                   child3.Add().Id("UnlockMailoPropertyTitle").Url(Url.Action("UnlockMailoPropertyTitlesAdmin", "UnlockMailoPropertyTitle")).Text("Mailo Land");
+
+               });
+
+               child.Add().Id("UnlockPropertyPayment").Url(Url.Action("UnlockPropertyPayments", "UnlockPropertyPayment")).Text("Payments");
+               child.Add().Id("UnlockPropertyTitleMovts").Url(Url.Action("UnlockPropertyTitleMovts", "UnlockPropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities6").Url("#").Text("View Reports").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitleReports").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("FreeHoldProperties").Url(Url.Action("FreeHoldProperties", "Reports")).Text("Free Hold");
+                   child3.Add().Id("LeaseHoldProperties").Url(Url.Action("LeaseHoldProperties", "Reports")).Text("Lease Hold");
+                   child3.Add().Id("MailoLandProperties").Url(Url.Action("MailoLandProperties", "Reports")).Text("Mailo Land");
+               });
+
+
+               child.Add().Id("Property Types").Url("#").Text("Property Types").Children(child3 =>
+               {
+
+                   child3.Add().Id("StandAloneProperties").Url(Url.Action("StandAloneProperties", "Reports")).Text("Stand Alone Properties");
+
+                   child3.Add().Id("CondomoniumProperties").Url(Url.Action("Condomonium_Properties", "Reports")).Text("Condominium Properties");
+                   child3.Add().Id("UnlistedProperties").Url(Url.Action("UnlistedProperties", "Reports")).Text("Unlisted Land Types");
+
+               });
+
+               child.Add().Id("PropertyPayments").Url(Url.Action("PropertyPayment", "Reports")).Text("Property Payment");
+               child.Add().Id("TitleMovement").Url(Url.Action("TitleMovement", "Reports")).Text("Title Movements");
+
+               child.Add().Id("ManagementReport").Url(Url.Action("ManagementReport", "Reports")).Text("Management Report");
+               child.Add().Id("NHCCProperties").Url(Url.Action("NHCCProperties", "Reports")).Text("NHCC Properties");
+               child.Add().Id("NoTitles").Url(Url.Action("NoTitles", "Reports")).Text("No Titles");
+               child.Add().Id("ReportSoldProperties").Url(Url.Action("ReportSoldProperties", "Reports")).Text("Sold Properties");
+               child.Add().Id("LeaseNotifications").Url(Url.Action("LeaseNotifications", "Reports")).Text("Lease Notifications");
+           });
+
+           items.Add().Id("Reports").Url("#").Text("View Audit Logs").Children(child2 =>
+           {
+
+               child2.Add().Url("").Text("Edited Titles").Children(child3 =>
+               {
+                   child3.Add().Id("Land Titles").Url(Url.Action("AuditlogLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("Payments").Url(Url.Action("AAuditpayments", "Reports")).Text("Title Payments");
+                   child3.Add().Id("Title Movements").Url(Url.Action("AuditLogPropertyTitleMovements", "Reports")).Text("Title Movements");
+
+               });
+
+
+               child2.Add().Id("AddedTitles").Url("").Text("Added Titles").Children(child3 =>
+               {
+
+
+                   child3.Add().Id("AddedLandTitles").Url(Url.Action("AuditlogAddedLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("AddedPayments").Url(Url.Action("AAuditpaymentsAdded", "Reports")).Text("Title Payments");
+                   child3.Add().Id("TitleMovementsAdded").Url(Url.Action("AuditLogPropertyTitleMovementsAdded", "Reports")).Text("Title Movements");
+
+
+               });
+
+               child2.Add().Id("UnlockedTitles").Url("").Text("Unlocked Titles").Children(child0 =>
+               {
+                   child0.Add().Id("UnlockedLandTitles").Url(Url.Action("UnlockedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("UnlockedPayments").Url(Url.Action("AAuditpaymentsUnlocked", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsUnlocked").Url(Url.Action("AuditLogPropertyTitleMovementsUnlocked", "Reports")).Text("Title Movements");
+
+               });
+
+               child2.Add().Id("ApprovedTitles").Url("").Text("Approved Titles").Children(child0 =>
+               {
+                   child0.Add().Id("ApprovedLandTitles").Url(Url.Action("ApprovedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("ApprovedPayments").Url(Url.Action("AAuditpaymentsApproved", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsApproved").Url(Url.Action("AuditLogPropertyTitleMovementsApproved", "Reports")).Text("Title Movements");
+
+               });
+
+
+           });
+
+           //items.Add().Url(Url.Action("LeaseNotifications", "Reports")).Text("View Notifications");
+
+       }
+
+       else if (User.IsInRole("Authorizer/ Approver"))
+       {
+
+           //items.Add().Id("MoveTitle").Url("#").Text("Move Title").Children(child =>
+           //{
+
+           //    child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           //    //child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           //});
+
+           items.Add().Id("Utilities1").Url("#").Text("Manage/Approve Entries").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitles").Url("#").Text("Land Titles").Children(child1 =>
+               {
+                   child1.Add().Id("ApproveFreeHoldTitles").Url(Url.Action("Index", "ApproveFreeHoldTitles")).Text("Free Hold Titles");
+                   child1.Add().Id("ApproveLeaseHoldTitles").Url(Url.Action("Index", "ApproveLeaseHoldTitles")).Text("Lease Hold Titles");
+                   child1.Add().Id("ApproveMailoTitles").Url(Url.Action("Index", "ApproveMailoTitles")).Text("Mailo Land Titles");
+               });
+               child.Add().Id("Edit_ManageProperty_Payment").Url(Url.Action("Index", "Edit_ManageProperty_Payment")).Text("Land Payments");
+               child.Add().Id("Edit_ManagePropertyTitleMovts").Url(Url.Action("Index", "Edit_ManagePropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities2").Url("#").Text("Approved Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("ApprovedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("ApprovedFreeHoldTitles").Url(Url.Action("Index", "ApprovedFreeHoldTitles")).Text("Free Hold Titles");
+                   child3.Add().Id("ApprovedLeaseHoldTitles").Url(Url.Action("Index", "ApprovedLeaseHoldTitles")).Text("Lease Hold Titles");
+                   child3.Add().Id("ApprovedMailoTitles").Url(Url.Action("Index", "ApprovedMailoTitles")).Text("Mailo Land Titles");
+
+               });
+
+               child.Add().Id("ApprovedPropertyPayment").Url(Url.Action("Index", "ApprovedPropertyPayment")).Text("Payments");
+               child.Add().Id("ApprovedPropertyTitleMovtsController").Url(Url.Action("Index", "ApprovedPropertyTitleMovtsController")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities3").Url("#").Text("Rejected Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("RejectedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("RejectedPropertyTitles1").Url(Url.Action("RejectedFreeHoldAdmin", "RejectedPropertyTitles1")).Text("Free Hold Titles");
+                   child3.Add().Id("RejectedPropertyTilesLeaseHold").Url(Url.Action("RejectedLeaseHoldAdmin", "RejectedPropertyTilesLeaseHold")).Text("Lease Hold Titles");
+                   child3.Add().Id("RejectedPropertyTilesMailo1").Url(Url.Action("RejectedMailoAdmin", "RejectedPropertyTilesMailo1")).Text("Mailo Land Titles");
+               });
+
+               child.Add().Id("RejectedLandPayments").Url(Url.Action("RejectedLandPaymentsAdmin", "RejectedLandPayments")).Text("Payments");
+               child.Add().Id("RejectedPropertyTitleMovts").Url(Url.Action("RejectedpropertyTitleMovtsAdmin", "RejectedPropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities4").Url("#").Text("Unlocked Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("UnlockedTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("UnlockFreeHoldPropertyTitle").Url(Url.Action("UnlockFreeHoldPropertyTitlesAdmin", "UnlockFreeHoldPropertyTitle")).Text("Free Hold Titles");
+                   child3.Add().Id("UnlockLeaseHoldPropertyTitle").Url(Url.Action("UnlockLeaseHoldPropertyTitlesAdmin", "UnlockLeaseHoldPropertyTitle")).Text("Lease Hold Titles");
+                   child3.Add().Id("UnlockMailoPropertyTitle").Url(Url.Action("UnlockMailoPropertyTitlesAdmin", "UnlockMailoPropertyTitle")).Text("Mailo Land Titles");
+
+               });
+
+               child.Add().Id("UnlockPropertyPayment").Url(Url.Action("UnlockPropertyPaymentsAdmin", "UnlockPropertyPayment")).Text("Payments");
+               child.Add().Id("UnlockPropertyTitleMovts").Url(Url.Action("UnlockPropertyTitleMovtsAdmin", "UnlockPropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities5").Url("#").Text("View Reports").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitleReports").Url("#").Text("Land Title Reports").Children(child3 =>
+               {
+                   child3.Add().Id("FreeHoldProperties").Url(Url.Action("FreeHoldProperties", "Reports")).Text("Free Hold Property Titles");
+                   child3.Add().Id("LeaseHoldProperties").Url(Url.Action("LeaseHoldProperties", "Reports")).Text("Lease Hold Property Titles");
+                   child3.Add().Id("MailoLandProperties").Url(Url.Action("MailoLandProperties", "Reports")).Text("Mailo Land Property Titles");
+               });
+
+               child.Add().Id("Condomonium_Properties").Url(Url.Action("Condomonium_Properties", "Reports")).Text("Condominium Properties");
+               child.Add().Id("ManagementReport").Url(Url.Action("ManagementReport", "Reports")).Text("Management Report");
+               child.Add().Id("StandAloneProperties").Url(Url.Action("StandAloneProperties", "Reports")).Text("Stand Alone Properties");
+               child.Add().Id("TitleMovement").Url(Url.Action("TitleMovement", "Reports")).Text("Title Movements");
+               child.Add().Id("NHCCProperties").Url(Url.Action("NHCCProperties", "Reports")).Text("NHCC Properties");
+               child.Add().Id("NoTitles").Url(Url.Action("NoTitles", "Reports")).Text("No Titles");
+               child.Add().Id("ReportSoldProperties").Url(Url.Action("ReportSoldProperties", "Reports")).Text("Sold Properties");
+               child.Add().Id("LeaseNotifications").Url(Url.Action("LeaseNotifications", "Reports")).Text("Lease Notifications");
+           });
+
+           items.Add().Url("#").Text("About Us").Children(child =>
+           {
+               child.Add().Id("About").Url(Url.Action("About", "Home")).Text("About NHCC");
+               //  child.Add().Id("").Url(Url.Action("Login", "Account")).Text("Log On");
+
+           });
+       }
+
+       else if (User.IsInRole("Data Entrant"))
+       {
+           items.Add().Id("Utilities1").Url("#").Text("Add Land Title").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("AddLandTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("PropertyTitles").Url(Url.Action("FreeHoldProperty", "PropertyTitles")).Text("Free Hold");
+                   child3.Add().Id("PropertyTitles").Url(Url.Action("LeaseHoldProperty", "PropertyTitles")).Text("Lease Hold");
+                   child3.Add().Id("PropertyTitles").Url(Url.Action("MailoProperty", "PropertyTitles")).Text("Mailo Land");
+               });
+
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("AddPayment", "Property_Payment")).Text("Payments");
+               child.Add().Id("PropertyTitleMovts").Url(Url.Action("Index", "PropertyTitleMovts")).Text("Title Movements");
+           });
+
+           items.Add().Id("Utilities3").Url("#").Text("Rejected Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("RejectedPropertyTitles").Url("#").Text("Rejected Titles").Children(child3 =>
+               {
+                   child3.Add().Id("RejectedPropertyTitles1").Url(Url.Action("Index", "RejectedPropertyTitles1")).Text("Free Hold Titles");
+                   child3.Add().Id("RejectedPropertyTilesLeaseHold").Url(Url.Action("Index", "RejectedPropertyTilesLeaseHold")).Text("Lease Hold Titles");
+                   child3.Add().Id("RejectedPropertyTilesMailo1").Url(Url.Action("Index", "RejectedPropertyTilesMailo1")).Text("Mailo Land Titles");
+               });
+
+               child.Add().Id("RejectedLandPayments").Url(Url.Action("Index", "RejectedLandPayments")).Text("Payments");
+               child.Add().Id("RejectedPropertyTitleMovts").Url(Url.Action("Index", "RejectedPropertyTitleMovts")).Text("Title Movements");
+
+           });
+
+
+           items.Add().Id("Utilities7").Url("#").Text("Unlocked Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("UnlockedTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("UnlockFreeHoldPropertyTitle").Url(Url.Action("UnlockFreeHoldPropertyTitles", "UnlockFreeHoldPropertyTitle")).Text("Free Hold Titles");
+                   child3.Add().Id("UnlockLeaseHoldPropertyTitle").Url(Url.Action("UnlockLeaseHoldPropertyTitles", "UnlockLeaseHoldPropertyTitle")).Text("Lease Hold Titles");
+                   child3.Add().Id("UnlockMailoPropertyTitle").Url(Url.Action("UnlockMailoPropertyTitles", "UnlockMailoPropertyTitle")).Text("Mailo Land Titles");
+
+               });
+
+               child.Add().Id("UnlockPropertyPayment").Url(Url.Action("UnlockPropertyPayments", "UnlockPropertyPayment")).Text("Payments");
+               child.Add().Id("UnlockPropertyTitleMovts").Url(Url.Action("UnlockPropertyTitleMovts", "UnlockPropertyTitleMovts")).Text("Title Movements");
+           });
+
+
+           items.Add().Url("#").Text("About Us").Children(child =>
+           {
+               child.Add().Id("About").Url(Url.Action("About", "Home")).Text("About NHCC");
+               //  child.Add().Id("").Url(Url.Action("Login", "Account")).Text("Log On");
+
+           });
+       }
+
+       else if (User.IsInRole("Report Viewers"))
+       {
+
+           items.Add().Id("Utilities6").Url("#").Text("View Reports").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitleReports").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("FreeHoldProperties").Url(Url.Action("FreeHoldProperties", "Reports")).Text("Free Hold");
+                   child3.Add().Id("LeaseHoldProperties").Url(Url.Action("LeaseHoldProperties", "Reports")).Text("Lease Hold");
+                   child3.Add().Id("MailoLandProperties").Url(Url.Action("MailoLandProperties", "Reports")).Text("Mailo Land");
+               });
+
+
+               child.Add().Id("Property Types").Url("#").Text("Property Types").Children(child3 =>
+               {
+
+                   child3.Add().Id("StandAloneProperties").Url(Url.Action("StandAloneProperties", "Reports")).Text("Stand Alone Properties");
+
+                   child3.Add().Id("CondomoniumProperties").Url(Url.Action("Condomonium_Properties", "Reports")).Text("Condominium Properties");
+                   child3.Add().Id("UnlistedProperties").Url(Url.Action("UnlistedProperties", "Reports")).Text("Unlisted Land Types");
+
+               });
+
+               child.Add().Id("PropertyPayments").Url(Url.Action("PropertyPayment", "Reports")).Text("Property Payment");
+               child.Add().Id("TitleMovement").Url(Url.Action("TitleMovement", "Reports")).Text("Title Movements");
+
+               child.Add().Id("ManagementReport").Url(Url.Action("ManagementReport", "Reports")).Text("Management Report");
+               child.Add().Id("NHCCProperties").Url(Url.Action("NHCCProperties", "Reports")).Text("NHCC Properties");
+               child.Add().Id("NoTitles").Url(Url.Action("NoTitles", "Reports")).Text("No Titles");
+               child.Add().Id("ReportSoldProperties").Url(Url.Action("ReportSoldProperties", "Reports")).Text("Sold Properties");
+               child.Add().Id("LeaseNotifications").Url(Url.Action("LeaseNotifications", "Reports")).Text("Lease Notifications");
+           });
+
+           items.Add().Id("Reports").Url("#").Text("View Audit Logs").Children(child2 =>
+           {
+
+               child2.Add().Url("").Text("Edited Titles").Children(child3 =>
+               {
+                   child3.Add().Id("Land Titles").Url(Url.Action("AuditlogLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("Payments").Url(Url.Action("AAuditpayments", "Reports")).Text("Title Payments");
+                   child3.Add().Id("Title Movements").Url(Url.Action("AuditLogPropertyTitleMovements", "Reports")).Text("Title Movements");
+
+               });
+
+               child2.Add().Id("AddedTitles").Url("").Text("Added Titles").Children(child3 =>
+               {
+
+
+                   child3.Add().Id("AddedLandTitles").Url(Url.Action("AuditlogAddedLandTitles", "Reports")).Text("Land Titles");
+                   child3.Add().Id("AddedPayments").Url(Url.Action("AAuditpaymentsAdded", "Reports")).Text("Title Payments");
+                   child3.Add().Id("TitleMovementsAdded").Url(Url.Action("AuditLogPropertyTitleMovementsAdded", "Reports")).Text("Title Movements");
+
+
+               });
+
+               child2.Add().Id("UnlockedTitles").Url("").Text("Unlocked Titles").Children(child0 =>
+               {
+                   child0.Add().Id("UnlockedLandTitles").Url(Url.Action("UnlockedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("UnlockedPayments").Url(Url.Action("AAuditpaymentsUnlocked", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsUnlocked").Url(Url.Action("AuditLogPropertyTitleMovementsUnlocked", "Reports")).Text("Title Movements");
+
+               });
+
+               child2.Add().Id("ApprovedTitles").Url("").Text("Approved Titles").Children(child0 =>
+               {
+                   child0.Add().Id("ApprovedLandTitles").Url(Url.Action("ApprovedTitles", "Reports")).Text("Land Titles");
+                   child0.Add().Id("ApprovedPayments").Url(Url.Action("AAuditpaymentsApproved", "Reports")).Text("Title Payments");
+                   child0.Add().Id("TitleMovementsApproved").Url(Url.Action("AuditLogPropertyTitleMovementsApproved", "Reports")).Text("Title Movements");
+
+               });
+
+           });
+
+       }
+
+       else if (User.IsInRole("CEO"))
+       {
+
+           items.Add().Id("Utilities5").Url("#").Text("Approved Titles").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("ApprovedPropertyTitles").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("ApprovedFreeHoldTitles").Url(Url.Action("ApprovedFreeHoldCEO", "ApprovedFreeHoldTitles")).Text("Free Hold");
+                   child3.Add().Id("ApprovedLeaseHoldTitles").Url(Url.Action("ApprovedLeaseHoldCEO", "ApprovedLeaseHoldTitles")).Text("Lease Hold");
+                   child3.Add().Id("ApprovedMailoTitles").Url(Url.Action("ApprovedMailoCEO", "ApprovedMailoTitles")).Text("Mailo Land");
+
+               });
+
+               child.Add().Id("ApprovedPropertyPayment").Url(Url.Action("ApprovedPropertyPaymentCEO", "ApprovedPropertyPayment")).Text("Payments");
+               child.Add().Id("ApprovedPropertyTitleMovtsController").Url(Url.Action("ApprovedPropertyTitleMovtsCEO", "ApprovedPropertyTitleMovtsController")).Text("Title Movements");
+
+           });
+
+           items.Add().Id("Utilities6").Url("#").Text("View Reports").Children(child =>
+           {
+               // child.Add().Id("ManageProduct").Url(Url.Action("Products", "A_Product")).Text("Add/Edit Attributes");
+               child.Add().Id("LandTitleReports").Url("#").Text("Land Titles").Children(child3 =>
+               {
+                   child3.Add().Id("FreeHoldProperties").Url(Url.Action("FreeHoldProperties", "Reports")).Text("Free Hold");
+                   child3.Add().Id("LeaseHoldProperties").Url(Url.Action("LeaseHoldProperties", "Reports")).Text("Lease Hold");
+                   child3.Add().Id("MailoLandProperties").Url(Url.Action("MailoLandProperties", "Reports")).Text("Mailo Land");
+               });
+
+
+               child.Add().Id("Property Types").Url("#").Text("Property Types").Children(child3 =>
+               {
+
+                   child3.Add().Id("StandAloneProperties").Url(Url.Action("StandAloneProperties", "Reports")).Text("Stand Alone Properties");
+
+                   child3.Add().Id("CondomoniumProperties").Url(Url.Action("Condomonium_Properties", "Reports")).Text("Condominium Properties");
+                   child3.Add().Id("UnlistedProperties").Url(Url.Action("UnlistedProperties", "Reports")).Text("Unlisted Land Types");
+
+               });
+
+               child.Add().Id("PropertyPayments").Url(Url.Action("PropertyPayment", "Reports")).Text("Property Payment");
+               child.Add().Id("TitleMovement").Url(Url.Action("TitleMovement", "Reports")).Text("Title Movements");
+
+               child.Add().Id("ManagementReport").Url(Url.Action("ManagementReport", "Reports")).Text("Management Report");
+               child.Add().Id("NHCCProperties").Url(Url.Action("NHCCProperties", "Reports")).Text("NHCC Properties");
+               child.Add().Id("NoTitles").Url(Url.Action("NoTitles", "Reports")).Text("No Titles");
+               child.Add().Id("ReportSoldProperties").Url(Url.Action("ReportSoldProperties", "Reports")).Text("Sold Properties");
+               child.Add().Id("LeaseNotifications").Url(Url.Action("LeaseNotifications", "Reports")).Text("Lease Notifications");
+
+           });
+       }
+
+
+       if (@ViewBag.Dash == "YES")
+       {
+
+           FullName fullName = new FullName();
+
+
+           items.Add().Url("#").Id("HelloWel").Text("Hello " + fullName.GetFullName(User.Identity.GetUserName())).Children(child =>
+           //items.Add().Url("#").Id("HSIPLogin3").Text("Hello " + User.Identity.Name).Children(child =>
+
+           {
+               if (User.IsInRole("Super Administrator"))
+               {
+
+                   //Country,District,County,Subcounty
+                   child.Add().Id("DisCouSub").Url("#").Text("Country,District,County,SubCounty").Children(child11 =>
+                   {
+                       child11.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                       child11.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                       child11.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                       child11.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+
+                   });
+
+                   //Location,Project,Region
+                   child.Add().Id("Loca").Url("#").Text("Location,Project,Region").Children(child12 =>
+                   {
+                       child12.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                       child12.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                       child12.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+
+                   });
+
+                   child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+                   //child.Add().Id("OfferStatus").Url(Url.Action("Index", "OfferStatus")).Text("Offer Status");
+                   // child.Add().Id("PropertyStatus").Url(Url.Action("Index", "PropertyStat")).Text("Property Status");
+
+                   //Password Management
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child13 =>
+                   {
+                       child13.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+                       child13.Add().Id("Usermanagement").Url(Url.Action("Usermanagement", "Account")).Text("User Management");
+                       child13.Add().Id("UsersWithRoles").Url(Url.Action("UsersWithRoles", "Account")).Text("User Roles");
+                       child13.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                       child13.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+
+                   });
+
+
+                   child.Add().Id("ManDocs").Url("").Text("Manual Documents").Children(child14 =>
+                   {
+
+                       //child14.Add().Id("chm1").Url("/HTML/index.html").Text("EAMS User Manual");
+                       child14.Add().Id("pdf").Url("../Docs/HandOverReport.pdf").Text("Hand Over Report");
+                       child14.Add().Id("pdf").Url("../Docs/TechnicalReportNHCC.pdf").Text("TMS Technical Report");
+                       child14.Add().Id("pdf").Url("../Docs/UserManual.pdf").Text("User Manual");
+
+
+                   });
+
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+               }
+
+               else if (User.IsInRole("Administrators"))
+               {
+
+                   //Country,District,County,Subcounty
+                   child.Add().Id("DisCouSub").Url("#").Text("Country,District,County,SubCounty").Children(child14 =>
+                   {
+                       child14.Add().Id("Countries").Url(Url.Action("Index", "Countries")).Text("Country");
+                       child14.Add().Id("Districts").Url(Url.Action("Index", "Districts")).Text("District");
+                       child14.Add().Id("Counties").Url(Url.Action("Index", "Counties")).Text("County");
+                       child14.Add().Id("Subcounties").Url(Url.Action("Index", "Subcounties")).Text("Subcounty");
+
+                   });
+
+
+                   //Location,Project,Region
+
+                   child.Add().Id("Loca").Url("#").Text("Location,Project,Region").Children(child15 =>
+                   {
+                       child15.Add().Id("Location").Url(Url.Action("Index", "Location")).Text("Locations");
+                       child15.Add().Id("Projects").Url(Url.Action("Index", "Projects")).Text("Projects");
+                       child15.Add().Id("Region").Url(Url.Action("Region", "Region")).Text("Regions");
+
+                   });
+
+                   child.Add().Id("TitleMovementPurpose").Url(Url.Action("Index", "TitleMovementPurpose")).Text("Title Movement Purpose");
+
+                   //Password Management
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child16 =>
+                   {
+                       child16.Add().Id("RegisterAccounts").Url(Url.Action("Register", "Account")).Text("Register User");
+
+
+                       child16.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Reset Password");
+                       child16.Add().Id("ResetUserPassword").Url(Url.Action("ResetUsersPasswords", "Account")).Text("Reset User Password");
+
+                   });
+
+                   child.Add().Id("ManDocs").Url("").Text("Manual Documents").Children(child14 =>
+                   {
+
+                       //child14.Add().Id("chm1").Url("/HTML/index.html").Text("EAMS User Manual");
+                       child14.Add().Id("pdf").Url("../Docs/HandOverReport.pdf").Text("Hand Over Report");
+                     //  child14.Add().Id("pdf").Url("../Docs/TechnicalReportNHCC.pdf").Text("TMS Technical Report");
+                       child14.Add().Id("pdf").Url("../Docs/UserManual.pdf").Text("User Manual");
+
+
+                   });
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+               }
+
+               else
+
+               {
+
+                   child.Add().Id("Util").Url("#").Text("Utilities").Children(child1 =>
+                   {
+                       child1.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Change Password");
+
+                   });
+
+
+                   child.Add().Id("ManDocs").Url("").Text("Manual Documents").Children(child14 =>
+                   {
+
+                       // child14.Add().Id("pdf").Url("../Docs/HandOverReport.pdf").Text("Hand Over Report");
+                       //  child14.Add().Id("pdf").Url("../Docs/TechnicalReportNHCC.pdf").Text("TMS Technical Report");
+                       child14.Add().Id("pdf").Url("../Docs/UserManual.pdf").Text("User Manual");
+
+
+                   });
+
+
+                   child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+
+                   //child.Add().Id("ResetPassword").Url(Url.Action("ResetPassword", "Account")).Text("Change Password");
+                   //child.Add().Id("Logout").Url(Url.Action("Login", "Account")).Text("Log Off");
+               }
+           });
+
+           /*}).CssClass("navbar  navbar-fixed-top container Black-Menu")*/
+       }
+
+
+   }).EnableSeparator(false).CssClass("Black-Menu")
+
+
+    </div>
+
+    @*Auto SignOut Script*@
+
+    <script>
+        $(function () {
+            $("body").on('click keypress', function () {
+                ResetThisSession();
+            });
+        });
+
+
+        var timeInSecondsAfterSessionOut = 900; // change this to change session time out (in seconds).(15 minutes)
+        var secondTick = 0;
+
+        function ResetThisSession() {
+            secondTick = 0;
+        }
+
+        function StartThisSessionTimer() {
+            secondTick++;
+            var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+
+            timeLeft = timeInSecondsAfterSessionOut - secondTick; // override, we have 30 secs only
+
+            //$("#spanTimeLeft").html(timeLeft + " " + secondTick );
+
+            if (secondTick > timeInSecondsAfterSessionOut) {
+                clearTimeout(tick);
+
+                //  alert("Your session has expired !");
+
+                var url = $("#RedirectTo").val();
+                location.href = url;
+                return;
+            }
+
+            tick = setTimeout("StartThisSessionTimer()", 1000);
+            //tick = setInterval("StartThisSessionTimer()", 6000);
+        }
+
+        StartThisSessionTimer();
+
+    </script>
+
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+
+
+
+    <footer>
+        <div class="container body-content">
+            <hr />
+            <p>&copy; @DateTime.Now.Year - Titles Management System <b style="float:right;"> @String.Format("{0 : dddd,d MMMM, yyyy}", DateTime.Now) </b></p>
+        </div>
+
+    </footer>
+
+
+    @Html.EJ().ScriptManager()
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <style type="text/css" class="cssStyles">
+
+        .myclass {
+            float: right;
+        }
+    </style>
+    <style>
+        #HSIPLogin8 {
+            float: right;
+        }
+    </style>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var menuObj = $("#mainMenu").ejMenu({ width: "91%", enableSeparator: false });
+        });
+
+    </script>
+
+
+    <style type="text/css" class="cssStyles">
+        #More, #Utilities, #Register, #Help, #ManageUsers, #Sign_In {
+            float: right;
+        }
+    </style>
+
+    <style type="text/css" class="cssStyles">
+        /*Main menu options tab to change its color-profile , text etc*/
+        .Black-Menu .e-menu, .e-menu.e-horizontal .e-list > ul {
+            /*background: DarkOliveGreen;*/ /*Change colour for the Menu Bar*/
+            background: Black;
+            font-family: 'Times New Roman';
+            font-size: 30px; /*Main Menu Size*/
+        }
+
+            .Black-Menu .e-menu.e-horizontal .e-list > a { /*Main menu options tab to change its font size and color etc*/
+                color: white;
+                /*font-size: medium ;*/
+                font-size: large; /*Change Font Size for the Menu*/
+            }
+    </style>
+
+    <style>
+        .e-grid .e-groupdroparea, /*GroupDropArea */
+        .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+        .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+        .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+        .e-grid td.e-active, /*During Row Selected*/
+        /*For pager items and their hover*/
+        .e-pager .e-currentitem,
+        .e-pager .e-currentitem:hover,
+        .e-pager .e-link:hover,
+        .e-pager .e-icon:hover {
+            background-color: #ea1b8d;
+            /*font-size: 12px;*/
+        }
+
+        .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+            border-bottom-color: greenyellow /*#ea1b8d*/;
+            /*font-size: 12px;*/
+        }
+
+        .e-grid tr.e-hover /*For row hover*/ {
+            background-color: #e66aae;
+            color: #FFFFFF;
+            /*font-size: 12px;*/
+        }
+
+        .e-grid .e-alt_row /*For Alternate row color*/ { /*To change color of rows by line in grids*/
+            background-color: #E5E4E2; /*#99CFE3;*/
+            /*font-size: 12px;*/
+        }
+    </style>
+
+    <style>
+        .gridfont, .e-grid .e-headercelldiv {
+            /*font-size: 12px;*/
+        }
+
+        .e-grid .e-dialog .gridform .e-rowcell {
+            padding: .5em;
+        }
+
+        .e-grid .e-headercell { /*Change color of column names in grids on this line*/
+            color: darkred;
+            background-color: black /*darkseagreen*/; /*Change color of column names in grids on this line*/
+            font-family: Cambria;
+            /*font-weight: 700;*/
+            /*font-size: 12px;*/
+        }
+    </style>
+
+    @*Delete From Here Incase of Bad acting*@
+
+    <style>
+        .panel-default > .panel-heading {
+            background-color: #0071bc /*#3e1111*/;
+            color: white;
+            /*font-size: 12px;*/
+            /*background-color:silver;*/
+            /*color: white;*/
+        }
+    </style>
+
+    <style type="text/css" class="cssStyles">
+        .control {
+            margin-left: 30px;
+        }
+
+        .ctrllabel {
+            padding-top: 15px;
+        }
+
+        .control {
+            margin-left: 20px;
+        }
+
+        /*.frame {
+            height: 250px;
+            width: 1000px;
+        }*/
+
+        /*.frame1 {
+            height: 240px;
+            width: 900px;
+        }*/
+
+        .txt {
+            display: block;
+            margin-bottom: 12px;
+        }
+    </style>
+
+    <style>
+        #lblComplaintTitle {
+            /*font-size: 100px;*/
+            background-color: white;
+            color: darkred;
+            vertical-align: top;
+            /*font-size: 12px;*/
+            /*width: 700px;*/
+        }
+
+        .redLabels {
+            /*font-size: 24px;*/
+            background-color: white;
+            color: #ff0000;
+            vertical-align: top;
+            font-weight: bold;
+            /*font-size: 12px;*/
+            /*width: 700px;*/
+        }
+
+        .myDiv {
+            /*font-size: 12px;*/
+            background-color: white;
+            color: orangered;
+            vertical-align: top;
+            text-align: center;
+            /*width: 700px;*/
+        }
+
+        #HelloWel {
+            float: right;
+        }
+    </style>
+
+    <style>
+        .e-grid .e-dialog .gridform .e-rowcell {
+            padding: .5em;
+        }
+
+        .custom.e-js .e-header {
+            background: #c9252b;
+        }
+
+        .custom.e-js .e-content {
+            background: #ddd;
+        }
+
+        .custom .e-rbn-button.e-btn.e-select {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .tabstyle {
+            background: #F9F9F9;
+            border-radius: 10px;
+            border: 1px solid #99CFE3;
+            display: block;
+            /*font-size: 12px;*/
+        }
+
+        .longcolumns {
+            width: 600px !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            border-right: 5px #666 outset !important;
+            border-left: 5px #666 outset !important;
+            /*font-size: 12px;*/
+        }
+    </style>
+
+</body>
+</html>
+
+<script>
+    function create() {
+        //$("#" + this._id + "_search").append("Search");
+        $("#" + this._id + "_add").append("Add");
+        $("#" + this._id + "_edit").append("Edit");
+        $("#" + this._id + "_delete").append("Delete");
+        $("#" + this._id + "_update").append("Update");
+        $("#" + this._id + "_cancel").append("Cancel");
+        $("#" + this._id + "_printGrid").append("Print");
+    }
+
+</script>
+
+
+<script id="sample" type="text/x-jsrender">
+    <div class="footerspan" style="float:right">
+
+        @Html.EJ().Button("btn1").Size(ButtonSize.Medium).Height("30").Width("70").Text("Ok")
+
+    </div>
+</script>

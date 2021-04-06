@@ -1,0 +1,282 @@
+﻿
+@{
+    ViewBag.Title = "TitleMovement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Title Movements Report </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+@*##################################*@
+
+
+
+@using (Html.BeginForm())
+{<div>
+     <div class="row">
+
+         <div class="col-lg-3">
+             <p>Start Date</p>
+             <p><input type="text" id="EndDate01" name="EndDate01" class="e-field e-ejinputtext valid" /></p>
+         </div>
+         <div class="col-lg-3">
+             <p>End Date</p>
+             <p><input type="text" id="EndDate02" name="EndDate02" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+
+         @*<div class="col-lg-3">
+            <p>NHCC Project</p>
+            <p><input type="text" id="Project_Code" name="Project_Code" class="e-field e-ejinputtext valid" /></p>
+        </div>*@
+
+         <div class="col-lg-3">
+             <p>Location</p>
+             <p><input type="text" id="Location_id" name="Location_id" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>Land Type</p>
+             <p><input type="text" id="Lease_Type" name="Lease_Type" class="e-field e-ejinputtext valid" /></p>
+
+             @*<p><input type="text" id="LandTypeCodeDescPropTitle" name="LandTypeCodeDescPropTitle" class="e-field e-ejinputtext valid" /></p>*@
+
+         </div>
+
+     </div>
+     <div class="row">
+         <div class="col-lg-3">
+             <p>Destination</p>
+             <p><input type="text" id="DestinyCode" name="DestinyCode" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>Purpose</p>
+             <p><input type="text" id="Purpose_ID" name="Purpose_ID" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>Volume</p>
+             <p><input type="text" id="Volume" name="Volume" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <br />
+         <div class="col-lg-4">
+             <input class="btn btn-success" type="button" value="Load Report">
+         </div>
+
+
+     </div>
+    </div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+
+
+        $("#EndDate01").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+        $("#EndDate02").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+
+ $(function () {
+          $(':button').click(function () {
+
+        var dateobject = $("#EndDate01").data("ejDatePicker");
+        var StartDate = dateobject.getValue();
+
+        var dateobject1 = $("#EndDate02").data("ejDatePicker");
+        var EndDate = dateobject1.getValue();
+
+
+        var DestinyCode1 = $('#DestinyCode').data("ejDropDownList");
+        var _DestinyCode1 = DestinyCode1.option("value");
+
+        //alert(_DestinyCode1); //Alert for Destination Codes
+
+        //var Project_Code1 = $('#Project_Code').data("ejDropDownList");
+        //var _Project_Code = Project_Code1.option("value");
+        ////alert(_Project_Code); //Alert for _Project_Code
+
+              var Location_id1 = $('#Location_id').data("ejDropDownList");
+              var _Location_id = Location_id1.option("value");
+        //alert(_Location_id); //Alert for Location
+
+        var Lease_Type1 = $('#Lease_Type').data("ejDropDownList");
+              var _Lease_Type = Lease_Type1.option("value");
+           //   alert(_Lease_Type); //Alert for Lease Type
+
+        var Purpose_ID1 = $('#Purpose_ID').data("ejDropDownList");
+              var _Purpose_ID1 = Purpose_ID1.option("value");
+
+             // alert(_Purpose_ID1); //Alert for Purpose
+
+              var Volume1 = $('#Volume').data("ejDropDownList");
+              var _Volume1 = Volume1.option("value");
+
+
+        $("#mqpartial").load("@Url.Action("TitleMovementPartial", "Reports")",
+                {
+
+                    'sdate': StartDate,
+                    'edate': EndDate,
+                    //'Project_Code': _Project_Code,
+                    'Location_id': _Location_id,
+                    'DestinyCode': _DestinyCode1,
+                    'Lease_Type': _Lease_Type,
+                    'Purpose_ID': _Purpose_ID1,
+                    'Volume': _Volume1,
+
+
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+
+
+        });
+    });
+
+</script>
+
+<script>
+
+    //Project Description
+    $.ajax({
+        url: 'GetProjectCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Project_Code').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Project_Desc", text: "Project_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+        
+    //Destinations
+    $.ajax({
+        url: 'GetDestinations',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#DestinyCode').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "DestinyDesc", text: "DestinyDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+
+    //Lease Types
+    $.ajax({
+        url: 'GetLease_Type',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Lease_Type').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "LandDesc", text: "LandDesc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Purposes
+    $.ajax({
+        url: 'GetPurposes',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Purpose_ID').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Purpose_Description", text: "Purpose_Description" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Location Description
+    $.ajax({
+        url: 'GetLocationCode',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Location_id').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Location_Desc", text: "Location_Desc" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    //Volume
+    $.ajax({
+        url: 'GetVolumeTitleMovt',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#Volume').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "Volume", text: "Volume" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+</script>

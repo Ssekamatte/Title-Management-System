@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "AuditLogPropertyTitleMovements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>
+                    Audit Log All Edited Property Title Movements
+                </strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{<div>
+     <div class="row">
+
+
+         <div class="col-lg-3">
+             <p>Edited By</p>
+             <p><input type="text" id="original_Edited_By" name="original_Edited_By" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         <div class="col-lg-3">
+             <p>From Edited Date </p>
+             <p><input type="text" id="EndDate01" name="EndDate01" class="e-field e-ejinputtext valid" /></p>
+         </div>
+         <div class="col-lg-3">
+             <p>To Edited Date</p>
+             <p><input type="text" id="EndDate02" name="EndDate02" class="e-field e-ejinputtext valid" /></p>
+         </div>
+
+         @*<div class="col-lg-3">
+            <p>Audit Action</p>
+            <p><input type="text" id="AuditAction_Description" name="AuditAction_Description" class="e-field e-ejinputtext valid" /></p>
+        </div>*@
+
+
+         <br />
+         <div class="col-lg-4">
+             <input class="btn btn-success" type="button" value="Load Report">
+         </div>
+
+
+     </div>
+    </div>
+    <div class="clear"> </div>
+}
+
+<br />
+
+
+<div id="mqpartial" class="tabstyle">
+
+</div>
+<script>
+
+
+        $("#EndDate01").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+        $("#EndDate02").ejDatePicker(
+            {
+                width: '240px',
+                maxDate: new Date(),
+                dateFormat: "dd/MM/yyyy"
+            }
+        );
+
+ $(function () {
+          $(':button').click(function () {
+
+        var dateobject = $("#EndDate01").data("ejDatePicker");
+        var StartDate = dateobject.getValue();
+
+        var dateobject1 = $("#EndDate02").data("ejDatePicker");
+        var EndDate = dateobject1.getValue();
+
+              var Edited_By1 = $('#original_Edited_By').data("ejDropDownList");
+        var _Edited_By1 = Edited_By1.option("value");
+        //alert(_Edited_By1); //Alert for Edited By
+
+        //var AuditAction_Description1 = $('#AuditAction_Description').data("ejDropDownList");
+        //var _AuditAction_Description1 = AuditAction_Description1.option("value");
+
+        //alert(_AuditAction_Description1); //Alert for Audit Action Description
+
+
+
+        $("#mqpartial").load("@Url.Action("AuditLogPropertyTitleMovementsPartial", "Reports")",
+                {
+
+                    'sdate': StartDate,
+                    'edate': EndDate,
+                    'Edited_By': _Edited_By1,
+                    //'AuditAction_Description': _AuditAction_Description1,
+
+
+                },
+                                            function (response, status, xhr) {
+                                                if (status == "error") {
+                                                    alert("An error occurred while loading the results.");
+                                                }
+                                            }
+            );
+
+
+        });
+    });
+
+</script>
+
+<script>
+
+    //Edited By
+    $.ajax({
+        url: 'GetEditedByTitleMovt',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                var DropDownListDist = $('#original_Edited_By').ejDropDownList({
+                    dataSource: data,
+                    width: "240px",
+                    enableFilterSearch: true,
+                    fields: { value: "original_Edited_By", text: "OrigEditedByFullName" }, showCheckbox: true,
+                }).data("ejDropDownList");
+            }
+        },
+    });
+
+    ////Audit Action Description
+    //$.ajax({
+    //    url: 'GetAuditActionDescriptions',
+    //    contentType: "application/json; charset=utf-8",
+    //    dataType: "json",
+    //    type: 'GET',
+    //    success: function (data) {
+    //        if (data.length > 0) {
+    //            var DropDownListDist = $('#AuditAction_Description').ejDropDownList({
+    //                dataSource: data,
+    //                width: "240px",
+    //                fields: { value: "AuditAction_Description", text: "AuditAction_Description" }, showCheckbox: true,
+    //            }).data("ejDropDownList");
+    //        }
+    //    },
+    //});
+
+</script>
+
+
+

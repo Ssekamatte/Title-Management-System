@@ -1,0 +1,452 @@
+@model IEnumerable<TMS.Models.Subcounty>
+
+@{
+    ViewBag.Title = "Subcounties";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Subcounties</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    function DeleteRecord() {
+        // Create grid object.
+        var gridObj = $("#Grid").data("ejGrid");
+        // Gets the selected row element list
+        var records = gridObj.getSelectedRows();
+
+        if (records.length) {
+            var count = 0;
+            for (var i = 0; i < records.length; i++) {
+                var subcountyID = gridObj.getSelectedRecords()[i].Subcounty_ID;
+
+                $.ajax({
+                    url: "DeleteSubCounty?value=" + subcountyID,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    //data: { values: mymsg },
+                    type: 'GET',
+
+                    success: function (result) {
+                        alert(result);
+                        var obj = $("#Grid").ejGrid("instance");
+                        obj.refreshContent();
+                    },
+                }
+                )
+            }
+        }
+    }
+</script>
+
+@(Html.EJ().Grid<object>("Grid")
+                                    //.Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+                                    .Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.DistrictCountySubCounty).UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+
+                                    //.IsResponsive()
+                                    .AllowScrolling()
+                                     .AllowPaging()    /*Paging Enabled*/
+                                                       //.EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+                                           .EditSettings(edit => { edit.AllowAdding()/*.AllowDeleting()*/.AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                                             .ContextMenuSettings(contextMenu =>
+                                             {
+                                                 contextMenu.EnableContextMenu();
+                                             })
+                                    .AllowPaging()
+                                     .PageSettings(page => page.PageSize(7))
+                                     .ShowColumnChooser()
+                                    .AllowGrouping()
+                                    //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+                                    .AllowFiltering()
+                                    .AllowSearching()
+                                                .AllowScrolling().AllowResizing()
+                                                   .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+
+                                    .FilterSettings(d => d.FilterType(FilterType.Excel))
+                                          .ToolbarSettings(toolbar =>
+                                          {
+                                              toolbar.ShowToolbar().ToolbarItems(items =>
+                                              {
+                                                  items.AddTool(ToolBarItems.Add);
+                                                  items.AddTool(ToolBarItems.Edit);
+                                                  //items.AddTool(ToolBarItems.Delete);
+                                                  items.AddTool(ToolBarItems.Update);
+                                                  items.AddTool(ToolBarItems.Cancel);
+                                                  items.AddTool(ToolBarItems.Search);
+                                              });
+                                          })
+                                    .Columns(col =>
+                                    {
+                                        col.Field("Subcounty_ID").HeaderText("Subcounty ID").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                        col.Field("District").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource((IEnumerable<object>)ViewBag.Districts).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                        col.Field("County_ID").HeaderText("County Name").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource((IEnumerable<object>)ViewBag.counties).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+
+                                        //col.Field("County_ID").HeaderText("County Name").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                        col.Field("Subcounty_Name").HeaderText("Subcounty Name").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                    }).ClientSideEvents(eve => { eve.ActionComplete("edit"); }))
+
+
+
+<button class="btn btn-danger btn-lg" style="margin:10px;" onclick="DeleteRecord()">Delete</button>
+
+<script type="text/template" id="template">
+    <b> Subcounty Details</b>
+
+    <div id="tab1" style="width:900px">
+
+        <table cellspacing="10">
+            <tr>
+
+                <td style="text-align: right;" hidden="hidden">Subcounty ID</td>
+                <td style="text-align: left"> <input type="text" id="Subcounty_ID" name="Subcounty_ID" value="{{:Subcounty_ID}}" hidden="hidden" placeholder="SubCounty ID" readonly="readonly" class="e-field e-ejinputtext valid e-disable" /> </td>
+
+                <td style="text-align: right;"></td>
+                <td colspan="2" style="text-align: justify"></td>
+
+                <td style="text-align: right;">District</td>
+                <td style="text-align: left"> <input type="text" id="District" name="District" value="{{:District}}" class="e-field e-ejinputtext valid" /> </td>
+                
+                <td style="text-align: right;"></td>
+                <td colspan="2" style="text-align: justify"></td>
+
+                <td style="text-align: right;">County</td>
+                <td style="text-align: left"> <input type="text" id="County_ID" name="County_ID" value="{{:County_ID}}" placeholder="Add County" class="e-field e-ejinputtext valid " /> </td>
+                
+                <td style="text-align: right;"></td>
+                <td colspan="2" style="text-align: justify"></td>
+
+                <td style="text-align: right;">Subcounty</td>
+                <td style="text-align: left"> <input type="text" id="Subcounty_Name" name="Subcounty_Name" value="{{:Subcounty_Name}}" placeholder=" Add SubCounty" class="e-field e-ejinputtext valid"/> </td>
+
+            </tr>
+
+            <tr>
+
+                <td style="text-align: right;" hidden>
+                    Added By
+                </td>
+
+                <td style="text-align: left">
+                    <input id="Added_By" name="Added_By" value="{{:Added_By}}" disabled="disabled" hidden="hidden" class="e-field e-ejinputtext valid e-disable"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+                <td style="text-align: right;"></td>
+                <td colspan="2" style="text-align: justify"></td>
+
+                <td style="text-align: right;" hidden>
+                    Added Date
+                </td>
+                <td style="text-align: left" hidden>
+                    <input id="Added_Date" name="Added_Date" value="{{:Added_Date}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                           style="text-align: right; width: 150px; height: 25px" />
+                </td>
+
+
+            </tr>
+
+
+        </table>
+
+    </div>
+
+</script>
+
+
+<script>
+    $(function () {
+
+        $.ajax({
+            url: "GetSubCountiesCategory",
+            type: "GET",
+            dataType: "json",
+            //data: {
+            //    date1: f1,
+            //    date2: f2
+            //},
+            success: function (result) {
+                var formatData = ej.parseJSON(result);
+                var obj = $("#Grid").ejGrid("instance");
+                obj.dataSource(result);
+                obj.dataSource(formatData);
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+
+    @*var counties = @Html.Raw(Json.Encode(ViewBag.counties));
+    var districts = @Html.Raw(Json.Encode(ViewBag.Districts));*@
+
+    function edit(args) {
+
+        $("#Added_Date").ejDatePicker();
+
+
+         var datadistricts = @Html.Raw(Json.Encode(ViewBag.Districts));
+        $('#District').ejDropDownList({
+            dataSource: datadistricts,
+            @*dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),*@
+            width: "150px",
+            watermarkText: "Select District",
+            fields: { id: "DistrictID", text: "District_Name", value: "DistrictID" },
+            change: ProjectChange,// Add this change function into the if statement
+        }).data("ejDropDownList");
+
+        $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+        $("#defaultTab").ejTab({ hiddenItemIndex: [1] });
+        
+        if (args.requestType == "beginedit" || args.requestType == "add" ) {
+
+            window._requestType = args.requestType;
+
+            $($("#EditDialog_Grid_Save").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Save</button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#EditDialog_Grid_Cancel").ejButton("destroy");
+            $($("#EditDialog_Grid_Cancel").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "10px" })
+
+            //$("#defaultTab").ejTab({ selectedItemIndex: 0 });
+
+            ////Change Header
+            //$('#' + this._id + '_dialogEdit').ejDialog("option", "title", templateHeader); //change dialog title
+
+
+        }
+
+       if (args.requestType == "add") {
+            $.ajax({
+                url: "CheckSubCountyCodeNo",
+                type: "Get",
+                dataType: "json",
+                success: function (data) {
+                    // alert(data);
+                    var count = (data + 1);
+                    $('#Subcounty_ID').val(count);
+
+                    //cancelss();
+                }
+            });
+
+   
+            var DropDownListCounty = $('#County_ID').ejDropDownList({
+             @* dataSource: @Html.Raw(Json.Encode(ViewBag.Counties)),*@
+            dataSource: null,
+                fields: { id: "County_ID", value: "County_ID", text: "County_Name" },
+                width: "150px",
+                watermarkText: "Select County",
+        }).data("ejDropDownList");
+        }
+
+        if (args.requestType == "beginedit") {
+            var subcountyname = $('#Subcounty_Name').val();
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Edit " + subcountyname + "'s details"); //change dialog title
+
+             var counties = @Html.Raw(Json.Encode(ViewBag.Counties));
+                $('#County_ID').ejDropDownList({
+                    dataSource: counties,
+                    width: "150px",
+                    fields: { value: "County_ID", text: "County_Name" }
+                }).data("ejDropDownList");
+        }   
+    }
+
+    function ProjectChange(args) {
+
+        var _value = args.value;
+        //alert("Value is: "+_value);
+
+
+        $.ajax({  // Ajax function to grey out County before selecting project code
+            url: 'GetCounty',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "District_ID": _value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                        //alert("You are into County");
+
+                    var DropDownListCounty = $('#County_ID').ejDropDownList({
+                     dataSource: data,
+                    //dataSource: data,
+                        fields: { id: "County_ID", value: "County_ID", text: "County_Name"},
+                        width: "150px",
+                    }).data("ejDropDownList");
+
+                }
+            },
+        });
+
+
+    }
+
+</script>
+
+
+<script>
+    function savess() {
+
+        var _Subcounty_ID = $('#Subcounty_ID').val();
+        var _County_ID = $('#County_ID').val();
+        var _District = $('#District').val();
+        var _Subcounty_Name = $('#Subcounty_Name').val();
+
+
+        ;
+        var _type = 0;
+        if (window._requestType == "beginedit") {
+            _type = 2;
+        }
+        else if (window._requestType == "add") {
+            _type = 1;
+        }
+        $.ajax({
+            url: "SaveSubCounty",
+            type: "Get",
+            dataType: "json",
+            data: {
+                "ID": _Subcounty_ID,
+                "County_ID": _County_ID,
+                "District": _District,
+                "Subcounty_Name": _Subcounty_Name,
+                "_type": _type
+            },
+            success: function (data) {
+                alert(data);
+                var grid = $("#Grid").ejGrid("instance");
+                grid.endEdit();
+                grid.refresh;
+            }
+        });
+    }
+    function cancelss() {
+        var grid = $("#Grid").ejGrid("instance");
+        grid.cancelEdit();
+        grid.refresh;
+    }
+</script>
+
+
+<style>
+    .e-grid .e-groupdroparea, /*GroupDropArea */
+    .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+    .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+    .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+    .e-grid td.e-active, /*During Row Selected*/
+    /*For pager items and their hover*/
+    .e-pager .e-currentitem,
+    .e-pager .e-currentitem:hover,
+    .e-pager .e-link:hover,
+    .e-pager .e-icon:hover {
+        background-color: #ea1b8d;
+    }
+
+    .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+        border-bottom-color: /*#ea1b8d*/ green;
+    }
+
+    .e-grid tr.e-hover /*For row hover*/ {
+        background-color: #e66aae;
+        color: #FFFFFF;
+    }
+
+    .e-grid .e-alt_row /*For Alternate row color*/ {
+        background-color: #E5E4E2; /*#99CFE3;*/
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+        border-bottom: 1px solid #c8c8c8;
+        border-left: 1px solid #c8c8c8;
+    }
+</style>
+<style>
+    .panel-default > .panel-heading {
+        background-color: #451bb1 /*#3e1111*/;
+        color: white;
+        /*background-color:silver;*/
+        /*color: white;*/
+    }
+</style>
+
+<style type="text/css" class="cssStyles">
+    .control {
+        margin-left: 30px;
+    }
+
+    .ctrllabel {
+        padding-top: 15px;
+    }
+
+    .control {
+        margin-left: 20px;
+    }
+
+    .frame {
+        height: 250px;
+        width: 1000px;
+    }
+
+    .frame1 {
+        height: 240px;
+        width: 900px;
+    }
+
+    .txt {
+        display: block;
+        margin-bottom: 12px;
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+    }
+
+    .custom.e-js .e-header {
+        background: #5f0c98;
+    }
+
+    .custom.e-js .e-content {
+        background: #ddd;
+    }
+
+    .custom .e-rbn-button.e-btn.e-select {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .tabstyle {
+        background: #F9F9F9;
+        border-radius: 10px;
+        border: 1px solid #99CFE3;
+        display: block;
+    }
+
+    .longcolumns {
+        width: 600px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        border-right: 5px #666 outset !important;
+        border-left: 5px #666 outset !important;
+    }
+</style>
+

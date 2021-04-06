@@ -1,0 +1,91 @@
+
+@{
+    ViewBag.Title = "Usermanagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>User Management</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+@(Html.EJ().Grid<object>
+            ("Grid")
+            .Datasource(datasource => datasource.URL("DataSourceUserManagement").BatchURL("UpdateUserInformation").Adaptor(AdaptorType.UrlAdaptor))
+            .AllowPaging()
+             .AllowFiltering().ShowColumnChooser()
+            .AllowTextWrap()
+            .AllowGrouping()
+
+            //.AllowScrolling()
+            //.ScrollSettings(scroll =>
+            //{
+            //    scroll.AllowVirtualScrolling().Height(500).Width(0).
+            //    VirtualScrollMode(VirtualScrollMode.Normal);
+            //})
+            .AllowScrolling()
+            .ScrollSettings(col => { col.Width(1450).Height(700); })
+            .AllowKeyboardNavigation(true)
+            .AllowResizing()
+            .GroupSettings(group => { group.ShowGroupedColumn(true); })
+            .TextWrapSettings(wrap => { wrap.WrapMode(WrapMode.Both); })
+            .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+            .AllowSearching().SearchSettings(search =>
+            {
+                search.Fields(fields =>
+                {
+                    // fields.Add("Email");
+                    fields.Add("Role");
+                    fields.Add("UserTypeId");
+                    fields.Add("FacilityId");
+                });
+                search.Operator(Operator.Contains);
+                search.IgnoreCase(true);
+            })
+            .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.Batch); })
+                .ToolbarSettings(toolbar =>
+                {
+                    toolbar.ShowToolbar().ToolbarItems(items =>
+                    {
+                        //items.AddTool(ToolBarItems.Add);
+                        //items.AddTool(ToolBarItems.Edit);
+                        items.AddTool(ToolBarItems.Update);
+                        items.AddTool(ToolBarItems.Cancel);
+                        items.AddTool(ToolBarItems.Search);
+                    });
+                })
+            .Columns(col =>
+            {
+                col.Field("Id").AllowEditing(false).Visible(false).HeaderText("Id").IsPrimaryKey(true).Add();
+                //col.Field("Email").AllowEditing(true).AllowEditing(false).HeaderText("Email").Add();
+                col.Field("Role").AllowEditing(true).HeaderText("User Role").ForeignKeyField("Name").ForeignKeyValue("Name").DataSource((IEnumerable<Object>)ViewBag.Roles).Add();
+                col.Field("Department_ID").AllowEditing(true).HeaderText("Department").ForeignKeyField("DeptID").ForeignKeyValue("Dept").DataSource((IEnumerable<Object>)ViewBag.Department).Add();
+                col.Field("UserName").AllowEditing(false).Visible(true).HeaderText("User Name").Add();
+               // col.Field("NameOfUserAccountHolder").AllowEditing(false).Visible(true).HeaderText("Full Name").Add();
+                
+
+                // col.Field("Name").AllowEditing(true).HeaderText("Name") .Add();
+                col.Field("PhoneNumber").AllowEditing(true).HeaderText("Phone Number").Add();
+                col.Field("LockoutEndDateUtc").AllowEditing(true).Visible(true).HeaderText("Lock Out End Date").EditType(EditingType.DateTimePicker).Format("{0:dd/MM/yyyy hh:mm:ss}").Add();
+                col.Field("LockoutEnabled").AllowEditing(true).Visible(true).EditType(EditingType.BooleanEdit).HeaderText("Lock Out Enabled").Add();
+                col.Field("AccessFailedCount").AllowEditing(false).Visible(false).HeaderText("AccessFailedCount").Add();
+            })
+            .ClientSideEvents(eve => { eve.ActionComplete("Complete"); })
+)
+
+<script>
+
+    function Complete(args) {
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+
+        }
+    }
+
+</script>

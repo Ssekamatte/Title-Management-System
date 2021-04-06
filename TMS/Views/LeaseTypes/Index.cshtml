@@ -1,0 +1,123 @@
+@model IEnumerable<TMS.Models.LeaseType>
+
+@{
+    ViewBag.Title = "Lease Types";
+}
+
+<h2>Lease Types</h2>
+ 
+@(Html.EJ().Grid<object>("FlatGrid")
+        .Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("DialogDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+        //.IsResponsive()
+        .AllowScrolling()
+         .AllowPaging()    /*Paging Enabled*/
+                 .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                 .ContextMenuSettings(contextMenu =>
+                 {
+                     contextMenu.EnableContextMenu();
+                 })
+        .AllowPaging()
+         .PageSettings(page => page.PageSize(7))
+         .ShowColumnChooser()
+        .AllowGrouping()
+        //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+        .AllowFiltering()
+        .FilterSettings(d => d.FilterType(FilterType.Excel))
+              .ToolbarSettings(toolbar =>
+              {
+                  toolbar.ShowToolbar().ToolbarItems(items =>
+                  {
+                      items.AddTool(ToolBarItems.Add);
+                      items.AddTool(ToolBarItems.Edit);
+                      items.AddTool(ToolBarItems.Delete);
+                      items.AddTool(ToolBarItems.Update);
+                      items.AddTool(ToolBarItems.Cancel);
+                  });
+              })
+        .Columns(col =>
+        {
+            col.Field("LandCode").HeaderText("LandCode").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Justify).Width(100).Add();
+            col.Field("LandDesc").HeaderText(" Title Type").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+
+            // col.Field("Region_code").EditType(EditingType.Dropdown)
+            //.ForeignKeyField("Region_num")
+            //.ForeignKeyValue("Region_name")
+            //.DataSource((IEnumerable<object>)ViewBag.regions)
+            //.Width(100).Add();
+            ////}).ClientSideEvents(eve => { eve.ActionComplete("edit"); eve.RowSelected("rowSelected"); }))
+        }).ClientSideEvents(eve => { eve.ActionComplete("edit"); }))
+
+
+<script type="text/template" id="template">
+    <b> Title Type Details</b>
+
+    <div id="tab1">
+
+        <table cellspacing="10">
+            <tr>
+                <td style="text-align: right;">LandCode</td>
+                <td style="text-align: left"> <input type="text" id="LandCode" name="LandCode" value="{{:LandCode}}" disabled="disabled"  class="e-field e-ejinputtext valid e-disable" /> </td>
+                <td style="text-align: right;">Title Type</td>
+                <td style="text-align: left"> <input type="text" id="LandDesc" name="LandDesc" value="{{:LandDesc}}" class="e-field e-ejinputtext valid" /> </td>
+              
+            </tr> 
+</table>
+
+    </div>
+
+</script>
+
+
+<script type="text/javascript">
+
+    @*var counties = @Html.Raw(Json.Encode(ViewBag.Counties));
+    var districts = @Html.Raw(Json.Encode(ViewBag.Districts));*@
+
+    function edit(args) {
+        //$("#Offer_Value").ejNumericTextbox();
+        //$("#Ground_Rent").ejNumericTextbox();
+        //$("#Lease_Start_Date").ejDatePicker();
+
+
+        //var DropDownListDist = $('#District_ID').ejDropDownList({
+        //    dataSource: districts,
+        //    width: "150px",
+        //    fields: { value: "DistrictID", text: "District_Name" },
+        //    //cascadeTo: 'CountyList',
+        //    //cascade: "cascadeEvent",
+        //}).data("ejDropDownList");
+
+
+
+        if (args.requestType == "beginedit" ) {
+            //$("#defaultTab").ejTab({ selectedItemIndex: 0 });
+            var templateHeader = 'Editing ' + this.getSelectedRecords()[0].LandDesc + ' Title Type'  ;
+
+            //Change Header
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", templateHeader); //change dialog title
+
+            //////Change Header
+            //$('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Property Title Edit"); //change dialog title
+
+
+            //if (args.requestType == "beginedit") {
+            //    //DropDownListProjects.selectItemByValue(this.getSelectedRecords()[0].Project_Code);
+
+            //    DropDownListDist.selectItemByValue(this.getSelectedRecords()[0].District_ID);
+            //}
+        }
+    }
+    //function cascadeEvent(args) {
+    //    args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+    //    args.cascadeQuery = ej.Query().where("District_ID", "equal", args.cascadeValue); // query to filter value based id
+    //}
+
+
+    //function cascadeEventCounty(args) {
+    //    args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+    //    args.cascadeQuery = ej.Query().where("County_ID", "equal", args.cascadeValue); // query to filter value based id
+    //}
+
+</script>

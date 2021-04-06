@@ -1,0 +1,127 @@
+
+@{
+    ViewBag.Title = "Import SMC";
+}
+
+<h2>Import SMC</h2>
+
+<div style="margin: 7px;">
+    <div class="sbtn" style="margin-top: 10px;">
+        <fieldset style="border: 1px solid #C0C0C0; margin-bottom: 10px;">
+            <legend style="font-size: 14px; font-weight: bold; margin: 0px 0px 5px 0px;">Open Spreadsheet from Server:</legend>
+            <div>
+                <table style="padding: 10px">
+                    <tr>
+                        <td colspan="3">
+                            Select the File:
+                        </td>
+                        <td>
+                            <input type="file" id="myFile" name="myFile" />
+                            <a href="#" onclick="showFileName()">Show Name</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownList("ImportFileName", ViewBag.FileNameList as List<SelectListItem>)
+                        </td>
+                        <td>
+                            <input type="button" value="Open" id="openFileFromServer" />
+                        </td>
+                        <td>
+                            <input type="button" value="Read & Write Selected file in Server" id="ReadWriteSpreadheetData" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="spanel" style="margin-top: 10px;">
+        <div id="Grid"></div>
+        <div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    //$(function () {
+    //    $("#Spreadsheet").ejSpreadsheet({
+    //        scrollSettings:
+    //        {
+    //            width: 1320,
+    //            height: 600
+    //        },
+    //        importSettings: {
+    //            importMapper: "/OpenSpreadsheet/Import"
+    //        },
+    //        exportSettings:
+    //           {
+    //               excelUrl: "/OpenSpreadsheet/ExportToExcel",
+    //               csvUrl: "/OpenSpreadsheet/ExportToCsv"
+    //           }
+    //    });
+    //    $("#saveFileName").val($("#ImportFileName").val());
+    //});
+
+    $("#openFileFromServer").bind("click", function () {
+        //var xlObj = $("#Spreadsheet").data("ejSpreadsheet"),
+        var fileName = $("#ImportFileName").val();
+        alert(fileName);
+        var datasmc=[];
+        $.ajax({
+            type: 'GET',
+            url: "ImportXLFileInSpreadsheet?filename=" + fileName,
+            success: function (results) {
+                if (results.length > 0) {
+                    //alert(' <---> ');
+                    window.smcdata = results;
+                    datasmc = results;
+                    //console.log(window.smcdata);
+                    //console.log(datasmc);
+                }
+            },
+        });
+        //console.log(window.smcdata);
+        //console.log(datasmc);
+        $("#Grid").ejGrid({
+            dataSource: ej.DataManager({ url:"ImportXLFileInSpreadsheet?filename=" + fileName, batchUrl: "BatchUpdateMember", adaptor: "UrlAdaptor" }),
+            //dataSource: datasmc,
+            showColumnChooser: true,
+            columns: [
+                       { field: "SerialNo", headerText: "Serial No"/*, width: 12, visible: true, isPrimaryKey: true */ },
+                       //{ field: "ProductCode", headerText: "Product Code", width: 120, allowEditing: false },
+
+            ]
+        });
+        console.log(window.smcdata);
+        console.log(datasmc);
+
+       // console.log(datasmc);
+        ////myFile
+        //xlObj.showWaitingPopUp();
+        //$.ajax({
+        //    type: "POST",
+        //    data: { filename: fileName },
+        //    url: "/OpenSpreadsheet/ImportXLFileInSpreadsheet",
+        //    success: function (data) {
+        //        console.log(JSON.stringify(data));
+        //        xlObj.loadFromJSON(JSON.parse(data));
+
+        //       //  xlObj.loadFromJSON(data);
+        //        xlObj.hideWaitingPopUp();
+        //    }
+        //});
+        //$.ajax({
+        //    type: 'GET',
+        //    url: "ImportXLFileInSpreadsheet?filename" ,
+        //    success: function (result) {
+        //        console.log(JSON.stringify(result));
+        //    },
+        //});
+
+
+    });
+
+</script>
+

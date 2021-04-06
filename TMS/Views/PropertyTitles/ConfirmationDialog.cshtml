@@ -1,0 +1,29 @@
+<title>jQuery UI Dialog - Modal confirmation</title>
+      @Scripts.Render("~/Scripts/jquery-3.2.1.min.js")
+<link rel="stylesheet" href="/resources/demos/style.css">
+      @Scripts.Render("~/Scripts/jquery-3.2.1.min.js")
+      @Scripts.Render("~/Scripts/jquery-3.2.1.min.js")
+<script>
+  $( function() {
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      autoOpen: true,
+      buttons: {
+        "Reload form": function() {
+            $(this).dialog("close");
+            alert('Cool !!!!');
+        },
+        Cancel: function() {
+            $(this).dialog("close");
+            alert('You have cancelled the Activity');
+        }
+      }
+    });
+  } );
+</script>
+<div id="dialog-confirm" title="Would you like to edit the Record?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>The record did not save correctly. Would you like to re-capture it?</p>
+</div>

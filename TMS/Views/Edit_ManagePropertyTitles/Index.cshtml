@@ -1,0 +1,960 @@
+﻿@model IEnumerable<TMS.Models.PropertyTitle>
+
+@{
+    ViewBag.Title = "Edit / Manage Land Titles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Edit / Manage Land Titles</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+@(Html.EJ().Grid<object>("Grid")
+                                     //.Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("DialogUpdate").InsertURL("DialogInsert").RemoveURL("Delete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+
+                                     .Datasource(datasource => datasource.URL("DataSourcePropertyTitleStatus").UpdateURL("DialogUpdate").InsertURL("DialogInsert").Adaptor(AdaptorType.UrlAdaptor))
+
+                                    //.IsResponsive()
+                                    .IsResponsive()
+
+                                     .AllowPaging()    /*Paging Enabled*/
+                                             .EditSettings(edit => { edit.AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+
+                                             .ContextMenuSettings(contextMenu =>
+                                             {
+                                                 contextMenu.EnableContextMenu();
+                                             })
+                                    .AllowPaging()
+                                     .PageSettings(page => page.PageSize(10))
+                                     .ShowColumnChooser()
+                                    .AllowGrouping()
+                                    //.GroupSettings(group => group.GroupedColumns(col => col.Add("DistrictID")))
+                                    .AllowFiltering()
+                                    .AllowSearching()
+                                      .AllowScrolling().AllowResizing()
+                                           .ScrollSettings(col => { col.Width("100%"); }).ShowColumnChooser()
+
+                                    .FilterSettings(d => d.FilterType(FilterType.Excel))
+                                          .ToolbarSettings(toolbar =>
+                                          {
+                                              toolbar.ShowToolbar().ToolbarItems(items =>
+                                              {
+                                      //items.AddTool(ToolBarItems.Add);
+                                      items.AddTool(ToolBarItems.Edit);
+                                                  items.AddTool(ToolBarItems.Delete);
+                                                  items.AddTool(ToolBarItems.Update);
+                                                  items.AddTool(ToolBarItems.Cancel);
+                                                  items.AddTool(ToolBarItems.Search);
+                                              });
+                                          })
+                                    .Columns(col =>
+                                    {
+                                        col.Field("Project_Code").HeaderText("Project Code").IsPrimaryKey(true).Visible(false).TextAlign(TextAlign.Right).Width(100).Add();
+
+                                        col.Field("Title_Reference").HeaderText("Parent Title").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Right).Width(100).Add();
+
+                                        col.Field("Project_id").HeaderText("NH & CC Project").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.Projects).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+
+                                        col.Field("Volume").HeaderText("Volume").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Folio").HeaderText("Folio").IsPrimaryKey(true).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                            //col.Field("TypeCode").HeaderText("Property Type").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add(); // Property Type Description
+                            col.Field("TypeCode").HeaderText("Property Type").ForeignKeyField("TypeCode").ForeignKeyValue("TypeDesc").DataSource((IEnumerable<object>)ViewBag.PropertyTypes).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Unit_No").HeaderText("Unit Number").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Plan_No").HeaderText("Plan Number").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Block_No").HeaderText("Block Number").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Flat_N0").HeaderText("Flat Number").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource((IEnumerable<object>)ViewBag.Districts).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Plot_No").HeaderText("Plot Number").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Lease_Start_Date").AllowEditing(true).HeaderText("Lease Start Date").Format("{0:dd/MM/yyyy}").Add();
+                                        col.Field("Lease_End_Date").AllowEditing(true).HeaderText("Lease End Date").Format("{0:dd/MM/yyyy}").Add();
+                                        col.Field("Ground_Rent").HeaderText("Ground Rent").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Rates").HeaderText("Rates").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("TitleTransferred").HeaderText("Title Transferred").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("LandTypeCode").HeaderText("Land Type").ForeignKeyField("LandTypeCode").ForeignKeyValue("LandDesc").DataSource((IEnumerable<object>)ViewBag.LandTypes).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                            //col.Field("PropertyStaatus").HeaderText("Property Status").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                            col.Field("PropertyStaatus").HeaderText("Property Status").ForeignKeyField("StatusCode").ForeignKeyValue("StatusDesc").DataSource((IEnumerable<object>)ViewBag.Property).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                        col.Field("BoardMinuteRelease").HeaderText("Board Minute Release").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                            //col.Field("Directors").HeaderText("Directors").ForeignKeyField("Employee_ID").ForeignKeyValue("Employee_Name").DataSource((IEnumerable<object>)ViewBag.Directors).Visible(true).IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                            col.Field("Directors").HeaderText("Directors").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                        col.Field("Added_By").HeaderText("Added By").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+                                        col.Field("Added_Date").HeaderText("Added Date").IsPrimaryKey(false).Visible(true).TextAlign(TextAlign.Justify).Width(100).Add();
+
+                                    })
+                                    .ClientSideEvents(eve => {/* eve.ActionBegin("onActionBegin");*/ eve.ActionComplete("edit").ActionBegin("onActionBegin"); }))
+<script>
+
+    function onActionBegin(args) {
+
+        if (args.requestType == "save") {
+            //alert($("#Directors").val());
+            args.data["Directors"] = $("#Directors").val();
+        }
+    }
+
+</script>
+
+<script>
+
+    function FinalSub(args) {
+         //debugger;
+         //alert(args.value);
+         //var checked = args.value;
+
+        var checked = $("#FinalSubmission:checked").val();
+
+         if (checked == "on") {
+
+             // Ajax fuction to bring Approved on button check
+                 $.ajax({
+
+                     url: 'GetTitleMovementStatus',
+
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     type: 'GET',
+                     success: function (data) {
+                         if (data.length > 0) {
+
+                             var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+                                 dataSource: data,
+                                 width: "240px",
+                                 fields: { id: "Status_ID", text: "Status_Description", value: "Status_ID" }, readOnly: true
+                             }).data("ejDropDownList");
+                             var ddl2 = $('#TitleMovementStatusID').ejDropDownList("instance");
+                             var fc = data[0].Status_ID;
+                             ddl2.selectItemByValue(fc);
+
+                         }
+
+                     },
+
+             });
+
+
+
+         }
+         else {
+
+            var DropDownListTitleMovementStatus = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "150px",
+                 fields: { value: "Status_ID", text: "Status_Description" },readOnly: false
+
+             }).data("ejDropDownList");
+
+
+         }
+
+     }
+
+</script>
+
+
+<script type="text/template" id="template">
+    <b>Edit / Manage Land Titles</b>
+    <div id="defaultTab">
+        <ul>
+            <li><a href="#tab1">Edit / Manage Land Titles</a></li>
+
+
+        </ul>
+
+        <div id="tab1">
+            <table cellspacing="10">
+                <tr>
+                    <td style="text-align: right;">
+                        Parent Title
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Title_Reference" name="Title_Reference" value="{{:Title_Reference}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        NH & CC Project
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Project_Code" name="Project_Code" value="{{:Project_Code}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+                    <td style="text-align: right;">
+                        Volume
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Volume" name="Volume" value="{{:Volume}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Folio
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Folio" name="Folio" value="{{:Folio}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Property Type
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TypeCode" name="TypeCode" value="{{:TypeCode}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Unit Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Unit_No" name="Unit_No" value="{{:Unit_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Plan Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plan_No" name="Plan_No" value="{{:Plan_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Block Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Block_No" name="Block_No" value="{{:Block_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Flat Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Flat_N0" name="Flat_N0" value="{{:Flat_N0}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Plot Number
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Plot_No" name="Plot_No" value="{{:Plot_No}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Ground Rent
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Ground_Rent" name="Ground_Rent" value="{{:Ground_Rent}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        District
+                    </td>
+                    <td style="text-align: left">
+                        <input id="DistrictID" name="DistrictID" value="{{:DistrictID}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Lease Start Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Lease_Start_Date" name="Lease_Start_Date" value="{{:Lease_Start_Date}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Lease End Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Lease_End_Date" name="Lease_End_Date" value="{{:Lease_End_Date}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Rates
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Rates" name="Rates" value="{{:Rates}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        LandType
+                    </td>
+                    <td style="text-align: left">
+                        <input id="LandTypeCode" name="LandTypeCode" value="{{:LandTypeCode}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Sold or Transferred? 
+                    </td>
+
+                    <td style="text-align: left">
+                        {{if PropertySoldorTransferred}}
+                        <input type="checkbox" id="PropertySoldorTransferred" name="PropertySoldorTransferred" checked="checked"  class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="PropertySoldorTransferred" name="PropertySoldorTransferred"  class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Title Transferred
+                    </td>
+
+
+                    <td style="text-align: left">
+                        {{if TitleTransferred}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" checked="checked" class="e-field e-checkbox" style="width:30px" />
+                        {{else}}
+                        <input type="checkbox" id="TitleTransferred" name="TitleTransferred" class="e-field e-checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Property Status
+                    </td>
+                    <td style="text-align: left">
+                        <input id="PropertyStaatus" name="PropertyStaatus" value="{{:PropertyStaatus}}" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Board Minute Release
+                    </td>
+                    <td colspan="2" style="text-align: justify">
+
+                        <textarea rows="4" cols="120"
+                                  id="BoardMinuteRelease" name="BoardMinuteRelease" class="form-control"
+                                  style="text-align: left; margin: 0px 0.4px 0px 0px; width: 806px; height: 105px;">{{:BoardMinuteRelease}}
+                        </textarea>
+
+                        @*<td style="text-align: left">
+                                <input id="BoardMinuteRelease" name="BoardMinuteRelease" value="{{:BoardMinuteRelease}}" class="e-field e-ejinputtext valid"
+                                       style="text-align: right; width: 150px; height: 25px" />
+                            </td>*@
+
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Added By
+                    </td>
+
+                    <td style="text-align: left">
+                        <input id="Added_By" name="Added_By" value="{{:Added_By}}" disabled="disabled" class="e-field e-ejinputtext valid e-disable"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Added Date
+                    </td>
+                    <td style="text-align: left">
+                        <input id="Added_Date" name="Added_Date" value="{{:Added_Date}}" disabled="disabled" class="e-field e-ejinputtext valid"
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+
+                </tr>
+
+                <tr>
+
+                    <td style="text-align: right;">
+                        Final Submission
+                    </td>
+
+                    <td style="text-align: left">
+                        {{if FinalSubmission}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" checked="checked" class="checkbox" style="width:30px" />
+                        {{else}}
+                        <input id="FinalSubmission" type="checkbox" onchange="FinalSub()" name="FinalSubmission" class="checkbox" style="width:30px" />
+                        {{/if}}
+                    </td>
+
+                    <td style="text-align: right;"></td>
+                    <td colspan="2" style="text-align: justify"></td>
+
+                    <td style="text-align: right;">
+                        Status
+                    </td>
+                    <td style="text-align: left">
+                        <input id="TitleMovementStatusID" name="TitleMovementStatusID" onchange="TitleMovementStatus()" value="{{:TitleMovementStatusID}}" class="e-field e-ejinputtext valid "
+                               style="text-align: right; width: 150px; height: 25px" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align: right;">
+                        Reason for rejection
+                    </td>
+                    <td colspan="2" style="text-align: justify">
+
+                        <textarea rows="4" cols="120"
+                                  id="RejectionComment" name="RejectionComment" class="form-control" placeholder="Add Comment" 
+                                  style="text-align: left; margin: 0px 0.4px 0px 0px; width: 806px; height: 105px;">{{:RejectionComment}}
+                        </textarea>
+
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+</script>
+
+
+
+<script type="text/javascript">
+
+
+    function edit(args) {
+        $("#Offer_Value").ejNumericTextbox();
+        $("#Ground_Rent").ejNumericTextbox();
+        $("#Unit_No").ejNumericTextbox();
+        $("#Plan_No").ejNumericTextbox();
+        $("#Block_No").ejNumericTextbox();
+        $("#Flat_N0").ejNumericTextbox();
+        $("#Plot_No").ejNumericTextbox();
+        $("#Lease_Start_Date").ejDatePicker();
+        $("#Lease_End_Date").ejDatePicker();
+        $("#Added_Date").ejDatePicker();
+        $("#Rates").ejNumericTextbox();
+        $("#OfferDate").ejDatePicker();
+        $("#OfferExpiryDate").ejDatePicker();
+        $("#OfferPaymentDate").ejDatePicker();
+        $("#TransferDate").ejDatePicker();
+        $("#AreaOfUnit").ejNumericTextbox();
+        $("#FloorAreaLeased").ejNumericTextbox();
+        $("#UnitFactor").ejNumericTextbox();
+        $("#RegDate").ejDatePicker();
+        $("#ValueOfProperty").ejNumericTextbox();
+        $("#ActualPlotSize").ejNumericTextbox();
+        $("#DateOfValuation").ejDatePicker();
+        $("#Folio").ejNumericTextbox();
+        $("#Value_of_Property").ejNumericTextbox();
+
+
+        var DropDownListProjects = $('#Project_Code').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Projects)),
+            width: "150px",
+            fields: { value: "Project_id", text: "Project_Desc" },
+        }).data("ejDropDownList");
+
+
+        var DropDownListDistricts = $('#DistrictID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Districts)),
+            width: "150px",
+            fields: { value: "DistrictID", text: "District_Name" },
+        }).data("ejDropDownList");
+
+        var DropDownListLandType = $('#PropertyStaatus').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Property)),
+            width: "150px",
+            watermarkText: "Select Status",
+            fields: { value: "StatusCode", text: "StatusDesc"}
+    }).data("ejDropDownList");
+
+
+        var DropDownListDist = $('#TitleMovementStatusID').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTitleMovementStatus)),
+            width: "150px",
+           // watermarkText: "Select Status",
+            fields: { text: "Status_Description", value: "Status_ID" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListLandType = $('#LandTypeCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.LandTypes)),
+            width: "150px",
+            fields: { id: "LandTypeCode", text: "LandDesc", value: "LandTypeCode" }
+        }).data("ejDropDownList");
+
+         var DropDownListLandType = $('#TypeCode').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.PropertyTypes)),
+             width: "150px",
+             watermarkText: "Select Type",
+             fields: { id: "TypeCode", text: "TypeDesc", value: "TypeCode" }
+        }).data("ejDropDownList");
+
+        var DropDownListDirectors = $('#Directors').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Directors)) ,
+            width: "150px",
+            fields: { value: "Employee_Name", text: "Employee_Name" }, showCheckbox: true,
+        }).data("ejDropDownList");
+
+        var DropDownListLocations = $('#Location_id').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Locations)) ,
+            width: "150px",
+            fields: { id: "Location_id", value: "Location_id", text: "Location_Desc" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListPosition = $('#Position_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.A_Position)),
+            width: "150px",
+            fields: { value: "Position_ID", text: "Position_Description" }
+        }).data("ejDropDownList");
+
+
+
+        if (args.requestType == "beginedit" || args.requestType == "add") {
+
+            $("#defaultTab").ejTab({ selectedItemIndex: 0, cssClass: "fat-lime" });
+            $("#defaultTab").ejTab({ hiddenItemIndex: [1] });
+         //  $("#defaultTab").ejTab({ hiddenItemIndex: [2] });
+
+            $("#FlatGrid2_Grid").ejButton("destroy");
+            $($("#FlatGrid2_Grid").hide()).after('<button id="save" type="button" onclick="savess();" class="btn btn-success btn-sm" > <span class="glyphicon glyphicon-save"></span> Saved</button>');
+            $("#save").css({ "width": "100px", "height": "50px", "font-size": "17px", "margin-left": "190px" });
+            $("#FlatGrid2_Grid_Cancel1").ejButton("destroy");
+            $($("#FlatGrid2_Grid_Cancel1").hide()).after(' <button type="button" id="cancel" onclick="cancelss()" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</button>');
+            $("#cancel").css({ "width": "100px", "height": "50px", "margin-left": "10px" })
+
+
+            if (args.requestType == "add") {
+
+                var dataprojects = @Html.Raw(Json.Encode(ViewBag.Projects));
+                $('#Project_Code').ejDropDownList({
+                    dataSource: dataprojects,
+                    width: "150px",
+                    fields: { id: "Project_id", text: "Project_Desc", value: "Project_id" }
+                }).data("ejDropDownList");
+            }
+
+
+
+
+            if (args.requestType == "beginedit")
+            {
+                var tabObj = $("#defaultTab").data("ejTab");
+                hdn = tabObj.option("hiddenItemIndex");
+                var i = 1;
+                var j = hdn.indexOf(i);
+                var val = hdn.slice(0, j);
+                tabObj.option("hiddenItemIndex", val);
+                tabObj.showItem(i);
+                $("#defaultTab").ejTab({ selectedItemIndex: 0 });
+
+               $("#defaultTab").ejTab({ heightAdjustMode: "auto", height: "250px" });
+                //$("#defaultTab").ejTab({ height: "400px" });
+
+                var templateHeader = this.getSelectedRecords()[0].Project_Code + ' ' + this.getSelectedRecords()[0].Volume + ' ' + this.getSelectedRecords()[0].ProprietorName;
+                projectcode = this.getSelectedRecords()[0].Project_Code;
+                folio = this.getSelectedRecords()[0].Folio;
+                //volume = this.getSelectedRecords()[0].Volume;
+
+                Directors = this.getSelectedRecords()[0].Directors;
+
+                var dataManager = ej.DataManager("BoardMembers?projcode=" + projectcode + "&&Folio=" + folio + "&&Directors=" + Directors);
+
+
+            }
+
+            $('#' + this._id + '_dialogEdit').ejDialog("option", "title", "Edit / Manage Land Titles"); //change dialog title
+
+        }
+    }
+
+    function cascadeEvent(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("District_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+    function cascadeEventCounty(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("County_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+    function cascadeEventSubCounty(args) {
+        args.requiresDefaultFilter = false; // restrict the built-in mapping for cascading dropdown
+        args.cascadeQuery = ej.Query().where("County_ID", "equal", args.cascadeValue); // query to filter value based id
+    }
+
+
+    function complete(args) {
+
+
+        $("#Movement_Date").ejDatePicker();
+
+
+        var DropDownListDest_Category = $('#Dest_Category').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.destinationTypes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "DestinyCode", text: "DestinyDesc" },
+                width: "150px",
+                //watermarkText: "Select Destination",
+            }).data("ejDropDownList");
+
+            var DropDownListmovementPurposes = $('#Purpose_ID').ejDropDownList({
+                dataSource: @Html.Raw(Json.Encode(ViewBag.movementPurposes)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Purpose_ID", text: "Purpose_Description" },
+                width: "150px",
+                //watermarkText: "Select Purpose"
+            }).data("ejDropDownList");
+
+            var DropDownListLawyers = $('#Lawyers_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.lawyers)),
+                // fields: { id: "County_ID", text: "County_Name", value: "County_ID" },
+                fields: { value: "Lawyers_ID", text: "Lawyers_Desc" },
+                width: "150px",
+                //watermarkText: "Select a Lawyer"
+        }).data("ejDropDownList");
+
+        var DropDownListCounties = $('#County_ID').ejDropDownList({
+                dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+                fields: { value: "County_ID", text: "County_Name" },
+                width: "150px",
+              }).data("ejDropDownList");
+
+        var DropDownListSubCounties = $('#Subcounty_ID').ejDropDownList({
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            width: "150px",
+            fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+        }).data("ejDropDownList");
+
+        var DropDownListDirectors = $('#Directors').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Directors)) ,
+            width: "150px",
+            fields: {value: "Employee_ID", text: "Employee_Name" }
+        }).data("ejDropDownList");
+
+
+        var DropDownListPropertyStatus = $('#PropertyStaatus').ejDropDownList({
+            dataSource: @Html.Raw(Json.Encode(ViewBag.Property)),
+            width: "150px",
+            fields: { value: "StatusCode", text: "StatusDesc" },
+        }).data("ejDropDownList");
+
+            if (args.requestType == "add") {
+
+            }
+    }
+</script>
+
+
+
+<script>
+    @*var foreignData = @Html.Raw(Json.Encode(ViewBag.Districts));
+    var dataSource3 = @Html.Raw(Json.Encode(ViewBag.Counties));*@
+
+    var foreignObj = [
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Districts)),
+            foreignKeyField: "DistrictID", //Property in the Grid's main dataSource
+            field: "DistrictID", //Property in foreignkey dataSource
+            foreignKeyValue: "District_Name" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Counties)),
+            foreignKeyField: "County_ID", //Property in the Grid's main dataSource
+            field: "County_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "County_Name" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Property)),
+            foreignKeyField: "StatusCode", //Property in the Grid's main dataSource
+            field: "StatusCode", //Property in foreignkey dataSource
+            foreignKeyValue: "StatusDesc" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Projects)),
+            foreignKeyField: "Project_id", //Property in the Grid's main dataSource
+            field: "Project_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        }
+        ,
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Subcounties)),
+            foreignKeyField: "Subcounty_ID", //Property in the Grid's main dataSource
+            field: "Subcounty_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "Subcounty_Name" //Property in foreignkey dataSource
+        }
+        ,
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.PropertyTitlePlotSizes)),
+            foreignKeyField: "PlotSize_ID", //Property in the Grid's main dataSource
+            field: "PlotSize_ID", //Property in foreignkey dataSource
+            foreignKeyValue: "PlotSize_Desc" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Locations)),
+            foreignKeyField: "Location_id", //Property in the Grid's main dataSource
+            field: "Location_id", //Property in foreignkey dataSource
+            foreignKeyValue: "Location_Desc" //Property in foreignkey dataSource
+        },
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.Lease_Type)),
+            foreignKeyField: "LandTypeCode", //Property in the Grid's main dataSource
+            field: "LandTypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "LandDesc" //Property in foreignkey dataSource
+        },
+
+        {
+            dataSource:  @Html.Raw(Json.Encode(ViewBag.propertyTypes)),
+            foreignKeyField: "TypeCode", //Property in the Grid's main dataSource
+            field: "TypeCode", //Property in foreignkey dataSource
+            foreignKeyValue: "TypeDesc" //Property in foreignkey dataSource
+        }
+    ];
+
+    function ProjectChange(args) {
+
+        var _value = args.value;
+          //alert("Value is: "+_value);
+
+        $.ajax({  // Ajax function to grey out County before selecting project code
+            url: 'GetCounty',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "District_ID": _value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0)
+                {
+              //    alert("You are into District");
+
+            var DropDownListCounty = $('#County_ID').ejDropDownList({
+            dataSource:  data,
+            fields: { value: "County_ID", text: "County_Name" },
+                width: "150px",
+                change: SubcountyChange,
+         }).data("ejDropDownList");
+                }
+            },
+        });
+
+
+    }
+
+    function SubcountyChange(args) {
+         var _value = args.value;
+      //  alert( _value);
+
+        $.ajax({  // Ajax function to grey out Subcounty before selecting project code
+            url: 'GetSubCounty',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { "County_ID": _value },
+            type: 'GET',
+            success: function (data) {
+                if (data.length > 0) {
+                   //     alert("You are into SubCounty");
+
+                    var DropDownListSubCounties = $('#Subcounty_ID').ejDropDownList({
+                        dataSource: data,
+                        width: "150px",
+                        fields: { value: "Subcounty_ID", text: "Subcounty_Name" }
+                    }).data("ejDropDownList");
+
+
+                }
+            },
+        });
+    }
+
+    function onLoad(args) {
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "remoteSaveAdaptor");
+    }
+
+</script>
+
+
+
+<style>
+    .e-grid .e-groupdroparea, /*GroupDropArea */
+    .e-grid .e-groupdroparea:hover, /*GroupDropArea Hover*/
+    .e-grid .e-cloneproperties, /*Column header clone during dragging header*/
+    .e-grid .e-groupheadercell:hover, /*HeaderCell in GroupDropArea*/
+    .e-grid td.e-active, /*During Row Selected*/
+    /*For pager items and their hover*/
+    .e-pager .e-currentitem,
+    .e-pager .e-currentitem:hover,
+    .e-pager .e-link:hover,
+    .e-pager .e-icon:hover {
+        background-color: #ea1b8d;
+    }
+
+    .e-grid .e-gridheader /*For line that separates the grid header and content*/ {
+        border-bottom-color: /*#ea1b8d*/ green;
+    }
+
+    .e-grid tr.e-hover /*For row hover*/ {
+        background-color: #e66aae;
+        color: #FFFFFF;
+    }
+
+    .e-grid .e-alt_row /*For Alternate row color*/ {
+        background-color: #E5E4E2; /*#99CFE3;*/
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+        border-bottom: 1px solid #c8c8c8;
+        border-left: 1px solid #c8c8c8;
+    }
+</style>
+<style>
+    .panel-default > .panel-heading {
+        background-color: #451bb1 /*#3e1111*/;
+        color: white;
+        /*background-color:silver;*/
+        /*color: white;*/
+    }
+</style>
+
+<style type="text/css" class="cssStyles">
+    .control {
+        margin-left: 30px;
+    }
+
+    .ctrllabel {
+        padding-top: 15px;
+    }
+
+    .control {
+        margin-left: 20px;
+    }
+
+    .frame {
+        height: 250px;
+        width: 1000px;
+    }
+
+    .frame1 {
+        height: 240px;
+        width: 900px;
+    }
+
+    .txt {
+        display: block;
+        margin-bottom: 12px;
+    }
+</style>
+
+<style>
+    .e-grid .e-dialog .gridform .e-rowcell {
+        padding: .5em;
+    }
+
+    .custom.e-js .e-header {
+        background: #5f0c98;
+    }
+
+    .custom.e-js .e-content {
+        background: #ddd;
+    }
+
+    .custom .e-rbn-button.e-btn.e-select {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .tabstyle {
+        background: #F9F9F9;
+        border-radius: 10px;
+        border: 1px solid #99CFE3;
+        display: block;
+    }
+
+    .longcolumns {
+        width: 600px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        border-right: 5px #666 outset !important;
+        border-left: 5px #666 outset !important;
+    }
+</style>
+

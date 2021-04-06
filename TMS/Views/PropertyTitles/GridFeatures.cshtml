@@ -1,0 +1,201 @@
+@model IEnumerable<TMS.Models.PropertyTitle>
+@using TMS.Models
+@{
+    ViewBag.Title = "Property Titles";
+}
+
+<h2>Property Titles</h2>
+@*load meta-data before loading the grid*@
+<script>
+     
+    ////Lease_Type
+    //$.ajax({
+    //    url: 'Lease_Type',
+    //    //data: JSON.stringify(mid),
+    //    contentType: "application/json; charset=utf-8",
+    //    dataType: "json",
+    //    type: 'GET',
+    //    success: function (Lease_Type) {
+    //        if (Lease_Type.length > 0) {
+    //            Lease_Type = Lease_Type;
+    //        }
+    //    },
+    //});
+     
+    
+</script>
+
+<div id="ControlRegion">
+    @(Html.EJ().Grid<PropertyTitle>("ForeignKey")
+        //.Datasource(ds => ds.Json((IEnumerable<object>)ViewBag.datasource).UpdateURL("NormalUpdate").InsertURL("NormalInsert").RemoveURL("NormalDelete").Adaptor(AdaptorType.RemoteSaveAdaptor))
+        .Datasource((IEnumerable<object>)ViewBag.datasource)
+        .AllowPaging()
+         .AllowSearching(true)
+        .ToolbarSettings(toolbar =>
+        {
+            toolbar.ShowToolbar().ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+            });
+        })
+        .Columns(col =>
+        {
+            //col.Field("Project_Code").IsPrimaryKey(true).HeaderText("Project").ForeignKeyField("Project_id").ForeignKeyValue("Project_Desc").DataSource((IEnumerable<object>)ViewBag.projects).Width(100).Add();
+            //col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(100).ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Add();
+            //col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio").ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Width(100).Add();
+            //col.Field("Title_Reference").Tooltip("Project_Code").HeaderText("Title Ref.").Width(100).Add();
+            //col.Field("TypeCode").HeaderText("Property Type").ForeignKeyField("TypeCode").ForeignKeyValue("TypeDesc").DataSource((IEnumerable<object>)ViewBag.propertyTypes).Width(120).Add();
+            //col.Field("LandTypeCode").HeaderText("Lease Type").ForeignKeyField("LandCode").ForeignKeyValue("LandDesc").DataSource((IEnumerable<object>)ViewBag.Lease_Type/*"Lease_Type"*/).Width(100).Add();
+            //col.Field("Location_id").HeaderText("Location").ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.Locations).Width(120).Add();
+
+            //col.Field("Block_No").HeaderText("Block No").Width(100).Add();
+            //col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource((IEnumerable<object>)ViewBag.Districts).Width(100).Add();
+
+            ////  col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource("Districts").Width(100).Add();
+            //col.Field("County_ID").HeaderText("County").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource((IEnumerable<object>)ViewBag.Counties).Width(120).Add();
+            //// col.Field("County_ID").HeaderText("County").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource("Counties").Width(120).Add();
+
+            //col.Field("Subcounty_ID").HeaderText("Subcounty").ForeignKeyField("Subcounty_ID").ForeignKeyValue("Subcounty_Name").DataSource("Subcounties").Width(120).Add();
+            //col.Field("Parish_ID").HeaderText("Parish").ForeignKeyField("Parish_ID").ForeignKeyValue("Parish_Name").DataSource("Parishes").Width(100).Add();
+
+            //col.Field("Town_Village").HeaderText("Town/Village").Width(180).Add();
+
+
+            col.Field("Project_Code_Project_Desc").IsPrimaryKey(true).HeaderText("Project") .Width(100).Add();
+            col.Field("Volume").IsPrimaryKey(true).HeaderText("Volume").Width(100).ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Add();
+            col.Field("Folio").IsPrimaryKey(true).HeaderText("Folio").ValidationRules(rule => rule.AddRule("required", true).AddRule("string", true)).Width(120).Width(100).Add();
+            // col.Field("Title_Reference").Tooltip("Project_Code").HeaderText("Title Ref.").Width(100).Add();
+            col.Field("TypeCode_TypeCode").HeaderText("Property Type") .Width(120).Add();
+
+            col.Field("LandTypeCode_LandDesc").HeaderText("Lease Type").ForeignKeyField("LandCode").Width(100).Add();
+
+
+            //col.Field("Location_id").HeaderText("Location").ForeignKeyField("Location_id").ForeignKeyValue("Location_Desc").DataSource((IEnumerable<object>)ViewBag.Locations).Width(120).Add();
+
+            //col.Field("Block_No").HeaderText("Block No").Width(100).Add();
+            //col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource((IEnumerable<object>)ViewBag.Districts).Width(100).Add();
+
+            ////  col.Field("DistrictID").HeaderText("District").ForeignKeyField("DistrictID").ForeignKeyValue("District_Name").DataSource("Districts").Width(100).Add();
+            //col.Field("County_ID").HeaderText("County").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource((IEnumerable<object>)ViewBag.Counties).Width(120).Add();
+            //// col.Field("County_ID").HeaderText("County").ForeignKeyField("County_ID").ForeignKeyValue("County_Name").DataSource("Counties").Width(120).Add();
+
+            //col.Field("Subcounty_ID").HeaderText("Subcounty").ForeignKeyField("Subcounty_ID").ForeignKeyValue("Subcounty_Name").DataSource("Subcounties").Width(120).Add();
+            //col.Field("Parish_ID").HeaderText("Parish").ForeignKeyField("Parish_ID").ForeignKeyValue("Parish_Name").DataSource("Parishes").Width(100).Add();
+
+            col.Field("Town_Village").HeaderText("Town/Village").Width(180).Add();
+
+        }).ClientSideEvents(eve =>
+        {
+            eve.ActionBegin("onLoad");
+        })
+    )
+</div>
+ 
+    <script>
+    var foreignData = @Html.Raw(Json.Encode(ViewBag.projects));
+        var dataSource3 = @Html.Raw(Json.Encode(ViewBag.propertyTypes));
+        var dataSource4 = @Html.Raw(Json.Encode(ViewBag.Lease_Type));
+
+    var foreignObj = [
+        //{
+        //    dataSource: foreignData,
+        //    foreignKeyField: "Project_Code", //Property in the Grid's main dataSource
+        //    field: "Project_id", //Property in foreignkey dataSource
+        //    foreignKeyValue: "Project_Desc" //Property in foreignkey dataSource
+        //},
+        // {
+        //     dataSource: dataSource3,
+        //     foreignKeyField: "TypeCode", //Property in the Grid's main dataSource
+        //     field: "TypeCode", //Property in foreignkey dataSource
+        //     foreignKeyValue: "TypeDesc" //Property in foreignkey dataSource
+        //}
+        //,
+         {
+             dataSource: dataSource4,
+             foreignKeyField: "LandTypeCode", //Property in the Grid's main dataSource
+             field: "LandCode", //Property in foreignkey dataSource
+             foreignKeyValue: "LandDesc" //Property in foreignkey dataSource
+         }
+    ];
+
+
+        function onLoad(args) {
+        //   console.log(JSON.stringify(foreignObj));
+        this.model.dataSource.adaptor = new ej.ForeignKeyAdaptor(foreignObj, "JsonAdaptor");
+       
+    }
+    </script>
+    <script>
+        function actionbegin(args) {
+
+            if (args.requestType == "searching") {
+
+                if (ej.DataManager(this.model.dataSource).executeLocal(new ej.Query().search(args.keyValue, ["Project_Code", "DistrictID", "Location_id", "Title_Reference"], true)).length == 0) {
+                    var length = this.model.columns.length;
+                    for (var i = 0; i < length; i++) {
+                        if (this.model.columns[i]["foreignKeyValue"] == "Project_Desc") {
+                            var data = ej.DataManager(this.model.columns[i]["dataSource"]).executeLocal(new ej.Query().search(args.keyValue, [this.model.columns[i]["foreignKeyValue"]], true));
+                            if (data.length > 0) {  // checks whether the value is present in data after checking with dataSource
+                                var foreignkeyFieldValue = (data[0].Project_id).toString();
+                                this.model.searchSettings.fields = "Project_Code";// [this.model.columns[i]["foreignKeyField"]]; //Search the data in foreignkey field
+                                this.model.searchSettings.operator = "equal"; // set equal operator for get the equal values from foreignkey data source
+                                this.model.searchSettings.key = foreignkeyFieldValue; // set the foreignkey field
+                                //break; // exit from loop once data searchsettings values are given
+                            }
+                            //else
+                            //    continue;   // it will call again the "for" loop
+
+                        }
+                        if (this.model.columns[i]["foreignKeyValue"] == "District_Name") {
+                            var data = ej.DataManager(this.model.columns[i]["dataSource"]).executeLocal(new ej.Query().search(args.keyValue, [this.model.columns[i]["foreignKeyValue"]], true));
+                            if (data.length > 0) {  // checks whether the value is present in data after checking with dataSource
+                                var foreignkeyFieldValue = (data[0].DistrictID).toString();
+                                this.model.searchSettings.fields = [this.model.columns[i]["foreignKeyField"]]; //Search the data in foreignkey field
+                                this.model.searchSettings.operator = "equal"; // set equal operator for get the equal values from foreignkey data source
+                                this.model.searchSettings.key = foreignkeyFieldValue; // set the foreignkey field
+                                //break; // exit from loop once data searchsettings values are given
+                            }
+                            //else
+                            //    continue;   // it will call again the "for" loop
+
+                        }
+                        //else {
+
+                        if (this.model.columns[i]["foreignKeyValue"] == "Location_Desc") {
+                            var data = ej.DataManager(this.model.columns[i]["dataSource"]).executeLocal(new ej.Query().search(args.keyValue, [this.model.columns[i]["foreignKeyValue"]], true));
+                            if (data.length > 0) {  // checks whether the value is present in data after checking with dataSource
+                                var foreignkeyFieldValue = (data[0].Location_id).toString();
+                                this.model.searchSettings.fields = [this.model.columns[i]["foreignKeyField"]]; //Search the data in foreignkey field
+                                this.model.searchSettings.operator = "equal"; // set equal operator for get the equal values from foreignkey data source
+                                this.model.searchSettings.key = foreignkeyFieldValue; // set the foreignkey field
+                                // break; // exit from loop once data searchsettings values are given
+                            }
+                            //else
+                            //    continue;   // it will call again the "for" loop
+                        }
+                        //}
+
+                        if (this.model.columns[i]["foreignKeyValue"] == "LandDesc") {
+                            var data = ej.DataManager(this.model.columns[i]["dataSource"]).executeLocal(new ej.Query().search(args.keyValue, [this.model.columns[i]["foreignKeyValue"]], true));
+                            if (data.length > 0) {  // checks whether the value is present in data after checking with dataSource
+                                console.log(JSON.stringify(data));
+                                var foreignkeyFieldValue = (data[0].LandCode).toString();
+                                this.model.searchSettings.fields = "LandTypeCode";//[this.model.columns[i]["foreignKeyField"]]; //Search the data in foreignkey field
+                                this.model.searchSettings.operator = "equal"; // set equal operator for get the equal values from foreignkey data source
+                                this.model.searchSettings.key = foreignkeyFieldValue; // set the foreignkey field
+                                // break; // exit from loop once data searchsettings values are given
+                            }
+                            //else
+                            //    continue;   // it will call again the "for" loop
+                        }
+                    }
+                }
+                else {   // for the other columns
+                    this.model.searchSettings.fields = ["Project_Code", "DistrictID", "Location_id", "Title_Reference"]; //Search the data source with selected fields
+                    this.model.searchSettings.operator = "contains"; // Set the operator to contains
+                    this.model.searchSettings.key = args.keyValue; // Set the foreign key value
+                }
+
+            }
+        }
+    </script>

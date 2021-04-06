@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "LoginLogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Login History</h2>*@
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="lead">
+                <strong>Login History</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+@(Html.EJ().Grid<object>
+                        ("Grid")
+                        .Datasource(datasource => datasource.URL("DataSourceLoginLogs")/*.UpdateURL("FocalPersonBatchUpdate").InsertURL("FocalPersonBatchUpdate")*/.Adaptor(AdaptorType.UrlAdaptor))
+                        .AllowPaging(true).PageSettings(page => page.PageSize(200))
+                        .AllowFiltering()
+                         .AllowTextWrap()
+                         //.AllowGrouping()
+                         .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.DialogTemplate).DialogEditorTemplateID("#template"); })
+                         .AllowScrolling()
+                         //.ScrollSettings(scroll =>
+                         //{
+                         //    scroll.AllowVirtualScrolling().Height(500).Width(0).
+                         //    VirtualScrollMode(VirtualScrollMode.Continuous);
+                         //})
+                         .AllowCellMerging()
+                        .AllowKeyboardNavigation(true)
+                         // .GroupSettings(group => { group.ShowGroupedColumn(true); })
+                         // .GroupSettings(group => { group.GroupedColumns(col => { col.Add("Protocol_Details"); col.Add("Protocol_Provision_Description"); col.Add("Indicator_Description"); }); })
+                         .TextWrapSettings(wrap => { wrap.WrapMode(WrapMode.Both); })
+                        .FilterSettings(filter => { filter.FilterType(FilterType.Excel); })
+                        .AllowSearching().SearchSettings(search =>
+                        {
+                            search.Fields(fields =>
+                            {
+                    //fields.Add("Outcome");
+                    //fields.Add("Output");
+                    //fields.Add("Indicator");
+                    //fields.Add("Indicator_2");
+                    //fields.Add("PerformanceTargetNotes");
+                    //fields.Add("ExplanatoryNotes");
+                });
+                            search.Operator(Operator.Contains);
+                            search.IgnoreCase(true);
+                        })
+                            // .EditSettings(edit => { edit.AllowAdding().AllowDeleting().AllowEditing().EditMode(EditMode.Batch); })
+                            .ToolbarSettings(toolbar =>
+                            {
+                                toolbar.ShowToolbar().ToolbarItems(items =>
+                                {
+                        //items.AddTool(ToolBarItems.Add);
+                        //items.AddTool(ToolBarItems.Edit);
+                        //items.AddTool(ToolBarItems.Update);
+                        //items.AddTool(ToolBarItems.Cancel);
+                        items.AddTool(ToolBarItems.Search);
+                                });
+                    //toolbar.ShowToolbar(true).CustomToolbarItems(new List<object>() { "Collapse", new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Refresh" } });
+                })
+                            .ShowStackedHeader()
+                            .StackedHeaderRows(row =>
+                            {
+                                row.StackedHeaderColumns(column =>
+                                {
+                                    column.HeaderText("Location Details").Tooltip("location details").Column(col =>
+                                    {
+                                        col.Add("Longitude");
+                                        col.Add("Latitude");
+                                    }).Add();
+                                }).Add();
+                            })
+                        .Columns(col =>
+                        {
+                            col.Field("ID").AllowEditing(false).Visible(false).IsPrimaryKey(true).Width(150).Add();
+                            col.Field("UserID").AllowEditing(false).Visible(false).IsPrimaryKey(false).HeaderText("Name").Width(150).Add();
+                            col.Field("NameOfUserAccountHolder").AllowEditing(false).Visible(true).HeaderText("Full Name").IsPrimaryKey(false).Width(150).ForeignKeyField("id").ForeignKeyValue("country").DataSource((IEnumerable<object>)ViewBag.Countries).Add();
+
+                            col.Field("UserName").AllowEditing(false).Visible(true).HeaderText("Email").IsPrimaryKey(false).Width(150).ForeignKeyField("id").ForeignKeyValue("country").DataSource((IEnumerable<object>)ViewBag.Countries).Add();
+                            col.Field("LoginDate").AllowEditing(false).Visible(true).Width(150).HeaderText("Date and time of Login").Format("{0:dd/MM/yyyy HH:mm:ss}").Add();
+                            col.Field("Longitude").AllowEditing(true).Visible(true).HeaderText("Longitude").Width(150).Add();
+                            col.Field("Latitude").AllowEditing(false).Visible(true).HeaderText("Latitude").Width(150).Add();
+                            col.Field("Loc_Description").AllowEditing(false).Width(150).Visible(true).HeaderText("Location Detail").Add();
+
+                        })
+                        .ClientSideEvents(eve => {/* eve.MergeCellInfo("cellmerge"); eve.ActionComplete("edit");*/ })
+)

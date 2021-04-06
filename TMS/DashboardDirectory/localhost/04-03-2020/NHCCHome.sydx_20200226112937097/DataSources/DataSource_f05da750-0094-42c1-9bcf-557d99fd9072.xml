@@ -1,0 +1,478 @@
+<?xml version="1.0"?>
+<DataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" DatabaseType="Relational" IsEncrypted="true" Id="f05da750-0094-42c1-9bcf-557d99fd9072" Name="TotalMailoTitles" Version="3.2.0.68">
+  <CanWrite>true</CanWrite>
+  <IsDipMode>false</IsDipMode>
+  <ConnectionProperties IsEncrypted="true" IsInternalEncrypted="true">
+    <ConnectionOption>StoredProcedure</ConnectionOption>
+    <ConnectionParameters>
+      <AuthenticationType>1</AuthenticationType>
+      <IsSecuredLogin>false</IsSecuredLogin>
+      <IsTrustedConnection>false</IsTrustedConnection>
+      <Database>NHCC_TMS</Database>
+      <DsnType>UserDsn</DsnType>
+      <IsDnsConnection>false</IsDnsConnection>
+      <IsEncrypted>true</IsEncrypted>
+      <Password>qgL5jXkwp10=</Password>
+      <ServerName>30302wPNflBw3udlRJAw9g==</ServerName>
+      <ServerType>0</ServerType>
+      <SourceType>0</SourceType>
+      <Separator>0</Separator>
+      <SourceConnectionTypeOfAgent>Files</SourceConnectionTypeOfAgent>
+      <UserName>iQ+qS0P2Mn8=</UserName>
+      <WebResourcesTypes>Twitter</WebResourcesTypes>
+      <RequestType>GET</RequestType>
+      <AcceptType>JSON</AcceptType>
+      <Headers />
+      <ParametersQueryList />
+      <IsParameterQuery>false</IsParameterQuery>
+      <WebResourcesType>0</WebResourcesType>
+      <IsRegisteredApp>false</IsRegisteredApp>
+      <IsAccessToken>false</IsAccessToken>
+      <GrantType>AuthorizationCode</GrantType>
+      <IsChecked>false</IsChecked>
+      <IsCloud>false</IsCloud>
+      <IsLocal>false</IsLocal>
+      <ItemId>00000000-0000-0000-0000-000000000000</ItemId>
+      <FileType>Excel</FileType>
+      <IsParameterized>false</IsParameterized>
+    </ConnectionParameters>
+    <ConnectionString>gmR5fjcihmX+L0cMa/q/ExkAh9mblrzeXnfGwRiO1GuCezC4AkQ+pnFNej7dNC0ehC6ynWiQM89PXCfc4Jgep1rvowdgfkw/h3DRIVt0TxZAPd5fmIGcKzn27Wz2B33sc8+nhMIQsr27/FndXDELRt1py4JnjK+L</ConnectionString>
+    <ConnectionType>SqlServer</ConnectionType>
+    <IsExtractMode>false</IsExtractMode>
+    <ConnectOption>ConnectionString</ConnectOption>
+    <ExtractedDataFilePath />
+    <IsLoadAllData>false</IsLoadAllData>
+    <IsQueryMode>false</IsQueryMode>
+    <OdbcDbmsServerType>None</OdbcDbmsServerType>
+    <QueryParameters>
+      <QueryParameters>
+        <ParameterType>
+          <string>Custom</string>
+          <string>Parameter</string>
+          <string>Default</string>
+          <string>Null</string>
+        </ParameterType>
+        <SelectedParameterIndex>2</SelectedParameterIndex>
+        <DataType>varchar</DataType>
+        <IsDefaultValue>false</IsDefaultValue>
+        <DefaultValue />
+        <HasDefaultValue>false</HasDefaultValue>
+        <PassNullValue>true</PassNullValue>
+        <HasOutputParameter>false</HasOutputParameter>
+        <Values>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+        </Values>
+        <IsDashboardParameter>false</IsDashboardParameter>
+        <MaxLength>2000</MaxLength>
+        <Name>@location_desc</Name>
+        <Value />
+        <CurrentUserValue>None</CurrentUserValue>
+        <ParameterValue />
+        <DynamicQueryParameters />
+        <SelectedValueType>Null</SelectedValueType>
+      </QueryParameters>
+      <QueryParameters>
+        <ParameterType>
+          <string>Custom</string>
+          <string>Parameter</string>
+          <string>Default</string>
+          <string>Null</string>
+        </ParameterType>
+        <SelectedParameterIndex>2</SelectedParameterIndex>
+        <DataType>varchar</DataType>
+        <IsDefaultValue>false</IsDefaultValue>
+        <DefaultValue />
+        <HasDefaultValue>false</HasDefaultValue>
+        <PassNullValue>true</PassNullValue>
+        <HasOutputParameter>false</HasOutputParameter>
+        <Values>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+          <string>True</string>
+          <string>False</string>
+        </Values>
+        <IsDashboardParameter>false</IsDashboardParameter>
+        <MaxLength>2000</MaxLength>
+        <Name>@typedesc</Name>
+        <Value />
+        <CurrentUserValue>None</CurrentUserValue>
+        <ParameterValue />
+        <DynamicQueryParameters />
+        <SelectedValueType>Null</SelectedValueType>
+      </QueryParameters>
+    </QueryParameters>
+    <DashboardParameters />
+    <RelationalReports />
+    <StoredProcedureName>[dbo].[spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll]</StoredProcedureName>
+    <StoredProcedureCaption>spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll</StoredProcedureCaption>
+    <TableName>spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll</TableName>
+  </ConnectionProperties>
+  <InitialFilters />
+  <UserFilters />
+  <IsAlreadyChecked>false</IsAlreadyChecked>
+  <LiveConnectionProperties>
+    <IsPublish>false</IsPublish>
+    <LiveConnectionType>Files</LiveConnectionType>
+  </LiveConnectionProperties>
+  <PublishSettings>
+    <CredentialRetrievalType>Embedded</CredentialRetrievalType>
+  </PublishSettings>
+  <TempConnectionType>SqlServer</TempConnectionType>
+  <TempOdbcDbmsServerType>None</TempOdbcDbmsServerType>
+  <TreeViewSchemaInfo>
+    <Table>
+      <Caption>spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll</Caption>
+      <Fields>
+        <FieldInfo>
+          <ActualDataType>String</ActualDataType>
+          <AxisType>None</AxisType>
+          <Caption>LandType</Caption>
+          <ColumnName>LandType</ColumnName>
+          <ColumnType>Dimension</ColumnType>
+          <ConditionSummaryType>None</ConditionSummaryType>
+          <CustomColumnType>Dimension</CustomColumnType>
+          <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+          <IsCustomDateApplied>false</IsCustomDateApplied>
+          <DataSourceName>TotalMailoTitles</DataSourceName>
+          <DataType>String</DataType>
+          <DateTimeFormat>None</DateTimeFormat>
+          <DefaultDataType>String</DefaultDataType>
+          <DisplaySeries>None</DisplaySeries>
+          <Expression>
+            <ColumnNames />
+            <IsBlending>false</IsBlending>
+            <IsUserFilter>false</IsUserFilter>
+            <PivotExpressionKeys />
+            <Tables />
+            <IsDashboardParameter>false</IsDashboardParameter>
+            <UserFunctionType>CurrentUser</UserFunctionType>
+            <BlendingDataSources />
+          </Expression>
+          <IsCustomSortApplied>false</IsCustomSortApplied>
+          <FilterValues />
+          <Format>Default</Format>
+          <FormatProperties>
+            <Culture>en-US</Culture>
+            <DecimalPoints>0</DecimalPoints>
+            <FormatType>Default</FormatType>
+            <DecimalSeparator>
+              <AliasValue>.</AliasValue>
+              <CurrentValue>.</CurrentValue>
+            </DecimalSeparator>
+            <GroupSeparator>
+              <AliasValue>,</AliasValue>
+              <CurrentValue>,</CurrentValue>
+            </GroupSeparator>
+            <NegativeValueFormat>Default</NegativeValueFormat>
+            <Prefix />
+            <Suffix />
+            <Unit>Auto</Unit>
+          </FormatProperties>
+          <FiscalYearFormat>Jan</FiscalYearFormat>
+          <FiscalYearStart>Jan</FiscalYearStart>
+          <HasCondition>false</HasCondition>
+          <IsAggregation>false</IsAggregation>
+          <IsAllowDbNull>true</IsAllowDbNull>
+          <IsBin>false</IsBin>
+          <IsDataTypeChanged>false</IsDataTypeChanged>
+          <IsExpression>false</IsExpression>
+          <IsFilter>false</IsFilter>
+          <IsForeignKey>false</IsForeignKey>
+          <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+          <IsInclude>false</IsInclude>
+          <IsKpiSchema>false</IsKpiSchema>
+          <IsMeasureFilter>false</IsMeasureFilter>
+          <IsPrimaryKey>false</IsPrimaryKey>
+          <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+          <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+          <IsSelected>true</IsSelected>
+          <IsTop>false</IsTop>
+          <IsTopNDateFormat>false</IsTopNDateFormat>
+          <Key>[LandType]</Key>
+          <LevelDepth>0</LevelDepth>
+          <MeasureConditions>Equals</MeasureConditions>
+          <NullValue>Default</NullValue>
+          <Parent>
+            <AxisType>None</AxisType>
+            <Caption>spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll</Caption>
+            <ColumnName>#SyncfusionDashboardStoredProcTempTable20200226082715579</ColumnName>
+            <ColumnType>None</ColumnType>
+            <ConditionSummaryType>None</ConditionSummaryType>
+            <CustomColumnType>None</CustomColumnType>
+            <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+            <IsCustomDateApplied>false</IsCustomDateApplied>
+            <DataSourceName>TotalMailoTitles</DataSourceName>
+            <DateTimeFormat>None</DateTimeFormat>
+            <DisplaySeries>None</DisplaySeries>
+            <Expression>
+              <ColumnNames />
+              <IsBlending>false</IsBlending>
+              <IsUserFilter>false</IsUserFilter>
+              <PivotExpressionKeys />
+              <Tables />
+              <IsDashboardParameter>false</IsDashboardParameter>
+              <UserFunctionType>CurrentUser</UserFunctionType>
+              <BlendingDataSources />
+            </Expression>
+            <IsCustomSortApplied>false</IsCustomSortApplied>
+            <FilterValues />
+            <Format>Default</Format>
+            <FormatProperties>
+              <Culture>en-US</Culture>
+              <DecimalPoints>0</DecimalPoints>
+              <FormatType>Default</FormatType>
+              <DecimalSeparator>
+                <AliasValue>.</AliasValue>
+                <CurrentValue>.</CurrentValue>
+              </DecimalSeparator>
+              <GroupSeparator>
+                <AliasValue>,</AliasValue>
+                <CurrentValue>,</CurrentValue>
+              </GroupSeparator>
+              <NegativeValueFormat>Default</NegativeValueFormat>
+              <Prefix />
+              <Suffix />
+              <Unit>Auto</Unit>
+            </FormatProperties>
+            <FiscalYearFormat>Jan</FiscalYearFormat>
+            <HasCondition>false</HasCondition>
+            <IsAggregation>false</IsAggregation>
+            <IsAllowDbNull>true</IsAllowDbNull>
+            <IsBin>false</IsBin>
+            <IsDataTypeChanged>false</IsDataTypeChanged>
+            <IsExpression>false</IsExpression>
+            <IsFilter>false</IsFilter>
+            <IsForeignKey>false</IsForeignKey>
+            <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+            <IsInclude>false</IsInclude>
+            <IsKpiSchema>false</IsKpiSchema>
+            <IsMeasureFilter>false</IsMeasureFilter>
+            <IsPrimaryKey>false</IsPrimaryKey>
+            <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+            <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+            <IsSelected>true</IsSelected>
+            <IsTop>false</IsTop>
+            <IsTopNDateFormat>false</IsTopNDateFormat>
+            <Key>[#SyncfusionDashboardStoredProcTempTable20200226082715579]</Key>
+            <LevelDepth>0</LevelDepth>
+            <MeasureConditions>Equals</MeasureConditions>
+            <NullValue>Default</NullValue>
+            <RelativeDateItems />
+            <ShowGrandTotal>false</ShowGrandTotal>
+            <ShowOtherGroup>false</ShowOtherGroup>
+            <SortDirection>Ascending</SortDirection>
+            <SummaryType>None</SummaryType>
+            <TopCount>0</TopCount>
+            <TopNSummaryType>None</TopNSummaryType>
+            <TopNDateFormat>None</TopNDateFormat>
+            <TreeNodeType>Table</TreeNodeType>
+            <UniqueColumnName>#SyncfusionDashboardStoredProcTempTable20200226082715579</UniqueColumnName>
+            <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+            <Values />
+          </Parent>
+          <RelativeDateItems />
+          <ShowGrandTotal>false</ShowGrandTotal>
+          <ShowOtherGroup>false</ShowOtherGroup>
+          <SortDirection>Ascending</SortDirection>
+          <SummaryType>DistinctCount</SummaryType>
+          <TopCount>0</TopCount>
+          <TopNSummaryType>None</TopNSummaryType>
+          <TopNDateFormat>None</TopNDateFormat>
+          <TreeNodeType>Folder</TreeNodeType>
+          <UniqueColumnName>LandType</UniqueColumnName>
+          <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+          <Values />
+        </FieldInfo>
+        <FieldInfo>
+          <ActualDataType>Int32</ActualDataType>
+          <AxisType>None</AxisType>
+          <Caption>TotalMailoTitles</Caption>
+          <ColumnName>TotalMailoTitles</ColumnName>
+          <ColumnType>Measure</ColumnType>
+          <ConditionSummaryType>None</ConditionSummaryType>
+          <CustomColumnType>Measure</CustomColumnType>
+          <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+          <IsCustomDateApplied>false</IsCustomDateApplied>
+          <DataSourceName>TotalMailoTitles</DataSourceName>
+          <DataType>Int64</DataType>
+          <DateTimeFormat>None</DateTimeFormat>
+          <DefaultDataType>Int64</DefaultDataType>
+          <DisplaySeries>None</DisplaySeries>
+          <Expression>
+            <ColumnNames />
+            <IsBlending>false</IsBlending>
+            <IsUserFilter>false</IsUserFilter>
+            <PivotExpressionKeys />
+            <Tables />
+            <IsDashboardParameter>false</IsDashboardParameter>
+            <UserFunctionType>CurrentUser</UserFunctionType>
+            <BlendingDataSources />
+          </Expression>
+          <IsCustomSortApplied>false</IsCustomSortApplied>
+          <FilterValues />
+          <Format>Default</Format>
+          <FormatProperties>
+            <Culture>en-US</Culture>
+            <DecimalPoints>0</DecimalPoints>
+            <FormatType>Default</FormatType>
+            <DecimalSeparator>
+              <AliasValue>.</AliasValue>
+              <CurrentValue>.</CurrentValue>
+            </DecimalSeparator>
+            <GroupSeparator>
+              <AliasValue>,</AliasValue>
+              <CurrentValue>,</CurrentValue>
+            </GroupSeparator>
+            <NegativeValueFormat>Default</NegativeValueFormat>
+            <Prefix />
+            <Suffix />
+            <Unit>Auto</Unit>
+          </FormatProperties>
+          <FiscalYearFormat>Jan</FiscalYearFormat>
+          <FiscalYearStart>Jan</FiscalYearStart>
+          <HasCondition>false</HasCondition>
+          <IsAggregation>false</IsAggregation>
+          <IsAllowDbNull>true</IsAllowDbNull>
+          <IsBin>false</IsBin>
+          <IsDataTypeChanged>false</IsDataTypeChanged>
+          <IsExpression>false</IsExpression>
+          <IsFilter>false</IsFilter>
+          <IsForeignKey>false</IsForeignKey>
+          <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+          <IsInclude>false</IsInclude>
+          <IsKpiSchema>false</IsKpiSchema>
+          <IsMeasureFilter>false</IsMeasureFilter>
+          <IsPrimaryKey>false</IsPrimaryKey>
+          <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+          <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+          <IsSelected>true</IsSelected>
+          <IsTop>false</IsTop>
+          <IsTopNDateFormat>false</IsTopNDateFormat>
+          <Key>[TotalMailoTitles]</Key>
+          <LevelDepth>0</LevelDepth>
+          <MeasureConditions>Equals</MeasureConditions>
+          <NullValue>Default</NullValue>
+          <Parent>
+            <AxisType>None</AxisType>
+            <Caption>spReport_Split_New_New_MailoLandSummaryPropertyTitlesGetAll</Caption>
+            <ColumnName>#SyncfusionDashboardStoredProcTempTable20200226082715579</ColumnName>
+            <ColumnType>None</ColumnType>
+            <ConditionSummaryType>None</ConditionSummaryType>
+            <CustomColumnType>None</CustomColumnType>
+            <SchemaFromCustomWidget>false</SchemaFromCustomWidget>
+            <IsCustomDateApplied>false</IsCustomDateApplied>
+            <DataSourceName>TotalMailoTitles</DataSourceName>
+            <DateTimeFormat>None</DateTimeFormat>
+            <DisplaySeries>None</DisplaySeries>
+            <Expression>
+              <ColumnNames />
+              <IsBlending>false</IsBlending>
+              <IsUserFilter>false</IsUserFilter>
+              <PivotExpressionKeys />
+              <Tables />
+              <IsDashboardParameter>false</IsDashboardParameter>
+              <UserFunctionType>CurrentUser</UserFunctionType>
+              <BlendingDataSources />
+            </Expression>
+            <IsCustomSortApplied>false</IsCustomSortApplied>
+            <FilterValues />
+            <Format>Default</Format>
+            <FormatProperties>
+              <Culture>en-US</Culture>
+              <DecimalPoints>0</DecimalPoints>
+              <FormatType>Default</FormatType>
+              <DecimalSeparator>
+                <AliasValue>.</AliasValue>
+                <CurrentValue>.</CurrentValue>
+              </DecimalSeparator>
+              <GroupSeparator>
+                <AliasValue>,</AliasValue>
+                <CurrentValue>,</CurrentValue>
+              </GroupSeparator>
+              <NegativeValueFormat>Default</NegativeValueFormat>
+              <Prefix />
+              <Suffix />
+              <Unit>Auto</Unit>
+            </FormatProperties>
+            <FiscalYearFormat>Jan</FiscalYearFormat>
+            <HasCondition>false</HasCondition>
+            <IsAggregation>false</IsAggregation>
+            <IsAllowDbNull>true</IsAllowDbNull>
+            <IsBin>false</IsBin>
+            <IsDataTypeChanged>false</IsDataTypeChanged>
+            <IsExpression>false</IsExpression>
+            <IsFilter>false</IsFilter>
+            <IsForeignKey>false</IsForeignKey>
+            <IsFiscalYearStartChanged>false</IsFiscalYearStartChanged>
+            <IsInclude>false</IsInclude>
+            <IsKpiSchema>false</IsKpiSchema>
+            <IsMeasureFilter>false</IsMeasureFilter>
+            <IsPrimaryKey>false</IsPrimaryKey>
+            <IsRelativeDateFilterApplied>false</IsRelativeDateFilterApplied>
+            <IsSelectAllForAllowFilter>false</IsSelectAllForAllowFilter>
+            <IsSelected>true</IsSelected>
+            <IsTop>false</IsTop>
+            <IsTopNDateFormat>false</IsTopNDateFormat>
+            <Key>[#SyncfusionDashboardStoredProcTempTable20200226082715579]</Key>
+            <LevelDepth>0</LevelDepth>
+            <MeasureConditions>Equals</MeasureConditions>
+            <NullValue>Default</NullValue>
+            <RelativeDateItems />
+            <ShowGrandTotal>false</ShowGrandTotal>
+            <ShowOtherGroup>false</ShowOtherGroup>
+            <SortDirection>Ascending</SortDirection>
+            <SummaryType>None</SummaryType>
+            <TopCount>0</TopCount>
+            <TopNSummaryType>None</TopNSummaryType>
+            <TopNDateFormat>None</TopNDateFormat>
+            <TreeNodeType>Table</TreeNodeType>
+            <UniqueColumnName>#SyncfusionDashboardStoredProcTempTable20200226082715579</UniqueColumnName>
+            <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+            <Values />
+          </Parent>
+          <RelativeDateItems />
+          <ShowGrandTotal>false</ShowGrandTotal>
+          <ShowOtherGroup>false</ShowOtherGroup>
+          <SortDirection>Ascending</SortDirection>
+          <SummaryType>Sum</SummaryType>
+          <TopCount>0</TopCount>
+          <TopNSummaryType>None</TopNSummaryType>
+          <TopNDateFormat>None</TopNDateFormat>
+          <TreeNodeType>Folder</TreeNodeType>
+          <UniqueColumnName>TotalMailoTitles</UniqueColumnName>
+          <IsSelectFromGroupedData>false</IsSelectFromGroupedData>
+          <Values />
+        </FieldInfo>
+      </Fields>
+      <Header>#SyncfusionDashboardStoredProcTempTable20200226082715579</Header>
+      <NodeType>Table</NodeType>
+      <TableKey>[#SyncfusionDashboardStoredProcTempTable20200226082715579]</TableKey>
+      <TableRelationships />
+      <UniqueColumnName>#SyncfusionDashboardStoredProcTempTable20200226082715579</UniqueColumnName>
+      <LocationX>35.25</LocationX>
+      <LocationY>33.25</LocationY>
+    </Table>
+  </TreeViewSchemaInfo>
+  <TableRelationshipInformation />
+  <MultiDataSourceJoinRelations />
+  <DashboardParameters />
+</DataSource>

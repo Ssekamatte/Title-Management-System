@@ -1,0 +1,571 @@
+﻿@model TMS.Models.PropertyTitle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PropertyTitle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title_Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title_Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Block_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Block_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat_N0)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat_N0)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region_num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region_num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subcounty_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subcounty_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parish_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parish_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Town_Village)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Town_Village)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plot_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plot_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lease_Start_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lease_Start_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lease_End_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lease_End_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ground_Rent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ground_Rent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rates)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchaser_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchaser_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchasers_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchasers_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchasers_TelNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchasers_TelNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchasers_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchasers_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaserEmployer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaserEmployer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offer_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferPaymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferPaymentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferPaidUP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferPaidUP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleTransferred)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleTransferred)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransferDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransferDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaserRemark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaserRemark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDataAudit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDataAudit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaOfUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaOfUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FloorAreaLeased)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FloorAreaLeased)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitFactor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitFactor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstrumentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstrumentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProprietorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProprietorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProprietorAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProprietorAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FathersName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FathersName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Registrar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Registrar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoardMinuteRelease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoardMinuteRelease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Directors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Directors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edited_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValueOfProperty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValueOfProperty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualPlotSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualPlotSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceOfLease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceOfLease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundRentNarrative)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundRentNarrative)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroundRentDueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroundRentDueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralRemarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneralRemarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valuer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valuer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfValuation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfValuation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertySoldorTransferred)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertySoldorTransferred)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.County.County_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.County.County_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District.District_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District.District_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lease_Type.LandDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lease_Type.LandDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Location_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Location_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Project_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Project_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyTitle2.Title_Reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyTitle2.Title_Reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyTitle_LeaseYears.LeaseYears)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyTitle_LeaseYears.LeaseYears)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyTitle_PlotSize.PlotSize_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyTitle_PlotSize.PlotSize_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyType.TypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyType.TypeDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
